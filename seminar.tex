@@ -1,0 +1,75 @@
+\documentclass[12pt]{article}
+\pagestyle{empty}
+
+%%% Кодировки и шрифты %%%
+\usepackage{cmap} % Улучшенный поиск русских слов в полученном pdf-файле
+\usepackage[T2A]{fontenc} % Поддержка русских букв
+\usepackage[utf8]{inputenc} % Кодировка utf8
+\usepackage[english, russian]{babel} % Языки: русский, английский
+
+%% графика
+\ifx\pdfoutput\undefined
+\usepackage{graphicx}
+\else
+\usepackage[pdftex]{graphicx}
+\fi
+\usepackage{wrapfig}
+
+%%% Математические пакеты %%%
+\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd} % Математические дополнения от AMS
+
+
+\textheight 21cm
+\textwidth 14.5cm
+
+\oddsidemargin 0.96cm   % margins on all sides of 3.5 cm,
+\evensidemargin 0.96cm  % correcting 1 inch default on left-hand
+\topmargin -0.31cm      % side, and 1.5 inch default on top.
+
+\begin{document}
+
+\baselineskip 24pt
+
+\parindent 0.0cm
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+  \begin{center}
+    \includegraphics[scale=0.75]{nlu-rg-logo.png}
+  \end{center}
+\end{wrapfigure}
+
+\begin{center}
+{\rm \Huge{Natural Language Understanding}}\\
+\bigskip
+{\rm \Large Reading Group}
+\end{center}
+
+\bigskip
+
+\baselineskip 15pt
+
+26 сентября 2013 года (четверг) состоится первая встреча в рамках семинара $\mathbb{NLU}/RG$, посвященного задаче \textbf{понимания естественного языка}. Встречи будут проходить на кафедре РВКС в ГПУ ''Политех'' раз в две недели и продолжаться 1,5 часа.\\
+
+Занятия компьютерной лингвистикой требуют подготовки в области лингвистики, математики, логики, Computer Science, умение программировать и ставить эксперименты. Одна из основных задач семинара -- собрать людей с разной базовой подготовкой, чтобы совместными усилиями разобраться в том, что удалось сделать в науке и в промышленности в задаче понимания естественного языка за последние годы.\\
+
+Семинар будет проходить в формате \textbf{Reading Group}. Участники должны будут подготовиться: прочитать некоторый фрагмент из книги, статью или документацию (но не в первый раз). Тексты в основном на английском языке и относятся к следующим областям: лингвистическая семантика, формальная семантика и теория типов, матлогика и логическое программирование, математические методы. Мы планируем также рассмотреть реализации некоторых из существующих формализмов, поэтому может представиться возможность что-то запрограммировать.\\
+
+Вход в корпус по пропускам. 26 сентября с 19:40 до 20:00 участников семинара будут встречать в фойе. При возникновении любых сложностей с поиском места семинара или проходом через вахту звоните по телефону +7-921-915-95-32 (Дмитрий Тимофеев).\\
+
+\begin{large}
+Четверг, 26 сентября, 20:00\\
+м. <<Площадь Мужества>>\\
+Политехническая улица, д. 21\\
+9 учебный корпус СПбГПУ, \\
+ауд. 205
+\end{large}
+
+\begin{wrapfigure}{l}{0.5\textwidth}
+  \begin{center}
+    \includegraphics[width=3in]{map.png}
+  \end{center}
+\end{wrapfigure}
+
+
+
+\end{document}
