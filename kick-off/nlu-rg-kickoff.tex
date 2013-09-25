@@ -1,0 +1,373 @@
+\documentclass{beamer}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amssymb,amsfonts,amsmath,mathtext}
+\usepackage{cite,enumerate,float,indentfirst}
+
+\graphicspath{{images/}}
+
+\usetheme{Pittsburgh}
+\usecolortheme{whale}
+
+\setbeamertemplate{footline}{\scriptsize{\hspace*{0.4cm}\insertframenumber}\vspace*{0.3cm}}
+\beamertemplatenavigationsymbolsempty
+
+\begin{document}
+\title{\huge{$\mathbb{NLU}/RG$}}
+\author{Константин Соколов}
+\institute{Mathlingvo, СПбГУ, i-Free}
+\date{Санкт-Петербург, 2013} 
+% Создание заглавной страницы
+\begin{frame}
+\thispagestyle{empty}
+\titlepage
+\end{frame}
+
+%%% 0. Пара слов про себя: Mathlingvo, i-Free Innovations, AINL 2012-2013, СПбГУ
+%%% 1. Что: откуда у семинара ноги растут - R&D в i-Free Innovations
+%%% 2. Зачем: максимально быстро выйти на актуальные проблемы. Больше вширь, чем вглубь. Но одному не разобраться.
+%%% 3. Формат: Reading Group - решение проблемы. Чтобы было у кого спросить, если чего сам не понимаешь; и рассказать, если знаешь.
+%%% 4. Что такое "понимание естественного языка". Курс в Стенфорде. Несколько учебников. Что-то вроде NLP. Что-то про семантику. Гораздо менее понятно, что вообще значит "понимание" в инженерном контексте.
+%%% 5. Что такое "актуальный уровень". Не (обязательно) недавнее. Не (обязательно) модное. Не (обязательно) революционное. Даже не (обязательно) успешное. Пример из прошлого: неевклидова геометрия (Гаусс, Больяи, Лобачевский). "Идеи носятся в воздухе". Актуальное - это когда "время пришло".
+%%% 6. Прорывы последнего времени. Representation Learning, Manifold Learning, Deep Learning, etc.
+%%% 7. Почему это модно? Хорошо работают; можно считать на компьютерах; big data; бизнес видит ценность(?). Но главное: эти подходы отвечают (или обещают ответить) на проблему, которая ''носится в воздухе''.
+%%% 8. Актуальная проблема. Norvig on Chomsky (http://norvig.com/chomsky.html) Статистические методы vs. олдскульная лингвистика? Возможен ли синтез. Имеет ли он смысл?
+%%% 9. Программа. Принципы при составлении программы: актуальное (не модное, не недавнее, не революционное); двигаться вширь; просить помощи; искать приложения в конкретных задачах (в научных и промышленных). Изначально расчитывалась на год при еженедельных встречах.
+%%% 10. Обзор программы
+%%% 11. В целом. Четыре основные линии: лингвистическая, логическая, инженерная, актуальные проблемы, матметоды.
+%%% 12. Лингвистическая. Предоставить краткое введение в формальную семантику; закрыть пробелы; ввести основную терминологию; понять проблематику; познакомиться с историческим контекстом; узнать несколько имен. 
+%%% 13. Логическая. узнать об основных подходах к моделированию семантики естественных языков; сформировать четкое представление о сущности семантики через обращение к теории моделей. Последовательно рассмотреть ряд конструкций, предлагавшихся для моделирования семантики; 
+%%% 14. Инженерная. Рассмотреть ряд практических методов и реализаций из области (логического) программирования. Приложения (формальной) семантики к програмированию, обработке и представлению данных. Приложение программирования к обработке естественного языка.
+%%% 15. Актуальная проблема: поиск порядка в хаосе. Познакомиться с идеей отыскания представления данных в структурном (символическом, алгебраическом) виде с помощью машинного обучения. 
+%%% 16. Матметоды. По сути, выбрана только одна линия: от понятия множества со структурой к теории топосов и гомотопической теории типов. В направлении, где смыкаются логика и геометрия, где встречаются порядок структур и аморфность данных, где встречаются высокая сложность и высокая абстрактность.
+%%% 17. Административное. Порядок встреч, регламент; гугл-группа, сайт
+%%% 18. Слово аудитории. Кто откуда. Кто с чем из указанного знаком (кто с чем готов помочь другим разобраться). Кто готов программировать и чего хотел бы.
+
+\begin{frame}{Теория моделей как способ изучать семантику}
+\setcounter{framenumber}{1}
+\begin{itemize}
+  \item Теория моделей сопоставляет формальному языку (или формализованному фрагменту естественного языка) математический объект
+    \begin{itemize}
+      \item в языке колец $L_{ring} = \{0, 1, +, \cdot, -\}$ терм -- это многочлен $P(x_1, ..., x_n)$ в $\mathbb{Z}[x_1, ..., x_n]$ при некотором $n$.
+    \end{itemize}
+  \item Изучая язык, лучше понимаем объект (и наоборот)
+    \begin{itemize}
+      \item $L_{ring}$-структура $A$ -- коммутативное кольцо если и только если в $A$ выполнено $\forall x$ $\forall y$ . $x + y = y + x$
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Интерпретации и модели (1)}
+\begin{itemize}
+  \item \textbf{Сигнатура} - набор предикатных и функциональных символов
+  \item \textbf{Замкнутые формулы} - формулы без параметров
+  \item \textbf{Теория} - множество замкнутых формул данной сигнатуры
+  \item \textbf{Интерпретация} - способ приписать истинностное значение замкнутым формулам данной сигнатуры
+  \item \textbf{Модель} - интерпретация, в которой все формулы теории истинны
+  \item \textbf{Совместная теория} - теория, имеющая модель
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Интерпретации и модели (2)}
+\begin{itemize}
+  \item \textbf{синтаксис:} формула $\phi$ \textit{выводима} в теории $T$ ($T \vdash \phi$), если ее можно получить из формул теории $T$ по правилам вывода
+  \item \textbf{семантика:} $\phi$ \textit{семантически следует} из $T$ ($T \models \phi$), если она истинна в любой модели $T$
+  \item $T \vdash \phi \Leftrightarrow T \models \phi$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{ASP-программа как спецификация задачи}
+\begin{itemize}
+  \item данные -- атомы
+  \item отношения и ограничения -- предикаты
+  \item переменные -- <<классы>> атомов и предикатов
+\end{itemize}\bigskip
+Результат выполнения программы -- <<возможные миры>> (один или несколько), в которых описанная в программе ситуация непротиворечива, или несовместность.
+\end{frame}
+
+\begin{frame}{AnsProlog}
+AnsProlog - язык, поддерживаемый lparse | smodels.\bigskip
+\begin{itemize}
+  \item константы: \texttt{a. b. c.}
+  \item переменные: \texttt{X, Lengthy}
+  \item функциональные символы: \texttt{f, g}
+  \item предикаты: \texttt{p, q}
+  \item термы: переменные, константы и $f(t_1, ..., t_n)$, где $t_i$ -- терм
+  \item атомы: $p(t_1, ..., t_n)$, где $t_i$ -- терм, напр. \texttt{color(red).}
+  \item $\neg$ и $not$
+  \item хорновские дизъюнкты:
+    \begin{itemize}
+      \item \texttt{a :- b, c, not d.}
+      \item \texttt{:- predicate(X).    \% ограничение}
+    \end{itemize}
+\end{itemize}\bigskip
+ASP-программа -- это множество хорновских дизъюнктов (и немного синтаксического сахара)
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Универсум Эрбрана}
+\textit{Универсум Эрбрана} $HU(S)$ множества формул $S$ содержит все \textbf{термы}, образованные из констант и функциональных символов в $S$.\\
+\textit{Базис Эрбрана} $HB(S)$ содержит все \textbf{атомы}, образованные из констант, функциональных символов и предикатов в $S$.\\
+\bigskip
+
+{\footnotesize \begin{verbatim}
+    X, Y - переменные
+    a, b - константы
+    f    - одноместный функциональный символ
+    p    - одноместный предикат
+    
+    HU = {  a,    b,    f(a),    f(b),    f(f(a)),    f(f(b)),  ...}
+    HB = {p(a), p(b), p(f(a)), p(f(b)), p(f(f(a))), p(f(f(b))), ...} 
+\end{verbatim}}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Модель Эрбрана}
+\textit{Эрбрановская интерпретация} - интерпретация на \textit{универсуме Эрбрана}\\
+\textit{Модель Эрбрана} - это такая структура на \textit{универсуме Эрбрана}...\bigskip
+
+Иными словами, 
+{\footnotesize \begin{verbatim}
+    natural(zero).
+    natural(s(N)) :- natural(N).
+\end{verbatim}}
+интерпретируется не в $\mathbb{N}$, а в {\footnotesize \texttt{\{zero, s(zero), s(s(zero)), ...\}}}\\
+\bigskip
+Модель:\\ {\footnotesize \texttt{\{natural(zero), natural(s(zero)), natural(s(s(zero))), ...\}}}
+\end{frame}
+
+
+\begin{frame}{Как это работает}
+$ground(r, L)$ - множество правил, полученных из $r$ заменой переменных в $r$ элементами из $HU(L)$ всеми возможными способами.
+
+\begin{itemize}
+  \item 1-й шаг: grounder (<<уничтожение>> переменных)
+  \item 2-й шаг: solver (поиск моделей)
+\end{itemize}\bigskip
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Пример программы: раскраска графа (1)}
+{\footnotesize \begin{verbatim}
+$ cat graph.lp
+color(red; blue; yellow).
+node(a; b; c; d).
+edge(a, b).  edge(b, c).  edge(c, d).  edge(d, a).
+
+col(X, red) :- node(X), not col(X, blue), not col(X, yellow).
+col(X, blue) :- node(X), not col(X, red), not col(X, yellow).
+col(X, yellow) :- node(X), not col(X, blue), not col(X, red).
+
+:- edge(X, Y), color(C), col(X, C), col(Y, C).
+
+#hide.
+#show col/2.
+\end{verbatim}}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Пример программы: раскраска графа (2)}
+{\footnotesize \begin{verbatim}
+$ gringo graph.lp | clasp -n 0
+clasp version 2.0.4
+Reading from stdin
+Solving...
+Answer: 1
+col(d,red) col(c,yellow) col(b,blue) col(a,yellow)
+Answer: 2
+col(d,red) col(c,blue) col(b,yellow) col(a,blue)
+...
+Models      : 18
+\end{verbatim}}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Positive logic program}
+\begin{itemize}
+  \item множество хорновских дизъюнктов без отрицания
+  \item минимальная модель (least model) существует и единственна
+\end{itemize}\bigskip
+
+Пример: 
+{\footnotesize \begin{verbatim} 
+    a. 
+    b :- a.
+\end{verbatim}}
+
+Модель: \texttt{\{a, b\}}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Stratified logic program}
+\begin{itemize}
+  \item множество хорновских дизъюнктов с отрицанием, допускающее стратификацию
+  \item отрицание -- это <<negation as failure>>
+  \item стратификация -- это разбиение мн-ва дизъюнктов на подмножества, такие что...
+  \item стратифицированная программа имеет уникальную минимальную модель (perfect model)
+\end{itemize}\bigskip
+
+Пример:
+{\footnotesize \begin{verbatim} 
+    a.
+    b :- not a.
+\end{verbatim}}
+
+Модель: \texttt{\{a\}}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Normal logic program}
+\begin{itemize}
+  \item множество хорновских дизъюнктов с отрицанием
+  \item нестратифицированная программа имеет несколько моделей (stable model)
+  \item stable model -- обобщение perfect model. Eсли программа стратифицируема, то ее стабильная модель единственна и совпадает с perfect model
+\end{itemize}\bigskip
+
+Пример: 
+{\footnotesize \begin{verbatim} 
+    a :- not b. 
+    b :- not a.
+\end{verbatim}}
+
+Модели две: \texttt{\{a\}}, \texttt{\{b\}}
+\end{frame}
+
+\begin{frame}{ASP и немонотонная логика (1)}
+\begin{itemize}
+  \item свойство монотонности: если $\Gamma \vdash A$, то $\Gamma, B \vdash A$
+  \item немонотонный вывод (неформально): добавление новых знаний может потребовать пересмотра картины мира (<<логика здравого смысла>>)
+  \item семантика стабильной модели -- упрощенный вариант автоэпистемической логики, т.е. логики с модальным оператором $\Box$, трактуемым как <<известно, что>>
+  \item $\neg \Box F \rightarrow \neg F$ \textit{(Negation as Failure)}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{ASP и немонотонная логика (2)}
+Пример \textit{(Дж. МакКарти)}:
+{\scriptsize \begin{verbatim}
+  cross :- not train. % можно перейти, если неизвестно, едет поезд или нет.
+  cross :- -train.    % можно перейти, если известно, что поезд не едет.
+\end{verbatim}}
+
+Пример:
+{\scriptsize \begin{verbatim}
+  flies(X) :- bird(X), not -flies(X). % нет доказательств, 
+                                      % что эта птица не умеет летать.
+\end{verbatim}}
+
+\end{frame}
+
+\begin{frame}{Action Languages}
+\textbf{Action languages} -- формальные модели фрагментов естественного языка, используемые для рассуждений об эффектах действий. \textit{(Gelfond, Lifschitz)}\bigskip
+
+\begin{itemize}
+  \item языки описания действий (STRIPS, PDDL, Language A, Language B, Language C, Language K)
+  \item языки запросов (Language P, Language Q, Language R)
+\end{itemize}\bigskip
+
+Трансляторы из AL в ASP: coala, $DLV^K$
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{The Blocksworld (Language $K$)}
+{\scriptsize \begin{verbatim}
+fluents: on(B,L) requires block(B), location(L).
+         occupied(B) requires location(B).
+
+actions: move(B,L) requires block(B), location(L).
+
+always:  executable move(B,L) if not occupied(B), not occupied(L), B <> L.
+         inertial on(B,L).
+         caused occupied(B) if on(B1,B), block(B).
+         caused on(B,L) after move(B,L).
+         caused -on(B,L1) after move(B,L), on(B,L1), L <> L1.
+
+noConcurrency.
+\end{verbatim}}
+\end{frame}
+
+\begin{frame}{ASP и Semantic Web}
+\begin{itemize}
+  \item немонотонный вывод наряду с DL-ризонерами
+  \item новые возможности для языка запросов (SPARQL)
+  \item интеграция данных (разрешение семантических конфликтов)
+  \item слияние онтологий
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Recognizing Textual Entailment (1)}
+\begin{itemize}
+  \item логический вывод по фрагменту текста
+  \item общая задача для Question Answering (QA), Information Extraction (IE), Machine Translation (MT), автореферирования, диалоговых систем и пр.
+  \item RTE Track
+    \begin{itemize}
+      \item даны пары текст-гипотеза, требуется установить, следует ли гипотеза из текста
+      \item возможные ответы: \textit{entails}, \textit{contradicts}, \textit{unknown}.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Recognizing Textual Entailment (2)}
+\textbf{T:} The emerging historical record now shows White House officials downgraded threats from al Quaeda prior to 9/11 to focus on other priorities.\\
+\textbf{H:} White House ignores the threat of attack.\bigskip 
+
+\textbf{T:} Turnout for the historic vote for the first time since the EU took in 10 new members in May has hit a record low of 45.3\%.\\
+\textbf{H:} New members joined the EU.\bigskip
+
+\textbf{T:} In Paris, on March 15th, John packed his laptop in the carry-on luggage and took a plane to Baghdad.\\
+\textbf{H:} His laptop was in Baghdad on March 16th.
+\end{frame}
+
+\begin{frame}{ASP в задаче RTE: Nutcracker}
+\texttt{[Bos, Markert 2005]} -- \textit{Nutcracker}\\
+\texttt{[Lierler, Lifschitz, 2008]} -- \textit{показали, как реализовать этот подход с помощью ASP-солвера (DLV)}\bigskip
+
+\begin{itemize}
+  \item прувер доказывает $T \wedge BK \to H$ $\Rightarrow$ \textit{entailment}
+  \item прувер доказывает $\neg (T \wedge BK) \wedge H$ $\Rightarrow$ \textit{inconsistent}
+  \item model builder строит модель для $T \wedge BK \wedge \neg H$ $\Rightarrow$ \textit{no entailment}
+\end{itemize}\bigskip
+
+{\footnotesize $T$ - текст, $BK$ - фоновые знания, $H$ - гипотеза}
+
+\end{frame}
+
+\begin{frame}{Диалоговые системы}
+Как говорят люди:\bigskip
+\begin{footnotesize}
+\begin{itemize}
+  \item терпимы к противоречиям (параконсистентность)
+  \item умеют менять точку зрения 
+  \item употребляют одновременно несколько модальностей
+  \item умеют отслеживать происхождение знаний (эвиденциальность)
+  \item способны к рефлексии
+  \item умеют делать умозаключения (индукция, дедукция)
+  \item умеют формулировать и проверять гипотезы (абдукция)
+  \item могут обманывать и обманываться
+  \item пользуются обширными знаниями и умеют учиться
+  \item планируют диалог 
+  \item преследуют коммуникативные цели
+  \item умеют управлять вниманием
+  \item умеют отслеживать изменения среды
+\end{itemize}
+\end{footnotesize}
+\end{frame}
+
+\begin{frame}{}
+\thispagestyle{empty}
+\begin{center}
+{\large Спасибо!}
+\end{center}
+\end{frame}
+
+
+%%% слайд помещается сюда
+%% \begin{frame}{Заголовок}
+%% \end{frame}
+
+\end{document}
