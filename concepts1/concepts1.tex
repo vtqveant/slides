@@ -124,10 +124,11 @@
 
 \begin{frame}{<<Архитектура математики>> Н. Бурбаки (группа)}
     \begin{itemize}
-        \item пара $(G, \cdot)$ 
-        \item $\forall \, a, b \in G \; . \; a \cdot b \in G$
-        \item $\forall \, a \in G \; \exists \, e \in G \; . \; a \cdot e = a$
-        \item $\forall \, a \in G \; \exists \, a^{-1} \in G \; . \; a \cdot a^{-1} = e$
+        \item пара $(G, \ast)$
+        \item $\ast : G \times G \to G$ 
+        \item $\forall \, a, b, c \in G \; . \; (a \ast b) \ast c = a \ast (b \ast c)$
+        \item $\forall \, a \in G \; \exists \, e \in G \; . \; a \ast e = e \ast a = a$
+        \item $\forall \, a \in G \; \exists \, a^{-1} \in G \; . \; a \ast a^{-1} = a^{-1} \ast a = e$
     \end{itemize}
 \end{frame}
 
@@ -135,7 +136,7 @@
     \begin{itemize}
         \item группа вращений $SO(3, \mathbb{R})$ 
         \item $\mathbb{R}^+$, операция -- сложение, единица 0. 
-        \item $\mathbb{R}^\times$, операция -- умножение, единица 1.
+        \item $\mathbb{R}_{\gt 0}^\times$, операция -- умножение, единица 1.
         \item $log : \mathbb{R}^\times \to \mathbb{R}^+$, $exp : \mathbb{R}^+ \to \mathbb{R}^\times $ 
     \end{itemize}
 \end{frame}
@@ -143,7 +144,7 @@
 
 \begin{frame}{<<Архитектура математики>> Н. Бурбаки (структуры $\mathbb{R}$)}
     \begin{itemize}
-        \item Вполне упорядоченное множество
+        \item Линейно упорядоченное множество
         \item Структура аддитивной группы $\mathbb{R}^+$
         \item Структура мультипликативной группы $\mathbb{R}^\times$
         \item Поле 
