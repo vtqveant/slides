@@ -1,0 +1,115 @@
+\documentclass{beamer}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amssymb,amsfonts,amsmath,mathtext}
+\usepackage{cite,enumerate,float,indentfirst}
+
+\graphicspath{{images/}}
+
+\usetheme{Pittsburgh}
+\usecolortheme{whale}
+
+\setbeamertemplate{footline}{\scriptsize{\hspace*{0.4cm}\insertframenumber}\vspace*{0.3cm}}
+\beamertemplatenavigationsymbolsempty
+
+\errorcontextlines 10000
+
+\begin{document}
+\title{\huge{$\mathbb{NLU}/RG$, \textit{pt. 3}}}
+\author{Константин Соколов}
+\institute{Mathlingvo, СПбГУ, i-Free}
+\date{Санкт-Петербург, 2013} 
+% Создание заглавной страницы
+\begin{frame}
+    \thispagestyle{empty}
+    \titlepage
+\end{frame}
+
+%%% 0. План
+\begin{frame}{План}
+    \setcounter{framenumber}{1}
+    \begin{itemize}
+        \item Домашнее задание
+        \item Обоснование выбора статей
+        \item Огден, Ричардс ``Значение значения''
+        \item Карнап ``Значение и необходимость''
+        \item Голдблатт ``Теория топосов'', гл. 1
+        \item Отображения, морфизмы, стрелки
+    \end{itemize}
+\end{frame}
+
+% 1. Домашнее задание
+\begin{frame}{Домашнее задание}
+\end{frame}
+
+% 2. Обоснование выбора статей
+\begin{frame}{Обоснование выбора статей}
+\end{frame}
+
+% 3. Огден, Ричардс ``Значение значения''
+\begin{frame}{Огден, Ричардс ``Значение значения''}
+  \begin{itemize}
+    \item Треугольник отнесенности: символ, мысль, вещь.
+    \item Теория знаковых ситуаций
+    \item Внутренний (психологический) и внешний контекст
+    \item Символический (референтный) и эмотивный язык
+  \end{itemize}
+\end{frame}
+
+% 4. Карнап ``Значение и необходимость''
+\begin{frame}{Карнап ``Значение и необходимость''}
+  \begin{itemize}
+    \item Статус абстрактных понятий
+    \item Языковой каркас
+  \end{itemize}
+\end{frame}
+
+% 5. Голдблатт ``Теория топосов'', гл. 1
+\begin{frame}{Голдблатт ``Теория топосов'', гл. 1}
+\end{frame}
+
+% 6. Отображения, морфизмы, стрелки
+\begin{frame}{Отображения, морфизмы, стрелки (2)}
+Пусть $A$ и $B$ - множества, отображение $f : A \to B$ сопоставляет элементу из $A$ элемент из $B$\\
+  \begin{itemize}
+    \item $A = Dom(f)$ - домен (область отправления)
+    \item $B = Cod(f)$ - кодомен (область прибытия) 
+    \item $Im(f) = \{f(x) : x \in Dom(f)\}$ - образ 
+    \item $Ker(f) = \{x \in Dom(f) : f(x) = 0\}$ - ядро 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Отображения, морфизмы, стрелки (2)}
+Отображение $f : A \to B$
+  \begin{itemize}
+    \item сюръективно, если $Cod(f) = Im(f)$
+    \item инъективно, если $f(x) = f(y) \Rightarrow x = y$, где $x, y \in Dom(f)$
+    \item биективно, если оно сюръективно и инъективно
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Отображения, морфизмы, стрелки (3)}
+Пусть $A$ и $B$ - множества со структурой\\ \bigskip
+Гомоморфизм (морфизм, стрелка) - это отображение $f : A \to B$, сохраняющее структуру\\
+  \begin{itemize}
+    \item эпиморфизм (эпистрелка) - сюръективный морфизм ($A \twoheadrightarrow B$)
+    \item мономорфизм (монострелка) - инъективный морфизм ($A \rightarrowtail B$)
+    \item изоморфизм (изострелка) - биективный морфизм 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{}
+    \thispagestyle{empty}
+    \begin{center}
+        {\large Спасибо!}
+    \end{center}
+\end{frame}
+
+
+%%% слайд помещается сюда
+%% \begin{frame}{Заголовок}
+%% \end{frame}
+
+\end{document}
