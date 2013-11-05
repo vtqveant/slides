@@ -49,9 +49,10 @@
 Сколько сюръекций\\
   \begin{itemize}
     \item $f : A \to B$ - сюръекция
-    \item $\left\vert{A}\right\vert \geq \left\vert{B}\right\vert$
-    \item Ответ: 
-    \item Напр., $\left\vert{A}\right\vert = 10$, $\left\vert{B}\right\vert = 5$, различных сюръекций 
+    \item $\left\vert{A}\right\vert = n, \left\vert{B}\right\vert = m, n \geq m$
+    \item Ответ: ${n \choose m} \cdot m! \cdot (n-m+1)^m$
+    \item Напр., $\left\vert{A}\right\vert = 10$, $\left\vert{B}\right\vert = 5$, различных сюръекций 39191040
+    \item $\left\vert{A}\right\vert = 10$, $\left\vert{B}\right\vert = 10$, различных сюръекций 10!
   \end{itemize}  
 \end{frame}
 
@@ -59,9 +60,10 @@
 Сколько инъекций\\
   \begin{itemize}
     \item $f : A \to B$ - инъекция
-    \item $\left\vert{A}\right\vert \leq \left\vert{B}\right\vert$
-    \item Ответ: ${\left\vert{B}\right\vert \choose \left\vert{A}\right\vert} \cdot \left\vert{A}\right\vert!$
+    \item $\left\vert{A}\right\vert = n, \left\vert{B}\right\vert = m, n \leq m$
+    \item Ответ: ${m \choose n} \cdot n!$
     \item Напр., $\left\vert{A}\right\vert = 5$, $\left\vert{B}\right\vert = 10$, различных инъекций 30240 
+    \item $\left\vert{A}\right\vert = 10$, $\left\vert{B}\right\vert = 10$, различных инъекций 10! 
   \end{itemize}  
 \end{frame}
 
@@ -69,9 +71,10 @@
 Сколько биекций\\
   \begin{itemize}
     \item $f : A \to B$ - биекция
-    \item $\left\vert{A}\right\vert = \left\vert{B}\right\vert$
-    \item Ответ: $\left\vert{A}\right\vert!$
+    \item $\left\vert{A}\right\vert = n, \left\vert{B}\right\vert = m, n = m$
+    \item Ответ: $n!$
     \item Напр., $\left\vert{A}\right\vert = \left\vert{B}\right\vert = 5$, различных биекций 120 
+    \item $\left\vert{A}\right\vert = \left\vert{B}\right\vert = 10$, различных биекций 10! 
   \end{itemize}  
 \end{frame}
 
@@ -86,12 +89,12 @@
 \end{frame}
 
 \begin{frame}{Домашнее задание (5)}
-Если $f : A \to B$ - инъекция, то $g: Dom(f) \to Im(f)$ - биекция\\
+Если $f : A \rightarrowtail B$, то $Dom(f) \cong Im(f)$\\
   \begin{itemize}
-    \item $f : A \to B$ - биекция
-    \item $\left\vert{A}\right\vert = \left\vert{B}\right\vert = m$
-    \item 
-    \item 
+    \item т.к. $f$ - мономорфизм, прообраз $f^{-1}(a), a \in Cod(f)$ единственен, значит $g : A \to Im(f)$ - инъекция
+    \item по построению, $Cod(g) = Im(g)$, значит $g$ - сюръекция 
+    \item т.к. $f$ - морфизм и сохраняет структуру, то $Im(f)$ снабжен необходимой структурой (не уточняем, какой именно), значит $g : A \to Im(f)$ - тоже морфизм
+    \item $g$ - инъективный и сюръективный морфизм, т.е. изоморфизм
   \end{itemize}  
 \end{frame}
 
