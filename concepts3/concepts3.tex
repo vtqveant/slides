@@ -47,10 +47,13 @@
 % 1. Домашнее задание
 \begin{frame}{Домашнее задание (1)}
 Сколько сюръекций\\
+\bigskip
   \begin{itemize}
     \item $f : A \to B$ - сюръекция
     \item $\left\vert{A}\right\vert = n, \left\vert{B}\right\vert = m, n \geq m$
     \item Ответ: ${n \choose m} \cdot m! \cdot (n-m+1)^m$
+    
+    %% THINK AGAIN
     \item Напр., $\left\vert{A}\right\vert = 10$, $\left\vert{B}\right\vert = 5$, различных сюръекций 39191040
     \item $\left\vert{A}\right\vert = 10$, $\left\vert{B}\right\vert = 10$, различных сюръекций 10!
   \end{itemize}  
@@ -58,6 +61,7 @@
 
 \begin{frame}{Домашнее задание (2)}
 Сколько инъекций\\
+\bigskip
   \begin{itemize}
     \item $f : A \to B$ - инъекция
     \item $\left\vert{A}\right\vert = n, \left\vert{B}\right\vert = m, n \leq m$
@@ -69,6 +73,7 @@
 
 \begin{frame}{Домашнее задание (3)}
 Сколько биекций\\
+\bigskip
   \begin{itemize}
     \item $f : A \to B$ - биекция
     \item $\left\vert{A}\right\vert = n, \left\vert{B}\right\vert = m, n = m$
@@ -79,55 +84,26 @@
 \end{frame}
 
 \begin{frame}{Домашнее задание (4)}
-Если $f : A \to B$ - гомоморфизм групп, то $\left\vert{A}\right\vert = \left\vert{B}\right\vert$ 
+Если $f : A \to B$ - изоморфизм групп, то $\left\vert{A}\right\vert = \left\vert{B}\right\vert$\\
+\bigskip 
   \begin{itemize}
-    \item 
-    \item 
-    \item 
-    \item 
+    \item $f$ как отображение - биективен и сюръективен, т.е. все элементы из $A$ имеют образ в $B$ и все элементы из $B$ имеют ровно один прообраз в $A$ (при отображении $f$)
+    \item т. е. $A$ содержит столько же элементов, сколько $B$.
   \end{itemize}  
 \end{frame}
 
 \begin{frame}{Домашнее задание (5)}
 Если $f : A \rightarrowtail B$, то $Dom(f) \cong Im(f)$\\
+\bigskip
   \begin{itemize}
-    \item т.к. $f$ - мономорфизм, прообраз $f^{-1}(a), a \in Cod(f)$ единственен, значит $g : A \to Im(f)$ - инъекция
+    \item т. к. $f$ - мономорфизм, прообраз $f^{-1}(a), a \in Cod(f)$ единственен, значит $g : A \to Im(f)$ - инъекция
     \item по построению, $Cod(g) = Im(g)$, значит $g$ - сюръекция 
-    \item т.к. $f$ - морфизм и сохраняет структуру, то $Im(f)$ снабжен необходимой структурой (не уточняем, какой именно), значит $g : A \to Im(f)$ - тоже морфизм
+    \item т. к. $f$ - морфизм и сохраняет структуру, то $Im(f)$ снабжен необходимой структурой (не уточняем, какой именно), значит $g : A \to Im(f)$ - тоже морфизм
     \item $g$ - инъективный и сюръективный морфизм, т.е. изоморфизм
   \end{itemize}  
 \end{frame}
 
 
-% 6. Отображения, морфизмы, стрелки
-\begin{frame}{Отображения, морфизмы, стрелки (1)}
-Пусть $A$ и $B$ - множества, отображение $f : A \to B$ сопоставляет элементу из $A$ элемент из $B$\\
-  \begin{itemize}
-    \item $A = Dom(f)$ - домен (область отправления)
-    \item $B = Cod(f)$ - кодомен (область прибытия) 
-    \item $Im(f) = \{f(x) : x \in Dom(f)\}$ - образ 
-    \item $Ker(f) = \{x \in Dom(f) : f(x) = 0\}$ - ядро 
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Отображения, морфизмы, стрелки (2)}
-Отображение $f : A \to B$
-  \begin{itemize}
-    \item сюръективно, если $Cod(f) = Im(f)$
-    \item инъективно, если $f(x) = f(y) \Rightarrow x = y$, где $x, y \in Dom(f)$
-    \item биективно, если оно сюръективно и инъективно
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Отображения, морфизмы, стрелки (3)}
-Пусть $A$ и $B$ - множества со структурой\\ \bigskip
-Гомоморфизм (морфизм, стрелка) - это отображение $f : A \to B$, сохраняющее структуру\\
-  \begin{itemize}
-    \item эпиморфизм (эпистрелка) - сюръективный морфизм ($A \twoheadrightarrow B$)
-    \item мономорфизм (монострелка) - инъективный морфизм ($A \rightarrowtail B$)
-    \item изоморфизм (изострелка) - биективный морфизм 
-  \end{itemize}
-\end{frame}
 
 
 % 2. Обоснование выбора статей
