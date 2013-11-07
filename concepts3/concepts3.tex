@@ -147,12 +147,12 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Начала теории моделей (Сигнатура)}
+\begin{frame}{Начала теории моделей (сигнатура)}
   \textit{Сигнатура} или \textit{тип подобия} - это тройка $\sigma = (S_{func}, S_{rel}, ar)$\\
   \bigskip
   \begin{itemize}
-    \item $S_{func}$ - набор функциональных символов: $+, \times, 0, 1$
-    \item $S_{rel}$ - множество реляционных символов  (предикатов): $\in, \leq$
+    \item $S_{func}$ - набор функциональных символов (напр.: $+, \times, 0, 1$)
+    \item $S_{rel}$ - множество реляционных символов (напр.: $\in, \leq$)
     \item $ar$ - функция арности: $S_{func} \cup S_{rel} \to \mathbb{N}$
   \end{itemize}
   \bigskip
@@ -167,7 +167,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Начала теории моделей (Предложения)}
+\begin{frame}{Начала теории моделей (предложения)}
 С помощью языка с сигнатурой можно формулировать некоторые ``утверждения'', напр. в языке с сигнатурой $\sigma_{grp}$ можно записать:
   \begin{itemize}
     \item $a \cdot a^{-1} = e$
@@ -177,7 +177,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Начала теории моделей (Теория)}
+\begin{frame}{Начала теории моделей (теория)}
 \textit{Теория} - совместное множество аксиом и все выводимые из них п.п.ф.\\
 \bigskip
 Например, в языке с сигнатурой $\sigma_{grp} = \{e, ^{-1}, \cdot\}$ можно построить теорию групп с аксиомами\\
@@ -189,18 +189,23 @@
 Её можно превратить в теорию абелевых групп, добавив к набору аксиом $\forall x \, \forall y \; . \; x \cdot y = y \cdot x$
 \end{frame}
 
-\begin{frame}{Начала теории моделей (Структура)}
+\begin{frame}{Начала теории моделей (структура)}
 Структура - это тройка $\mathcal{A} = (A, \sigma, I)$, где $A$ - домен (носитель), $\sigma$ - сигнатура, $I$ - функция интерпретации сигнатуры в домене.\\
 \bigskip
 Например, группу $GL_n(\mathbb{R})$ можно задать как тройку $(A, \sigma_{grp}, I)$\\
   \begin{itemize}
     \item $A$ - множество матриц $n \times n$ с элементами из $\mathbb{R}$
     \item $\sigma_{grp} = \{e, ^{-1}, \cdot\}$
-    \item $I$ сопоставляет симовлу $e$ единичную матрицу $n \times n$, символу $^{-1}$ операцию обращения матрицы, символу $\cdot$ операцию умножения матриц
+    \item $I$ сопоставляет символу $e$ единичную матрицу $n \times n$, символу $^{-1}$ операцию обращения матрицы, символу $\cdot$ операцию умножения матриц
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Начала теории моделей (Подструктура)}
+\begin{frame}{Начала теории моделей (выполнимость)}
+Концепция истинности A. Тарского: предложение $L$ в языке с сигнатурой $\sigma$ истинно в $A$, если всем символам переменных в $L$ можно сопоставить элементы из $A$\\
+выполнимость, логическое следование, условия истинности
+\end{frame}
+
+\begin{frame}{Начала теории моделей (подструктура)}
 $\mathcal{A}$ индуцирована $\mathcal{B}$ ($\mathcal{A} \subseteq \mathcal{B}$), если\\
   \begin{itemize}
     \item $\sigma(\mathcal{A}) = \sigma(\mathcal{B})$
@@ -213,42 +218,34 @@ $\mathcal{A}$ индуцирована $\mathcal{B}$ ($\mathcal{A} \subseteq \ma
 $\sigma$-гомоморфизм структур $\mathcal{A}$ и $\mathcal{B}$ - это отображение $h : \left\vert \mathcal{A} \right\vert \to \left\vert \mathcal{B} \right\vert$, сохраняющее функции и отображения.
 \end{frame}
 
-\begin{frame}{Начала теории моделей (9)}
+\begin{frame}{Начала теории моделей (изоморфизм)}
   \begin{itemize}
-    \item 
-    \item 
+    \item Две структуры $\mathcal{A}$ и $\mathcal{B}$ \textit{элементарно эквивалентны}, если в них выполнимы одни и те же предложения
+    \item изоморфизм структур
     \item 
     \item 
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Начала теории моделей (10)}
-  \begin{itemize}
-    \item 
-    \item 
-    \item 
-    \item 
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Начала теории моделей (11)}
-  \begin{itemize}
-    \item 
-    \item 
-    \item 
-    \item 
-  \end{itemize}
-\end{frame}
 
 
 \begin{frame}{Формальная семантика (1)}
-``I reject the contention that an important theoretical difference exists between formal and natural languages.'' (R. Montague) 
+``Formal semantics is model-theoretic and truth-conditional''\\
+\bigskip
+  \begin{itemize}
+    \item устранение идеальных сущностей из семантики
+    \item приверженность принципу композициональности
+    \item введение метаязыка
+    \item понимание смысла как условий истинности
+    \item интерпретация фрагментов языка в структурах, определенных с точностью до изоморфизма
+    \item различные формализации для различных контекстов
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Формальная семантика (2)}
-``Formal semantics is model-theoretic and truth-conditional''\\
+В принципе, что естественный язык можно изучать таким способом - это вопрос установки.\\
 \bigskip
-``I reject the contention that an important theoretical difference exists between formal and natural languages.'' (R. Montague) 
+\textit{``I reject the contention that an important theoretical difference exists between formal and natural languages.'' (R. Montague) }
 \end{frame}
 
 
