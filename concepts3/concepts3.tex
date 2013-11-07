@@ -108,35 +108,28 @@
 %% Начала теории моделей
 %% Формальная семантика
 
-\begin{frame}{Понятие контекста у Фреге, Рассела, Карнапа}
-  \begin{itemize}
-    \item 
-    \item 
-    \item 
-    \item 
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Понятие интенсионального изоморфизма у Карнапа}
-  \begin{itemize}
-    \item 
-    \item 
-    \item 
-  \end{itemize}
-\end{frame}
-
 \begin{frame}{Рассел о пропозициях и дескрипциях}
   \begin{itemize}
-    \item 
-    \item 
-    \item 
+    \item Денотативная концепция значения
+    \item Пропозиция как форма выражения
+    \item Факт как объективный коррелят убеждения 
+    \item Корреспондентская теория истины
+    \item Отношение между формой пропозиции и формой её объективного коррелята
+    \item Истинность и ложность - свойства пропозиций
+    \item Одна реальность, один язык
+    \item Дескрипции и несуществующие объекты
+    \item Функции и переменные в формальном языке
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Тарский о семантической концепции истины}
   \begin{itemize}
-    \item 
-    \item 
+    \item Формализованный язык - язык с точно заданной структурой
+    \item Объектный язык и метаязык
+    \item Пропозициональные функции - выражения со свободными переменными
+    \item Выполнимость - отношение между произвольными объектами и пропозициональными функциями
+    \item Предложение истинно, если оно выполняется всеми объектами, и ложно в противном случае
+    \item Понятие истины не совпадает с понятием доказуемости (непротиворечивость и полнота)
   \end{itemize}
 \end{frame}
 
@@ -167,16 +160,6 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Начала теории моделей (предложения)}
-С помощью языка с сигнатурой можно формулировать некоторые ``утверждения'', напр. в языке с сигнатурой $\sigma_{grp}$ можно записать:
-  \begin{itemize}
-    \item $a \cdot a^{-1} = e$
-    \item $\forall a \exists a^{-1} . a \cdot a^{-1} = e$
-    \item $a \cdot b = c$
-    \item $a \cdot b = b \cdot a$
-  \end{itemize}
-\end{frame}
-
 \begin{frame}{Начала теории моделей (теория)}
 \textit{Теория} - совместное множество аксиом и все выводимые из них п.п.ф.\\
 \bigskip
@@ -187,6 +170,18 @@
     \item $\forall \, x \; \forall \, y \, \forall \, z \; . \; (x \cdot y) \cdot z = x \cdot (y \cdot z)$
   \end{itemize}
 Её можно превратить в теорию абелевых групп, добавив к набору аксиом $\forall x \, \forall y \; . \; x \cdot y = y \cdot x$
+\end{frame}
+
+\begin{frame}{Начала теории моделей (предложение)}
+С помощью языка с сигнатурой можно формулировать некоторые ``утверждения'', напр. в языке с сигнатурой $\sigma_{grp}$ можно записать:
+  \begin{itemize}
+    \item $a \cdot a^{-1} = e$
+    \item $\forall a \, \exists a^{-1} \; . \; a \cdot a^{-1} = e$
+    \item $a \cdot b = c$
+    \item $a \cdot b = b \cdot a$
+  \end{itemize}
+\bigskip  
+\textit{Предложение} или \textit{замкнутая формула} - формула без свободных переменных.
 \end{frame}
 
 \begin{frame}{Начала теории моделей (структура)}
@@ -200,33 +195,28 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Начала теории моделей (выполнимость)}
-Концепция истинности A. Тарского: предложение $L$ в языке с сигнатурой $\sigma$ истинно в $A$, если всем символам переменных в $L$ можно сопоставить элементы из $A$\\
-выполнимость, логическое следование, условия истинности
-\end{frame}
+%%% 
+%%% \begin{frame}{Начала теории моделей (подструктура)}
+%%% $\mathcal{A}$ индуцирована $\mathcal{B}$ ($\mathcal{A} \subseteq \mathcal{B}$), если\\
+%%%   \begin{itemize}
+%%%     \item $\sigma(\mathcal{A}) = \sigma(\mathcal{B})$
+%%%     \item $\left\vert \mathcal{A} \right\vert \subseteq \left\vert \mathcal{B} \right\vert$
+%%%     \item интерпретации согласованы
+%%%   \end{itemize}
+%%% \end{frame}
 
-\begin{frame}{Начала теории моделей (подструктура)}
-$\mathcal{A}$ индуцирована $\mathcal{B}$ ($\mathcal{A} \subseteq \mathcal{B}$), если\\
-  \begin{itemize}
-    \item $\sigma(\mathcal{A}) = \sigma(\mathcal{B})$
-    \item $\left\vert \mathcal{A} \right\vert \subseteq \left\vert \mathcal{B} \right\vert$
-    \item интерпретации согласованы
-  \end{itemize}
-\end{frame}
+%%% \begin{frame}{Начала теории моделей ($\sigma$-гомоморфизм)}
+%%% $\sigma$-гомоморфизм структур $\mathcal{A}$ и $\mathcal{B}$ - это отображение $h : \left\vert \mathcal{A} \right\vert \to \left\vert \mathcal{B} %%% \right\vert$, сохраняющее функции и отображения.
+%%% \end{frame}
 
-\begin{frame}{Начала теории моделей ($\sigma$-гомоморфизм)}
-$\sigma$-гомоморфизм структур $\mathcal{A}$ и $\mathcal{B}$ - это отображение $h : \left\vert \mathcal{A} \right\vert \to \left\vert \mathcal{B} \right\vert$, сохраняющее функции и отображения.
-\end{frame}
-
-\begin{frame}{Начала теории моделей (изоморфизм)}
-  \begin{itemize}
-    \item Две структуры $\mathcal{A}$ и $\mathcal{B}$ \textit{элементарно эквивалентны}, если в них выполнимы одни и те же предложения
-    \item изоморфизм структур
-    \item 
-    \item 
-  \end{itemize}
-\end{frame}
-
+%%% \begin{frame}{Начала теории моделей (изоморфизм)}
+%%%   \begin{itemize}
+%%%     \item Две структуры $\mathcal{A}$ и $\mathcal{B}$ \textit{элементарно эквивалентны}, если в них выполнимы одни и те же предложения
+%%%     \item изоморфизм структур
+%%%     \item 
+%%%     \item 
+%%%   \end{itemize}
+%%% \end{frame}
 
 
 \begin{frame}{Формальная семантика (1)}
