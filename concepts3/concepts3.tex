@@ -142,6 +142,97 @@
 
 \begin{frame}{Начала теории моделей}
   \begin{itemize}
+    \item Теория моделей и теория доказательств
+    \item Логическое следование и выводимость
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Начала теории моделей (Сигнатура)}
+  \textit{Сигнатура} или \textit{тип подобия} - это тройка $\sigma = (S_{func}, S_{rel}, ar)$\\
+  \bigskip
+  \begin{itemize}
+    \item $S_{func}$ - набор функциональных символов: $+, \times, 0, 1$
+    \item $S_{rel}$ - множество реляционных символов  (предикатов): $\in, \leq$
+    \item $ar$ - функция арности: $S_{func} \cup S_{rel} \to \mathbb{N}$
+  \end{itemize}
+  \bigskip
+  Сигнатура позволяет задать все нелогические символы формального языка
+\end{frame}
+
+\begin{frame}{Начала теории моделей (п.п.ф.)}
+  \begin{itemize}
+    \item \textit{Правильно построенная формула (п.п.ф.)} - формула, построенная ``по правилам'' из счетного множества символов переменных, символов сигнатуры и логических символов (напр., логики первого порядка)
+    \item \textit{Язык, порожденный сигнатурой} - это все п.п.ф., задаваемые данной сигнатурой
+    \item Например, группу можно описать в языке с сигнатурой $\sigma_{grp} = \{e, ^{-1}, \cdot\}$, поле в языке с сигнатурой $\sigma_{field} = \{0, 1, -, ^{-1}, +, \cdot\}$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Начала теории моделей (Предложения)}
+С помощью языка с сигнатурой можно формулировать некоторые ``утверждения'', напр. в языке с сигнатурой $\sigma_{grp}$ можно записать:
+  \begin{itemize}
+    \item $a \cdot a^{-1} = e$
+    \item $\forall a \exists a^{-1} . a \cdot a^{-1} = e$
+    \item $a \cdot b = c$
+    \item $a \cdot b = b \cdot a$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Начала теории моделей (Теория)}
+\textit{Теория} - совместное множество аксиом и все выводимые из них п.п.ф.\\
+\bigskip
+Например, в языке с сигнатурой $\sigma_{grp} = \{e, ^{-1}, \cdot\}$ можно построить теорию групп с аксиомами\\
+  \begin{itemize}
+    \item $\forall \, x \; . \; x \cdot e = x \; \wedge \; e \cdot x = x$ 
+    \item $\forall \, x \; . \;x \cdot x^{-1} = e \; \wedge \; x^{-1} \cdot x = e$ 
+    \item $\forall \, x \; \forall \, y \, \forall \, z \; . \; (x \cdot y) \cdot z = x \cdot (y \cdot z)$
+  \end{itemize}
+Её можно превратить в теорию абелевых групп, добавив к набору аксиом $\forall x \, \forall y \; . \; x \cdot y = y \cdot x$
+\end{frame}
+
+\begin{frame}{Начала теории моделей (Структура)}
+Структура - это тройка $\mathcal{A} = (A, \sigma, I)$, где $A$ - домен (носитель), $\sigma$ - сигнатура, $I$ - функция интерпретации сигнатуры в домене.\\
+\bigskip
+Например, группу $GL_n(\mathbb{R})$ можно задать как тройку $(A, \sigma_{grp}, I)$\\
+  \begin{itemize}
+    \item $A$ - множество матриц $n \times n$ с элементами из $\mathbb{R}$
+    \item $\sigma_{grp} = \{e, ^{-1}, \cdot\}$
+    \item $I$ сопоставляет симовлу $e$ единичную матрицу $n \times n$, символу $^{-1}$ операцию обращения матрицы, символу $\cdot$ операцию умножения матриц
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Начала теории моделей (Подструктура)}
+$\mathcal{A}$ индуцирована $\mathcal{B}$ ($\mathcal{A} \subseteq \mathcal{B}$), если\\
+  \begin{itemize}
+    \item $\sigma(\mathcal{A}) = \sigma(\mathcal{B})$
+    \item $\left\vert \mathcal{A} \right\vert \subseteq \left\vert \mathcal{B} \right\vert$
+    \item интерпретации согласованы
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Начала теории моделей ($\sigma$-гомоморфизм)}
+$\sigma$-гомоморфизм структур $\mathcal{A}$ и $\mathcal{B}$ - это отображение $h : \left\vert \mathcal{A} \right\vert \to \left\vert \mathcal{B} \right\vert$, сохраняющее функции и отображения.
+\end{frame}
+
+\begin{frame}{Начала теории моделей (9)}
+  \begin{itemize}
+    \item 
+    \item 
+    \item 
+    \item 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Начала теории моделей (10)}
+  \begin{itemize}
+    \item 
+    \item 
+    \item 
+    \item 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Начала теории моделей (11)}
+  \begin{itemize}
     \item 
     \item 
     \item 
@@ -150,7 +241,11 @@
 \end{frame}
 
 
-\begin{frame}{Формальная семантика}
+\begin{frame}{Формальная семантика (1)}
+``I reject the contention that an important theoretical difference exists between formal and natural languages.'' (R. Montague) 
+\end{frame}
+
+\begin{frame}{Формальная семантика (2)}
 ``Formal semantics is model-theoretic and truth-conditional''\\
 \bigskip
 ``I reject the contention that an important theoretical difference exists between formal and natural languages.'' (R. Montague) 
