@@ -1,0 +1,203 @@
+\documentclass{beamer}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amssymb,amsfonts,amsmath,mathtext}
+\usepackage{cite,enumerate,float,indentfirst}
+
+% *** Need to use xypic for the subgroup lattice
+\usepackage{amscd, amsmath, xypic}
+
+\graphicspath{{images/}}
+
+\usetheme{Pittsburgh}
+\usecolortheme{whale}
+
+\setbeamertemplate{footline}{\scriptsize{\hspace*{0.4cm}\insertframenumber}\vspace*{0.3cm}}
+\beamertemplatenavigationsymbolsempty
+
+\errorcontextlines 10000
+
+\begin{document}
+\title{\huge{$\mathbb{NLU}/RG$, \textit{pt. 5}}}
+\author{Константин Соколов}
+\institute[]
+{Mathlingvo, СПбГУ, i-Free\\ \bigskip  \url{http://nlu-rg.ru}
+}
+\date{Санкт-Петербург, 2013} 
+% Создание заглавной страницы
+\begin{frame}
+    \thispagestyle{empty}
+    \titlepage
+\end{frame}
+
+%%% 0. План
+\begin{frame}{План}
+    \setcounter{framenumber}{1}
+    \begin{itemize}
+        \item Домашнее задание (языки и сигнатуры)
+        \item Плунгян, грамматические значения
+        \item Айдукевич, о синтаксической связности
+        \item Исчисление секвенций для пропозициональной логики
+    \end{itemize}
+\end{frame}
+
+% 1. Домашнее задание
+\begin{frame}{Домашнее задание (1)}
+Сколько сюръекций\\
+  \begin{itemize}
+    \item $f : A \to B$ - сюръекция
+    \item $\left\vert{A}\right\vert \geq \left\vert{B}\right\vert$
+    \item Ответ: 
+    \item Напр., $\left\vert{A}\right\vert = 10$, $\left\vert{B}\right\vert = 5$, различных сюръекций 
+  \end{itemize}  
+\end{frame}
+
+\begin{frame}{Домашнее задание (2)}
+Сколько инъекций\\
+  \begin{itemize}
+    \item $f : A \to B$ - инъекция
+    \item $\left\vert{A}\right\vert \leq \left\vert{B}\right\vert$
+    \item Ответ: ${\left\vert{B}\right\vert \choose \left\vert{A}\right\vert} \cdot \left\vert{A}\right\vert!$
+    \item Напр., $\left\vert{A}\right\vert = 5$, $\left\vert{B}\right\vert = 10$, различных инъекций 30240 
+  \end{itemize}  
+\end{frame}
+
+\begin{frame}{Домашнее задание (3)}
+Сколько биекций\\
+  \begin{itemize}
+    \item $f : A \to B$ - биекция
+    \item $\left\vert{A}\right\vert = \left\vert{B}\right\vert$
+    \item Ответ: $\left\vert{A}\right\vert!$
+    \item Напр., $\left\vert{A}\right\vert = \left\vert{B}\right\vert = 5$, различных биекций 120 
+  \end{itemize}  
+\end{frame}
+
+\begin{frame}{Домашнее задание (4)}
+Если $f : A \to B$ - гомоморфизм групп, то $\left\vert{A}\right\vert = \left\vert{B}\right\vert$ 
+  \begin{itemize}
+    \item 
+    \item 
+    \item 
+    \item 
+  \end{itemize}  
+\end{frame}
+
+\begin{frame}{Домашнее задание (5)}
+Если $f : A \to B$ - инъекция, то $g: Dom(f) \to Im(f)$ - биекция\\
+  \begin{itemize}
+    \item $f : A \to B$ - биекция
+    \item $\left\vert{A}\right\vert = \left\vert{B}\right\vert = m$
+    \item 
+    \item 
+  \end{itemize}  
+\end{frame}
+
+
+% 6. Отображения, морфизмы, стрелки
+\begin{frame}{Отображения, морфизмы, стрелки (1)}
+Пусть $A$ и $B$ - множества, отображение $f : A \to B$ сопоставляет элементу из $A$ элемент из $B$\\
+  \begin{itemize}
+    \item $A = Dom(f)$ - домен (область отправления)
+    \item $B = Cod(f)$ - кодомен (область прибытия) 
+    \item $Im(f) = \{f(x) : x \in Dom(f)\}$ - образ 
+    \item $Ker(f) = \{x \in Dom(f) : f(x) = 0\}$ - ядро 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Отображения, морфизмы, стрелки (2)}
+Отображение $f : A \to B$
+  \begin{itemize}
+    \item сюръективно, если $Cod(f) = Im(f)$
+    \item инъективно, если $f(x) = f(y) \Rightarrow x = y$, где $x, y \in Dom(f)$
+    \item биективно, если оно сюръективно и инъективно
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Отображения, морфизмы, стрелки (3)}
+Пусть $A$ и $B$ - множества со структурой\\ \bigskip
+Гомоморфизм (морфизм, стрелка) - это отображение $f : A \to B$, сохраняющее структуру\\
+  \begin{itemize}
+    \item эпиморфизм (эпистрелка) - сюръективный морфизм ($A \twoheadrightarrow B$)
+    \item мономорфизм (монострелка) - инъективный морфизм ($A \rightarrowtail B$)
+    \item изоморфизм (изострелка) - биективный морфизм 
+  \end{itemize}
+\end{frame}
+
+
+% 2. Обоснование выбора статей
+\begin{frame}{Обоснование выбора статей (1)}
+Основные семантические концепции интенсиональной логики:\\
+  \begin{itemize}
+    \item Семантика смысла и денотата Г. Фреге
+    \item Теория объектов и пропозиций Б. Рассела
+    \item Концепция истины А. Тарского
+    \item Семантика возможных миров С. Крипке
+    \item Теоретико-типовая концепция К. Айдукевича
+  \end{itemize}
+\end{frame}
+
+% 2. Обоснование выбора статей
+\begin{frame}{Обоснование выбора статей (2)}
+  \begin{itemize}
+    \item Огден, Ричардс о магии слов
+    \item Ранний Карнап об интенсионалиях
+    \item Поздний Карнап о языковом каркасе
+  \end{itemize}
+\end{frame}
+
+
+% 3. Огден, Ричардс ``Значение значения''
+\begin{frame}{Огден, Ричардс ``Значение значения''}
+  \begin{itemize}
+    \item Треугольник отнесенности: символ, мысль, вещь.
+    \item Контексты внутренние (психологические) и внешние
+    \item Теория знаковых ситуаций
+  \end{itemize}
+\end{frame}
+
+% 4. Карнап 
+\begin{frame}{Ранний Карнап}
+  \begin{itemize}
+    \item Интенсионал и экстенсионал
+    \item Универсальная иерархия понятий
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Карнап ``Значение и необходимость''}
+  \begin{itemize}
+    \item Статус абстрактных понятий
+    \item Языковой каркас
+    \item Интенсиональный изоморфизм и когнитивная синонимия
+    \item Описание состояния
+  \end{itemize}
+\end{frame}
+
+% 5. Голдблатт ``Теория топосов'', гл. 1
+\begin{frame}{Голдблатт ``Теория топосов'', гл. 1}
+\end{frame}
+
+% 6. Реклама
+\begin{frame}{Реклама}
+  \begin{itemize}
+    \item FProg - 25 октября, \texttt{http://lanyrd.com/2013/fprog-10}
+    \item Mathlingvo - \texttt{http://mathlingvo.ru}
+    \item NLPSeminar - \texttt{http://nlpseminar.ru}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{}
+    \thispagestyle{empty}
+    \begin{center}
+        {\large Спасибо!}
+    \end{center}
+\end{frame}
+
+
+%%% слайд помещается сюда
+%% \begin{frame}{Заголовок}
+%% \end{frame}
+
+\end{document}
