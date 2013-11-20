@@ -38,7 +38,7 @@
     \begin{itemize}
         \item Домашнее задание (отображения и стрелки)
         \item Рассел, пропозиции и дескрипции
-        \item Карнап, контексты и интенсиональный изоморфизм
+%%        \item Карнап, контексты и интенсиональный изоморфизм
         \item Тарский, семантическая концепция истины
         \item Начала теории моделей
     \end{itemize}
@@ -47,145 +47,196 @@
 % 1. Домашнее задание
 \begin{frame}{Домашнее задание (1)}
 Сколько сюръекций\\
+\bigskip
   \begin{itemize}
     \item $f : A \to B$ - сюръекция
-    \item $\left\vert{A}\right\vert \geq \left\vert{B}\right\vert$
-    \item Ответ: 
-    \item Напр., $\left\vert{A}\right\vert = 10$, $\left\vert{B}\right\vert = 5$, различных сюръекций 
+    \item $\left\vert{A}\right\vert = n, \left\vert{B}\right\vert = m, n \geq m$
+    \item Ответ: (сложнее, чем кажется)
+%%%    \item Ответ: $m^{n-m} \cdot m!$
+%%%    \item Напр., $\left\vert{A}\right\vert = 10$, $\left\vert{B}\right\vert = 5$, различных сюръекций 375000
+%%%    \item $\left\vert{A}\right\vert = 10$, $\left\vert{B}\right\vert = 10$, различных сюръекций 10!
   \end{itemize}  
 \end{frame}
 
 \begin{frame}{Домашнее задание (2)}
 Сколько инъекций\\
+\bigskip
   \begin{itemize}
     \item $f : A \to B$ - инъекция
-    \item $\left\vert{A}\right\vert \leq \left\vert{B}\right\vert$
-    \item Ответ: ${\left\vert{B}\right\vert \choose \left\vert{A}\right\vert} \cdot \left\vert{A}\right\vert!$
-    \item Напр., $\left\vert{A}\right\vert = 5$, $\left\vert{B}\right\vert = 10$, различных инъекций 30240 
+    \item $\left\vert{A}\right\vert = n, \left\vert{B}\right\vert = m, n \leq m$
+    \item Ответ: ${m \choose n} \cdot n!$
+%%%    \item Напр., $\left\vert{A}\right\vert = 5$, $\left\vert{B}\right\vert = 10$, различных инъекций 30240 
+%%%    \item $\left\vert{A}\right\vert = 10$, $\left\vert{B}\right\vert = 10$, различных инъекций 10! 
   \end{itemize}  
 \end{frame}
 
 \begin{frame}{Домашнее задание (3)}
 Сколько биекций\\
+\bigskip
   \begin{itemize}
     \item $f : A \to B$ - биекция
-    \item $\left\vert{A}\right\vert = \left\vert{B}\right\vert$
-    \item Ответ: $\left\vert{A}\right\vert!$
-    \item Напр., $\left\vert{A}\right\vert = \left\vert{B}\right\vert = 5$, различных биекций 120 
+    \item $\left\vert{A}\right\vert = n, \left\vert{B}\right\vert = m, n = m$
+    \item Ответ: $n!$
+%%%    \item $\left\vert{A}\right\vert = \left\vert{B}\right\vert = 10$, различных биекций 10! 
   \end{itemize}  
 \end{frame}
 
 \begin{frame}{Домашнее задание (4)}
-Если $f : A \to B$ - гомоморфизм групп, то $\left\vert{A}\right\vert = \left\vert{B}\right\vert$ 
+Если $f : A \to B$ - изоморфизм групп, то $\left\vert{A}\right\vert = \left\vert{B}\right\vert$\\
+\bigskip 
   \begin{itemize}
-    \item 
-    \item 
-    \item 
-    \item 
+    \item $f$ как отображение - биективен и сюръективен, т.е. все элементы из $A$ имеют образ в $B$ и все элементы из $B$ имеют ровно один прообраз в $A$ (при отображении $f$)
+    \item т. е. $A$ содержит столько же элементов, сколько $B$.
   \end{itemize}  
 \end{frame}
 
 \begin{frame}{Домашнее задание (5)}
-Если $f : A \to B$ - инъекция, то $g: Dom(f) \to Im(f)$ - биекция\\
+Если $f : A \rightarrowtail B$, то $Dom(f) \cong Im(f)$\\
+\bigskip
   \begin{itemize}
-    \item $f : A \to B$ - биекция
-    \item $\left\vert{A}\right\vert = \left\vert{B}\right\vert = m$
-    \item 
-    \item 
+    \item т. к. $f$ - мономорфизм, прообраз $f^{-1}(a), a \in Cod(f)$ единственен, значит $g : A \to Im(f)$ - инъекция
+    \item по построению, $Cod(g) = Im(g)$, значит $g$ - сюръекция 
+    \item т. к. $f$ - морфизм и сохраняет структуру, то $Im(f)$ снабжен необходимой структурой (не уточняем, какой именно), значит $g : A \to Im(f)$ - тоже морфизм
+    \item $g$ - инъективный и сюръективный морфизм, т.е. изоморфизм
   \end{itemize}  
 \end{frame}
 
 
-% 6. Отображения, морфизмы, стрелки
-\begin{frame}{Отображения, морфизмы, стрелки (1)}
-Пусть $A$ и $B$ - множества, отображение $f : A \to B$ сопоставляет элементу из $A$ элемент из $B$\\
+%% Понятие контекста у Фреге, Рассела, Карнапа
+%% Понятие интенсионального изоморфизма у Карнапа
+%% Рассел о пропозициях и дескрипциях
+%% Тарский о семантической концепции истины
+%% Начала теории моделей
+%% Формальная семантика
+
+\begin{frame}{Рассел о пропозициях и дескрипциях}
   \begin{itemize}
-    \item $A = Dom(f)$ - домен (область отправления)
-    \item $B = Cod(f)$ - кодомен (область прибытия) 
-    \item $Im(f) = \{f(x) : x \in Dom(f)\}$ - образ 
-    \item $Ker(f) = \{x \in Dom(f) : f(x) = 0\}$ - ядро 
+    \item Денотативная концепция значения
+    \item Пропозиция как форма выражения
+    \item Факт как объективный коррелят убеждения 
+    \item Корреспондентская теория истины
+    \item Отношение между формой пропозиции и формой её объективного коррелята
+    \item Истинность и ложность - свойства пропозиций
+    \item Одна реальность, один язык
+    \item Дескрипции и несуществующие объекты
+    \item Функции и переменные в формальном языке
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Отображения, морфизмы, стрелки (2)}
-Отображение $f : A \to B$
+\begin{frame}{Тарский о семантической концепции истины}
   \begin{itemize}
-    \item сюръективно, если $Cod(f) = Im(f)$
-    \item инъективно, если $f(x) = f(y) \Rightarrow x = y$, где $x, y \in Dom(f)$
-    \item биективно, если оно сюръективно и инъективно
+    \item Формализованный язык - язык с точно заданной структурой
+    \item Объектный язык и метаязык
+    \item Пропозициональные функции - выражения со свободными переменными
+    \item Выполнимость - отношение между произвольными объектами и пропозициональными функциями
+    \item Предложение истинно, если оно выполняется всеми объектами, и ложно в противном случае
+    \item Понятие истины не совпадает с понятием доказуемости (непротиворечивость и полнота)
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Отображения, морфизмы, стрелки (3)}
-Пусть $A$ и $B$ - множества со структурой\\ \bigskip
-Гомоморфизм (морфизм, стрелка) - это отображение $f : A \to B$, сохраняющее структуру\\
+\begin{frame}{Начала теории моделей}
   \begin{itemize}
-    \item эпиморфизм (эпистрелка) - сюръективный морфизм ($A \twoheadrightarrow B$)
-    \item мономорфизм (монострелка) - инъективный морфизм ($A \rightarrowtail B$)
-    \item изоморфизм (изострелка) - биективный морфизм 
+    \item Теория моделей и теория доказательств
+    \item Логическое следование и выводимость
   \end{itemize}
 \end{frame}
 
-
-% 2. Обоснование выбора статей
-\begin{frame}{Обоснование выбора статей (1)}
-Основные семантические концепции интенсиональной логики:\\
+\begin{frame}{Начала теории моделей (сигнатура)}
+  \textit{Сигнатура} или \textit{тип подобия} - это тройка $\sigma = (S_{func}, S_{rel}, ar)$\\
+  \bigskip
   \begin{itemize}
-    \item Семантика смысла и денотата Г. Фреге
-    \item Теория объектов и пропозиций Б. Рассела
-    \item Концепция истины А. Тарского
-    \item Семантика возможных миров С. Крипке
-    \item Теоретико-типовая концепция К. Айдукевича
+    \item $S_{func}$ - набор функциональных символов (напр.: $+, \times, 0, 1$)
+    \item $S_{rel}$ - множество реляционных символов (напр.: $\in, \leq$)
+    \item $ar$ - функция арности: $S_{func} \cup S_{rel} \to \mathbb{N}$
+  \end{itemize}
+  \bigskip
+  Сигнатура позволяет задать все нелогические символы формального языка.
+\end{frame}
+
+\begin{frame}{Начала теории моделей (п.п.ф.)}
+  \begin{itemize}
+    \item \textit{Правильно построенная формула (п.п.ф.)} - формула, построенная ``по правилам'' из счетного множества символов переменных, символов сигнатуры и логических символов (напр., логики первого порядка)
+    \item \textit{Язык, порожденный сигнатурой} - это все п.п.ф., задаваемые данной сигнатурой
+    \item Например, группу можно описать в языке с сигнатурой $\sigma_{grp} = \{e, ^{-1}, \cdot\}$, поле в языке с сигнатурой $\sigma_{field} = \{0, 1, -, ^{-1}, +, \cdot\}$
   \end{itemize}
 \end{frame}
 
-% 2. Обоснование выбора статей
-\begin{frame}{Обоснование выбора статей (2)}
+\begin{frame}{Начала теории моделей (теория)}
+\textit{Теория} - совместное множество аксиом и все выводимые из них п.п.ф.\\
+\bigskip
+Например, в языке с сигнатурой $\sigma_{grp} = \{e, ^{-1}, \cdot\}$ можно построить теорию групп с аксиомами\\
   \begin{itemize}
-    \item Огден, Ричардс о магии слов
-    \item Ранний Карнап об интенсионалиях
-    \item Поздний Карнап о языковом каркасе
+    \item $\forall \, x \; . \; x \cdot e = x \; \wedge \; e \cdot x = x$ 
+    \item $\forall \, x \; . \;x \cdot x^{-1} = e \; \wedge \; x^{-1} \cdot x = e$ 
+    \item $\forall \, x \; \forall \, y \, \forall \, z \; . \; (x \cdot y) \cdot z = x \cdot (y \cdot z)$
+  \end{itemize}
+Её можно превратить в теорию абелевых групп, добавив к набору аксиом $\forall x \, \forall y \; . \; x \cdot y = y \cdot x$
+\end{frame}
+
+\begin{frame}{Начала теории моделей (предложение)}
+С помощью языка с сигнатурой можно формулировать некоторые ``утверждения'', напр. в языке с сигнатурой $\sigma_{grp}$ можно записать:
+  \begin{itemize}
+    \item $a \cdot a^{-1} = e$
+    \item $\forall a \, \exists a^{-1} \; . \; a \cdot a^{-1} = e$
+    \item $a \cdot b = c$
+    \item $a \cdot b = b \cdot a$
+  \end{itemize}
+\bigskip  
+\textit{Предложение} или \textit{замкнутая формула} - формула без свободных переменных.
+\end{frame}
+
+\begin{frame}{Начала теории моделей (структура)}
+Структура - это тройка $\mathcal{A} = (A, \sigma, I)$, где $A$ - домен (носитель), $\sigma$ - сигнатура, $I$ - функция интерпретации сигнатуры в домене.\\
+\bigskip
+Например, группу $GL_n(\mathbb{R})$ можно задать как тройку $(A, \sigma_{grp}, I)$\\
+  \begin{itemize}
+    \item $A$ - множество матриц $n \times n$ с элементами из $\mathbb{R}$
+    \item $\sigma_{grp} = \{e, ^{-1}, \cdot\}$
+    \item $I$ сопоставляет символу $e$ единичную матрицу $n \times n$, символу $^{-1}$ операцию обращения матрицы, символу $\cdot$ операцию умножения матриц
   \end{itemize}
 \end{frame}
 
+%%% 
+%%% \begin{frame}{Начала теории моделей (подструктура)}
+%%% $\mathcal{A}$ индуцирована $\mathcal{B}$ ($\mathcal{A} \subseteq \mathcal{B}$), если\\
+%%%   \begin{itemize}
+%%%     \item $\sigma(\mathcal{A}) = \sigma(\mathcal{B})$
+%%%     \item $\left\vert \mathcal{A} \right\vert \subseteq \left\vert \mathcal{B} \right\vert$
+%%%     \item интерпретации согласованы
+%%%   \end{itemize}
+%%% \end{frame}
 
-% 3. Огден, Ричардс ``Значение значения''
-\begin{frame}{Огден, Ричардс ``Значение значения''}
+%%% \begin{frame}{Начала теории моделей ($\sigma$-гомоморфизм)}
+%%% $\sigma$-гомоморфизм структур $\mathcal{A}$ и $\mathcal{B}$ - это отображение $h : \left\vert \mathcal{A} \right\vert \to \left\vert \mathcal{B} %%% \right\vert$, сохраняющее функции и отображения.
+%%% \end{frame}
+
+%%% \begin{frame}{Начала теории моделей (изоморфизм)}
+%%%   \begin{itemize}
+%%%     \item Две структуры $\mathcal{A}$ и $\mathcal{B}$ \textit{элементарно эквивалентны}, если в них выполнимы одни и те же предложения
+%%%     \item изоморфизм структур
+%%%     \item 
+%%%     \item 
+%%%   \end{itemize}
+%%% \end{frame}
+
+
+\begin{frame}{Формальная семантика (1)}
+``Formal semantics is model-theoretic and truth-conditional''\\
+\bigskip
   \begin{itemize}
-    \item Треугольник отнесенности: символ, мысль, вещь.
-    \item Контексты внутренние (психологические) и внешние
-    \item Теория знаковых ситуаций
+    \item устранение идеальных сущностей из семантики
+    \item приверженность принципу композициональности
+    \item введение метаязыка
+    \item понимание смысла как условий истинности
+    \item интерпретация фрагментов языка в структурах, определенных с точностью до изоморфизма
+    \item различные формализации для различных контекстов
   \end{itemize}
 \end{frame}
 
-% 4. Карнап 
-\begin{frame}{Ранний Карнап}
-  \begin{itemize}
-    \item Интенсионал и экстенсионал
-    \item Универсальная иерархия понятий
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Карнап ``Значение и необходимость''}
-  \begin{itemize}
-    \item Статус абстрактных понятий
-    \item Языковой каркас
-    \item Интенсиональный изоморфизм и когнитивная синонимия
-    \item Описание состояния
-  \end{itemize}
-\end{frame}
-
-% 5. Голдблатт ``Теория топосов'', гл. 1
-\begin{frame}{Голдблатт ``Теория топосов'', гл. 1}
-\end{frame}
-
-% 6. Реклама
-\begin{frame}{Реклама}
-  \begin{itemize}
-    \item FProg - 25 октября, \texttt{http://lanyrd.com/2013/fprog-10}
-    \item Mathlingvo - \texttt{http://mathlingvo.ru}
-    \item NLPSeminar - \texttt{http://nlpseminar.ru}
-  \end{itemize}
+\begin{frame}{Формальная семантика (2)}
+В принципе, что естественный язык можно изучать таким способом - это вопрос установки.\\
+\bigskip
+\textit{``I reject the contention that an important theoretical difference exists between formal and natural languages.'' (R. Montague) }
 \end{frame}
 
 
