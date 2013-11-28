@@ -1,0 +1,201 @@
+\documentclass{beamer}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amssymb,amsfonts,amsmath,mathtext}
+\usepackage{cite,enumerate,float,indentfirst}
+
+%% Gentzen style natural deduction proof trees
+\usepackage{bussproofs}
+\usepackage{latexsym}
+
+\graphicspath{{images/}}
+
+\usetheme{Pittsburgh}
+\usecolortheme{whale}
+
+\setbeamertemplate{footline}{\scriptsize{\hspace*{0.4cm}\insertframenumber}\vspace*{0.3cm}}
+\beamertemplatenavigationsymbolsempty
+
+\errorcontextlines 10000
+
+\begin{document}
+\title{\huge{$\mathbb{NLU}/RG$, \textit{pt. ???}}}
+\author{Константин Соколов}
+\institute[]
+{Mathlingvo, СПбГУ, i-Free\\ \bigskip  \url{http://nlu-rg.ru}
+}
+\date{Санкт-Петербург, 2013} 
+% Создание заглавной страницы
+\begin{frame}
+    \thispagestyle{empty}
+    \titlepage
+\end{frame}
+
+%%% 0. План
+\begin{frame}{План}
+    \setcounter{framenumber}{1}
+    \begin{itemize}
+        \item 
+        \item 
+        \item 
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Естественный вывод для пропозициональной логики (1)}
+\begin{itemize}
+  \item Впервые предложен Я. Лукасевичем и С. Яськовским.
+  \item Мы рассмотрим вариант Г. Генцена.
+  \item Исчисления такого типа (``синтаксические'') - инструмент \textit{теории доказательств}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Естественный вывод для пропозициональной логики (2)}
+\textit{Формальная система} или \textit{исчисление} задается с помощью
+\begin{enumerate}
+  \item формального языка
+  \item множества аксиом
+  \item правил вывода
+  \item определения формального вывода
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Естественный вывод для пропозициональной логики (3)}
+\begin{itemize}
+  \item Пропозициональная система естественного вывода основана на языке логики высказываний
+  \item Множество аксиом пусто
+  \item Правила вывода: правила введения и удаления связок (классическая и интуиционистсткая пропозициональная логика) + правило снятия двойного отрицания (для классической логики высказываний)
+  \item Определениe формального вывода: \textit{чуть позже}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Язык логики высказываний (Алфавит)}
+\begin{itemize}
+  \item $\land$, $\lor$, $\supset$, $\neg$, $($, $)$, $p$.
+  \item $p_n = (p...p)$ (n раз) - переменные
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Язык логики высказываний (Формула)}
+Формулы языка логики высказываний определяются \textit{рекурсивно}:
+\begin{itemize}
+  \item $p_n$ - формула
+  \item если $A$ и $B$ - формулы, то $(A \land B)$, $(A \lor B)$, $(A \supset B)$ и $(\neg A)$ - формулы
+  \item все прочие слова в том же алфавите - не формулы\\ (напр. $(ppppp) \neg (ppp) \supset$ - не формула)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Правила вывода}
+
+%% введение и удаление конъюнкции
+
+\begin{prooftree}
+  \AxiomC{$A$}
+  \AxiomC{$B$}
+  \RightLabel{\scriptsize $\land_I$}
+  \BinaryInfC{$A \land B$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$A \land B$}
+  \RightLabel{\scriptsize $\land_E$}
+  \UnaryInfC{$A$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$A \land B$}
+  \RightLabel{\scriptsize $\land_E$}
+  \UnaryInfC{$B$}
+\end{prooftree}
+
+%% введение и удаление дизъюнкции
+
+\begin{prooftree}
+  \AxiomC{$A$}
+  \RightLabel{\scriptsize $\lor_I$}
+  \UnaryInfC{$A \lor B$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$B$}
+  \RightLabel{\scriptsize $\lor_I$}
+  \UnaryInfC{$A \lor B$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{$A \lor B$}
+\AxiomC{[$A$]}
+\noLine
+\UnaryInfC{$C$}
+\AxiomC{[$B$]}
+\noLine
+\UnaryInfC{$C$}
+\RightLabel{\scriptsize $\lor_E$}
+\TrinaryInfC{$C$}
+\end{prooftree}
+
+
+\end{frame}
+
+
+\begin{frame}{Правила вывода}
+
+%% введение и удаление импликации
+
+%% введение и удаление отрицания
+
+%% удаление двойного отрицания (для классической системы)
+
+\end{frame}
+
+\begin{frame}{Дерево вывода}
+
+$(A \supset B) \supset (\neg B \supset \neg A)$\\
+
+\begin{prooftree}
+\AxiomC{$[A]^3$}
+\AxiomC{$[A \supset B]^1$}
+\RightLabel{\scriptsize $\supset_E$}
+\BinaryInfC{$B$}
+
+\AxiomC{$[\neg B]^2$}
+\RightLabel{\scriptsize $\neg_I$ (3)}
+\BinaryInfC{$\neg A$}
+
+\RightLabel{\scriptsize $\supset_I$ (2)}
+\UnaryInfC{$\neg B \supset \neg A$}
+
+\RightLabel{\scriptsize $\supset_I$ (1)}
+\UnaryInfC{$(A \supset B) \supset (\neg B \supset \neg A)$}
+\end{prooftree}
+
+\end{frame}
+
+
+\begin{frame}{Выводимость}
+Формула $F$ выводима из конечного множества формул $\Gamma$ ($\Gamma \vdash F$), если существует вывод для формулы $F$ такой, что его множество \textit{зеленых листьев} $\Delta$ есть подмножество $\Gamma$ (т.е. $\Delta \subseteq \Gamma$).\\
+\bigskip
+Если $\Delta = \varnothing$, пишут $\vdash F$.\\
+\bigskip
+\textit{Зеленый лист} - открытое (существенное) допущение.\\
+\bigskip
+\textit{Увядший лист} - закрытое (промежуточное) допущение.\\
+
+\end{frame}
+
+
+\begin{frame}{}
+    \thispagestyle{empty}
+    \begin{center}
+        {\large Спасибо!}
+    \end{center}
+\end{frame}
+
+
+%%% слайд помещается сюда
+%% \begin{frame}{Заголовок}
+%% \end{frame}
+
+\end{document}
