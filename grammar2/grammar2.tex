@@ -56,6 +56,9 @@
 \end{frame}
 
 \begin{frame}{Чёрч, лямбда-исчисление}
+\begin{center}
+\texttt{This page intentionally left blank}
+\end{center}
 \end{frame}
 
 \begin{frame}{Чёрч, простая типизация для лямбда-исчисления}
@@ -124,13 +127,33 @@
   \item $\forall x_\beta [f_{\alpha \beta} x_\beta = g_{\alpha \beta} x_\beta] \supset f_{\alpha \beta} = g_{\alpha \beta}$
 \end{itemize}
 \bigskip
-Аксиомы дескрипций:\\
+Аксиома дескрипции:\\
 \begin{itemize}
-  \item $$
-  \item 
-  \item 
-  \item 
-  \item 
+  \item $\exists ! x_\alpha [p_{o \alpha} x_\alpha] \supset p_{o \alpha} [\iota_{\alpha(o \alpha)}p_{o \alpha}]$, где $\exists ! x_\alpha A_o =_{def} [\lambda p_{o \alpha} \exists y_\alpha[p_{o \alpha} y_\alpha \wedge \forall z_\alpha[p_{o \alpha} z_\alpha \supset z_\alpha = y_\alpha]]][\lambda x_\alpha A_o]$
+\end{itemize}
+\bigskip
+Неформально, $A_o$ описывает $x_\alpha$; \textit{оператор дескрипции} $\iota_{\alpha (o \alpha)}$ сопоставляет одноэлементному множеству его (единственный) элемент.
+\end{frame}
+
+\begin{frame}{Чёрч, простая типизация для лямбда-исчисления}
+Аксиома выбора:\\
+\bigskip
+\begin{itemize}
+  \item $f_{o \alpha} x_\alpha \supset f_{o \alpha} [\iota_{\alpha (o \alpha)} f_{o \alpha}].$
+\end{itemize}
+\bigskip
+Неформально, \textit{оператор выбора} $\iota_{\alpha (o \alpha)}$ сопоставляет непустому множеству какой-то его элемент.\\
+\bigskip
+Аксиома выбора влечет аксиому дескрипции.
+\end{frame}
+
+\begin{frame}{Чёрч, простая типизация для лямбда-исчисления}
+Формальный вывод\\
+\bigskip
+\begin{itemize}
+  \item \textit{Доказательство} формулы $B_o$ в предположении формул $A_o^1, A_o^2, ..., A_o^n$ - это конечная последовательность формул, последняя из которых - $B_o$, а остальные - либо одна из формул $A_o^1, A_o^2, ..., A_o^n$, вариант схемы аксиом, либо формула, полученная из предыдущих формул последовательности применением правил вывода.
+  \item Если такое доказательство существует, будем писать $A_o^1, A_o^2, ..., A_o^n \vdash B_o$
+  \item \textit{Теорема о дедукции:} если $A_o^1, A_o^2, ..., A_o^n \vdash B_o$, то $A_o^1, A_o^2, ..., A_o^{n-1} \vdash A_o^n \supset B_o$
 \end{itemize}
 \end{frame}
 
