@@ -38,8 +38,8 @@
     \setcounter{framenumber}{1}
     \begin{itemize}
         \item Апресян, лексическая семантика
-        \item Лямбда-исчисление
-        \item А. Чёрч, простая типизация для лямбда-исчисления
+        \item $\lambda$-исчисление
+        \item Church. A Formulation of the Simple Theory of Types. 1940.
     \end{itemize}
 \end{frame}
 
@@ -61,7 +61,19 @@
 \end{center}
 \end{frame}
 
-\begin{frame}{Чёрч, простая типизация для лямбда-исчисления}
+\begin{frame}{Повторение}
+\textit{Формальная система} или \textit{исчисление} задается\\
+\begin{itemize}
+  \item набором базовых символов и способом их комбинации
+  \item набором аксиом
+  \item правилами вывода
+  \item определением понятия выводимости
+\end{itemize}
+\bigskip
+
+\end{frame}
+
+\begin{frame}{[Church 1940], $\lambda^\to$ (1)}
 Нотация:\\
 \bigskip
 \begin{itemize}
@@ -75,7 +87,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Чёрч, простая типизация для лямбда-исчисления}
+\begin{frame}{[Church 1940], $\lambda^\to$ (2)}
 Язык:\\
 \bigskip
 \begin{itemize}
@@ -91,7 +103,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Чёрч, простая типизация для лямбда-исчисления}
+\begin{frame}{[Church 1940], $\lambda^\to$ (3)}
 Правила вывода:\\
 \bigskip
 \begin{itemize}
@@ -104,7 +116,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Чёрч, простая типизация для лямбда-исчисления}
+\begin{frame}{[Church 1940], $\lambda^\to$ (4)}
 Аксиомы исчисления выказываний:\\
 \begin{itemize}
   \item $p \vee p \supset p$
@@ -120,7 +132,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Чёрч, простая типизация для лямбда-исчисления}
+\begin{frame}{[Church 1940], $\lambda^\to$ (5)}
 Аксиома экстенсиональности:\\
 \bigskip
 \begin{itemize}
@@ -135,7 +147,7 @@
 Неформально, $A_o$ описывает $x_\alpha$; \textit{оператор дескрипции} $\iota_{\alpha (o \alpha)}$ сопоставляет одноэлементному множеству его (единственный) элемент.
 \end{frame}
 
-\begin{frame}{Чёрч, простая типизация для лямбда-исчисления}
+\begin{frame}{[Church 1940], $\lambda^\to$ (6)}
 Аксиома выбора:\\
 \bigskip
 \begin{itemize}
@@ -147,8 +159,8 @@
 Аксиома выбора влечет аксиому дескрипции.
 \end{frame}
 
-\begin{frame}{Чёрч, простая типизация для лямбда-исчисления}
-Формальный вывод\\
+\begin{frame}{[Church 1940], $\lambda^\to$ (7)}
+Формальный вывод:\\
 \bigskip
 \begin{itemize}
   \item \textit{Доказательство} формулы $B_o$ в предположении формул $A_o^1, A_o^2, ..., A_o^n$ - это конечная последовательность формул, последняя из которых - $B_o$, а остальные - либо одна из формул $A_o^1, A_o^2, ..., A_o^n$, вариант схемы аксиом, либо формула, полученная из предыдущих формул последовательности применением правил вывода.
