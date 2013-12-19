@@ -93,22 +93,93 @@
 
 %% табличный метод, эквивалентность таблиц и моделей
 \begin{frame}{Крипке, реляционная семантика (5)}
+\textit{Табличный метод} - это \\
+\bigskip
 \begin{itemize}
-  \item 
-  \item 
-  \item 
-  \item 
+  \item формальная процедура
+    \begin{itemize}
+      \item процедура доказательства (синтаксический аспект)
+      \item процедура поиска контрмодели (семантический аспект)
+    \end{itemize}
+  \item процедура состоит в формировании таблицы с помощью 
+    \begin{itemize}
+      \item расширения исходной таблицы путем выписывания подформул \textit{по правилам}
+      \item перехода к подтаблицам для рассмотрения случаев
+    \end{itemize}  
+  \item процесс завершается 
+    \begin{itemize}
+      \item получением \textit{закрытой} таблицы, демонстрирующей противоречие (исходная формула выводима)
+      \item получением открытой таблицы (исходная формула невыводима)
+      \item или не завершается
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+%% табличный метод, эквивалентность таблиц и моделей
+\begin{frame}{Крипке, реляционная семантика (5)}
+Правила (для пропозициональной логики):\\
+\begin{prooftree}
+  \AxiomC{$T \! X$} \AxiomC{$F \! X$}
+  \noLine
+  \BinaryInfC{}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$T \! \sim \! X$}
+  \UnaryInfC{$FX$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$F \! \sim \! X$}
+  \UnaryInfC{$TX$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$T \! X \supset Y$}
+  \UnaryInfC{$FX \; / \; TY$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$F \! X \supset Y$}
+  \UnaryInfC{$TX$}
+  \noLine
+  \UnaryInfC{$FY$}
+\end{prooftree}
+
+\end{frame}
+
+
+%% табличный метод, эквивалентность таблиц и моделей
+\begin{frame}{Крипке, реляционная семантика (5)}
+Доказательство закона де Моргана:\\
+\bigskip
+\begin{itemize}
+  \item $F \! \sim (p \wedge q) \supset (\sim p \; \vee \sim q)$
+  \item $T \! \sim (p \wedge q)$
+  \item $F \! \sim p \; \vee \sim q$
+  \item $F \! \sim p$
+  \item $F \! \sim q$
+  \item $T \! p$
+  \item $T \! q$
+  \item $F \! p \wedge q$
+  \item $F \! p \; / \; F \! q$
 \end{itemize}
 \end{frame}
 
 %% полнота
 \begin{frame}{Крипке, реляционная семантика (6)}
-\begin{itemize}
-  \item 
-  \item 
-  \item 
-  \item 
-\end{itemize}
+Табличный метод для модальной логики:\\
+\bigskip
+$A_1, A_2, ..., A_n \supset B$ ложно, если
+\begin{table}
+    \begin{tabular}{c|c}
+    T   & F \\ \hline
+    $A_1$ & $B$ \\
+    $A_2$ & ~ \\
+    $\vdots$ & ~ \\
+    $A_n$ & ~ \\
+    \end{tabular}
+\end{table}
 \end{frame}
 
 %% матрицы (раздел 5.2), характеристические функции
