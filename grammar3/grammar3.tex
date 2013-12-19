@@ -170,17 +170,85 @@
 \begin{frame}{Крипке, реляционная семантика (6)}
 Табличный метод для модальной логики:\\
 \bigskip
-$A_1, A_2, ..., A_n \supset B$ ложно, если
-\begin{table}
-    \begin{tabular}{c|c}
-    T   & F \\ \hline
-    $A_1$ & $B$ \\
-    $A_2$ & ~ \\
-    $\vdots$ & ~ \\
-    $A_n$ & ~ \\
-    \end{tabular}
-\end{table}
+\begin{itemize}
+  \item Предполагаем, что $A_1, A_2, ..., A_n \supset B$ ложно, т.е.
+    \begin{table}
+      \begin{tabular*}{1.5cm}{c|c}
+        T   & F \\ \hline
+        $A_1$ & $B$ \\
+        $A_2$ & ~ \\
+        $\vdots$ & ~ \\
+        $A_n$ & ~ \\
+      \end{tabular*}
+    \end{table}
+  \item Аналогично, предполагаем, что $A$ ложно, т.е. 
+    \begin{table}
+      \begin{tabular*}{1.3cm}{c|c}
+        T   & F \\ \hline
+        ~ & $A$ \\
+      \end{tabular*}
+    \end{table}
+\end{itemize}
 \end{frame}
+
+\begin{frame}{Крипке, реляционная семантика (6)}
+Далее по правилам строим таблицы и подтаблицы:\\
+\bigskip
+\begin{itemize}
+  \item 
+      \begin{tabular}{p{0.75cm}|p{0.75cm}}
+        \hline
+        $\sim A$ & ~ \\
+      \end{tabular}
+      $\; \to \;$
+      \begin{tabular}{p{0.75cm}|p{0.75cm}}
+        \hline
+        $\sim A$ & $A$ \\
+      \end{tabular}\\
+      \bigskip
+  \item 
+      \begin{tabular}{p{0.75cm}|p{0.75cm}}
+        \hline
+        ~ & $\sim A$ \\
+      \end{tabular}
+      $\; \to \;$
+      \begin{tabular}{p{0.75cm}|p{0.75cm}}
+        \hline
+        $A$ & $\sim A$ \\
+      \end{tabular}\\
+      \bigskip
+  \item и т. п. для связок\\
+      \bigskip
+  \item 
+      \begin{tabular}{p{1.25cm}|p{1.25cm}}
+        \hline
+        $\forall x . A(x)$ & ~ \\
+      \end{tabular}
+      $\; \to \;$
+      \begin{tabular}{p{1.25cm}|p{1.25cm}}
+        \hline
+        $\forall x . A(x)$ & ~ \\
+        $A(a)$ & ~ \\
+      \end{tabular}\\
+      \bigskip
+      {\scriptsize где $a$ - уже встречавшаяся свободная переменная}\\
+      \bigskip
+  \item 
+      \begin{tabular}{p{1.25cm}|p{1.25cm}}
+        \hline
+        ~ & $\forall x . A(x)$ \\
+      \end{tabular}
+      $\; \to \;$
+      \begin{tabular}{p{1.25cm}|p{1.25cm}}
+        \hline
+        ~ & $\forall x . A(x)$ \\
+        ~ & $A(a)$ \\
+      \end{tabular}\\
+      \bigskip
+      {\scriptsize где $a$ - новая переменная}\\
+\end{itemize}
+\end{frame}
+
 
 %% матрицы (раздел 5.2), характеристические функции
 \begin{frame}{Крипке, реляционная семантика (7)}
