@@ -192,33 +192,39 @@
 \end{frame}
 
 \begin{frame}{Крипке, реляционная семантика (6)}
-Далее по правилам строим таблицы и подтаблицы:\\
+Правила пострения таблиц (для связок):\\
 \bigskip
 \begin{itemize}
   \item 
       \begin{tabular}{p{0.75cm}|p{0.75cm}}
         \hline
-        $\sim A$ & ~ \\
+        $\sim \! A$ & ~ \\
       \end{tabular}
       $\; \to \;$
       \begin{tabular}{p{0.75cm}|p{0.75cm}}
         \hline
-        $\sim A$ & $A$ \\
+        $\sim \! A$ & $A$ \\
       \end{tabular}\\
       \bigskip
   \item 
       \begin{tabular}{p{0.75cm}|p{0.75cm}}
         \hline
-        ~ & $\sim A$ \\
+        ~ & $\sim \! A$ \\
       \end{tabular}
       $\; \to \;$
       \begin{tabular}{p{0.75cm}|p{0.75cm}}
         \hline
-        $A$ & $\sim A$ \\
+        $A$ & $\sim \! A$ \\
       \end{tabular}\\
       \bigskip
-  \item и т. п. для связок\\
-      \bigskip
+  \item и т. п.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Крипке, реляционная семантика (6)}
+Правила пострения таблиц (для кванторов):\\
+\bigskip
+\begin{itemize}
   \item 
       \begin{tabular}{p{1.25cm}|p{1.25cm}}
         \hline
@@ -245,7 +251,58 @@
         ~ & $A(a)$ \\
       \end{tabular}\\
       \bigskip
-      {\scriptsize где $a$ - новая переменная}\\
+      {\scriptsize где $a$ - новая переменная}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Крипке, реляционная семантика (6)}
+Правила пострения таблиц (для модального оператора):\\
+\bigskip
+\begin{itemize}
+  \item 
+      \begin{tabular}{p{0.75cm}|p{0.75cm}}
+        \hline
+        $\Box A$ & ~ \\
+      \end{tabular}
+      $\; \to \;$
+      \begin{tabular}{p{0.75cm}|p{0.75cm}}
+        \hline
+        $\Box A$ & ~ \\
+        $A$ & ~ \\
+      \end{tabular}\\
+      \bigskip
+      {\scriptsize для всех таблиц \textit{множества альтернатив}}\\
+      \bigskip
+  \item 
+      \begin{tabular}{p{0.75cm}|p{0.75cm}}
+        \hline
+        ~ & $\Box A$ \\
+      \end{tabular}
+      $\; \to \;$
+      \begin{tabular}{p{0.75cm}|p{0.75cm}}
+        \hline
+        ~ & $\Box A$ \\
+      \end{tabular} +
+      \begin{tabular}{p{0.75cm}|p{0.75cm}}
+        \hline
+        ~ & $A$ \\
+      \end{tabular}\\
+      \bigskip
+      {\scriptsize т.е. добавляется новая \textit{вспомогательная таблица}}\\
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Крипке, реляционная семантика (7)}
+\begin{itemize}
+  \item \textit{таблица замкнута}, если
+      \begin{tabular}{c|c}
+        T & F \\ \hline
+        $\vdots$ & $\vdots$ \\
+        $A$ & $A$ ~ \\
+      \end{tabular}\\
+      \bigskip
+  \item \textit{множество альтернатив} замкнуто, если одна из таблиц этого множества замкнута
+  \item вся \textit{конструкция замкнута}, если в ней появляется замкнутая система альтернатив
 \end{itemize}
 \end{frame}
 
