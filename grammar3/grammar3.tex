@@ -49,47 +49,14 @@
 \end{itemize}
 \end{frame}
 
-%% системы Льюиса
-\begin{frame}{Крипке, реляционная семантика (1)}
-\begin{itemize}
-  \item 
-  \item 
-  \item 
-  \item 
-\end{itemize}
-\end{frame}
-
-%% системы модальной логики: K, S4, S5 и др.
-%% формальная система S4 (язык, аксиомы, правила вывода, понятие выводимости)
-%% нормальные и ненормальные системы
-\begin{frame}{Система Льюиса S4}
+\begin{frame}{Системы модальной логики (пример)}
 S4 - пропозициональная логика с (единственным) модальным оператором $\Box$.\\
 \bigskip
 Аксиомы (только для $\Box$):
 \begin{itemize}
   \item \textbf{K:} $\Box (p \supset q) \supset ( \Box p \supset \Box q)$
   \item \textbf{T:} $\Box p \supset p$
-  \item \textbf{4:} $\Box p \supset \Box \Box p$
-\end{itemize}
-\end{frame}
-
-%% Теория моделей для модальной логики: возможность относительно, возможный мир
-\begin{frame}{Крипке, реляционная семантика (3)}
-\begin{itemize}
-  \item 
-  \item 
-  \item 
-  \item 
-\end{itemize}
-\end{frame}
-
-%% Kripke frame
-\begin{frame}{Крипке, реляционная семантика (4)}
-\begin{itemize}
-  \item 
-  \item 
-  \item 
-  \item 
+  \item \textbf{S4:} $\Box p \supset \Box \Box p$
 \end{itemize}
 \end{frame}
 
@@ -300,7 +267,7 @@ S4 - пропозициональная логика с (единственны�
       \begin{tabular}{c|c}
         T & F \\ \hline
         $\vdots$ & $\vdots$ \\
-        $A$ & $A$ ~ \\
+        $A$ & $\; \; A$ ~ \\
       \end{tabular}\\
       \bigskip
   \item \textit{множество альтернатив} замкнуто, если одна из таблиц этого множества замкнута
@@ -312,7 +279,7 @@ S4 - пропозициональная логика с (единственны�
 \begin{frame}{Крипке, реляционная семантика (1)}
 \textit{Шкала Крипке} (Kripke frame) позволяет охарактеризовать множество таблиц с т.з. их отношений.\\
 \bigskip
-$\mathcal{F} = (W, R)$, где $W$ - непустое множество, $R \subset W \times W$.\\
+$\mathcal{F} = (W, R)$, где $W$ - непустое множество, $R \subseteq W \times W$.\\
 \bigskip
 \begin{itemize}
   \item $w_i \in W$ - миры, состояния, точки отнесенности
@@ -345,7 +312,7 @@ $\mathcal{F} = (W, R)$, где $W$ - непустое множество, $R \su
   \item $\mathcal{M}, w \models p \; \Longleftrightarrow \; w \in V(p)$
   \item $\mathcal{M}, w \models \neg \phi \; \Longleftrightarrow \; \mathcal{M}, w \not\models \phi$
   \item $\mathcal{M}, w \models \phi \vee \psi \; \Longleftrightarrow \; \mathcal{M}, w \models \phi$ или $\mathcal{M}, w \models \psi$
-  \item $\mathcal{M}, w \models \Box \phi \; \Longleftrightarrow \; \forall v \in W \; . \; w R v$, $\mathcal{M}, v \models \phi$
+  \item $\mathcal{M}, w \models \Box \phi \; \Longleftrightarrow \; \forall v \in W \; . \; (w R v \to \mathcal{M}, v \models \phi)$
   \item $\mathcal{M}, w \not\models \perp$
 \end{itemize}
 \bigskip
@@ -361,18 +328,23 @@ $\mathcal{F} = (W, R)$, где $W$ - непустое множество, $R \su
 \end{itemize}
 \end{frame}
 
-
-
-%% несколько слов об окрестностной семантике Монтегю-Скотта
-\begin{frame}{Крипке, реляционная семантика (8)}
-\begin{itemize}
-  \item отношение достижимости заменяется отношением ... $2^{2^W}$ 
-  \item 
-  \item 
-  \item 
-\end{itemize}
+\begin{frame}{Крипке, реляционная семантика (5)}
+Отношение между различными модальными системами:\\
+\bigskip
+\begin{table}
+  \begin{scriptsize}
+    \begin{tabular}{c|p{5.9cm}|l}
+    \textbf{Логика} & \textbf{Ограничения на отношение достижимости} & \textbf{Аксиома} \\ \hline
+    K & ~ & ~ \\
+    D & отношение порядка & $\Box \phi \supset \Diamond \phi$ \\
+    T & рефлексивное & $\Box \phi \supset \phi$ \\
+    S4 & рефлексивное, транзитивное & $\Box \phi \supset \Box \Box \phi$ \\
+    B & рефлексивное, симметричное & $\; \; \, \phi \supset \Box \Box \phi$ \\
+    S5 & рефлексивное, симметричное, транзитивное (т.е. эквивалентность) & $\Diamond \phi \supset \Box \Diamond \phi$ \\
+    \end{tabular}
+  \end{scriptsize}
+\end{table}
 \end{frame}
-
 
 \begin{frame}{}
     \thispagestyle{empty}
