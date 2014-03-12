@@ -103,15 +103,28 @@ HLDS в виде AVM:\\
 \end{center}
 \end{frame}
 
-
-\begin{frame}{Мультимодальная логика}
+\begin{frame}{Логическое описание TFS}
 \begin{itemize}
-	\item Набор модальных операторов $\Box_i$ (соотв., $\Diamond_i$)
-	\item Шкала Крипке - размеченный граф
+	\item логика Каспера-Раундса $L^{KR}$
+	\item гибридная логика $HL(@)$
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Гибридная логика (1)}
+\begin{frame}{$L^{KR}$ (1)}
+\begin{itemize}
+	\item отношение равенства путей 
+	\item TODO
+\end{itemize}
+\end{frame}
+
+\begin{frame}{$L^{KR}$ (2)}
+\begin{itemize}
+	\item 
+	\item
+\end{itemize}
+\end{frame}
+
+\begin{frame}{$HL(@)$ (1)}
 \begin{itemize}
 	\item Будем писать $\langle \pi \rangle$ и $[\pi]$ вместо $\Diamond_\pi$ и $\Box_\pi$
 	\item $\langle \pi \rangle \alpha \; \equiv \; \neg [\pi] \neg \alpha$
@@ -125,7 +138,7 @@ $WFF_{HL(@)} := \top \; \vert \; i \; \vert \; p \; \vert \; \neg \alpha \; | \;
 \end{center}
 \end{frame}
 
-\begin{frame}{Гибридная логика (2)}
+\begin{frame}{$HL(@)$ (2)}
 Гибридная модель Крипке:\\
 \bigskip
 \begin{center}
@@ -139,7 +152,7 @@ $\mathcal{M} = (W, \{R_\pi \vert \pi \in MOD\}, V)$, где\\
 \end{center}
 \end{frame}
 
-\begin{frame}{Гибридная логика (3)}
+\begin{frame}{$HL(@)$ (3)}
 Денотационная семантика для $HL(@)$:\\
 \bigskip
 \begin{itemize}
@@ -147,7 +160,6 @@ $\mathcal{M} = (W, \{R_\pi \vert \pi \in MOD\}, V)$, где\\
 	\item $\mathcal{M}, w \models @_i \alpha \; \Leftrightarrow \; \mathcal{M}, w' \models \alpha$ и $w' = V(i)$
 \end{itemize}
 \end{frame}
-
 
 % 3. Графовое представление TFS как шкала Крипке
 \begin{frame}{}
@@ -224,12 +236,43 @@ $\mathcal{F} = (W, R)$, где $W$ - непустое множество, $R \su
 \end{center}
 \end{frame}
 
+\begin{frame}{Накрытия (1)}
+\end{frame}
+
+
 
 % 5. Логическая характеристика свойства локальности
 \begin{frame}{}
 \begin{center}
 	\textbf{Логическая характеристика свойства локальности}
 \end{center}
+\end{frame}
+
+\begin{frame}{Локальность внутри формализма (1)}
+Задача - найти способ выразить локальные свойства модели в формализме\\
+Известные аналогии: бисимуляция, модельная эквивалентность\\
+Модальная логика - фрагмент логики первого порядка, инвариантный относительно бисимуляции (теорема Ван Бентема).
+Другой вариант смотреть на то же свойство - модальная логика как логика, удовлетворяющая свойству выразимости в древовидной модели (?)
+\end{frame}
+
+\begin{frame}{Локальность внутри формализма (2)}
+Основное соотношение конструкции:\\
+\bigskip
+$[ \! [ \pi^{-1}(\phi) ] \! ]^{M_1, g} = [ \! [ \psi ] \! ]^{M_2, g}$, где\\
+\bigskip
+\begin{itemize}
+	\item $\pi : M_2 \to M_1$ - накрытие,
+	\item $\phi$ и $\psi$ - формулы языка гибридной логики $HL(@)$,
+	\item $g$ - функция означивания,
+	\item домены моделей $M_1$ и $M_2$ совпадают.
+\end{itemize}
+\bigskip
+Тогда выражение $\pi^{-1}(\phi)$ назовем \textit{локализацией} формулы $\phi$ при накрытии $\pi$.
+\end{frame}
+
+\begin{frame}{Локальность внутри формализма (3)}
+Попытка реконструировать $\pi^{-1}( \cdot )$.\\
+$[ \! [ \pi^{-1}(p) ] \! ] = \{   \vert \}$
 \end{frame}
 
 
