@@ -106,6 +106,8 @@ TFS - это четверка $\langle Q, r, \delta, \theta \rangle$, где
 	\item $\theta : Q \to \textbf{Type}$ - частичная функция типизации
 	\item $\delta : Q \times \textbf{Feat} \to Q$ - частичная функция, сопоставляющая признаку при вершине другую вершину
 \end{itemize}
+\bigskip
+{\footnotesize \textit{...и некоторые ограничения}}
 \end{frame}
 
 % 3. Графовое представление TFS как шкала Крипке
@@ -178,19 +180,19 @@ $\mathcal{F} = (W, R)$, где $W$ - непустое множество, $R \su
 \end{frame}
 
 \begin{frame}{$L^{KR}$ (1)}
-Язык $L^{KR}$ с сигнатурой $\langle L, A \rangle$, где $L$ - множество признаков, $A$ - множество пропозициональных переменных:\\
+Язык $L^{KR}$ с сигнатурой $\langle L, A \rangle$, где $L$ - множество признаков, \\$A$ - множество пропозициональных переменных:\\
 \bigskip
 \begin{itemize}
 	\item $a$ для каждого $a \in A$
-	\item $\top$ и пропозициональные связки
-	\item знак равенства путей $p \approx q$
+	\item пропозициональные связки и $\top$
+	\item знак равенства путей $\approx$
 \end{itemize}
 \bigskip	
 Eсли $\phi$ и $\psi$ - формулы, то также формулы и 
 \begin{itemize}
 	\item $\phi \wedge \psi$,
 	\item $\phi \vee \psi$,
-	\item $l : \phi$ для $l \in L$
+	\item $l : \phi$ или $\langle l \rangle \phi$ для $l \in L$
 \end{itemize}
 \end{frame}
 
@@ -207,6 +209,8 @@ Eсли $\phi$ и $\psi$ - формулы, то также формулы и
 \end{frame}
 
 \begin{frame}{$HL(@)$ (1)}
+Гибридная логика:\\
+\bigskip
 \begin{itemize}
 	\item Будем писать $\langle \pi \rangle$ и $[\pi]$ вместо $\Diamond_\pi$ и $\Box_\pi$
 	\item $\langle \pi \rangle \alpha \; \equiv \; \neg [\pi] \neg \alpha$
