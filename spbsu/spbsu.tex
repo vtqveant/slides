@@ -66,8 +66,8 @@ $\begin{array}[t]{*{#1}{c}}
     \setcounter{framenumber}{1}
     \begin{itemize}
         \item Структуры типизированных признаков (TFS)
-        \item Логическое описание TFS (языки $L^{KR}$, $HL(@)$)
         \item Графовое представление TFS как шкала Крипке
+        \item Логическое описание TFS (языки $L^{KR}$, $HL(@)$)
         \item Конструкция накрытия графа, локальность
         \item Логическая характеристика свойства локальности
         \item Лингвистические приложения конструкции  % (HLDS, underspecification и др.)
@@ -83,7 +83,7 @@ $\begin{array}[t]{*{#1}{c}}
 
 \begin{frame}[fragile]
 \frametitle{Структуры типизированных признаков}
-HLDS в виде AVM:\\
+Матрица ``атрибут-значение'' (AVM):\\
 \begin{center}
 	\begin{avm}
 	[{action} predicate & on \cr
@@ -95,6 +95,63 @@ HLDS в виде AVM:\\
 	\end{avm}
 \end{center}	
 \end{frame}
+
+\begin{frame}{Формальное определение (Copestake, 2001)}
+Зададим конечное множество признаков $\textbf{Feat}$ и иерархию типов $\langle \textbf{Type}, \sqsubseteq \rangle$ (частично упорядоченное множество)\\
+\bigskip
+TFS - это четверка $\langle Q, r, \delta, \theta \rangle$, где
+\begin{itemize}
+	\item $Q$ - конечное множество вершин
+	\item $r \in Q$ - выделенная вершина
+	\item $\theta : Q \to \textbf{Type}$ - частичная функция типизации
+	\item $\delta : Q \times \textbf{Feat} \to Q$ - частичная функция, сопоставляющая признаку при вершине другую вершину
+\end{itemize}
+\end{frame}
+
+% 3. Графовое представление TFS как шкала Крипке
+\begin{frame}{}
+\begin{center}
+	\textbf{Графовое представление TFS как шкала Крипке}
+\end{center}
+\end{frame}
+
+\begin{frame}{Реляционная семантика (1)}
+\textit{Шкала Крипке} (Kripke frame):\\
+\bigskip
+$\mathcal{F} = (W, R)$, где $W$ - непустое множество, $R \subseteq W \times W$.\\
+\bigskip
+\begin{itemize}
+  \item $w_i \in W$ - миры, состояния, точки отнесенности
+  \item $R$ - отношение достижимости
+  \item если $wRv$, то говорят, что $v$ \textit{возможен относительно} $w$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Реляционная семантика (2)}
+\textit{Модель Крипке} $\mathcal{M} = (\mathcal{F}, V)$, где  
+\bigskip
+\begin{itemize}
+  \item $\mathcal{F}$ - шкала Крипке
+  \item $V : P \to 2^W$ - функция оценивания, т.е. отображение из атомарных выражений в подмножества множества миров
+\end{itemize}
+\bigskip
+\end{frame}
+
+\begin{frame}{Реляционная семантика (3)}
+Пусть $\mathcal{M} = (\mathcal{F}, V)$, $w \in W$, $\phi$ - формула, $p \in P$\\
+\bigskip
+Истинность $\phi$ в модели $\mathcal{M}$ в точке $w$ определяется рекурсивно\\
+\bigskip
+\begin{itemize}
+  \item $\mathcal{M}, w \models p \; \Longleftrightarrow \; w \in V(p)$
+  \item $\mathcal{M}, w \models \neg \phi \; \Longleftrightarrow \; \mathcal{M}, w \not\models \phi$
+  \item $\mathcal{M}, w \models \phi \vee \psi \; \Longleftrightarrow \; \mathcal{M}, w \models \phi$ или $\mathcal{M}, w \models \psi$
+  \item $\mathcal{M}, w \models \Box \phi \; \Longleftrightarrow \; \forall v \in W \; . \; (w R v \to \mathcal{M}, v \models \phi)$
+  \item $\mathcal{M}, w \not\models \perp$
+\end{itemize}
+\end{frame}
+
+
 
 % 2. Логическое описание TFS (языки $L^{KR}$, $HL(@)$)
 \begin{frame}{}
@@ -111,17 +168,31 @@ HLDS в виде AVM:\\
 \end{frame}
 
 \begin{frame}{$L^{KR}$ (1)}
+Множество признаков $L$, множество пропозициональных переменных $A$.\\
+\bigskip
+Язык $L^{KR}$:\\
+\bigskip
 \begin{itemize}
-	\item отношение равенства путей 
-	\item TODO
+	\item константы
+		\begin{itemize}
+			\item $a$ для каждого $a \in A$
+			\item $\textbf{truth}$
+		\end{itemize}
+	\item равенство путей $p \approx q$
+	\item если $\phi$ и $\psi$ - формулы, то $\phi \wedge \psi$, $\phi \vee \psi$, $l : \phi$ для $l \in L$ - формулы
 \end{itemize}
 \end{frame}
 
 \begin{frame}{$L^{KR}$ (2)}
+Уравнения по путям (цепочкам модальных операторов):\\
+\bigskip
 \begin{itemize}
-	\item 
-	\item
+	\item $\langle VP \; VERB \; HEAD \; NUM \rangle \; sing$
+	\item $\langle VP \; HEAD \rangle \approx \langle \; VP \; VERB \; HEAD \rangle$
+	\item $0$ - путь нулевой длины
 \end{itemize}
+\bigskip
+Пример: $\neg(0 \approx \langle F_1 \rangle ... \langle F_n \rangle)$ - условие ацикличности
 \end{frame}
 
 \begin{frame}{$HL(@)$ (1)}
@@ -161,52 +232,6 @@ $\mathcal{M} = (W, \{R_\pi \vert \pi \in MOD\}, V)$, где\\
 \end{itemize}
 \end{frame}
 
-% 3. Графовое представление TFS как шкала Крипке
-\begin{frame}{}
-\begin{center}
-	\textbf{Графовое представление TFS как шкала Крипке}
-\end{center}
-\end{frame}
-
-\begin{frame}{Реляционная семантика (1)}
-\textit{Шкала Крипке} (Kripke frame):\\
-\bigskip
-$\mathcal{F} = (W, R)$, где $W$ - непустое множество, $R \subseteq W \times W$.\\
-\bigskip
-\begin{itemize}
-  \item $w_i \in W$ - миры, состояния, точки отнесенности
-  \item $R$ - отношение достижимости
-  \item если $wRv$, то говорят, что $v$ \textit{возможен относительно} $w$
-\end{itemize}
-\bigskip
-Легко заметить, что шкала Крипке - это граф.
-\end{frame}
-
-\begin{frame}{Реляционная семантика (2)}
-\textit{Модель Крипке} $\mathcal{M} = (\mathcal{F}, V)$, где  
-\bigskip
-\begin{itemize}
-  \item $\mathcal{F}$ - шкала Крипке
-  \item $V : P \to 2^W$ - функция оценивания, т.е. отображение из атомарных выражений в подмножества множества миров
-\end{itemize}
-\bigskip
-\end{frame}
-
-\begin{frame}{Реляционная семантика (3)}
-Пусть $\mathcal{M} = (\mathcal{F}, V)$, $w \in W$, $\phi$ - формула, $p \in P$\\
-\bigskip
-Истинность $\phi$ в модели $\mathcal{M}$ в точке $w$ определяется рекурсивно\\
-\bigskip
-\begin{itemize}
-  \item $\mathcal{M}, w \models p \; \Longleftrightarrow \; w \in V(p)$
-  \item $\mathcal{M}, w \models \neg \phi \; \Longleftrightarrow \; \mathcal{M}, w \not\models \phi$
-  \item $\mathcal{M}, w \models \phi \vee \psi \; \Longleftrightarrow \; \mathcal{M}, w \models \phi$ или $\mathcal{M}, w \models \psi$
-  \item $\mathcal{M}, w \models \Box \phi \; \Longleftrightarrow \; \forall v \in W \; . \; (w R v \to \mathcal{M}, v \models \phi)$
-  \item $\mathcal{M}, w \not\models \perp$
-\end{itemize}
-\bigskip
-Если $\mathcal{M}, w \models \phi$, говорят, что $\phi$ \textit{логически следует} из $\mathcal{M}, w$
-\end{frame}
 
 \begin{frame}{Гибридная логика и проверка моделей}
 Дана гибридная модель $\mathcal{M}$ и формула $\alpha$, найти все узлы в $\mathcal{M}$, в которых $\alpha$ истинна:
@@ -285,11 +310,23 @@ $[ \! [ \pi^{-1}(p) ] \! ] = \{   \vert \}$
 
 \begin{frame}{Hybrid Logic Dependency Semantics}
 \begin{itemize}
-	\item Композициональный семантический формализм
-	\item Гибридная логика и структуры зависимостей
-	\item Транслируется в \textit{HL}
+	\item Композициональный семантический формализм 
+	\item Описание семантических структур зависимостей с помощью выражений гибридной логики
+\end{itemize}
+\bigskip
+Например: $@_X\phi$, $X$ интерпретируется как референциальная переменная, $\phi$ - пропозиция\\
+$flower \vdash n_{sg,X:thing} : @_{X:thing}(\textbf{flower} \wedge \langle NUM \rangle sg)$\\
+Модальный оператор $\langle \cdot \rangle$ отражает отношение зависимости
+\end{frame}
+
+\begin{frame}{HLDS (1)}
+\begin{itemize}
+	\item Операция семантической композиции - унификация логических форм
+	\item Cр. с формализмами на основе $\lambda$-исчисления: конкатенация логических форм с последующей редукцией 
 \end{itemize}
 \end{frame}
+
+
 
 \begin{frame}[fragile]
 \frametitle{HLDS (1)}
@@ -364,7 +401,27 @@ rule {
 \end{frame}
 
 
+\begin{frame}{Локализация в HLDS (1)}
+\begin{itemize}
+	\item Необходимость контролировать область видимости референциальных переменных в процессе семантической композиции
+	\item Ср.: Constraint Language for Lambda Structures (CLLS)
+\end{itemize}
+\end{frame}
 
+\begin{frame}{Локализация в HLDS (2)}
+Неоднозначность:
+\begin{itemize}
+	\item \texttt{включи лампу на кухне и свет в комнате}
+	\item \texttt{включи лампу на столе и свет в комнате}
+\end{itemize}
+\bigskip
+Варианты решения:
+\begin{itemize}
+	\item Пометки в грамматике (т.е. внутри синтаксических категорий)
+	\item Проверка модели (model checking) и внешняя онтология
+	\item Препятствия на уровне согласования логических форм
+\end{itemize}
+\end{frame}
 
 
 % ----------
