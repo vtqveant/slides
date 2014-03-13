@@ -68,7 +68,7 @@ $\begin{array}[t]{*{#1}{c}}
         \item Структуры типизированных признаков (TFS)
         \item Графовое представление TFS как шкала Крипке
         \item Логическое описание TFS (языки $L^{KR}$, $HL(@)$)
-        \item Конструкция накрытия графа, локальность
+        \item Конструкция накрытия графа
         \item Логическая характеристика свойства локальности
         \item Лингвистические приложения конструкции  % (HLDS, underspecification и др.)
     \end{itemize}
@@ -239,31 +239,34 @@ $\mathcal{M} = (W, \{R_\pi \vert \pi \in MOD\}, V)$, где\\
 \begin{center}
     $T(\mathcal{M}, \alpha) = \{ w \in W \; | \; \mathcal{M}, w \models \alpha \}$
 \end{center}
-\bigskip
-Известные результаты:\\  % уточнить
-\bigskip
-\begin{itemize}
-	\item сложность в худшем случае для $HL(@, \downarrow, \textbf{E})$ - $PSPACE$
-	\item сложность для $H(@)$ 
-		\begin{itemize}
-			\item экспоненциальная по длине формулы
-			\item полиномиальная по размеру модели
-		\end{itemize}
-\end{itemize}
 \end{frame}
 
 
-
-% 4. Конструкция накрытия графа, локальность
+% 4. Конструкция накрытия графа
 \begin{frame}{}
 \begin{center}
-	\textbf{Конструкция накрытия графа, локальность}
+	\textbf{Конструкция накрытия графа}
 \end{center}
 \end{frame}
 
-\begin{frame}{Накрытия (1)}
+\begin{frame}{Накрытие графа (1)}
+\begin{figure}[H]
+\includegraphics[scale=0.5]{cover1.png} 
+\end{figure}
 \end{frame}
 
+\begin{frame}{Накрытие графа (2)}
+\begin{figure}[H]
+\includegraphics[scale=0.5]{universal_cover.png} 
+\end{figure}
+\end{frame}
+
+% Let G = (V, E) and C = (V2, E2) be two graphs, and let f: V2 → V be a surjection. Then f is a covering map from C to G if for each v ∈ V2, the restriction of f to the neighbourhood of v is a bijection onto the neighbourhood of f(v) ∈ V in G. Put otherwise, f maps edges incident to v one-to-one onto edges incident to f(v).
+\begin{frame}{Накрытие графа (3)}
+$G_1 = (V_1, E_1)$, $G_2 = (V_2, E_2)$ - два графа, $\pi: V_2 \to V_1$ - сюръекция. Если ограничение $\pi \vert_U$ на окрестность вершины $v \in U \subset V_2$ биективно, то $\pi$ - накрытие.\\
+\bigskip
+Иначе, накрытие - локально биективный гомоморфизм.
+\end{frame}
 
 
 % 5. Логическая характеристика свойства локальности
@@ -273,17 +276,20 @@ $\mathcal{M} = (W, \{R_\pi \vert \pi \in MOD\}, V)$, где\\
 \end{center}
 \end{frame}
 
-\begin{frame}{Локальность внутри формализма (1)}
-Задача - найти способ выразить локальные свойства модели в формализме\\
-Известные аналогии: бисимуляция, модельная эквивалентность\\
-Модальная логика - фрагмент логики первого порядка, инвариантный относительно бисимуляции (теорема Ван Бентема).
-Другой вариант смотреть на то же свойство - модальная логика как логика, удовлетворяющая свойству выразимости в древовидной модели (?)
+\begin{frame}{Локальность (1)}
+\begin{center}
+\textbf{Задача}\\
+\bigskip
+Выразить локальные свойства модели \\в описывающем её формализме
+\end{center}
 \end{frame}
 
-\begin{frame}{Локальность внутри формализма (2)}
+\begin{frame}{Локальность (2)}
 Основное соотношение конструкции:\\
 \bigskip
-$[ \! [ \pi^{-1}(\phi) ] \! ]^{M_1, g} = [ \! [ \psi ] \! ]^{M_2, g}$, где\\
+\begin{center}
+$[ \! [ \pi^{-1}(\phi) ] \! ]^{M_1, g} = [ \! [ \psi ] \! ]^{M_2, g}$, где
+\end{center}
 \bigskip
 \begin{itemize}
 	\item $\pi : M_2 \to M_1$ - накрытие,
@@ -295,7 +301,10 @@ $[ \! [ \pi^{-1}(\phi) ] \! ]^{M_1, g} = [ \! [ \psi ] \! ]^{M_2, g}$, где\\
 Тогда выражение $\pi^{-1}(\phi)$ назовем \textit{локализацией} формулы $\phi$ при накрытии $\pi$.
 \end{frame}
 
-\begin{frame}{Локальность внутри формализма (3)}
+\begin{frame}{Локальность (3)}
+
+
+
 Попытка реконструировать $\pi^{-1}( \cdot )$.\\
 $[ \! [ \pi^{-1}(p) ] \! ] = \{   \vert \}$
 \end{frame}
@@ -308,28 +317,45 @@ $[ \! [ \pi^{-1}(p) ] \! ] = \{   \vert \}$
 \end{center}
 \end{frame}
 
-\begin{frame}{Hybrid Logic Dependency Semantics}
+\begin{frame}{HLDS (1)}
+Hybrid Logic Dependency Semantics:\\
+\bigskip
 \begin{itemize}
 	\item Композициональный семантический формализм 
 	\item Описание семантических структур зависимостей с помощью выражений гибридной логики
+	\item Cемантическая композиция реализуется как унификация логических форм (ср. с формализмами на основе $\lambda$-исчисления: конкатенация с последующей редукцией)
+	\item Реализован в системе OpenCCG (Baldridge et al., 2007)
 \end{itemize}
+\end{frame}
+
+\begin{frame}{HLDS (2)}
+\begin{center}
+$@_X\phi$
+\end{center}
 \bigskip
-Например: $@_X\phi$, $X$ интерпретируется как референциальная переменная, $\phi$ - пропозиция\\
-$flower \vdash n_{sg,X:thing} : @_{X:thing}(\textbf{flower} \wedge \langle NUM \rangle sg)$\\
-Модальный оператор $\langle \cdot \rangle$ отражает отношение зависимости
-\end{frame}
-
-\begin{frame}{HLDS (1)}
 \begin{itemize}
-	\item Операция семантической композиции - унификация логических форм
-	\item Cр. с формализмами на основе $\lambda$-исчисления: конкатенация логических форм с последующей редукцией 
-\end{itemize}
+	\item $X$ интерпретируется как референциальная переменная
+	\item $\phi$ - пропозиция
+	\item $\langle \cdot \rangle$ - модальный оператор, выражающий отношение семантической зависимости
+\end{itemize}	
 \end{frame}
 
+\begin{frame}{HLDS (3)}
+Пример словарной записи:\\
+\bigskip
+\begin{center}
+$flower \vdash n_{sg,X:thing} : @_{X:thing}(\textbf{flower} \wedge \langle NUM \rangle sg)$
+\end{center}
+\bigskip
+\begin{itemize}
+	\item $n_{sg,X:thing}$ - синтаксическая категория в MMCCG
+	\item $@_{X:thing}(\textbf{flower} \wedge \langle NUM \rangle sg)$ - логическая форма в HLDS
+\end{itemize}	
+\end{frame}
 
 
 \begin{frame}[fragile]
-\frametitle{HLDS (1)}
+\frametitle{HLDS (4)}
 Компактная форма:
 {\footnotesize \begin{verbatim}
 @w0:action(ON ^
@@ -409,15 +435,31 @@ rule {
 \end{frame}
 
 \begin{frame}{Локализация в HLDS (2)}
-Неоднозначность:
-\begin{itemize}
-	\item \texttt{включи лампу на кухне и свет в комнате}
-	\item \texttt{включи лампу на столе и свет в комнате}
-\end{itemize}
+Неоднозначность:\\
 \bigskip
-Варианты решения:
 \begin{itemize}
-	\item Пометки в грамматике (т.е. внутри синтаксических категорий)
+	\item \texttt{включи лампу на столе и свет в комнате}
+		\begin{itemize}
+			\item {\footnotesize лампа на столе, стол в комнате}
+			\item {\footnotesize лампа на столе, стол не в комнате}
+		\end{itemize}
+	\bigskip
+	\item \texttt{включи лампу на кухне и свет в комнате}
+		\begin{itemize}
+			\item {\footnotesize лампа на кухне}
+			\item {\footnotesize $^?$лампа на кухне, кухня в комнате}
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Локализация в HLDS (3)}
+Синтаксическое управление процедурой композиции логической формы приводит к появлению ошибочной логической формы.\\
+\bigskip
+Варианты решения:\\
+\bigskip
+\begin{itemize}
+	\item Пометки в грамматике (внутри синтаксических категорий)
 	\item Проверка модели (model checking) и внешняя онтология
 	\item Препятствия на уровне согласования логических форм
 \end{itemize}
@@ -427,81 +469,6 @@ rule {
 % ----------
 
 
-
-\begin{frame}{Теоретический минимум}
-\begin{itemize}
-	\item Multimodal Combinatory Categorial Grammar (MMCCG)
-	\item Hybrid Logic Dependency Semantics (HLDS)
-	\item Hybrid Logic Model Checking (HLMC)
-\end{itemize}
-\end{frame}
-
-
-
-\begin{frame}[fragile]
-\frametitle{Гибридная логика и XML (1)}
-{\footnotesize 
-\begin{verbatim}
-<biblio>
-    <book id="b1">
-        <author>Marx</author>
-        <author>de Rijke</author>
-        <title>Hybrid Logics</title>
-        <date>1998</date>
-        <cites idref="b1"/>
-    </book>
-    <book id="b2">
-        <author>Franceschet</author>
-        <title>Model Checking</title>
-        <date>2000</date>
-        <cites idref="a1"/>
-    </book>
-</biblio>
-\end{verbatim}
-}
-\end{frame}
-
-\begin{frame}{Гибридная логика и XML (2)}
-XML документ - модель, формула гибридной логики - запрос.\\
-\bigskip
-\begin{itemize}
-\item Существует ли в точности одна книга автора Franceschet?
-	\begin{itemize}
-		{\scriptsize \item $@_{root} \langle biblio \rangle \langle book \rangle \downarrow x \; . \; \langle author \rangle Franceschet \; \wedge \; @_{root} \langle biblio \rangle [book] x$}
-	\end{itemize}
-\bigskip	
-\item Существует ли две разных книги?	
-	\begin{itemize}
-		{\scriptsize \item $@_{root} \langle biblio \rangle \langle book \rangle \downarrow x \; . \; @_{root} \langle biblio \rangle \langle book \rangle \neg x$}
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-
-
-\begin{frame}{Технологии}
-\begin{itemize}
-	\item OpenCCG (J. Baldridge et al.)
-	\item Грамматика Moloko (DFKI)
-	\item HLMC (L. Dragone)
-\end{itemize}
-\end{frame}
-
-\begin{frame}{}
-\begin{center}
-	\textbf{Формализмы}\\
-\end{center}
-\end{frame}
-
-
-\begin{frame}{dotCCG (1)}
-\begin{itemize}
-	\item DSL для создания MMCCG-грамматик
-	\item Транслируется в XML-формат OpenCCG
-	\item MOLOKO - около 4 kLOC 
-	\item Мой прототип - около 0.5 kLOC (из-за морфологии)
-\end{itemize}
-\end{frame}
 
 
 
