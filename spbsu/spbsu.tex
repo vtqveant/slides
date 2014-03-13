@@ -389,7 +389,7 @@ $flower \vdash n_{sg,X:thing} : @_{X:thing}(\textbf{flower} \wedge \langle NUM \
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Пример в формализме dotCCG (1)}
+\frametitle{DotCCG (1)}
 Определение семейства слов:
 {\footnotesize \begin{verbatim}
 family tv(V) {
@@ -401,17 +401,14 @@ family tv(V) {
 \bigskip
 Запись в словарной части:
 {\footnotesize \begin{verbatim}
-word лампа:Noun(thing, pred=лампа) {
-    лампа:  s-sg nom fem;
-    лампу:  s-sg acc fem;
-    лампы:  s-pl nom fem;
-    лампы:  s-pl acc fem;
+word включать:tv(action, pred=ON) {
+    включи: imp vf-to-imp;
 }
 \end{verbatim}}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Пример в формализме dotCCG (2)}
+\frametitle{DotCCG (2)}
 Правила изменения типа:
 {\footnotesize \begin{verbatim}
 rule {
@@ -426,11 +423,10 @@ rule {
 \end{verbatim}}
 \end{frame}
 
-
 \begin{frame}{Локализация в HLDS (1)}
 \begin{itemize}
-	\item Необходимость контролировать область видимости референциальных переменных в процессе семантической композиции
-	\item Ср.: Constraint Language for Lambda Structures (CLLS)
+	\item Необходимость контроля области видимости референциальных переменных в процессе семантической композиции
+	\item Необходимость реализации порождения нескольких семантических представлений в результате одного синтаксического разбора (ср. \textit{scope ambiguity})
 \end{itemize}
 \end{frame}
 
@@ -452,108 +448,25 @@ rule {
 \end{itemize}
 \end{frame}
 
-
-\begin{frame}{Локализация в HLDS (3)}
-Синтаксическое управление процедурой композиции логической формы приводит к появлению ошибочной логической формы.\\
-\bigskip
-Варианты решения:\\
-\bigskip
-\begin{itemize}
-	\item Пометки в грамматике (внутри синтаксических категорий)
-	\item Проверка модели (model checking) и внешняя онтология
-	\item Препятствия на уровне согласования логических форм
-\end{itemize}
-\end{frame}
-
-
-% ----------
-
-
-
-
-
 \begin{frame}[fragile]
-\frametitle{Пример анализа (3)}
-Первый вариант разбора (HLDS):\\
-\bigskip
+\frametitle{Локализация в HLDS (3)}
+\texttt{включи [[[лампу на кухне] и подсветку] в прихожей]}\\
 \begin{center}
 {\scriptsize \begin{verbatim}
 @w0:action(ON ^ 
               <Mood>imp ^ 
               <Actor>x1:entity ^ 
-              <Patient>(w2:entity ^ и ^ 
+              <Patient>(w4:entity ^ и ^ 
                         <Num>pl ^ 
                         <First>(w1:thing ^ лампа ^ 
-                                <Num>sg) ^ 
-                        <Next>(w3:thing ^ подсветка ^ 
-                               <Num>sg ^ 
-                               <Modifier>(w4:m-location ^ на ^ 
-                                          <Anchor>(w5:e-place ^ кухня ^ 
-                                                   <Num>sg))) ^ 
-                        <Num>pl))
-\end{verbatim}
-}                        
-\end{center}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Пример анализа (4)}
-Первый вариант разбора (HLMC):\\
-\bigskip
-\begin{center}
-{\scriptsize \begin{verbatim}
->   ON (lampa & <num>(sg)) : x1_node x6_node 
-
->   ON (podsvetka & <num>(sg) & 
-        <modifier>((na & <anchor>((kuhnya & <num>(sg)))))) : x3_node 
-\end{verbatim}
-}                        
-\end{center}
-\end{frame}
-
-\begin{frame}{Пример анализа (5)}
-Второй вариант разбора (MMCCG):\\
-\bigskip
-\begin{center}
-\deriv{6}{
-\gf{включи} & \gf{лампу} & \gf{и} & \gf{подсветку} & \gf{на} & \gf{кухне} \\
-\uline{1} & \uline{1} & \uline{1} & \uline{1} & \uline{1} & \uline{1} \\
-\cf{s\bs \supsa{-} np/ np} & \cf{np} & \cf{n/ np\bs \subsb{*} np} & \cf{np} & \cf{pp/ \subsa{\diamond} np} & \cf{np} \\
-& \mc{2} {\hrulefill_{<}} \\
-& \mc{2}{\cf{n/ np}} \\
-&&&& \mc{2} {\hrulefill_{>}} \\
-&&&& \mc{2}{\cf{pp}} \\
-& \mc{3} {\hrulefill_{>}} \\
-& \mc{3}{\cf{n}} \\
-&&&& \mc{2} {\hrulefill_{t\mathbf{ypechange-6}}}\\
-&&&& \mc{2}{\cf{n\bs \subsb{*} n}} \\
-& \mc{5} {\hrulefill_{<}} \\
-& \mc{5}{\cf{n}} \\
-& \mc{5} {\hrulefill_{t\mathbf{ypechange-4}}}\\
-& \mc{5}{\cf{np}} \\
- \mc{6} {\hrulefill_{>}} \\
- \mc{6}{\cf{s\bs \supsa{-} np}} \\
-}
-\end{center}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Пример анализа (6)}
-Второй вариант разбора (HLDS):\\
-\bigskip
-\begin{center}
-{\scriptsize \begin{verbatim}
-@w0:action(ON ^ 
-              <Mood>imp ^ 
-              <Actor>x1:entity ^ 
-              <Patient>(w2:entity ^ и ^ 
-                        <Num>pl ^ 
-                        <First>(w1:thing ^ лампа ^ 
-                                <Num>sg) ^ 
-                        <Modifier>(w4:m-location ^ на ^ 
-                                   <Anchor>(w5:e-place ^ кухня ^ 
+                                <Num>sg ^ 
+                                <Modifier>(w2:m-location ^ на ^ 
+                                           <Anchor>(w3:e-place ^ stol ^ 
+                                                    <Num>sg))) ^ 
+                        <Modifier>(w6:m-location ^ в ^ 
+                                   <Anchor>(w7:e-place ^ прихожая ^ 
                                             <Num>sg)) ^ 
-                        <Next>(w3:thing ^ подсветка ^ 
+                        <Next>(w5:thing ^ подсветка ^ 
                                <Num>sg) ^ 
                         <Num>pl))
 \end{verbatim}
@@ -561,20 +474,26 @@ rule {
 \end{center}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Пример анализа (7)}
-Второй вариант разбора (HLMC):\\
-\bigskip
-\begin{center}
-{\scriptsize \begin{verbatim}
->   ON (lampa & <num>(sg) & 
-        <modifier>((na & <anchor>((kuhnya & <num>(sg)))))) : x1_node 
 
->   ON (podsvetka & <num>(sg) & 
-        <modifier>((na & <anchor>((kuhnya & <num>(sg)))))) : x3_node 
-\end{verbatim}
-}                        
-\end{center}
+\begin{frame}{Локализация в HLDS (4)}
+Синтаксическое управление процедурой семантической композиции приводит к появлению некорректной логической формы.\\
+\bigskip
+Варианты решения:\\
+\bigskip
+\begin{itemize}
+	\item пометки в грамматике (внутри синтаксических категорий)
+	\item проверка модели (model checking) и внешняя онтология
+	\item препятствия на уровне согласования логических форм
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Локализация в HLDS (5)}
+Реализация ограничений на унификацию логических форм в виде накрытия как вариант неполной специфицикации (\textit{underspecification}) для HLDS.\\
+\bigskip
+\begin{itemize}
+	\item устранение вычислительно трудных решений по схеме ``порождение гипотез и фильтрация''
+	\item устранение необходимости добавления ad hoc правил в синтаксический компонент
+\end{itemize}
 \end{frame}
 
 
