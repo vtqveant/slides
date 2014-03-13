@@ -115,6 +115,16 @@ TFS - это четверка $\langle Q, r, \delta, \theta \rangle$, где
 \end{center}
 \end{frame}
 
+\begin{frame}{Графовое представление}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.5]{tfs_avm.png} 
+		\includegraphics[scale=0.5]{tfs_graph.png} 
+	\end{figure}
+\end{center}
+\end{frame}
+
+
 \begin{frame}{Реляционная семантика (1)}
 \textit{Шкала Крипке} (Kripke frame):\\
 \bigskip
@@ -168,18 +178,19 @@ $\mathcal{F} = (W, R)$, где $W$ - непустое множество, $R \su
 \end{frame}
 
 \begin{frame}{$L^{KR}$ (1)}
-Множество признаков $L$, множество пропозициональных переменных $A$.\\
-\bigskip
-Язык $L^{KR}$:\\
+Язык $L^{KR}$ с сигнатурой $\langle L, A \rangle$, где $L$ - множество признаков, $A$ - множество пропозициональных переменных:\\
 \bigskip
 \begin{itemize}
-	\item константы
-		\begin{itemize}
-			\item $a$ для каждого $a \in A$
-			\item $\textbf{truth}$
-		\end{itemize}
-	\item равенство путей $p \approx q$
-	\item если $\phi$ и $\psi$ - формулы, то $\phi \wedge \psi$, $\phi \vee \psi$, $l : \phi$ для $l \in L$ - формулы
+	\item $a$ для каждого $a \in A$
+	\item $\top$ и пропозициональные связки
+	\item знак равенства путей $p \approx q$
+\end{itemize}
+\bigskip	
+Eсли $\phi$ и $\psi$ - формулы, то также формулы и 
+\begin{itemize}
+	\item $\phi \wedge \psi$,
+	\item $\phi \vee \psi$,
+	\item $l : \phi$ для $l \in L$
 \end{itemize}
 \end{frame}
 
@@ -188,7 +199,7 @@ $\mathcal{F} = (W, R)$, где $W$ - непустое множество, $R \su
 \bigskip
 \begin{itemize}
 	\item $\langle VP \; VERB \; HEAD \; NUM \rangle \; sing$
-	\item $\langle VP \; HEAD \rangle \approx \langle \; VP \; VERB \; HEAD \rangle$
+	\item $\langle VP \; HEAD \rangle \approx \langle VP \; VERB \; HEAD \rangle$
 	\item $0$ - путь нулевой длины
 \end{itemize}
 \bigskip
@@ -218,7 +229,7 @@ $\mathcal{M} = (W, \{R_\pi \vert \pi \in MOD\}, V)$, где\\
 \begin{itemize}
 	\item $\mathcal{F} = (W, \{R_\pi \vert \pi \in MOD\})$ - шкала Крипке
 	\item $V : PROP \cup NOM \to 2^W$
-	\item $V(i)$ - синглетон, т.е. $\vert V(i) \vert = 1$
+	\item $V(i)$ - синглетон
 \end{itemize}
 \end{center}
 \end{frame}
@@ -301,14 +312,6 @@ $[ \! [ \pi^{-1}(\phi) ] \! ]^{M_1, g} = [ \! [ \psi ] \! ]^{M_2, g}$, где
 Тогда выражение $\pi^{-1}(\phi)$ назовем \textit{локализацией} формулы $\phi$ при накрытии $\pi$.
 \end{frame}
 
-\begin{frame}{Локальность (3)}
-
-
-
-Попытка реконструировать $\pi^{-1}( \cdot )$.\\
-$[ \! [ \pi^{-1}(p) ] \! ] = \{   \vert \}$
-\end{frame}
-
 
 % 6. Лингвистические приложения конструкции  % (HLDS, underspecification и др.)
 \begin{frame}{}
@@ -335,7 +338,7 @@ $@_X\phi$
 \bigskip
 \begin{itemize}
 	\item $X$ интерпретируется как референциальная переменная
-	\item $\phi$ - пропозиция
+	\item $\phi$ - высказывание
 	\item $\langle \cdot \rangle$ - модальный оператор, выражающий отношение семантической зависимости
 \end{itemize}	
 \end{frame}
@@ -371,7 +374,7 @@ $flower \vdash n_{sg,X:thing} : @_{X:thing}(\textbf{flower} \wedge \langle NUM \
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{HLDS (2)}
+\frametitle{HLDS (5)}
 Линеаризованная форма:
 {\footnotesize \begin{verbatim}
 @E_0:action(CLOSE) ^ 
@@ -393,8 +396,8 @@ $flower \vdash n_{sg,X:thing} : @_{X:thing}(\textbf{flower} \wedge \langle NUM \
 Определение семейства слов:
 {\footnotesize \begin{verbatim}
 family tv(V) {
-    entry : s \! np / np : 	E:event(* <Actor>(S:entity) 
-                                      <Patient>(X:entity));
+    entry : s[E] \! np[S] / np[X] : E:event(* <Actor>  (S:entity) 
+                                              <Patient>(X:entity));
 }
 \end{verbatim}}
 \bigskip
@@ -418,7 +421,7 @@ rule {
              => s<~10>[E fin-full s-imp] / 
                 np<2> [X acc] : E:event(<Mood>(imp) 
                                         <Subject>(S:entity 
-                                                 addressee));
+                                                  addressee));
 }
 \end{verbatim}}
 \end{frame}
@@ -436,14 +439,14 @@ rule {
 \begin{itemize}
 	\item \texttt{включи лампу на столе и свет в комнате}
 		\begin{itemize}
-			\item {\footnotesize лампа на столе, стол в комнате}
 			\item {\footnotesize лампа на столе, стол не в комнате}
+			\item {\footnotesize лампа на столе в комнате}
 		\end{itemize}
 	\bigskip
 	\item \texttt{включи лампу на кухне и свет в комнате}
 		\begin{itemize}
 			\item {\footnotesize лампа на кухне}
-			\item {\footnotesize $^?$лампа на кухне, кухня в комнате}
+			\item {\footnotesize $^?$лампа на кухне в комнате}
 		\end{itemize}
 \end{itemize}
 \end{frame}
@@ -493,6 +496,8 @@ rule {
 \begin{itemize}
 	\item устранение вычислительно трудных решений по схеме ``порождение гипотез и фильтрация''
 	\item устранение необходимости добавления ad hoc правил в синтаксический компонент
+	\item дополнительный механизм наряду с типизацией (типизация касается вершин, локализация - ребер)
+	\item возможность адаптации к дискурсу
 \end{itemize}
 \end{frame}
 
