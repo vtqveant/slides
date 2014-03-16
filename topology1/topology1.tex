@@ -1,0 +1,192 @@
+\documentclass{beamer}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amssymb,amsfonts,amsmath,mathtext}
+\usepackage{cite,enumerate,float,indentfirst}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+\graphicspath{{images/}}
+
+\usetheme{Pittsburgh}
+\usecolortheme{whale}
+
+\setbeamertemplate{footline}{\scriptsize{\hspace*{0.4cm}\insertframenumber}\vspace*{0.3cm}}
+\beamertemplatenavigationsymbolsempty
+
+\errorcontextlines 10000
+
+\begin{document}
+\title{\Large{Топологическая семантика для S4}}
+\author{Константин Соколов}
+\institute[]
+{Mathlingvo, СПбГУ, i-Free\\ \bigskip  \url{http://nlu-rg.ru}}
+\date{Санкт-Петербург, 2014} 
+% Создание заглавной страницы
+\begin{frame}
+    \thispagestyle{empty}
+    \titlepage
+\end{frame}
+
+\begin{frame}{План}
+    \setcounter{framenumber}{1}
+    \begin{itemize}
+    	\item Предварительные замечания
+        \item Начала общей топологии
+        \item Семантика для S4 (Тарский и МакКинси, 1944)
+        \item Пучки и расслоения
+        \item Семантика для S4 с кванторами (Аводей и Кисида, 2008)
+    \end{itemize}
+\end{frame}
+
+% 1. Предварительные замечания
+\begin{frame}{}
+\begin{center}
+	\textbf{Предварительные замечания}
+\end{center}
+\end{frame}
+
+\begin{frame}{Предварительные замечания (1)}
+Модальная логика в основе лингвистических формализмов:\\
+\bigskip
+\begin{itemize}
+	\item Typed Feature Structures (TFS)
+		\begin{itemize}
+			\item (Copestake, 2001) 
+		\end{itemize}
+	\item логика Каспера-Раундса $L^{KR}$
+		\begin{itemize}
+			\item (Kasper, Rounds, 1986)
+		\end{itemize}
+	\item гибридная логика $HL(@, \downarrow)$
+		\begin{itemize}
+			\item (Blackburn, 2000)
+		\end{itemize}
+	\item Hybrid Logic Dependency Semantics (HLDS)
+		\begin{itemize}
+			\item (Baldridge et al., 2007)
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Предварительные замечания (2)}
+Топологическая семантика в лингвистике:\\
+\bigskip
+\begin{itemize}
+    \item Окрестностная грамматика
+		\begin{itemize}
+			\item Шрейдер, Борщёв, Хомяков, Лапшин
+		\end{itemize}
+    \item Формальная герменевтика
+		\begin{itemize}
+			\item Прозоров
+		\end{itemize}
+    \item Теория тропов
+		\begin{itemize}
+			\item (Mormann, 1995)
+			\item F. Moltmann (разные работы)
+		\end{itemize}
+    \item Композициональные дистрибутивные семантические модели (CDSM)
+		\begin{itemize}
+			\item Oxford Quantum Group (Abramsky, Grefenstette et al.)
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+% 2. Начала общей топологии
+\begin{frame}{}
+\begin{center}
+	\textbf{Начала общей топологии}
+\end{center}
+\end{frame}
+
+\begin{frame}{Начала общей топологии (1)}
+Разные топологии:\\
+\bigskip
+\begin{itemize}
+	\item Топология как раздел математики
+		\begin{itemize}
+			\item общая топология (general topology, point-set topology)
+			\item алгебраическая топология
+		\end{itemize}
+	\bigskip
+	\item Н. Бурбаки, ``Основания математики''
+		\begin{itemize}
+			\item топологические структуры
+			\item алгебраические структуры
+			\item структуры порядка
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Начала общей топологии (2)}
+Общая топология:\\
+\bigskip
+\begin{itemize}
+	\item Получила развитие в 20-е гг. XX в.
+		\begin{itemize}
+			\item обоснование анализа с помощью теоретико-множественных понятий
+			\item определение непрерывности без метрических понятий
+		\end{itemize}
+	\bigskip
+	\item Начальные главы (хороших) учебников анализа
+		\begin{itemize}
+			\item избавление от $\epsilon$-$\delta$ формализма
+			\item упрощение перехода к многомерному анализу
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Начала общей топологии (3)}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.3]{keep_calm.png} 
+	\end{figure}
+\end{center}
+\end{frame}
+
+
+% 3. Семантика для S4 (Тарский и МакКинси)
+\begin{frame}{}
+\begin{center}
+	\textbf{Семантика для S4}
+\end{center}
+\end{frame}
+
+% 4. Пучки и расслоения
+\begin{frame}{}
+\begin{center}
+	\textbf{Пучки и расслоения}
+\end{center}
+\end{frame}
+
+% 5. Семантика для S4 с кванторами
+\begin{frame}{}
+\begin{center}
+	\textbf{Семантика для S4 с кванторами}
+\end{center}
+\end{frame}
+
+
+
+
+
+
+\begin{frame}{}
+    \thispagestyle{empty}
+    \begin{center}
+        {\large Спасибо!}
+    \end{center}
+\end{frame}
+
+
+%%% слайд помещается сюда
+%% \begin{frame}{Заголовок}
+%% \end{frame}
+
+\end{document}
