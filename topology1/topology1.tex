@@ -40,10 +40,11 @@
     \setcounter{framenumber}{1}
     \begin{itemize}
     	\item Предварительные замечания
+    	\item Модальная логика S4
         \item Начала общей топологии
-        \item Семантика для S4 (Тарский и МакКинси, 1944)
-        \item Пучки и расслоения
-        \item Семантика для S4 с кванторами (Аводей и Кисида, 2008)
+        \item Топологическая семантика для S4
+        \item Пучок Крипке
+        \item Начала теории пучков
     \end{itemize}
 \end{frame}
 
@@ -101,8 +102,51 @@
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Предварительные замечания (3)}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.3]{keep_calm.png} 
+	\end{figure}
+\end{center}
+\end{frame}
 
-% 2. Начала общей топологии
+% 2. Модальная логика S4
+\begin{frame}{}
+\begin{center}
+	\textbf{Модальная логика S4}
+\end{center}
+\end{frame}
+
+\begin{frame}{S4 (1)}
+S4 - пропозициональная логика с модальным оператором $\Box$\\
+\bigskip
+\begin{itemize}
+	\item $\Box \phi \; \vdash \; \phi$
+	\item $\Box \phi \; \vdash \; \Box \Box \phi$
+	\item $\Box \phi \wedge \Box \psi \; \vdash \; \Box (\phi \wedge \psi)$
+	\item $\top \; \vdash \; \Box \top$
+\end{itemize}
+\bigskip
+\begin{itemize}	
+	\item 
+		  \AxiomC{$\phi \; \vdash \; \psi$}
+		  \UnaryInfC{$\Box \phi \; \vdash \; \Box \psi$}
+		  \DisplayProof
+\end{itemize}
+\end{frame}
+
+\begin{frame}{S4 (2)}
+Шкала Крипке:\\
+\bigskip
+\begin{itemize}
+	\item $\mathcal{F} = (W, R)$
+	\item множество возможных миров $W$
+	\item отношение достижимости $R \subseteq W \times W$
+	\item для S4 отношение $R$ \textit{рефлексивно и транзитивно}
+\end{itemize}
+\end{frame}
+
+% 3. Начала общей топологии
 \begin{frame}{}
 \begin{center}
 	\textbf{Начала общей топологии}
@@ -147,15 +191,8 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Начала общей топологии (3)}
-\begin{center}
-	\begin{figure}[H]
-		\includegraphics[scale=0.3]{keep_calm.png} 
-	\end{figure}
-\end{center}
-\end{frame}
 
-\begin{frame}{Начала общей топологии (4)}
+\begin{frame}{Начала общей топологии (3)}
 Дано множество $X$. Система подмножеств $\mathcal{T} \subseteq 2^X$ называется \textit{топологической структурой} (или \textit{топологией}) на $X$, если:\\
 \bigskip
 \begin{itemize}
@@ -167,7 +204,7 @@
 Пара $(X, \mathcal{O}(X))$ называется \textit{топологическим пространством}.
 \end{frame}
 
-\begin{frame}{Начала общей топологии (5)}
+\begin{frame}{Начала общей топологии (4)}
 \begin{itemize}
 	\item подмножества $U \in \mathcal{O}(X)$ называются \textit{открытыми}
 	\item дополнения открытых множеств называются \textit{замкнутыми}
@@ -176,50 +213,10 @@
 \end{itemize}
 \end{frame}
 
-
-% 3. Семантика для S4 (Тарский и МакКинси)
+% 4. Топологическая семантика для S4
 \begin{frame}{}
 \begin{center}
-	\textbf{Семантика для S4}
-\end{center}
-\end{frame}
-
-\begin{frame}{S4 (1)}
-S4 - пропозициональная логика с модальным оператором $\Box$\\
-\bigskip
-\begin{itemize}
-	\item $\Box \phi \; \vdash \; \phi$
-	\item $\Box \phi \; \vdash \; \Box \Box \phi$
-	\item $\Box \phi \wedge \Box \psi \; \vdash \; \Box (\phi \wedge \psi)$
-	\item $\top \; \vdash \; \Box \top$
-\end{itemize}
-\bigskip
-\begin{itemize}	
-	\item 
-		  \AxiomC{$\phi \; \vdash \; \psi$}
-		  \UnaryInfC{$\Box \phi \; \vdash \; \Box \psi$}
-		  \DisplayProof
-\end{itemize}
-\end{frame}
-
-\begin{frame}{S4 (2)}
-Шкала Крипке:\\
-\bigskip
-\begin{itemize}
-	\item $\mathcal{F} = (W, R)$
-	\item множество возможных миров $W$
-	\item отношение достижимости $R \subseteq W \times W$
-	\item для S4 отношение $R$ \textit{рефлексивно и транзитивно}
-\end{itemize}
-\end{frame}
-
-\begin{frame}{S4 (3)}
-Шкала Крипке для S4 похожа на категорию:\\
-\bigskip
-\begin{center}
-	\begin{figure}[H]
-		\includegraphics[scale=0.6]{basic_category.png} 
-	\end{figure}
+	\textbf{Топологическая семантика для S4}
 \end{center}
 \end{frame}
 
@@ -253,28 +250,108 @@ $X$, $\cap$, $\subseteq$, $int(\cdot)$ соответствуют $\top$, $\wedg
 \end{footnotesize}
 \end{frame}
 
+\begin{frame}{Топологическая семантика для S4 (3)}
+Функция интерпретации $[ \! [ \cdot ] \! ]$\\
+\bigskip
+\begin{itemize}
+	\item $[ \! [ p ] \! ] \subseteq X$\\
+	\item $[ \! [ \neg \phi ] \! ] = X \setminus [ \! [ \phi ] \! ]$
+	\item $[ \! [ \phi \wedge \psi ] \! ] = [ \! [ \phi ] \! ] \cap [ \! [ \psi ] \! ]$
+	\item $[ \! [ \phi \vee \psi ] \! ] = [ \! [ \phi ] \! ] \cup [ \! [ \psi ] \! ]$
+	\item $[ \! [ \top ] \! ] = X$
+	\item $[ \! [ \bot ] \! ] = \varnothing$
+	\item $[ \! [ \Box \phi ] \! ] = int([ \! [ \phi ] \! ])$
+\end{itemize}
+\end{frame}
 
-
-% 4. Пучки и расслоения
+% 5. Пучок Крипке
 \begin{frame}{}
 \begin{center}
-	\textbf{Пучки и расслоения}
+	\textbf{Пучок Крипке}
 \end{center}
 \end{frame}
 
-\begin{frame}{Предпучок (1)}
-\begin{itemize}
-	\item Топологическое пространство $(X, \mathcal{O}(X))$
-	\item Каждому открытому множеству $U \subset \mathcal{O}(X)$ сопоставляется множество со структурой $\mathcal{F}(U)$
-	\item Для любых двух открытых множеств $U, V \subset \mathcal{O}(X)$, т. ч. $V \subseteq U$, определим гомоморфизм $\rho^U_V : \mathcal{F}(U) \to \mathcal{F}(V)$
-	\item Если $U = V$, то $\rho^U_V = \rho^V_U = id$
-	\item Если $U \subset V, V \subset W$, то $\rho^V_W \circ \rho^U_V = \rho^U_W$
-\end{itemize}
+\begin{frame}{Пучок Крипке (1)}
+Шкала Крипке для S4 похожа на категорию:\\
 \bigskip
-Последние два условия превращают $\mathcal{F}(\mathcal{O}(X))$ в категорию.
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.6]{basic_category.png} 
+	\end{figure}
+\end{center}
 \end{frame}
 
-\begin{frame}{Предпучок (2)}
+\begin{frame}{Пучок Крипке (2)}
+Очевидная идея:\\
+\bigskip
+\begin{itemize}
+	\item сопоставить точкам отнесенности множества со структурой
+	\item стрелкам - гомоморфизмы структур
+	\item т.о. определить модель с помощью категории
+\end{itemize}
+\end{frame}
+
+
+% Предпучок над предпорядком или $\mathcal{F} : \mathcal{C}^{op} \to \textbf{Sets}$
+% Нас, конечно, интересует не отдельный предпучок, а все возможные. Можно определить отображение предпучков и построить категорию предпучков
+%    $Set^{\mathcal{C}^{op}}$, объекты которых - функторы $\mathcal{F}$ (т.е. предпучки), а стрелки - естественные преобразования этих функторов,
+%    т.е. отображения предпучков.
+% Пример про росток функций
+% Индуктивный предел сечений
+% Конструкция топологического пространства $\mathcal{\bar{F}}$ на множестве $\mathcal{F}_x$
+% Отображение $\pi : \mathcal{\bar{F}}(X) \to X$ - накрытие
+\begin{frame}{Пучок Крипке (3)}
+\begin{itemize}
+	\item 
+	\item $\mathcal{\bar{F}}$
+	\item $Set^{\mathcal{C}^{op}}$
+	\item
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Пучок Крипке (2)}
+\begin{itemize}
+	\item
+	\item
+	\item
+	\item
+	\item
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{}
+\begin{itemize}
+	\item
+	\item
+	\item
+	\item
+	\item
+\end{itemize}
+\end{frame}
+
+
+
+% 6. Начала теории пучков
+\begin{frame}{}
+\begin{center}
+	\textbf{Начала теории пучков}
+\end{center}
+\end{frame}
+
+\begin{frame}{Предпучок}
+\begin{itemize}
+	\item Топологическое пространство $(X, \mathcal{O}(X))$
+	\item Каждому открытому множеству $U \subset \mathcal{O}(X)$ сопоставляется множество со структурой $\mathcal{F}(U)$ (\textit{сечение})
+	\item Для любых двух открытых множеств $U, V \subset \mathcal{O}(X)$, т. ч. $V \subseteq U$, определим гомоморфизм $\rho^U_V : \mathcal{F}(U) \to \mathcal{F}(V)$ (\textit{ограничение})
+	\item Если $U = V$, то $\rho^U_V = \rho^V_U = 1_U$
+	\item Если $U \subset V \subset W$, то $\rho^V_W \circ \rho^U_V = \rho^U_W$
+\end{itemize}
+\bigskip
+$\mathcal{F}$ - \textit{предпучок} над топологическим пространством $(X, \mathcal{O}(X))$.
+\end{frame}
+
+\begin{frame}{Пучок}
 \begin{itemize}
 	\item Условие ``инъективности''
 		\bigskip
@@ -293,40 +370,20 @@ $X$, $\cap$, $\subseteq$, $int(\cdot)$ соответствуют $\top$, $\wedg
 		\end{itemize}
 \end{itemize}
 \bigskip
-Если эти условия выполнены, то $\mathcal{F}(X)$ называется \textit{предпучком}.
+Если эти условия выполнены, то $\mathcal{F}$ называется \textit{пучком}.
 \end{frame}
 
-\begin{frame}{Предпучок (1)}
+\begin{frame}{Что дальше}
 \begin{itemize}
-	\item Если $U_i, U_j \subset U$, $a \in U_i, b \in U_j$, $\mathcal{F}(a) = x \in \mathcal{F}(U_i)$, $\mathcal{F}(b) = y \in \mathcal{F}(U_y)$, $f : \mathcal{F}(U) \to \mathcal{F}(U_i)$, $g : \mathcal{F}(U) \to \mathcal{F}(U_j)$, 
-	\item
-	\item
-	\item
-	\item
-	\item
+	\item дочитать [Awoday and Kishida, 2008]
+		\begin{itemize}
+			\item семантика для логики первого порядка
+			\item семантика для S4 с кванторами
+		\end{itemize}
+	\item каждый пучок изоморфен пучку непрерывных сечений некоторого накрытия
+	\item категория предпучков $Set^{\mathcal{C}^{op}}$
 \end{itemize}
 \end{frame}
-
-\begin{frame}{Предпучок (1)}
-\begin{itemize}
-	\item
-	\item
-	\item
-	\item
-	\item
-\end{itemize}
-\end{frame}
-
-% 5. Семантика для S4 с кванторами
-\begin{frame}{}
-\begin{center}
-	\textbf{Семантика для S4 с кванторами}
-\end{center}
-\end{frame}
-
-
-
-
 
 
 \begin{frame}{}
