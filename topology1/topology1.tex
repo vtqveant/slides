@@ -10,6 +10,10 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 
+%% Gentzen style natural deduction proof trees
+\usepackage{bussproofs}
+\usepackage{latexsym}
+
 \graphicspath{{images/}}
 
 \usetheme{Pittsburgh}
@@ -131,7 +135,7 @@
 \begin{itemize}
 	\item Получила развитие в первой половине XX в.
 		\begin{itemize}
-			\item обоснование анализа с помощью теоретико-множественных понятий
+			\item обоснование анализа с помощью теоретико-\\множественных понятий
 			\item определение непрерывности без метрических понятий
 		\end{itemize}
 	\bigskip
@@ -152,13 +156,23 @@
 \end{frame}
 
 \begin{frame}{Начала общей топологии (4)}
-Дано множество $X$. Система подмножеств $\mathcal{A} \subseteq 2^X$ называется \textit{топологической структурой} (или \textit{топологией}) на $X$, если:\\
+Дано множество $X$. Система подмножеств $\mathcal{T} \subseteq 2^X$ называется \textit{топологической структурой} (или \textit{топологией}) на $X$, если:\\
 \bigskip
 \begin{itemize}
-	\item $\varnothing \in \mathcal{A}$ и $X \in \mathcal{A}$
-	\item если $U, V \in \mathcal{A}$, то $U \cap V \in \mathcal{A}$
-	\item если 
-	\item 
+	\item $\varnothing, X \in \mathcal{O}$
+	\item объединение $\bigcup U_i$ \textit{произвольного} числа подмножеств $U_i \in O$ принадлежит $O$
+	\item пересечение $\bigcap U_i$ \textit{конечного} числа подмножеств $U_i \in O$ принадлежит $O$
+\end{itemize}
+\bigskip
+Пара $(X, \mathcal{O}(X))$ называется \textit{топологическим пространством}.
+\end{frame}
+
+\begin{frame}{Начала общей топологии (5)}
+\begin{itemize}
+	\item подмножества $U \in \mathcal{O}(X)$ называются \textit{открытыми}
+	\item дополнения открытых множеств называются \textit{замкнутыми}
+	\item $\varnothing$ и $X$ - одновременно открыты и замкнуты
+	\item если $x \in U$, $U$ - открытое множество, то $U$ называется \textit{окрестностью} $x$
 \end{itemize}
 \end{frame}
 
@@ -169,6 +183,77 @@
 	\textbf{Семантика для S4}
 \end{center}
 \end{frame}
+
+\begin{frame}{S4 (1)}
+S4 - пропозициональная логика с модальным оператором $\Box$\\
+\bigskip
+\begin{itemize}
+	\item $\Box \phi \; \vdash \; \phi$
+	\item $\Box \phi \; \vdash \; \Box \Box \phi$
+	\item $\Box \phi \wedge \Box \psi \; \vdash \; \Box (\phi \wedge \psi)$
+	\item $\top \; \vdash \; \Box \top$
+\end{itemize}
+\bigskip
+\begin{itemize}	
+	\item 
+		  \AxiomC{$\phi \; \vdash \; \psi$}
+		  \UnaryInfC{$\Box \phi \; \vdash \; \Box \psi$}
+		  \DisplayProof
+\end{itemize}
+\end{frame}
+
+\begin{frame}{S4 (2)}
+Шкала Крипке:\\
+\bigskip
+\begin{itemize}
+	\item $\mathcal{F} = (W, R)$
+	\item множество возможных миров $W$
+	\item отношение достижимости $R \subseteq W \times W$
+	\item для S4 отношение $R$ \textit{рефлексивно и транзитивно}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{S4 (3)}
+Шкала Крипке для S4 похожа на категорию:\\
+\bigskip
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.6]{basic_category.png} 
+	\end{figure}
+\end{center}
+\end{frame}
+
+\begin{frame}{Топологическая семантика для S4 (1)}
+Оператор взятия \textit{внутренности}:\\
+\bigskip
+\begin{center}
+	    $\displaystyle int(A) \; = \; \bigcup_{\substack{U \subseteq A\\U \in \mathcal{O}(X)}}{U}$
+\end{center}
+\bigskip
+\begin{itemize}
+	\item $int(A)$ - наибольшее открытое множество, \\содержащееся в $A$
+	\item если $U$ - открытое множество, то $int(U) = U$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Топологическая семантика для S4 (2)}
+Свойства $int(\cdot)$ соответствуют аксиомам S4:\\
+\bigskip
+\begin{itemize}
+	\item $int(A) \subseteq A$
+	\item $int(A) \subseteq int(int(A))$
+	\item $int(A) \cap int(B) \subseteq int(A \cap B)$
+	\item $X \subseteq int(X)$
+	\item $A \subseteq B \Longrightarrow int(A) \subseteq int(B)$
+\end{itemize}
+\bigskip
+\begin{footnotesize}
+$A$ и $B$ соотвествуют предложениям (напр., $\phi$, $\psi$)\\
+$X$, $\cap$, $\subseteq$, $int(\cdot)$ соответствуют $\top$, $\wedge$, $\vdash$, $\Box$
+\end{footnotesize}
+\end{frame}
+
+
 
 % 4. Пучки и расслоения
 \begin{frame}{}
