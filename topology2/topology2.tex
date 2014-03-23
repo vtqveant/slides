@@ -1,0 +1,370 @@
+\documentclass{beamer}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amssymb,amsfonts,amsmath,mathtext}
+\usepackage{cite,enumerate,float,indentfirst}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+%% Gentzen style natural deduction proof trees
+\usepackage{bussproofs}
+\usepackage{latexsym}
+
+\graphicspath{{images/}}
+
+\usetheme{Pittsburgh}
+\usecolortheme{whale}
+
+\setbeamertemplate{footline}{\scriptsize{\hspace*{0.4cm}\insertframenumber}\vspace*{0.3cm}}
+\beamertemplatenavigationsymbolsempty
+
+\errorcontextlines 10000
+
+\begin{document}
+\title{\Large{Топологическая семантика для S4}}
+\subtitle{\textit{часть вторая}}
+\author{Константин Соколов}
+\institute[]
+{Mathlingvo, СПбГУ, i-Free\\ \bigskip  \url{http://nlu-rg.ru}}
+\date{Санкт-Петербург, 2014} 
+% Создание заглавной страницы
+\begin{frame}
+    \thispagestyle{empty}
+    \titlepage
+\end{frame}
+
+\begin{frame}{План}
+    \setcounter{framenumber}{1}
+    \begin{itemize}
+        \item Топологическая семантика для S4 (окончание)
+        \item Окрестностная грамматика
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{}
+\begin{center}
+	\textbf{Повторение}
+\end{center}
+\end{frame}
+
+\begin{frame}{Повтроение}
+Три подхода к построению семантики для модальной логики:\\
+\bigskip
+\begin{itemize}
+	\item Реляционная семантика
+	\item Топологическая семантика
+	\item Алгебраическая семантика
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Предварительные замечания (2)}
+Топологическая семантика в лингвистике:\\
+\bigskip
+\begin{itemize}
+    \item Окрестностная грамматика
+		\begin{itemize}
+			\item Шрейдер, Борщёв, Хомяков, Лапшин
+		\end{itemize}
+    \item Формальная герменевтика
+		\begin{itemize}
+			\item Прозоров
+		\end{itemize}
+    \item Теория тропов
+		\begin{itemize}
+			\item (Mormann, 1995)
+			\item F. Moltmann (разные работы)
+		\end{itemize}
+    \item Композициональные дистрибутивные семантические модели (CDSM)
+		\begin{itemize}
+			\item Oxford Quantum Group (Abramsky, Grefenstette et al.)
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Предварительные замечания (3)}
+[Awoday and Kishida, 2008] будем разбирать по частям:\\
+\bigskip
+\begin{itemize}
+	\item сегодня:
+		\medskip
+		\begin{itemize}
+			\item топологическая семантика для S4
+			\item обобщение реляционной семантики (пучок Крипке)
+		\end{itemize}
+	\bigskip
+	\item в следующий раз:
+		\medskip
+		\begin{itemize}
+			\item семантика для логики первого порядка
+			\item семантика для S4 с кванторами
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+% 2. Модальная логика S4
+\begin{frame}{}
+\begin{center}
+	\textbf{Модальная логика S4}
+\end{center}
+\end{frame}
+
+\begin{frame}{S4 (1)}
+S4 - пропозициональная логика с модальным оператором $\Box$\\
+\bigskip
+\begin{itemize}
+	\item $\Box \phi \; \vdash \; \phi$
+	\item $\Box \phi \; \vdash \; \Box \Box \phi$
+	\item $\Box \phi \wedge \Box \psi \; \vdash \; \Box (\phi \wedge \psi)$
+	\item $\top \; \vdash \; \Box \top$
+\end{itemize}
+\medskip
+\begin{itemize}	
+	\item 
+		  \AxiomC{$\phi \; \vdash \; \psi$}
+		  \UnaryInfC{$\Box \phi \; \vdash \; \Box \psi$}
+		  \DisplayProof
+\end{itemize}
+\end{frame}
+
+\begin{frame}{S4 (2)}
+Шкала Крипке:\\
+\bigskip
+\begin{itemize}
+	\item $\mathcal{F} = (W, R)$
+	\item множество возможных миров $W$
+	\item отношение достижимости $R \subseteq W \times W$
+	\item для S4 отношение $R$ \textit{рефлексивно и транзитивно}
+\end{itemize}
+\end{frame}
+
+% 3. Начала общей топологии
+\begin{frame}{}
+\begin{center}
+	\textbf{Начала общей топологии}
+\end{center}
+\end{frame}
+
+\begin{frame}{Начала общей топологии (1)}
+Разные топологии:\\
+\bigskip
+\begin{itemize}
+	\item Топология как раздел математики
+		\begin{itemize}
+			\item общая топология (general topology, point-set topology)
+			\item алгебраическая топология
+			\item дифференциальная геометрия и топология
+		\end{itemize}
+	\bigskip
+	\item Н. Бурбаки, ``Основания математики''
+		\begin{itemize}
+			\item топологические структуры
+			\item алгебраические структуры
+			\item структуры порядка
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Начала общей топологии (2)}
+Общая топология:\\
+\bigskip
+\begin{itemize}
+	\item Получила развитие в первой половине XX в.
+		\begin{itemize}
+			\item обоснование анализа с помощью теоретико-\\множественных понятий
+			\item определение непрерывности без метрических понятий
+		\end{itemize}
+	\bigskip
+	\item Начальные главы (хороших) учебников анализа
+		\begin{itemize}
+			\item избавление от $\epsilon$-$\delta$ формализма
+			\item упрощение перехода к многомерному анализу
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Начала общей топологии (3)}
+Дано множество $X$. Система подмножеств $\mathcal{O} \subseteq 2^X$ называется \textit{топологической структурой} (или \textit{топологией}) на $X$, если:\\
+\bigskip
+\begin{itemize}
+	\item $\varnothing, X \in \mathcal{O}$
+	\item объединение $\bigcup U_i$ \textit{произвольного} числа подмножеств $U_i \in \mathcal{O}$ принадлежит $\mathcal{O}$
+	\item пересечение $\bigcap U_i$ \textit{конечного} числа подмножеств $U_i \in \mathcal{O}$ принадлежит $\mathcal{O}$
+\end{itemize}
+\bigskip
+Пара $(X, \mathcal{O}(X))$ называется \textit{топологическим пространством}.
+\end{frame}
+
+\begin{frame}{Начала общей топологии (4)}
+\begin{itemize}
+	\item подмножества $U \in \mathcal{O}(X)$ называются \textit{открытыми}
+	\item дополнения открытых множеств называются \textit{замкнутыми}
+	\item $\varnothing$ и $X$ - одновременно открыты и замкнуты
+	\item если $x \in U$, $U$ - открытое множество, то $U$ называется \textit{окрестностью} $x$
+\end{itemize}
+\end{frame}
+
+% 4. Топологическая семантика для S4
+\begin{frame}{}
+\begin{center}
+	\textbf{Топологическая семантика для S4}
+\end{center}
+\end{frame}
+
+\begin{frame}{Топологическая семантика для S4 (1)}
+Оператор взятия \textit{внутренности}:\\
+\bigskip
+\begin{center}
+	    $\displaystyle int(A) \; = \; \bigcup_{\substack{U \subseteq A\\U \in \mathcal{O}(X)}}{U}$
+\end{center}
+\bigskip
+\begin{itemize}
+	\item $int(A)$ - наибольшее открытое множество, \\содержащееся в $A$
+	\item если $U$ - открытое множество, то $int(U) = U$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Топологическая семантика для S4 (2)}
+Свойства $int(\cdot)$ соответствуют аксиомам S4:\\
+\bigskip
+\begin{itemize}
+	\item $int(A) \subseteq A$
+	\item $int(A) \subseteq int(int(A))$
+	\item $int(A) \cap int(B) \subseteq int(A \cap B)$
+	\item $X \subseteq int(X)$
+	\item $A \subseteq B \Longrightarrow int(A) \subseteq int(B)$
+\end{itemize}
+\bigskip
+\begin{footnotesize}
+$A$ и $B$ соотвествуют предложениям (напр., $\phi$, $\psi$)\\
+$X$, $\cap$, $\subseteq$, $int(\cdot)$ соответствуют $\top$, $\wedge$, $\vdash$, $\Box$
+\end{footnotesize}
+\end{frame}
+
+\begin{frame}{Топологическая семантика для S4 (3)}
+Функция интерпретации $[ \! [ \cdot ] \! ]$\\
+\bigskip
+\begin{itemize}
+	\item $[ \! [ p ] \! ] \subseteq X$\\
+	\item $[ \! [ \neg \phi ] \! ] = X \setminus [ \! [ \phi ] \! ]$
+	\item $[ \! [ \phi \wedge \psi ] \! ] = [ \! [ \phi ] \! ] \cap [ \! [ \psi ] \! ]$
+	\item $[ \! [ \phi \vee \psi ] \! ] = [ \! [ \phi ] \! ] \cup [ \! [ \psi ] \! ]$
+	\item $[ \! [ \top ] \! ] = X$
+	\item $[ \! [ \bot ] \! ] = \varnothing$
+	\item $[ \! [ \Box \phi ] \! ] = int([ \! [ \phi ] \! ])$
+\end{itemize}
+\end{frame}
+
+% 5. Пучок Крипке
+\begin{frame}{}
+\begin{center}
+	\textbf{Пучок Крипке}
+\end{center}
+\end{frame}
+
+
+
+\begin{frame}{Пучок Крипке (2)}
+Очевидная идея:\\
+\bigskip
+\begin{itemize}
+	\item сопоставить точкам отнесенности множества со структурой
+	\item стрелкам - гомоморфизмы структур
+	\item т.о. определить модель с помощью категории
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Пучок Крипке (3)}
+\begin{center}
+	\texttt{Рисунки на доске}
+\end{center}
+\end{frame}
+
+% 6. Начала теории пучков
+\begin{frame}{}
+\begin{center}
+	\textbf{Начала теории пучков}
+\end{center}
+\end{frame}
+
+\begin{frame}{Предпучки и пучки (1)}
+\begin{itemize}
+	\item Топологическое пространство $(X, \mathcal{O}(X))$
+	\item Каждому открытому множеству $U \subset \mathcal{O}(X)$ сопоставляется множество со структурой $\mathcal{F}(U)$ (\textit{сечение})
+	\item Для любых двух открытых множеств $U, V \subset \mathcal{O}(X)$, т. ч. $V \subseteq U$, определим гомоморфизм $\rho^U_V : \mathcal{F}(U) \to \mathcal{F}(V)$ (\textit{ограничение})
+	\item Если $U = V$, то $\rho^U_V = \rho^V_U = 1_U$
+	\item Если $U \subset V \subset W$, то $\rho^V_W \circ \rho^U_V = \rho^U_W$
+\end{itemize}
+\bigskip
+$\mathcal{F}$ - \textit{предпучок} над топологическим пространством $(X, \mathcal{O}(X))$.
+\end{frame}
+
+\begin{frame}{Предпучки и пучки (2)}
+\begin{itemize}
+	\item Аксиома локальности
+		\medskip
+		\begin{itemize}
+			\item Если $U = \bigcup U_i$, то для любых $U_i, U_j \subset U$ определены морфизмы $\rho^U_{U_i}$ и $\rho^U_{U_j}$
+			\medskip
+			\item Тогда, если $\rho^U_{U_i}(x) = \rho^U_{U_j}(y)$, то $x = y$
+		\end{itemize}
+	\bigskip
+	\item Аксиома склейки
+		\medskip
+		\begin{itemize}
+			\item Если $U = \bigcup U_i$, то для любых $U_i, U_j \subset U$, т.ч. $U_i \cap U_j \neq \varnothing$, определены морфизмы $\rho^U_{U_i}$, $\rho^U_{U_j}$ и $\rho^U_{U_i \cap U_j}$
+			\medskip
+			\item Тогда, если $x \in \mathcal{F}(U)$, то $(\rho^{U_j}_{U_i \cap U_j} \circ \rho^U_{U_j})(x) = (\rho^{U_i}_{U_i \cap U_j} \circ \rho^U_{U_i})(x)$
+		\end{itemize}
+\end{itemize}
+\bigskip
+Если эти условия выполнены, то $\mathcal{F}$ называется \textit{пучком}.
+\end{frame}
+
+\begin{frame}{Предпучки и пучки (3)}
+\begin{center}
+	\texttt{Рисунки на доске}
+\end{center}
+\end{frame}
+
+
+\begin{frame}{Что дальше}
+\begin{itemize}
+	\item дочитать [Awoday and Kishida, 2008]
+		\begin{itemize}
+			\item семантика для логики первого порядка
+			\item семантика для S4 с кванторами
+		\end{itemize}
+	\item каждый пучок изоморфен пучку непрерывных сечений некоторого накрытия
+	\item категория предпучков $Set^{\mathcal{C}^{op}}$
+\end{itemize}
+\end{frame}
+
+% Предпучок над предпорядком или $\mathcal{F} : \mathcal{C}^{op} \to \textbf{Sets}$
+% Нас, конечно, интересует не отдельный предпучок, а все возможные. Можно определить отображение предпучков и построить категорию предпучков
+%    $Set^{\mathcal{C}^{op}}$, объекты которых - функторы $\mathcal{F}$ (т.е. предпучки), а стрелки - естественные преобразования этих функторов,
+%    т.е. отображения предпучков.
+% Пример про росток функций
+% Индуктивный предел сечений
+% Конструкция топологического пространства $\mathcal{\bar{F}}$ на множестве $\mathcal{F}_x$
+% Отображение $\pi : \mathcal{\bar{F}}(X) \to X$ - накрытие
+
+
+
+\begin{frame}{}
+    \thispagestyle{empty}
+    \begin{center}
+        {\large Спасибо!}
+    \end{center}
+\end{frame}
+
+
+%%% слайд помещается сюда
+%% \begin{frame}{Заголовок}
+%% \end{frame}
+
+\end{document}
