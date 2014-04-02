@@ -99,8 +99,8 @@
 
 \begin{frame}{Конструкции и понятия (1)}
 \begin{itemize}
-	\item топологическое пространство $(X, \mathcal{O}(X))$ {\small \textit{(повторение)}}
-	\item предпучок и пучок $\mathcal{F}$ {\small \textit{(повторение)}}
+	\item топологическое пространство {\small \textit{(повторение)}}
+	\item предпучок и пучок {\small \textit{(повторение)}}
 	\item немного алгебраической топологии:
 		\medskip
 		\begin{itemize}
@@ -166,13 +166,27 @@ $\mathcal{F}$ - \textit{предпучок} над топологическим 
 
 %   накрытие
 \begin{frame}{Конструкции и понятия (5)}
+Накрытие $p : \widetilde{X} \to X$:
+\bigskip
 \begin{itemize}
-	\item накрытие $p : \widetilde{X} \to X$, т.ч. ...
+	\item покрытие пространства $X$ открытыми множествами $\{ U_\alpha \}$
+	\item $p^{-1}(U_\alpha) = \bigcup \widetilde{U_i}$ -- объединение непересекающихся открытых множеств в $\widetilde{X}$
+	\item $p$ гомеоморфно отображает $\widetilde{U_i}$ на $U_\alpha$
+	\item возможно $p^{-1}(U_\alpha) = \varnothing$
 \end{itemize}
 \end{frame}
 
-%   сечение и слой
 \begin{frame}{Конструкции и понятия (6)}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.3]{covering1.png} 
+	\end{figure}
+\end{center}
+\end{frame}
+
+
+%   сечение и слой
+\begin{frame}{Конструкции и понятия (7)}
 \begin{itemize}
 	\item сечение $s_U : U \to \widetilde{X}$, $U \in \mathcal{O}(X)$, $p \circ s_U = 1_U$
     \item слой $p^{-1}(U) = \{ s_U : U \to \widetilde{X} \; \vert \; p \circ s_U = 1_U \}$
@@ -181,7 +195,7 @@ $\mathcal{F}$ - \textit{предпучок} над топологическим 
 \end{frame}
 
 %   поднятие
-\begin{frame}{Конструкции и понятия (7)}
+\begin{frame}{Конструкции и понятия (8)}
 \begin{itemize}
 	\item поднятие $\widetilde{f} : Y \to \widetilde{X}$ отображения $f : Y \to X$, $p \circ \widetilde{f} = f$, 
 	\item критерий существования поднятия и подгруппы $\pi_1(X, x_0)$
@@ -189,7 +203,7 @@ $\mathcal{F}$ - \textit{предпучок} над топологическим 
 \end{frame}
 
 %   подгруппы фундаментальной группы
-\begin{frame}{Конструкции и понятия (8)}
+\begin{frame}{Конструкции и понятия (9)}
 \begin{itemize}
 	\item множество накрытий $\{ p_i : \widetilde{X_i} \to X \}$ и подгруппы $\pi_1(X, x_0)$
 \end{itemize}
