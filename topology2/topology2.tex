@@ -218,6 +218,65 @@ $\mathcal{F}$ - \textit{предпучок} над топологическим 
 \end{center}
 \end{frame}
 
+\begin{frame}{FOL (1)}
+\begin{itemize}
+	\item Язык $\mathcal{L}$ с сигнатурой $\sigma = \{ R_i, f_j, c_k \}_{i \in I, j \in J, k \in K}$
+		\medskip
+		\begin{itemize}
+			\item $R_i$ -- реляционные символы
+			\item $f_j$ -- функциональные символы
+			\item $c_k$ - константы
+		\end{itemize}
+	\bigskip
+	\item Структура $M = \langle D, R_i^M, f_j^M, c_k^M \rangle_{i \in I, j \in J, k \in K}$
+		\medskip
+		\begin{itemize}
+			\item домен $D$ 
+			\item $R_i^M \subseteq D^n$ -- интерпретация реляционного символа $R_i$
+			\item $f_j^M : D_n \to D$ -- интерпретация функционального символа $f_j$
+			\item $c_k^M \in D$ -- интерпретация константы $c_k$
+		\end{itemize}
+	\bigskip
+	\item Истинность формулы $\phi(x_1, \dots, x_n)$ в модели $M$
+		\medskip
+		\begin{itemize}
+			\item $M \models \phi(a_1, \dots, a_n)$
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{FOL (2)}
+$[ \! [ \, x \, \vert \, \phi \, ] \! ]$ -- интерпретация формулы $\phi$ со свободной переменной $x$\\
+\bigskip
+\begin{small}
+\begin{itemize}
+	\item $[ \! [ \, \sigma \, ] \! ] \subseteq D^0$ 
+	\item $[ \! [ \, x_1, \ldots, x_n, y \, \vert \, \phi \, ] \! ] = [ \! [ \, x_1, \ldots, x_n \, \vert \, \phi \, ] \! ] \times D \; \subseteq \; D^{n+1}$ 
+	\item $[ \! [ \, x, y \, \vert \, x = y \, ] \! ] = \{ \, (a, a) \in D \times D \, \vert \, a \in D \, \}$ 
+	\item $[ \! [ \, x_1, \ldots, x_n \, \vert \, R(x_1, \ldots, x_n) \, ] \! ] = R^M \subseteq D^n$ 
+	\item $[ \! [ \, x_1, \ldots, x_n \, \vert \, \phi \wedge \psi \, ] \! ] = [ \! [ \, x_1, \ldots, x_n \, \vert \, \phi \, ] \! ] \cap [ \! [ \, x_1, \ldots, x_n \, \vert \, \psi \, ] \! ]$ 
+	\item $[ \! [ \, x_1, \ldots, x_n \, \vert \, \neg \phi \, ] \! ] = D^n \setminus [ \! [ \, x_1, \ldots, x_n \, \vert \, \phi \, ] \! ]$
+	\item $[ \! [ \, x_1, \ldots, x_n \, \vert \, \exists y \phi \, ] \! ] = $\\ \smallskip $\{ \, (a_1, \ldots, a_n) \in D^n \, \vert \, (a_1, \ldots, a_n, b) \in [ \! [ \, x_1, \ldots, x_n, y \, \vert \, \phi \, ] \! ], b \in D \, \}$
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{FOL (3)}
+\begin{itemize}
+	\item
+	\item
+	\item
+\end{itemize}
+\end{frame}
+
+\begin{frame}{FOL (4)}
+\begin{itemize}
+	\item
+	\item
+	\item
+\end{itemize}
+\end{frame}
+
 
 
 % 4. Топологическая семантика для FOS4
