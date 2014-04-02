@@ -262,19 +262,26 @@ $[ \! [ \, x \, \vert \, \phi \, ] \! ]$ -- интерпретация форм�
 \end{frame}
 
 \begin{frame}{FOL (3)}
+Геометрический смысл: \textit{проекция} $p_n : D^{n+1} \to D^n$\\
+\medskip
 \begin{itemize}
-	\item
-	\item
-	\item
+	\item если $D^0 = \{ a \}$ -- синглетон
+		\begin{itemize}
+			\item $p_0(\top) = a$
+			\item $p_0(\bot) = \varnothing$
+		\end{itemize}
+	\item {\small $p_n(a_1, \ldots, a_n, b) = (a_1, \ldots, a_n)$}
+	\item {\small $[ \! [ \, x_1, \ldots, x_n \, \vert \, \exists y \phi \, ] \! ] = p_n([ \! [ \, x_1, \ldots, x_n \, \vert \, \phi \, ] \! ])$}
+	\item {\small $[ \! [ \, x_1, \ldots, x_n, y \, \vert \, \psi \, ] \! ] = p_n^{-1}([ \! [ \, x_1, \ldots, x_n \, \vert \, \psi \, ] \! ])$}
 \end{itemize}
 \end{frame}
 
 \begin{frame}{FOL (4)}
-\begin{itemize}
-	\item
-	\item
-	\item
-\end{itemize}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.45]{fol.png} 
+	\end{figure}
+\end{center}
 \end{frame}
 
 
