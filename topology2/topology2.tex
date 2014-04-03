@@ -38,9 +38,10 @@
 \end{frame}
 
 \begin{frame}{План}
-    \setcounter{framenumber}{1}
+\setcounter{framenumber}{1}
     \begin{itemize}
         \item Топологическая семантика для S4 (окончание)
+        	\medskip
         	\begin{itemize}
 				\item семантика для логики первого порядка
 				\item семантика для S4 с кванторами
@@ -83,8 +84,6 @@
 			\item теория пучков
 			\item некоторые сведения из алгебраической топологии
 		\end{itemize}
-	\medskip
-	\item Конструкция получается почти автоматически
 \end{itemize}
 \end{frame}
 
@@ -96,7 +95,7 @@
 \end{center}
 \end{frame}
 
-\begin{frame}{Конструкции и понятия (1)}
+\begin{frame}{Конструкции и понятия}
 \begin{itemize}
 	\item топологическое пространство {\small \textit{(повторение)}}
 	\item предпучок и пучок {\small \textit{(повторение)}}
@@ -113,7 +112,7 @@
 \end{frame}
 
 %   топология
-\begin{frame}{Конструкции и понятия (2)}
+\begin{frame}{Топологическое пространство}
 Дано множество $X$. Система подмножеств $\mathcal{O} \subseteq 2^X$ называется \textit{топологической структурой} (или \textit{топологией}) на $X$, если:\\
 \bigskip
 \begin{itemize}
@@ -126,7 +125,7 @@
 \end{frame}
 
 %   предпучок
-\begin{frame}{Конструкции и понятия (3)}
+\begin{frame}{Предпучок}
 \begin{itemize}
 	\item Топологическое пространство $(X, \mathcal{O}(X))$
 	\item Каждому открытому множеству $U \subset \mathcal{O}(X)$ сопоставляется множество со структурой $\mathcal{F}(U)$ (\textit{сечение})
@@ -139,7 +138,7 @@ $\mathcal{F}$ - \textit{предпучок} над топологическим 
 \end{frame}
 
 %   пучок
-\begin{frame}{Конструкции и понятия (4)}
+\begin{frame}{Пучок}
 \begin{itemize}
 	\item Аксиома локальности
 		\medskip
@@ -161,8 +160,33 @@ $\mathcal{F}$ - \textit{предпучок} над топологическим 
 Если эти условия выполнены, то $\mathcal{F}$ называется \textit{пучком}.
 \end{frame}
 
+%   сечение и слой
+\begin{frame}{Расслоенное пространство (1)}
+Расслоенное пространство $(\widetilde{X}, p)$ с базой $X$:\\
+\bigskip
+\begin{itemize}
+    \item $X$ и $\widetilde{X}$ -- топологические пространства
+    \item отображение $p : \widetilde{X} \to X$ непрерывно
+	\item сечение $s_U : U \to \widetilde{X}$, $U \in \mathcal{O}(X)$, $p \circ s_U = 1_U$
+    \item слой $p^{-1}(U) = \{ s_U : U \to \widetilde{X} \; \vert \; p \circ s_U = 1_U \}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Расслоенное пространство (2)}
+Пучок ростков сечений расслоенного пространства $(\widetilde{X}, p)$:\\
+\bigskip
+\begin{itemize}
+    \item $\mathcal{F}(U)$ -- множество сечений в $(\widetilde{X}, p)$ 
+    \item $s_U \vert_V$ -- ограничение сечения над $U$ на $V \subseteq U$
+    \item росток сечений -- класс эквивалентности сечений $s_{U_i}$
+    \item $\mathcal{F}(V) = p^{-1}(U) \vert_V = \{ s_U \vert_V : p \circ s_U \vert_V = 1_V \}$
+\end{itemize}
+\bigskip
+База $X$, сечения $\mathcal{F}(U)$, $U \subseteq \mathcal{O}(X)$ и отображения ограничения $\rho^U_V : \mathcal{F}(U) \to \mathcal{F}(V)$ образуют пучок.
+\end{frame}
+
 %   накрытие
-\begin{frame}{Конструкции и понятия (5)}
+\begin{frame}{Накрытие (1)}
 Накрытие $p : \widetilde{X} \to X$:
 \bigskip
 \begin{itemize}
@@ -173,7 +197,7 @@ $\mathcal{F}$ - \textit{предпучок} над топологическим 
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Конструкции и понятия (6)}
+\begin{frame}{Накрытие (2)}
 \begin{center}
 	\begin{figure}[H]
 		\includegraphics[scale=0.3]{covering1.png} 
@@ -181,27 +205,28 @@ $\mathcal{F}$ - \textit{предпучок} над топологическим 
 \end{center}
 \end{frame}
 
-%   сечение и слой
-\begin{frame}{Конструкции и понятия (7)}
+\begin{frame}{Накрытие (3)}
+:\\
+\medskip
 \begin{itemize}
-	\item сечение $s_U : U \to \widetilde{X}$, $U \in \mathcal{O}(X)$, $p \circ s_U = 1_U$
-    \item слой $p^{-1}(U) = \{ s_U : U \to \widetilde{X} \; \vert \; p \circ s_U = 1_U \}$
-    \item расслоение (локально тривиальное, касательное)
+	\item определим сечение над точкой $x \in X$ как индуктивный предел множеств $\mathcal{F}(U)$
+	\item определим $\widetilde{\mathcal{F}} = \bigcup \widetilde{\mathcal{F}}(x)$
+	\item 
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Конструкции и понятия (8)}
+\begin{frame}{Накрытие (4)}
 Пучок непрерывных сечений накрытия:\\
 \medskip
 \begin{itemize}
-    \item 
-    \item
-	\item Годеман, замечание 1.2.1 (стр. 132): "В дальнейшем мы не будем делать \textit{никакого} различия между пучком множеств $\mathcal{F}$ и накрывающим пространством $(\widetilde{\mathcal{F}}, p)$.
+    \item Годеман, теорема 1.2.1 (стр. 132): ``Всякий пучок множеств с базой $X$ изоморфен пучку ростков сечений некоторого накрывающего пространства над $X$, определенного однозначно с точностью до изоморфизма''.
+    \smallskip
+	\item Годеман, замечание 1.2.1 (стр. 132): ``В дальнейшем мы не будем делать \textit{никакого различия} между пучком множеств $\mathcal{F}$ и накрывающим пространством $(\widetilde{\mathcal{F}}, p)$''.
 \end{itemize}
 \end{frame}
 
 %   подгруппы фундаментальной группы
-\begin{frame}{Конструкции и понятия (9)}
+\begin{frame}{Накрытие (5)}
 Накрытия и фундаментальная группа:\\
 \medskip
 \begin{itemize}
@@ -211,7 +236,7 @@ $\mathcal{F}$ - \textit{предпучок} над топологическим 
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Конструкции и понятия (10)}
+\begin{frame}{Гомоморфизм пучков}
 Гомоморфизм пучков:\\
 \medskip
 \begin{itemize}
@@ -221,7 +246,7 @@ $\mathcal{F}$ - \textit{предпучок} над топологическим 
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Конструкции и понятия (10)}
+\begin{frame}{Расслоенное произведение пучков}
 Расслоенное произведение пучков:\\
 \medskip
 \begin{itemize}
