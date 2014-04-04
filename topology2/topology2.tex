@@ -129,9 +129,9 @@
 \begin{itemize}
 	\item Топологическое пространство $(X, \mathcal{O}(X))$
 	\item Каждому открытому множеству $U \subset \mathcal{O}(X)$ сопоставляется множество со структурой $\mathcal{F}(U)$ (\textit{сечение})
-	\item Для любых двух открытых множеств $U, V \subset \mathcal{O}(X)$, т. ч. $V \subseteq U$, определим гомоморфизм $\rho^U_V : \mathcal{F}(U) \to \mathcal{F}(V)$ (\textit{ограничение})
+	\item Для любых двух открытых множеств $U, V \subset \mathcal{O}(X)$, т. ч. $U \supseteq V$, определим гомоморфизм $\rho^U_V : \mathcal{F}(U) \to \mathcal{F}(V)$ (\textit{ограничение})
 	\item Если $U = V$, то $\rho^U_V = \rho^V_U = 1_U$
-	\item Если $U \subset V \subset W$, то $\rho^V_W \circ \rho^U_V = \rho^U_W$
+	\item Если $U \supset V \supset W$, то $\rho^V_W \circ \rho^U_V = \rho^U_W$
 \end{itemize}
 \bigskip
 $\mathcal{F}$ - \textit{предпучок} над топологическим пространством $(X, \mathcal{O}(X))$.
@@ -211,7 +211,6 @@ $\mathcal{F}$ - \textit{предпучок} над топологическим 
 \begin{itemize}
 	\item определим сечение над точкой $x \in X$ как индуктивный предел множеств $\mathcal{F}(U)$
 	\item определим $\widetilde{\mathcal{F}} = \bigcup \widetilde{\mathcal{F}}(x)$
-	\item 
 \end{itemize}
 \end{frame}
 
@@ -236,23 +235,10 @@ $\mathcal{F}$ - \textit{предпучок} над топологическим 
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Гомоморфизм пучков}
-Гомоморфизм пучков:\\
-\medskip
+\begin{frame}{Понятия}
 \begin{itemize}
-	\item 
-	\item 
-	\item 
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Расслоенное произведение пучков}
-Расслоенное произведение пучков:\\
-\medskip
-\begin{itemize}
-	\item 
-	\item 
-	\item 
+	\item Гомоморфизм пучков 
+	\item Расслоенное произведение пучков
 \end{itemize}
 \end{frame}
 
@@ -279,7 +265,7 @@ $\mathcal{F}$ - \textit{предпучок} над топологическим 
 		\begin{itemize}
 			\item домен $D$ 
 			\item $R_i^M \subseteq D^n$ -- интерпретация реляционного символа $R_i$
-			\item $f_j^M : D_n \to D$ -- интерпретация функционального символа $f_j$
+			\item $f_j^M : D^n \to D$ -- интерпретация функционального символа $f_j$
 			\item $c_k^M \in D$ -- интерпретация константы $c_k$
 		\end{itemize}
 	\bigskip
