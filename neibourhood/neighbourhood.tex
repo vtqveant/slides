@@ -1,0 +1,104 @@
+\documentclass{beamer}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amssymb,amsfonts,amsmath,mathtext}
+\usepackage{cite,enumerate,float,indentfirst}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+\usepackage{diagrams}
+
+%% Gentzen style natural deduction proof trees
+\usepackage{bussproofs}
+\usepackage{latexsym}
+
+\graphicspath{{images/}}
+
+\usetheme{Pittsburgh}
+\usecolortheme{whale}
+
+\setbeamertemplate{footline}{\scriptsize{\hspace*{0.4cm}\insertframenumber}\vspace*{0.3cm}}
+\beamertemplatenavigationsymbolsempty
+
+\errorcontextlines 10000
+
+\begin{document}
+\title{\Large{Окрестностная грамматика}}
+\author{Константин Соколов}
+\institute[]
+{Mathlingvo, СПбГУ, i-Free\\ \bigskip  \url{http://nlu-rg.ru}}
+\date{Санкт-Петербург, 2014} 
+% Создание заглавной страницы
+\begin{frame}
+    \thispagestyle{empty}
+    \titlepage
+\end{frame}
+
+\begin{frame}{План}
+\setcounter{framenumber}{1}
+    \begin{itemize}
+		\item окрестностная грамматика (Шрейдер, Борщев, Хомяков)
+		\item синтаксические диаграммы и пучки (Лапшин)
+    \end{itemize}
+\end{frame}
+
+
+% 1. Окрестностная грамматика
+
+\begin{frame}{}
+\begin{center}
+	\textbf{Конструкции и понятия}
+\end{center}
+\end{frame}
+
+% 2. Синтаксические диаграммы
+
+\begin{frame}{Конструкции и понятия}
+\begin{itemize}
+	\item топологическое пространство {\small \textit{(повторение)}}
+	\item предпучок и пучок {\small \textit{(повторение)}}
+	\item немного алгебраической топологии:
+		\begin{itemize}
+			\item накрытие
+			\item сечение
+			\item поднятие
+		\end{itemize}
+	\item пучок непрерывных сечений накрытия
+	\item гомоморфизм пучков
+	\item расслоенное произведение пучков
+\end{itemize}
+\end{frame}
+
+% 3. Теоретико-категорная формализация принципа композициональности
+
+\begin{frame}{ТК}
+
+\def\Assl{{\rm assl}}\def\Id{{\rm id}}
+
+\begin{diagram}
+A*(B*(C*D))			& 	\rTo^\Assl 	& 	(A*B)*(C*D) 	& 	\rTo^\Assl 	& ((A*B)*C)*D\\
+\dTo^{\Id*\Assl} 	&				&	=				&				& \uTo_{\Assl*\Id}\\
+A*((B*C)*D)			&				& \rTo^\Assl 		&				&	(A*(B*C))*D\\
+\end{diagram}
+
+\end{frame}
+
+
+
+\begin{frame}{}
+    \thispagestyle{empty}
+    \begin{center}
+        {\large Спасибо!}
+    \end{center}
+\end{frame}
+
+
+%%% слайд помещается сюда
+%% \begin{frame}{Заголовок}
+%% \end{frame}
+
+\end{document}
