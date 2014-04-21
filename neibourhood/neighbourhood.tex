@@ -7,6 +7,7 @@
 \usepackage{cite,enumerate,float,indentfirst}
 
 \usepackage{diagrams}
+\usepackage{extpfeil} % double-arrows
 
 \graphicspath{{images/}}
 
@@ -33,39 +34,156 @@
 \begin{frame}{План}
 \setcounter{framenumber}{1}
     \begin{itemize}
-		\item окрестностная грамматика (Шрейдер, Борщев, Хомяков)
-		\item синтаксические диаграммы и пучки (Лапшин)
+		\item окрестностные грамматики
+		\item синтаксические диаграммы
+		\item теоретико-категорная трактовка композициональности
     \end{itemize}
 \end{frame}
 
 
-% 1. Окрестностная грамматика
+% 1. Окрестностные грамматики
 
 \begin{frame}{}
 \begin{center}
-	\textbf{Конструкции и понятия}
+	\textbf{Окрестностные грамматики}
 \end{center}
 \end{frame}
 
-% 2. Синтаксические диаграммы
-
-\begin{frame}{Конструкции и понятия}
-\begin{itemize}
-	\item топологическое пространство {\small \textit{(повторение)}}
-	\item предпучок и пучок {\small \textit{(повторение)}}
-	\item немного алгебраической топологии:
-		\begin{itemize}
-			\item накрытие
-			\item сечение
-			\item поднятие
-		\end{itemize}
-	\item пучок непрерывных сечений накрытия
-	\item гомоморфизм пучков
-	\item расслоенное произведение пучков
-\end{itemize}
+\begin{frame}{Окрестностные грамматики (1)}
 \end{frame}
 
+\begin{frame}{Окрестностные грамматики (2)}
+\end{frame}
+
+\begin{frame}{Окрестностные грамматики (3)}
+\end{frame}
+
+\begin{frame}{Окрестностные грамматики (4)}
+\end{frame}
+
+
+% 2. Синтаксические диаграммы
+
+\begin{frame}{}
+\begin{center}
+	\textbf{Синтаксические диаграммы}
+\end{center}
+\end{frame}
+
+\begin{frame}{Синтаксические диаграммы (1)}
+\end{frame}
+
+\begin{frame}{Синтаксические диаграммы (2)}
+\end{frame}
+
+\begin{frame}{Синтаксические диаграммы (3)}
+\end{frame}
+
+\begin{frame}{Синтаксические диаграммы (4)}
+\end{frame}
+
+
+
 % 3. Теоретико-категорная формализация принципа композициональности
+
+% Хорошо про топологию Гротендика - http://anhinga-anhinga.livejournal.com/59865.html
+% Идея, что стрелки выражают не только функции, но и аппроксимацию - зачётная (думай про решето)
+
+\begin{frame}{}
+\begin{center}
+	\textbf{Теоретико-категорная трактовка композициональности}
+\end{center}
+\end{frame}
+
+\begin{frame}{Пучки (1)}
+Три варианта определения пучков:\\
+\medskip
+\begin{small}
+\begin{itemize}
+	\item топологическое пространство $(X, \mathcal{O})$ и сечения $\mathcal{F}(U)$, $U \in \mathcal{O}(X)$
+	\item пучок непрерывных сечений накрытия $(\widetilde{\mathcal{F}}, p)$
+	\item контравариантный функтор $\mathcal{F} : \mathcal{C}^{op} \to Sets$
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Пучки (2)}
+Категорное определение позволяет обобщить конструкцию:\\
+\medskip
+\begin{small}
+\begin{itemize}
+	\item базовое пространство заменяется категорией
+	\item понятие окрестности заменяется понятием \textit{решета}
+	\item топологическая структура заменяется \textit{топологией Гротендика}
+	\item топологическое пространство заменяется \textit{сайтом}
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Пучки (3)}
+Решето -- это\\
+\medskip
+\begin{small}
+\begin{itemize}
+	\item (уточнить): $\{ V_{ij} \to U_i \; \vert \; U_i, V_{ij} \in \mathcal{O}(X), U_i \subseteq V_{ij} \}$
+	\item 
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Пучки (4)}
+Топология Гротендика $J$ сопоставляет каждому объекту $A \in Ob(\mathcal{C})$ множество решет $J(A)$ таких, что:\\
+\medskip
+\begin{small}
+\begin{itemize}
+	\item максимальное решето $h_A = \{ f \; \vert \; Cod(f) = A \}$ принадлежит $J(A)$
+	\item если $S \in J(A)$ и $h : B \to A$ - произвольный морфизм c концом в $A$, то решето $h^*(S) = \{ f \; \vert \; Cod(f) = B, h \circ f \in S \} \in J(B)$
+	\item если $S \in J(A)$ и $R$ -- решето на $A$ такое, что $h^*(R) \in J(B)$ для всех $h : B \to A$, то $R \in J(A)$
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Пучки (5)}
+Сайт -- это\\
+\medskip
+\begin{small}
+\begin{itemize}
+	\item категория $\mathcal{C}$, снабженная топологией Гротендика
+	\item 
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Пучки (6)}
+Пусть дан сайт $(C, J)$. Предпучок $\mathcal{F} : C^{op} \to Sets$ называется пучком, если для каждого объекта $A \in Ob(C)$ и каждого решета $S \in J(A)$ диаграмма\\
+
+$F(X) \rightarrow \prod \limits_{\alpha\in A} F(X_\alpha) {{{} \atop \longrightarrow}\atop{\longrightarrow \atop{}}} \prod \limits_{\alpha,\beta \in A} F(X_\alpha\times_X X_\beta)$
+
+\begin{diagram}[labelstyle=\scriptstyle,loose,height=.8em,width=2pt]
+F(A) & \rTo^e & \prod \limits_{f \in S} F(Dom(f)) & \pile{\rTo^p\\ \rTo_a} & \prod \limits_{f,g} F(Dom(g)) \\
+\end{diagram}
+
+коммутативна.
+
+\medskip
+\begin{small}
+\begin{itemize}
+	\item 
+	\item категория всех пучков над сайтом $C$
+\end{itemize}
+\end{small}
+\end{frame}
+
+
+\begin{frame}{Принцип композициональности (1)}
+\end{frame}
+
+\begin{frame}{Принцип композициональности (2)}
+\end{frame}
+
+\begin{frame}{Принцип композициональности (3)}
+\end{frame}
+
 
 \begin{frame}{ТК}
 
