@@ -6,15 +6,7 @@
 \usepackage{amssymb,amsfonts,amsmath,mathtext}
 \usepackage{cite,enumerate,float,indentfirst}
 
-\usepackage{graphicx}
-\usepackage{booktabs}
-\usepackage{tabularx}
-
 \usepackage{diagrams}
-
-%% Gentzen style natural deduction proof trees
-\usepackage{bussproofs}
-\usepackage{latexsym}
 
 \graphicspath{{images/}}
 
@@ -80,11 +72,32 @@
 \def\Assl{{\rm assl}}\def\Id{{\rm id}}
 
 \begin{diagram}
-A*(B*(C*D))			& 	\rTo^\Assl 	& 	(A*B)*(C*D) 	& 	\rTo^\Assl 	& ((A*B)*C)*D\\
+A*(B*(C*D))			& \rTo^\Assl 	& 	(A*B)*(C*D) 	& \rTo^\Assl 	& ((A*B)*C)*D\\
 \dTo^{\Id*\Assl} 	&				&	=				&				& \uTo_{\Assl*\Id}\\
-A*((B*C)*D)			&				& \rTo^\Assl 		&				&	(A*(B*C))*D\\
+A*((B*C)*D)			&				& \rTo^\Assl 		&				& (A*(B*C))*D\\
 \end{diagram}
 
+\end{frame}
+
+
+\begin{frame}{Manin}
+
+\begin{diagram}[labelstyle=\scriptstyle]
+F(X) & \rTo^{f(X)} & G(X) \\
+\dTo^{F(\phi)} & & \dTo_{G(\phi)} \\
+F(Y) & \rTo_{f(Y)} & G(Y) \\
+\end{diagram}
+
+\end{frame}
+
+\begin{frame}{pullback example}
+\begin{diagram}[labelstyle=\scriptstyle]
+U	&	&	&	&	\\
+	& \rdTo~{(x,y)}\rdTo(4,2)^x\rdTo(2,4)_y &	&	&	\\
+	&	& X\times_Z Y & \rTo_p &	X	\\
+	&	&	\dTo^q	&	& \dTo_f \\
+	&	&	Y	& \rTo^g &	Z	\\
+\end{diagram}
 \end{frame}
 
 
