@@ -105,6 +105,8 @@
 	\item контравариантный функтор $\mathcal{F} : \mathcal{C}^{op} \to Sets$
 \end{itemize}
 \end{small}
+\medskip
+\dots и соответствующие условия
 \end{frame}
 
 \begin{frame}{Пучки (2)}
@@ -155,24 +157,48 @@
 \end{frame}
 
 \begin{frame}{Пучки (6)}
-Пусть дан сайт $(C, J)$. Предпучок $\mathcal{F} : C^{op} \to Sets$ называется пучком, если для каждого объекта $A \in Ob(C)$ и каждого решета $S \in J(A)$ диаграмма\\
-
-$F(X) \rightarrow \prod \limits_{\alpha\in A} F(X_\alpha) {{{} \atop \longrightarrow}\atop{\longrightarrow \atop{}}} \prod \limits_{\alpha,\beta \in A} F(X_\alpha\times_X X_\beta)$
-
-\begin{diagram}[labelstyle=\scriptstyle,loose,height=.8em,width=2pt]
-F(A) & \rTo^e & \prod \limits_{f \in S} F(Dom(f)) & \pile{\rTo^p\\ \rTo_a} & \prod \limits_{f,g} F(Dom(g)) \\
-\end{diagram}
-
-коммутативна.
-
+Отступление про уравнители:\\
 \medskip
 \begin{small}
 \begin{itemize}
-	\item 
-	\item категория всех пучков над сайтом $C$
+	\item Пусть $X, Y$ - множества и $f, g : X \to Y$, \\уравнитель $Eq(f,g) = \{ x \in X \; \vert \; f(x) = g(x) \}$
+	\medskip
+	\item Пусть $F$ - множество отображений $f_i : X \to Y$, \\уравнитель $Eq(F) = \{ x \in X \; \vert \; \forall f, g \in F, f(x) = g(x) \}$
 \end{itemize}
 \end{small}
 \end{frame}
+
+\begin{frame}{Пучки (7)}
+Пусть $X, Y \in Ob(C)$ и $f, g \in Hom(X, Y)$.\\
+\medskip
+\begin{diagram}[labelstyle=\scriptstyle]
+ E & \rTo^{eq} & X & \pile{\rTo^f\\ \rTo_g} & Y \\
+ \uTo^u & \ruTo^h & & & & \\
+ O & & & & & \\
+ \end{diagram}
+
+\begin{small}
+\begin{itemize}
+	\item $f \circ eq = g \circ eq$
+	\item для любого объекта $O \in Ob(C)$ и стрелки $h : O \to X$, $h \circ f = h \circ g$ существует и единственна стрелка $u : O \to E$,  $eq \circ u = h$
+\end{itemize}
+\end{small}
+\end{frame}
+
+
+\begin{frame}{Пучки (7)}
+Пусть дан сайт $(C, J)$. Предпучок $\mathcal{F} : C^{op} \to Sets$ называется \textit{пучком}, если для каждого объекта $A \in Ob(C)$ и каждого решета $S \in J(A)$, коммутативна диаграмма\\
+
+% $F(X) \rightarrow \prod \limits_{\alpha\in A} F(X_\alpha) {{{} \atop \longrightarrow}\atop{\longrightarrow \atop{}}} \prod \limits_{\alpha,\beta \in A} F(X_\alpha\times_X X_\beta)$
+
+\begin{diagram}[labelstyle=\scriptstyle,loose,height=.8em,width=2pt]
+\mathcal{F}(A) & \rTo^{eq} & \prod \limits_{f \in S} \mathcal{F}(Dom(f)) & \pile{\rTo^p\\ \rTo_q} & \prod \limits_{f,g \in S} \mathcal{F}(Dom(g)) \\
+\end{diagram}
+
+где $Dom(f) = Cod(g)$, а $eq$ - уравнитель.
+\end{frame}
+
+
 
 
 \begin{frame}{Принцип композициональности (1)}
