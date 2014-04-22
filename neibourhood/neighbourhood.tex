@@ -50,9 +50,31 @@
 \end{frame}
 
 \begin{frame}{Окрестностные грамматики (1)}
+Шрейдер Ю. А. Топологические модели языка. 1972.\\
+\medskip
+\begin{small}
+\begin{itemize}
+	\item Пусть $A$ -- алфавит. Окрестность -- это цепочка над алфавитом $A \cup \{ \# \}$ с отмеченным вхождением некоторого знака из $A$ (центр окрестности)
+		\begin{itemize}
+			\item $a\underline{a}b$, $\underline{a}b\#$, $\#\underline{b}\#$
+			\item в цепочке $X = abaac$ элемент $b$ имеет окрестности $U_1 = a\underline{b}$, $U_2 = a\underline{b}aa$, $U_3 = \#a\underline{b}a$ и т.д.
+		\end{itemize}
+\end{itemize}
+\end{small}
 \end{frame}
 
 \begin{frame}{Окрестностные грамматики (2)}
+\begin{small}
+\begin{itemize}
+	\item Пусть $M$ -- множество окрестностей над $A \cup \{ \# \}$. Цепочка $X$ \textit{непрерывна} относительно $M$, если любое вхождение в $X$ любого знака из $A$ имеет окрестность из $M$.
+	\item Множество цепочек, непрерывных относительно $M$, называется \textit{простым окрестностным $M$-языком}
+		\begin{itemize}
+			\item система $U_1 = a\underline{a}$, $U_2 = \#\underline{a}$, $U_3 = a\underline{b}$ задаёт язык \texttt{a+b}
+			\item система $U_1 = \underline{a}$, $U_2 = \underline{b}$ задаёт язык \texttt{(a|b)+}
+		\end{itemize}
+	\item $M$-языки являются автоматными языками (Борщев В. Б., 1967)
+\end{itemize}
+\end{small}
 \end{frame}
 
 \begin{frame}{Окрестностные грамматики (3)}
@@ -70,19 +92,37 @@
 \end{center}
 \end{frame}
 
+% Синтаграммы 
+%   - с отношением непосредственного предшествования
+%   - сотношением неп. предш. и порождения (контекстно-своб.)
 \begin{frame}{Синтаксические диаграммы (1)}
+\begin{itemize}
+	\item
+	\item
+	\item
+	\item
+\end{itemize}
 \end{frame}
 
+% Синтаграммы - форм. определение
 \begin{frame}{Синтаксические диаграммы (2)}
 \end{frame}
 
+% Синтаграммы - включение синтаграммы
 \begin{frame}{Синтаксические диаграммы (3)}
 \end{frame}
 
+% Окрестность для синтаграмм
 \begin{frame}{Синтаксические диаграммы (4)}
 \end{frame}
 
+% Окрестностная грамматика на множестве синтаксических диаграмм
+\begin{frame}{Синтаксические диаграммы (5)}
+\end{frame}
 
+% Синтаксическое покрытие диаграммы, корректная синт. диаграмма
+\begin{frame}{Синтаксические диаграммы (6)}
+\end{frame}
 
 % 3. Теоретико-категорная формализация принципа композициональности
 
@@ -122,6 +162,7 @@
 \end{small}
 \end{frame}
 
+% Уточнить - это стрелки в С или в C^{op}?
 \begin{frame}{Пучки (3)}
 Решето -- это\\
 \medskip
@@ -173,7 +214,7 @@
 \medskip
 \begin{diagram}[labelstyle=\scriptstyle]
  E & \rTo^{eq} & X & \pile{\rTo^f\\ \rTo_g} & Y \\
- \uTo^u & \ruTo^h & & & & \\
+ \uDashto^u & \ruTo^h & & & & \\
  O & & & & & \\
  \end{diagram}
 
@@ -186,7 +227,7 @@
 \end{frame}
 
 
-\begin{frame}{Пучки (7)}
+\begin{frame}{Пучки (8)}
 Пусть дан сайт $(C, J)$. Предпучок $\mathcal{F} : C^{op} \to Sets$ называется \textit{пучком}, если для каждого объекта $A \in Ob(C)$ и каждого решета $S \in J(A)$, коммутативна диаграмма\\
 
 % $F(X) \rightarrow \prod \limits_{\alpha\in A} F(X_\alpha) {{{} \atop \longrightarrow}\atop{\longrightarrow \atop{}}} \prod \limits_{\alpha,\beta \in A} F(X_\alpha\times_X X_\beta)$
@@ -200,14 +241,24 @@
 
 
 
-
+% Категории синтаксических диаграмм - D_G, Ext(D_G)
 \begin{frame}{Принцип композициональности (1)}
 \end{frame}
 
+% Топология Гротендика на категории Ext(D_G)
 \begin{frame}{Принцип композициональности (2)}
 \end{frame}
 
+% предпучок \mathcal{F} : Ext(D_G) \to Sets как семантическая интерпретация
 \begin{frame}{Принцип композициональности (3)}
+\end{frame}
+
+% Пучок в топологии Гротендика на Ext(D_G)
+\begin{frame}{Принцип композициональности (4)}
+\end{frame}
+
+% Аксиомы пучка как формализация принципа композициональности
+\begin{frame}{Принцип композициональности (5)}
 \end{frame}
 
 
