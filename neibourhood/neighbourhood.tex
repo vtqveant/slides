@@ -395,16 +395,77 @@ F(Y) & \rTo_{f(Y)} & G(Y) \\
 
 \end{frame}
 
-\begin{frame}{pullback example}
+\begin{frame}{Про обратный образ, уравнитель и аксиому пучка (1)}
 \begin{diagram}[labelstyle=\scriptstyle]
-U	&	&	&	&	\\
-	& \rdTo~{(x,y)}\rdTo(4,2)^x\rdTo(2,4)_y &	&	&	\\
-	&	& X\times_Z Y & \rTo_p &	X	\\
-	&	&	\dTo^q	&	& \dTo_f \\
-	&	&	Y	& \rTo^g &	Z	\\
+Q	&	&	&	&	\\
+	& \rdDashto^u\rdTo(4,2)^{q_2}\rdTo(2,4)_{q_1} &	&	&	\\
+	&	& X\times_Z Y & \rTo_{p_2} &	Y	\\
+	&	&	\dTo^{p_1}	&	& \dTo_g \\
+	&	&	X	& \rTo^f &	Z	\\
 \end{diagram}
 \end{frame}
 
+\begin{frame}{Про обратный образ, уравнитель и аксиому пучка (2)}
+\begin{diagram}[labelstyle=\scriptstyle]
+Q	&	&	&	&	\\
+	& \rdDashto^u\rdTo(4,2)^{q}\rdTo(2,4)_{q} &	&	&	\\
+	&	& X\times_Z X & \rTo_{p} &	X	\\
+	&	&	\dTo^{p}	& 	& \dTo_g \\
+	&	&	X	& \rTo^f &	Z	\\
+\end{diagram}
+\end{frame}
+
+\begin{frame}{Про обратный образ, уравнитель и аксиому пучка (3)}
+\begin{diagram}[labelstyle=\scriptstyle]
+ P & \rTo^{p} & X & \pile{\rTo^f\\ \rTo_g} & Z \\
+ \uDashto^u & \ruTo^q & & & & \\
+ Q & & & & & \\
+ \end{diagram}
+\end{frame}
+
+\begin{frame}{Про обратный образ, уравнитель и аксиому пучка (3)}
+\begin{diagram}[labelstyle=\scriptstyle]
+ P & \rTo^{p} & X & \pile{\rTo^f\\ \rTo_g} & Z \\
+ \uDashto^u & \ruTo^q & & & & \\
+ Q & & & & & \\
+ \end{diagram}
+\end{frame}
+
+\begin{frame}{Про обратный образ, уравнитель и аксиому пучка (4)}
+\begin{diagram}[labelstyle=\scriptstyle]
+\mathcal{F}(U) & \rTo & \prod_{i \in I} \mathcal{F}(U_i) &  & \pile{\rTo^f\\ \rTo_g} & \prod_{i,j \in I} \mathcal{F}(U_i \times_U U_j) \\
+\end{diagram}
+\end{frame}
+
+\begin{frame}{Про обратный образ, уравнитель и аксиому пучка (5)}
+$\mathcal{F}$ -- пучок, если для любого покрытия $\{ U_i \to U \}_{i \in I}$ диаграмма
+\begin{diagram}[labelstyle=\scriptstyle]
+\mathcal{F}(U) & \rTo & \prod_{i \in I} \mathcal{F}(U_i) &  & \pile{\rTo^f\\ \rTo_g} & \prod_{i,j \in I} \mathcal{F}(U_i \times_U U_j) \\
+\end{diagram}
+\textit{точна}.\\
+\bigskip
+$U_i \times_U U_j$ в $\textbf{Top}$ -- это $U_i \cap U_j$, а $\prod_{i \in I} \mathcal{F}(U_i)$ -- это $\mathcal{F}(U_1) \times_U \mathcal{F}(U_2) \times_U \ldots \times_U \mathcal{F}(U_n)$, т.е. $\bigcap_{i \in I} \mathcal{F}(U_i)$.\\
+\bigskip
+Поэтому для нашего исходного случая можно записать так:
+\begin{diagram}[labelstyle=\scriptstyle]
+\mathcal{F}(U) & \rTo & \bigcap_{i \in I} \mathcal{F}(U_i) &  & \pile{\rTo^f\\ \rTo_g} & \bigcap_{i,j \in I} \mathcal{F}(U_i \cap U_j) \\
+\end{diagram}
+\end{frame}
+
+\begin{frame}{Про обратный образ, уравнитель и аксиому пучка (6)}
+Если диаграмма\\
+\begin{diagram}[labelstyle=\scriptstyle]
+\mathcal{F}(U) & \rTo^{eq} & & \mathcal{F}(U_i) \cap \mathcal{F}(U_j) &  & \pile{\rTo^f\\ \rTo_g} & \mathcal{F}(U_i \cap U_j) \\
+\end{diagram}\\
+точна, то:\\
+\medskip
+\begin{itemize}
+	\item $f \circ eq = g \circ eq$
+	\item $Ker(\mathcal{F}(U_i) \cap \mathcal{F}(U_j) \mapsto \mathcal{F}(U_i \cap U_j))$ -- это множество точек в $U$, не содержащихся одновременно в $U_i$ и $U_j$
+	\item если $x_1 \in \mathcal{F}(U)$, $x_2 \in \mathcal{F}(U_i) \cap \mathcal{F}(U_j)$ и $x_3 \in \mathcal{F}(U_i \cap U_j)$, то это одна и та же точка (можно отождествить $x_1$, $x_2$ и $x_3$)
+\end{itemize}
+
+\end{frame}
 
 
 \begin{frame}{}
