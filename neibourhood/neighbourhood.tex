@@ -96,33 +96,143 @@
 %   - с отношением непосредственного предшествования
 %   - сотношением неп. предш. и порождения (контекстно-своб.)
 \begin{frame}{Синтаксические диаграммы (1)}
+Лапшин В. А. Лекции по математической лингвистике, 2010\\
+\medskip
+\begin{small}
 \begin{itemize}
-	\item
-	\item
-	\item
-	\item
+	\item \textit{текст} -- ``нелинейная'' последовательность символов
+	\item \textit{окрестностная грамматика} -- система ограничений, определяющая множество \textit{корректных текстов}
+	\item \textit{язык} -- множество текстов, задаваемых окрестностной грамматикой
 \end{itemize}
+\end{small}
 \end{frame}
+
+\begin{frame}{Синтаксические диаграммы (2)}
+Простой окрестностный язык \texttt{(ab)+a}\\
+\medskip
+\begin{small}
+\begin{itemize}
+	\item алфавит $A = \{a, b\}$
+	\item отношение непосредственного предшествования $\leftarrow \; \subseteq A \times A$
+	\item $U(a) = \{\underline{a} \leftarrow b, b \leftarrow \underline{a}, b \leftarrow \underline{a} \leftarrow b\}$, $U(b) = \{ a \leftarrow \underline{b} \leftarrow a \}$
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Синтаксические диаграммы (3)}
+Контекстно-свободный язык:\\
+\medskip
+\begin{small}
+\begin{itemize}
+	\item КС-грамматика $G = \langle V, \Sigma, R, s \rangle$, где $V$ -- нетерминалы, $\Sigma$ -- терминалы, $R$ -- правила, $s \in V$ -- начальный символ
+	\item диаграммы над алфавитом $A = V \cup \Sigma$ 
+	\item множество отношений $S = \{ S_L, S_P \}$, где  
+		\begin{itemize}
+			\item $S_L$ -- отношение непосредственного предшествования, 
+			\item $S_P$ -- отношение ``быть непосредственным потомком''
+		\end{itemize}
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Синтаксические диаграммы (3)}
+Контекстно-свободный язык:\\
+\medskip
+\begin{small}
+\begin{itemize}
+	\item окрестностная грамматика 
+		\begin{itemize}	
+			\item $U(a) = \{ \underline{a} \}$, $a \in \Sigma$
+			\item $U(A)$ для каждого $A \in V$, стоящего слева в правиле вида $A \to X_1, X_2, \dots X_n$:
+\begin{diagram}[labelstyle=\scriptstyle]
+ & & \underline{A} & & & & \\
+ & \ldTo^{S_P} & \dTo_{S_P} & \rdTo{S_P}(4,2) & & & \\
+X_1 & \lDashto^{S_L} & X_2 & \lDashto^{S_L} & \dots & \lDashto^{S_L} & X_n \\
+\end{diagram}
+		\end{itemize}
+\end{itemize}
+\end{small}
+\end{frame}
+
 
 % Синтаграммы - форм. определение
 \begin{frame}{Синтаксические диаграммы (2)}
+\begin{small}
+\begin{itemize}
+	\item алфавит $A = \{ a_1, a_2, \dots, a_n \}$
+	\item размеченный мультиграф $\Gamma = \{ V, R, S, f \}$, где 
+		\begin{itemize}
+			\item $V$ -- вершины
+			\item $R$ -- ребра, т.е. пары $(u, v)$, где $u, v \in V$, $u \neq v$
+			\item $S$ -- пометки на ребрах (сорта)
+			\item $f : R \to S$ приписывает ребрам пометки
+		\end{itemize}
+	\item $F : V \to A$ сопоставляет каждой вершине графа $\Gamma$ символ алфавита $A$
+\end{itemize}
+\end{small}
+\medskip
+Тройка $D = \langle A, \Gamma, F \rangle$ называется \textit{синтаксической диаграммой}
 \end{frame}
 
 % Синтаграммы - включение синтаграммы
 \begin{frame}{Синтаксические диаграммы (3)}
+Даны две диаграммы $D_1 = \langle A, \Gamma_1, F_1 \rangle$, $D_2 = \langle A, \Gamma_2, F_2 \rangle$ над алфавитом $A$\\
+\medskip
+\begin{itemize}
+	\item[] Тройка отображений $s = (s_V, s_R, s_S)$, где 
+		\begin{itemize}
+			\item $s_V : V_1 \to V_2$
+			\item $s_R : R_1 \to R_2$
+			\item $s_S : S_1 \to S_2$,
+		\end{itemize}
+	\item[] удовлетворяющих условиям
+		\begin{itemize}
+			\item $F_1(v) = F_2(s_V(v))$ для всех $v \in V_1$
+			\item $s_S(f_1(u, v)) = f_2(s_R(u, v))$ для всех $(u, v) \in R_1$
+			\item $s_R(u, v) = (s_V(u), s_V(u)) \in R_2$ для всех $(u, v) \in R_1$,
+		\end{itemize}
+	\item[] определяет включение диаграммы $D_1$ в диаграмму $D_2$ в качестве поддиаграммы.
+\end{itemize}
 \end{frame}
 
 % Окрестность для синтаграмм
 \begin{frame}{Синтаксические диаграммы (4)}
-\end{frame}
-
-% Окрестностная грамматика на множестве синтаксических диаграмм
-\begin{frame}{Синтаксические диаграммы (5)}
+\textit{Окрестность} $D_a$ символа $a \in A$ -- пара  $(D_a, s_a)$, где $D_a$ -- синтаксическая диаграмма, а $s_a : a \to D_a$ -- включение диаграммы $a$, состоящей из одной вершины, помеченной символом $a$, в $D_a$.\\
+\bigskip
+\textit{Окрестностная грамматика} на множестве синтаксических диаграмм $\mathbf{D}$ -- это семейство окрестностей $G = \{ G_a \; \vert \; a \in A, G_a \in \mathbf{D} \}$
 \end{frame}
 
 % Синтаксическое покрытие диаграммы, корректная синт. диаграмма
 \begin{frame}{Синтаксические диаграммы (6)}
+\begin{figure}[H]
+\includegraphics[scale=0.46]{star.png} 
+\end{figure}
 \end{frame}
+
+\begin{frame}{Синтаксические диаграммы (6)}
+\begin{itemize}
+	\item Пусть $\mathbf{D}$ -- множество синтаксических диаграмм, $G = \{ G_a \; \vert \; a \in A \}$ -- окрестностная грамматика на $\mathbf{D}$ и $D \in \mathbf{D}$ -- некоторая диаграмма
+	\item Семейство окрестностей $G_D = \{ D_v \; \vert \; v \in V, D_v \in G_{F(v)} \}$ называется синтаксическим покрытием диаграммы $D$, если
+		\begin{itemize}
+			\item $D_v$ -- поддиаграмма $D$ для всех вершин $v$ диаграммы $D$
+			\item $s^v_R(z(D_v)(v)) = z(D)(v)$, где $z(D)(v)$ -- звезда диаграммы $D$ в вершине $v$
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Синтаксические диаграммы (6)}
+Замечания:\\
+\medskip
+\begin{small}
+\begin{itemize}
+	\item Окрестностная грамматика для КС-языков похожа на Tree Adjoining Grammar.
+	\item Советские разработки (Шрейдер, Борщев, Хомяков) опередили работы по TAG примерно на 20 лет, но не получили известности.
+	\item Линейно-индексируемые грамматики, вершинные грамматики, CCG и TAG слабо эквивалентны (Vijay-Shanker, Weir. 1994). Аналогичные результаты по окрестностным грамматикам мне неизвестны.
+\end{itemize}
+\end{small}
+\end{frame}
+
 
 % 3. Теоретико-категорная формализация принципа композициональности
 
