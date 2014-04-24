@@ -364,20 +364,16 @@ $f(\{t_i\}) = \{t_i \vert_{U_i \cap U_j}\}$, $g(\{t_i\}) = \{t_j\vert_{U_i \cap 
 
 
 \begin{frame}{Топология Гротендика (1)}
-Решето -- это\\
-\medskip
 \begin{small}
-\begin{itemize}
-	\item (уточнить): $\{ V_{ij} \to U_i \; \vert \; U_i, V_{ij} \in \mathcal{O}(X), U_i \subseteq V_{ij} \}$
-	\item 
-\end{itemize}
+\textit{Решето} на объекте $A$ -- это семейство морфизмов $S = \{ f \; \vert \; Cod(f) = A \}$ таких, что если $f \in S$ и $h : B \to Dom(f)$, то $f \circ h \in S$
 \end{small}
 \end{frame}
 
 \begin{frame}{Топология Гротендика (2)}
-Топология Гротендика $J$ сопоставляет каждому объекту $A \in Ob(\mathcal{C})$ множество решет $J(A)$ таких, что:\\
 \medskip
 \begin{small}
+Топология Гротендика $J$ сопоставляет каждому объекту $A \in Ob(\mathcal{C})$ множество решет $J(A)$ таких, что:\\
+\bigskip
 \begin{itemize}
 	\item максимальное решето $h_A = \{ f \; \vert \; Cod(f) = A \}$ принадлежит $J(A)$
 	\item если $S \in J(A)$ и $h : B \to A$ - произвольный морфизм c концом в $A$, то решето $h^*(S) = \{ f \; \vert \; Cod(f) = B, h \circ f \in S \} \in J(B)$
@@ -387,32 +383,23 @@ $f(\{t_i\}) = \{t_i \vert_{U_i \cap U_j}\}$, $g(\{t_i\}) = \{t_j\vert_{U_i \cap 
 \end{frame}
 
 \begin{frame}{Топология Гротендика (3)}
-Сайт -- это\\
 \medskip
 \begin{small}
+Пусть дан \textit{сайт} $(C, J)$. Предпучок $\mathcal{F} : C^{op} \to Sets$ называется \textit{пучком}, если для каждого объекта $A \in Ob(C)$ и каждого решета $S \in J(A)$, диаграмма\\
+\begin{diagram}[labelstyle=\scriptstyle,loose,height=.8em,width=2pt]
+\mathcal{F}(A) & \rTo^{e} & \prod \limits_{f \in S} \mathcal{F}(Dom(f)) & \pile{\rTo^p\\ \rTo_q} & \prod \limits_{f,g \; f \in S} \mathcal{F}(Dom(g)) \\
+\end{diagram}
+является уравнителем,\\
+\smallskip
 \begin{itemize}
-	\item категория $\mathcal{C}$, снабженная топологией Гротендика
-	\item 
+	\item $Dom(f) = Cod(g)$
+	\item $e = \{ \mathcal{F}(f)(x) \}_f$
+    \item произведение справа берется по всем $f$ и $g$, для которых определена композиция (т.е. $f \circ g \in S$)
+    \item отображение $p$ определяется через значения $\mathcal{F}$ на композициях стрелок в $C$
+    \item отображение $q$ определяется через действие $\mathcal{F}$, определяемое морфизмом $g$ на элементах $x_f$
 \end{itemize}
 \end{small}
 \end{frame}
-
-
-
-
-\begin{frame}{Топология Гротендика (4)}
-Пусть дан сайт $(C, J)$. Предпучок $\mathcal{F} : C^{op} \to Sets$ называется \textit{пучком}, если для каждого объекта $A \in Ob(C)$ и каждого решета $S \in J(A)$, коммутативна диаграмма\\
-
-% $F(X) \rightarrow \prod \limits_{\alpha\in A} F(X_\alpha) {{{} \atop \longrightarrow}\atop{\longrightarrow \atop{}}} \prod \limits_{\alpha,\beta \in A} F(X_\alpha\times_X X_\beta)$
-
-\begin{diagram}[labelstyle=\scriptstyle,loose,height=.8em,width=2pt]
-\mathcal{F}(A) & \rTo^{eq} & \prod \limits_{f \in S} \mathcal{F}(Dom(f)) & \pile{\rTo^p\\ \rTo_q} & \prod \limits_{f,g \in S} \mathcal{F}(Dom(g)) \\
-\end{diagram}
-
-где $Dom(f) = Cod(g)$, а $eq$ - уравнитель.
-\end{frame}
-
-
 
 
 \begin{frame}{Принцип композициональности (1)}
@@ -446,12 +433,17 @@ $f(\{t_i\}) = \{t_i \vert_{U_i \cap U_j}\}$, $g(\{t_i\}) = \{t_j\vert_{U_i \cap 
 \end{frame}
 
 \begin{frame}{Принцип композициональности (3)}
+\begin{small}
+\textit{Синтаксическая топология} $J_G$ на основе окрестностной грамматики $G$ -- это топология Гротендика на $Ext(D_G)$, так что\\
+\medskip
+\begin{itemize}
+	\item если $A \in D_G$, то $J_G(D)$ содержит максимальное решето на объекте $A$
+	\item если $A = (D, P) \in D_G$, то семейство морфизмов элементов покрытия $P$ приналдежит $J_G(A)$
+\end{itemize}
+\end{small}
 \end{frame}
 
 \begin{frame}{Принцип композициональности (4)}
-\end{frame}
-
-\begin{frame}{Принцип композициональности (5)}
 \textit{Принцип композициональности:}\\
 \medskip
 \begin{block}{}
@@ -460,7 +452,6 @@ $f(\{t_i\}) = \{t_i \vert_{U_i \cap U_j}\}$, $g(\{t_i\}) = \{t_j\vert_{U_i \cap 
 Пусть $G = \{ G_a \; \vert \; a \in A \}$ -- окрестностная грамматика, $Ext(D_G)$ -- категория корректных диаграмм на множестве диаграмм $D$ и $J_G$ -- синтаксическая топология, определяемая грамматикой $G$. Предпучок значений $\mathcal{F} : Ext(D_G) \to \textbf{Sets}$ является пучком тогда и только тогда, когда каждое значение корректной диаграммы $D \in Ob(Ext(D_G))$ однозначно определяется соответствующим семейством значений на окрестностях его синтаксического покрытия.
 \end{small}
 \end{block}
-
 \end{frame}
 
 \begin{frame}{Замечания}
