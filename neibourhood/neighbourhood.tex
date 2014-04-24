@@ -226,9 +226,8 @@ X_1 & \lDashto^{S_L} & X_2 & \lDashto^{S_L} & \dots & \lDashto^{S_L} & X_n \\
 \medskip
 \begin{small}
 \begin{itemize}
-	\item Окрестностная грамматика для КС-языков похожа на Tree Adjoining Grammar.
-	\item Советские разработки (Шрейдер, Борщев, Хомяков) опередили работы по TAG примерно на 20 лет, но не получили известности.
-	\item Линейно-индексируемые грамматики, вершинные грамматики, CCG и TAG слабо эквивалентны (Vijay-Shanker, Weir. 1994). Аналогичные результаты по окрестностным грамматикам мне неизвестны.
+	\item Окрестностная грамматика для КС-языков похожа на Tree Adjoining Grammar (Joshi, Levy, Takahashi. 1975).
+	\item Линейно-индексируемые грамматики, вершинные грамматики, CCG и TAG слабо эквивалентны (Vijay-Shanker, Weir. 1994).
 \end{itemize}
 \end{small}
 \end{frame}
@@ -272,6 +271,114 @@ X_1 & \lDashto^{S_L} & X_2 & \lDashto^{S_L} & \dots & \lDashto^{S_L} & X_n \\
 \end{small}
 \end{frame}
 
+\begin{frame}{Про pullback, уравнитель и аксиому пучка (1)}
+\begin{diagram}[labelstyle=\scriptstyle]
+ P          & \rTo^{p_2} & Y      &   & Q            & \rTo^{q_2} & Y \\
+ \dTo^{p_1} &            & \dTo_g &   & \dTo^{q_1} &              & \dTo_g \\
+ X          & \rTo_f     & Z      &   & X            & \rTo_f       & Z \\
+\end{diagram}\\
+\bigskip
+{\small \textit{Универсальное свойство:}\\ существует и единственна стрелка $u : Q \to P$, $q_2 = p_2 \circ u$ и $q_1 = p_1 \circ u$}
+\end{frame}
+
+\begin{frame}{Про pullback, уравнитель и аксиому пучка (2)}
+\begin{diagram}[labelstyle=\scriptstyle]
+Q	&	&	&	&	\\
+	& \rdDashto^u\rdTo(4,2)^{q}\rdTo(2,4)_{q} &	&	&	\\
+	&	& X\times_Z X & \rTo_{p} &	X	\\
+	&	&	\dTo^{p}	& 	& \dTo_g \\
+	&	&	X	& \rTo^f &	Z	\\
+\end{diagram}\\
+\bigskip
+{\small pullback можно охарактеризовать как уравнитель стрелок $f$ и $g$}
+\end{frame}
+
+\begin{frame}{Про pullback, уравнитель и аксиому пучка (3)}
+\begin{diagram}[labelstyle=\scriptstyle]
+ P & \rTo^{p} & X & \pile{\rTo^f\\ \rTo_g} & Z \\
+ \uDashto^u & \ruTo^q & & & & \\
+ Q & & & & & \\
+\end{diagram}\\
+\bigskip
+\begin{small}
+\begin{itemize}
+	\item пусть $f, g : X \to Z$, уравнитель $Eq(f,g) = \{ x \; \vert \; f(x) = g(x) \}$
+	\item пусть $F = \{ f_i : X \to Z \}$, $Eq(F) = \{ x \; \vert \; f_i, f_j \in F, f_i(x) = f_j(x) \}$
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Про pullback, уравнитель и аксиому пучка (4)}
+\medskip
+{\small Пусть $X, Y \in Ob(C)$ и $f, g \in Hom(X, Y)$.}\\
+\medskip
+\begin{diagram}[labelstyle=\scriptstyle]
+ P & \rTo^{p} & X & \pile{\rTo^f\\ \rTo_g} & Y \\
+ \uDashto^u & \ruTo^q & & & & \\
+ Q & & & & & \\
+\end{diagram}
+
+\begin{small}
+\begin{itemize}
+	\item $f \circ p = g \circ p$
+	\item для любого объекта $O \in Ob(C)$ и стрелки $q : Q \to X$, $q \circ f = q \circ g$ существует и единственна стрелка $u : Q \to P$,  $p \circ u = q$
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Про pullback, уравнитель и аксиому пучка (5)}
+Аксиома пучка как уравнитель:\\
+\bigskip
+\begin{diagram}[labelstyle=\scriptstyle]
+\mathcal{F}(U) & \rTo & \prod_{i \in I} \mathcal{F}(U_i) &  & \pile{\rTo^f\\ \rTo_g} & \prod_{i,j \in I} \mathcal{F}(U_i \times_U U_j) \\
+\end{diagram}\\
+\bigskip
+{\small Интуиция: стрелки в категории можно рассматривать не как ``функции'', а как ``аппроксимацию''; все сечения составлены из одного ``материала''.}
+\end{frame}
+
+\begin{frame}{Про pullback, уравнитель и аксиому пучка (6)}
+В категории топологических пространств $\textbf{Top}$:\\
+\medskip
+\begin{small}
+\begin{itemize}
+	\item $U_i \times_U U_j$ -- это $U_i \cap U_j$, 
+	\item $\prod_{i \in I} \mathcal{F}(U_i) = \mathcal{F}(U_1) \times_U \mathcal{F}(U_2) \times_U \ldots \times_U \mathcal{F}(U_n)$, т.е. $\bigcap_{i \in I} \mathcal{F}(U_i)$.
+\end{itemize}
+\end{small}
+\bigskip
+Поэтому для пучка $\mathcal{F} : \mathcal{O}(X)^{op} \to Sets$ можно записать так:\\
+\begin{diagram}[labelstyle=\scriptstyle]
+\mathcal{F}(U) & \rTo & \bigcap_{i \in I} \mathcal{F}(U_i) &  & \pile{\rTo^f\\ \rTo_g} & \bigcap_{i,j \in I} \mathcal{F}(U_i \cap U_j) \\
+\end{diagram}
+\end{frame}
+
+\begin{frame}{Про pullback, уравнитель и аксиому пучка (7)}
+$\mathcal{F}$ -- пучок, если для любого покрытия $\{ U_i \to U \}_{i \in I}$ диаграмма
+\begin{diagram}[labelstyle=\scriptstyle]
+\mathcal{F}(U) & \rTo & \prod_{i \in I} \mathcal{F}(U_i) &  & \pile{\rTo^f\\ \rTo_g} & \prod_{i,j \in I} \mathcal{F}(U_i \times_U U_j) \\
+\end{diagram}
+\textit{точна}.
+\end{frame}
+
+
+\begin{frame}{Про pullback, уравнитель и аксиому пучка (8)}
+Если диаграмма\\
+\begin{diagram}[labelstyle=\scriptstyle]
+\mathcal{F}(U) & \rTo^{eq} & & \mathcal{F}(U_i) \cap \mathcal{F}(U_j) &  & \pile{\rTo^f\\ \rTo_g} & \mathcal{F}(U_i \cap U_j) \\
+\end{diagram}\\
+точна, то:\\
+\medskip
+\begin{itemize}
+	\item $f \circ eq = g \circ eq$
+	\item $Ker(\mathcal{F}(U_i) \cap \mathcal{F}(U_j) \mapsto \mathcal{F}(U_i \cap U_j))$ -- это множество точек в $U$, не содержащихся одновременно в $U_i$ и $U_j$
+	\item если $x_1 \in \mathcal{F}(U)$, $x_2 \in \mathcal{F}(U_i) \cap \mathcal{F}(U_j)$ и $x_3 \in \mathcal{F}(U_i \cap U_j)$, то это одна и та же точка (можно отождествить $x_1$, $x_2$ и $x_3$)
+\end{itemize}
+
+\end{frame}
+
+
+
+
 % Уточнить - это стрелки в С или в C^{op}?
 \begin{frame}{Пучки (3)}
 Решето -- это\\
@@ -307,34 +414,7 @@ X_1 & \lDashto^{S_L} & X_2 & \lDashto^{S_L} & \dots & \lDashto^{S_L} & X_n \\
 \end{small}
 \end{frame}
 
-\begin{frame}{Пучки (6)}
-Отступление про уравнители:\\
-\medskip
-\begin{small}
-\begin{itemize}
-	\item Пусть $X, Y$ - множества и $f, g : X \to Y$, \\уравнитель $Eq(f,g) = \{ x \in X \; \vert \; f(x) = g(x) \}$
-	\medskip
-	\item Пусть $F$ - множество отображений $f_i : X \to Y$, \\уравнитель $Eq(F) = \{ x \in X \; \vert \; \forall f, g \in F, f(x) = g(x) \}$
-\end{itemize}
-\end{small}
-\end{frame}
 
-\begin{frame}{Пучки (7)}
-Пусть $X, Y \in Ob(C)$ и $f, g \in Hom(X, Y)$.\\
-\medskip
-\begin{diagram}[labelstyle=\scriptstyle]
- E & \rTo^{eq} & X & \pile{\rTo^f\\ \rTo_g} & Y \\
- \uDashto^u & \ruTo^h & & & & \\
- O & & & & & \\
- \end{diagram}
-
-\begin{small}
-\begin{itemize}
-	\item $f \circ eq = g \circ eq$
-	\item для любого объекта $O \in Ob(C)$ и стрелки $h : O \to X$, $h \circ f = h \circ g$ существует и единственна стрелка $u : O \to E$,  $eq \circ u = h$
-\end{itemize}
-\end{small}
-\end{frame}
 
 
 \begin{frame}{Пучки (8)}
@@ -369,102 +449,6 @@ X_1 & \lDashto^{S_L} & X_2 & \lDashto^{S_L} & \dots & \lDashto^{S_L} & X_n \\
 
 % Аксиомы пучка как формализация принципа композициональности
 \begin{frame}{Принцип композициональности (5)}
-\end{frame}
-
-
-\begin{frame}{ТК}
-
-\def\Assl{{\rm assl}}\def\Id{{\rm id}}
-
-\begin{diagram}
-A*(B*(C*D))			& \rTo^\Assl 	& 	(A*B)*(C*D) 	& \rTo^\Assl 	& ((A*B)*C)*D\\
-\dTo^{\Id*\Assl} 	&				&	=				&				& \uTo_{\Assl*\Id}\\
-A*((B*C)*D)			&				& \rTo^\Assl 		&				& (A*(B*C))*D\\
-\end{diagram}
-
-\end{frame}
-
-
-\begin{frame}{Manin}
-
-\begin{diagram}[labelstyle=\scriptstyle]
-F(X) & \rTo^{f(X)} & G(X) \\
-\dTo^{F(\phi)} & & \dTo_{G(\phi)} \\
-F(Y) & \rTo_{f(Y)} & G(Y) \\
-\end{diagram}
-
-\end{frame}
-
-\begin{frame}{Про обратный образ, уравнитель и аксиому пучка (1)}
-\begin{diagram}[labelstyle=\scriptstyle]
-Q	&	&	&	&	\\
-	& \rdDashto^u\rdTo(4,2)^{q_2}\rdTo(2,4)_{q_1} &	&	&	\\
-	&	& X\times_Z Y & \rTo_{p_2} &	Y	\\
-	&	&	\dTo^{p_1}	&	& \dTo_g \\
-	&	&	X	& \rTo^f &	Z	\\
-\end{diagram}
-\end{frame}
-
-\begin{frame}{Про обратный образ, уравнитель и аксиому пучка (2)}
-\begin{diagram}[labelstyle=\scriptstyle]
-Q	&	&	&	&	\\
-	& \rdDashto^u\rdTo(4,2)^{q}\rdTo(2,4)_{q} &	&	&	\\
-	&	& X\times_Z X & \rTo_{p} &	X	\\
-	&	&	\dTo^{p}	& 	& \dTo_g \\
-	&	&	X	& \rTo^f &	Z	\\
-\end{diagram}
-\end{frame}
-
-\begin{frame}{Про обратный образ, уравнитель и аксиому пучка (3)}
-\begin{diagram}[labelstyle=\scriptstyle]
- P & \rTo^{p} & X & \pile{\rTo^f\\ \rTo_g} & Z \\
- \uDashto^u & \ruTo^q & & & & \\
- Q & & & & & \\
- \end{diagram}
-\end{frame}
-
-\begin{frame}{Про обратный образ, уравнитель и аксиому пучка (3)}
-\begin{diagram}[labelstyle=\scriptstyle]
- P & \rTo^{p} & X & \pile{\rTo^f\\ \rTo_g} & Z \\
- \uDashto^u & \ruTo^q & & & & \\
- Q & & & & & \\
- \end{diagram}
-\end{frame}
-
-\begin{frame}{Про обратный образ, уравнитель и аксиому пучка (4)}
-\begin{diagram}[labelstyle=\scriptstyle]
-\mathcal{F}(U) & \rTo & \prod_{i \in I} \mathcal{F}(U_i) &  & \pile{\rTo^f\\ \rTo_g} & \prod_{i,j \in I} \mathcal{F}(U_i \times_U U_j) \\
-\end{diagram}
-\end{frame}
-
-\begin{frame}{Про обратный образ, уравнитель и аксиому пучка (5)}
-$\mathcal{F}$ -- пучок, если для любого покрытия $\{ U_i \to U \}_{i \in I}$ диаграмма
-\begin{diagram}[labelstyle=\scriptstyle]
-\mathcal{F}(U) & \rTo & \prod_{i \in I} \mathcal{F}(U_i) &  & \pile{\rTo^f\\ \rTo_g} & \prod_{i,j \in I} \mathcal{F}(U_i \times_U U_j) \\
-\end{diagram}
-\textit{точна}.\\
-\bigskip
-$U_i \times_U U_j$ в $\textbf{Top}$ -- это $U_i \cap U_j$, а $\prod_{i \in I} \mathcal{F}(U_i)$ -- это $\mathcal{F}(U_1) \times_U \mathcal{F}(U_2) \times_U \ldots \times_U \mathcal{F}(U_n)$, т.е. $\bigcap_{i \in I} \mathcal{F}(U_i)$.\\
-\bigskip
-Поэтому для нашего исходного случая можно записать так:
-\begin{diagram}[labelstyle=\scriptstyle]
-\mathcal{F}(U) & \rTo & \bigcap_{i \in I} \mathcal{F}(U_i) &  & \pile{\rTo^f\\ \rTo_g} & \bigcap_{i,j \in I} \mathcal{F}(U_i \cap U_j) \\
-\end{diagram}
-\end{frame}
-
-\begin{frame}{Про обратный образ, уравнитель и аксиому пучка (6)}
-Если диаграмма\\
-\begin{diagram}[labelstyle=\scriptstyle]
-\mathcal{F}(U) & \rTo^{eq} & & \mathcal{F}(U_i) \cap \mathcal{F}(U_j) &  & \pile{\rTo^f\\ \rTo_g} & \mathcal{F}(U_i \cap U_j) \\
-\end{diagram}\\
-точна, то:\\
-\medskip
-\begin{itemize}
-	\item $f \circ eq = g \circ eq$
-	\item $Ker(\mathcal{F}(U_i) \cap \mathcal{F}(U_j) \mapsto \mathcal{F}(U_i \cap U_j))$ -- это множество точек в $U$, не содержащихся одновременно в $U_i$ и $U_j$
-	\item если $x_1 \in \mathcal{F}(U)$, $x_2 \in \mathcal{F}(U_i) \cap \mathcal{F}(U_j)$ и $x_3 \in \mathcal{F}(U_i \cap U_j)$, то это одна и та же точка (можно отождествить $x_1$, $x_2$ и $x_3$)
-\end{itemize}
-
 \end{frame}
 
 
