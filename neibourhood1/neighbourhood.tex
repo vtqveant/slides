@@ -1,0 +1,385 @@
+\documentclass{beamer}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amssymb,amsfonts,amsmath,mathtext}
+\usepackage{cite,enumerate,float,indentfirst}
+
+\usepackage{diagrams}
+\usepackage{extpfeil} % double-arrows
+
+\usepackage{ragged2e} % text justifying
+
+\graphicspath{{images/}}
+
+\usetheme{Pittsburgh}
+\usecolortheme{whale}
+
+\setbeamertemplate{footline}{\scriptsize{\hspace*{0.4cm}\insertframenumber}\vspace*{0.3cm}}
+\beamertemplatenavigationsymbolsempty
+
+\errorcontextlines 10000
+
+\begin{document}
+\title{\Large{Окрестностная грамматика}}
+\author{Константин Соколов}
+\institute[]
+{Mathlingvo, СПбГУ, i-Free\\ \bigskip  \url{http://nlu-rg.ru}}
+\date{Санкт-Петербург, 2014} 
+% Создание заглавной страницы
+\begin{frame}
+    \thispagestyle{empty}
+    \titlepage
+\end{frame}
+
+\begin{frame}{План}
+\setcounter{framenumber}{1}
+    \begin{itemize}
+		\item окрестностные грамматики
+		\item синтаксические диаграммы
+		\item теоретико-категорная трактовка композициональности
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Тексты}
+\begin{itemize}
+	\item Ю. А. Шрейдер. Топологические модели языка. В сб.: ``Проблемы структурной лингвистики. 1971'', М., 1972.
+	\item В. А. Лапшин. Лекции по математической лингвистике. М., 2010.
+	\item В. А. Лапшин. Синтаксические диаграммы как формализм для представления синтаксических отношений формальных языков. 2008.  	arXiv:0802.3974
+	\item В. А. Лапшин. Топологии синтаксических отношений формальных языков. 2008. arXiv:0802.4181
+\end{itemize}
+\end{frame}
+
+
+% 1. Окрестностные грамматики
+
+\begin{frame}{}
+\begin{center}
+	\textbf{Окрестностные грамматики}
+\end{center}
+\end{frame}
+
+\begin{frame}{Окрестностные грамматики (1)}
+\begin{small}
+\begin{itemize}
+	\item Пусть $A$ -- алфавит. Окрестность -- это цепочка над алфавитом $A \cup \{ \# \}$ с отмеченным вхождением некоторого знака из $A$ (центр окрестности)
+		\begin{itemize}
+			\item $a\underline{a}b$, $\underline{a}b\#$, $\#\underline{b}\#$
+			\item в цепочке $X = abaac$ элемент $b$ имеет окрестности $U_1 = a\underline{b}$, $U_2 = a\underline{b}aa$, $U_3 = \#a\underline{b}a$ и т.д.
+		\end{itemize}
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Окрестностные грамматики (2)}
+\begin{small}
+\begin{itemize}
+	\item Пусть $M$ -- множество окрестностей над $A \cup \{ \# \}$. Цепочка $X$ \textit{непрерывна} относительно $M$, если любое вхождение в $X$ любого знака из $A$ имеет окрестность из $M$.
+	\item Множество цепочек, непрерывных относительно $M$, называется \textit{простым окрестностным $M$-языком}
+		\begin{itemize}
+			\item система $U_1 = a\underline{a}$, $U_2 = \#\underline{a}$, $U_3 = a\underline{b}$ задаёт язык \texttt{a+b}
+			\item система $U_1 = \underline{a}$, $U_2 = \underline{b}$ задаёт язык \texttt{(a|b)+}
+		\end{itemize}
+	\item $M$-языки являются автоматными языками (Борщев В. Б., 1967)
+\end{itemize}
+\end{small}
+\end{frame}
+
+
+% Синтаграммы 
+%   - с отношением непосредственного предшествования
+%   - сотношением неп. предш. и порождения (контекстно-своб.)
+\begin{frame}{Синтаксические диаграммы (1)}
+\smallskip
+{\small Расширение идеи окрестностных грамматик:}
+\bigskip
+\begin{small}
+\begin{itemize}
+	\item \textit{текст} -- ``нелинейная'' последовательность символов
+	\item \textit{окрестностная грамматика} -- система ограничений, определяющая множество \textit{корректных текстов}
+	\item \textit{язык} -- множество текстов, задаваемых окрестностной грамматикой
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Синтаксические диаграммы (2)}
+Простой окрестностный язык \texttt{(ab)+a}\\
+\medskip
+\begin{small}
+\begin{itemize}
+	\item алфавит $A = \{a, b\}$
+	\item отношение непосредственного предшествования $\leftarrow \; \subseteq A \times A$
+	\item $U(a) = \{\underline{a} \leftarrow b, b \leftarrow \underline{a}, b \leftarrow \underline{a} \leftarrow b\}$, $U(b) = \{ a \leftarrow \underline{b} \leftarrow a \}$
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Синтаксические диаграммы (3)}
+Контекстно-свободный язык:\\
+\medskip
+\begin{small}
+\begin{enumerate}
+	\item[1)] КС-грамматика $G = \langle V, \Sigma, R, s \rangle$, где $V$ -- нетерминалы, $\Sigma$ -- терминалы, $R$ -- правила, $s \in V$ -- начальный символ
+	\item[2)] диаграммы над алфавитом $A = V \cup \Sigma$ 
+	\item[3)] множество отношений $S = \{ S_L, S_P \}$, где  
+		\begin{itemize}
+			\item $S_L$ -- отношение непосредственного предшествования, 
+			\item $S_P$ -- отношение ``быть непосредственным потомком''
+		\end{itemize}
+\end{enumerate}
+\end{small}
+\end{frame}
+
+\begin{frame}{Синтаксические диаграммы (3)}
+\begin{small}
+\begin{enumerate}
+	\item[4)] окрестностная грамматика 
+		\begin{itemize}	
+			\item $U(a) = \{ \underline{a} \}$, $a \in \Sigma$
+			\item $U(A)$ для каждого $A \in V$, стоящего слева в правиле вида $A \to X_1, X_2, \dots X_n$:
+			\medskip
+\begin{diagram}[labelstyle=\scriptstyle]
+ & & \underline{A} & & & & \\
+ & \ldTo^{S_P} & \dTo_{S_P} & \rdTo{S_P}(4,2) & & & \\
+X_1 & \lDashto^{S_L} & X_2 & \lDashto^{S_L} & \dots & \lDashto^{S_L} & X_n \\
+\end{diagram}
+		\end{itemize}
+\end{enumerate}
+\end{small}
+\end{frame}
+
+
+% Синтаграммы - форм. определение
+\begin{frame}{Синтаксические диаграммы (2)}
+\begin{small}
+Тройка $D = \langle A, \Gamma, F \rangle$, где\\
+\medskip
+\begin{itemize}
+	\item алфавит $A = \{ a_1, a_2, \dots, a_n \}$
+	\item размеченный мультиграф $\Gamma = \{ V, R, S, f \}$, где 
+		\begin{itemize}
+			\item $V$ -- вершины
+			\item $R$ -- ребра, т.е. пары $(u, v)$, где $u, v \in V$, $u \neq v$
+			\item $S$ -- пометки на ребрах (сорта)
+			\item $f : R \to S$ приписывает ребрам пометки
+		\end{itemize}
+	\item $F : V \to A$ сопоставляет каждой вершине графа $\Gamma$ символ алфавита $A$
+\end{itemize}
+\medskip
+называется \textit{синтаксической диаграммой}.
+\end{small}
+\end{frame}
+
+% Синтаграммы - включение синтаграммы
+\begin{frame}{Синтаксические диаграммы (3)}
+\begin{small}
+Даны две диаграммы $D_1 = \langle A, \Gamma_1, F_1 \rangle$, $D_2 = \langle A, \Gamma_2, F_2 \rangle$ над алфавитом $A$. Тройка отображений $s = (s_V, s_R, s_S)$, где $s_V : V_1 \to V_2$, $s_R : R_1 \to R_2$, $s_S : S_1 \to S_2$ таких, что\\
+\medskip
+\begin{itemize}
+	\item $F_1(v) = F_2(s_V(v))$ для всех $v \in V_1$
+	\item $s_S(f_1(u, v)) = f_2(s_R(u, v))$ для всех $(u, v) \in R_1$
+	\item $s_R(u, v) = (s_V(u), s_V(u)) \in R_2$ для всех $(u, v) \in R_1$,
+\end{itemize}
+\medskip
+определяет включение диаграммы $D_1$ в диаграмму $D_2$ в качестве поддиаграммы.
+\end{small}\end{frame}
+
+% Окрестность для синтаграмм
+\begin{frame}{Синтаксические диаграммы (4)}
+\begin{small}
+\textit{Окрестность} $D_a$ символа $a \in A$ -- это пара  $(D_a, s_a)$, где $D_a$ -- синтаксическая диаграмма, а $s_a : a \to D_a$ -- включение диаграммы $a$, состоящей из одной вершины, помеченной символом $a$, в $D_a$.\\
+\bigskip
+\textit{Окрестностная грамматика} на множестве синтаксических диаграмм $\mathbf{D}$ -- это семейство окрестностей $G = \{ G_a \; \vert \; a \in A, G_a \in \mathbf{D} \}$
+\end{small}
+\end{frame}
+
+\begin{frame}{Синтаксические диаграммы (5)}
+\bigskip
+\begin{small}
+% Пусть $\mathbf{D}$ -- множество синтаксических диаграмм, $G = \{ G_a \; \vert \; a \in A \}$ -- окрестностная грамматика на $\mathbf{D}$ и $D \in \mathbf{D}$ -- некоторая диаграмма. 
+\textit{Синтаксическое покрытие} диаграммы $D$ -- это семейство окрестностей $G_D = \{ D_v \; \vert \; v \in V, D_v \in G_{F(v)} \}$ такое, что\\
+\medskip
+\begin{itemize}
+	\item $D_v$ -- поддиаграмма $D$ для всех вершин $v$ диаграммы $D$
+	\item $s^v_R(z(D_v)(v)) = z(D)(v)$, где $z(D)(v)$ -- звезда диаграммы $D$ в вершине $v$
+\end{itemize}
+
+\end{small}
+\begin{figure}[H]
+\includegraphics[scale=0.25]{star.png} 
+\end{figure}
+
+\end{frame}
+
+
+
+
+% 3. Теоретико-категорная формализация принципа композициональности
+
+% Хорошо про топологию Гротендика - http://anhinga-anhinga.livejournal.com/59865.html
+% Идея, что стрелки выражают не только функции, но и аппроксимацию - зачётная (думай про решето)
+
+\begin{frame}{}
+\begin{center}
+	\textbf{Теоретико-категорная трактовка композициональности}
+\end{center}
+\end{frame}
+
+\begin{frame}{Категорное определение пучка (1)}
+Три варианта определения пучков:\\
+\medskip
+\begin{small}
+\begin{itemize}
+	\item топологическое пространство $(X, \mathcal{O})$ и сечения $\mathcal{F}(U)$, $U \in \mathcal{O}(X)$
+	\item пучок непрерывных сечений накрытия $(\widetilde{\mathcal{F}}, p)$
+	\item контравариантный функтор $\mathcal{F} : \mathcal{C}^{op} \to Sets$
+\end{itemize}
+\end{small}
+\medskip
+\dots и соответствующие условия
+\end{frame}
+
+\begin{frame}{Категорное определение пучка (2)}
+Категорное определение позволяет обобщить конструкцию:\\
+\medskip
+\begin{small}
+\begin{itemize}
+	\item базовое пространство заменяется категорией
+	\item понятие окрестности заменяется понятием \textit{решета}
+	\item топологическая структура заменяется \textit{топологией Гротендика}
+	\item топологическое пространство заменяется \textit{сайтом}
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Про pullback, уравнитель и аксиому пучка (1)}
+\begin{diagram}[labelstyle=\scriptstyle]
+ P          & \rTo^{p_2} & Y      &   & Q            & \rTo^{q_2} & Y \\
+ \dTo^{p_1} &            & \dTo_g &   & \dTo^{q_1} &              & \dTo_g \\
+ X          & \rTo_f     & Z      &   & X            & \rTo_f       & Z \\
+\end{diagram}\\
+\bigskip
+{\small \textit{Универсальное свойство:}\\ существует и единственна стрелка $u : Q \to P$, $q_2 = p_2 \circ u$ и $q_1 = p_1 \circ u$}
+\end{frame}
+
+\begin{frame}{Про pullback, уравнитель и аксиому пучка (2)}
+\begin{diagram}[labelstyle=\scriptstyle]
+Q	&	&	&	&	\\
+	& \rdDashto^u\rdTo(4,2)^{q}\rdTo(2,4)_{q} &	&	&	\\
+	&	& X\times_Z X & \rTo_{p} &	X	\\
+	&	&	\dTo^{p}	& 	& \dTo_g \\
+	&	&	X	& \rTo^f &	Z	\\
+\end{diagram}\\
+\bigskip
+{\small pullback можно охарактеризовать как уравнитель стрелок $f$ и $g$}
+\end{frame}
+
+\begin{frame}{Про pullback, уравнитель и аксиому пучка (3)}
+\begin{diagram}[labelstyle=\scriptstyle]
+ P & \rTo^{p} & X & \pile{\rTo^f\\ \rTo_g} & Z \\
+ \uDashto^u & \ruTo^q & & & & \\
+ Q & & & & & \\
+\end{diagram}\\
+\bigskip
+\begin{small}
+\begin{itemize}
+	\item пусть $f, g : X \to Z$, уравнитель $Eq(f,g) = \{ x \; \vert \; f(x) = g(x) \}$
+	\item пусть $F = \{ f_i : X \to Z \}$, $Eq(F) = \{ x \; \vert \; f_i, f_j \in F, f_i(x) = f_j(x) \}$
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Про pullback, уравнитель и аксиому пучка (4)}
+\medskip
+{\small Пусть $X, Y \in Ob(C)$ и $f, g \in Hom(X, Y)$.}\\
+\medskip
+\begin{diagram}[labelstyle=\scriptstyle]
+ P & \rTo^{p} & X & \pile{\rTo^f\\ \rTo_g} & Y \\
+ \uDashto^u & \ruTo^q & & & & \\
+ Q & & & & & \\
+\end{diagram}
+
+\begin{small}
+\begin{itemize}
+	\item $f \circ p = g \circ p$
+	\item для любого объекта $O \in Ob(C)$ и стрелки $q : Q \to X$, $q \circ f = q \circ g$ существует и единственна стрелка $u : Q \to P$,  $p \circ u = q$
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Про pullback, уравнитель и аксиому пучка (5)}
+Аксиома пучка как уравнитель:\\
+\bigskip
+\begin{diagram}[labelstyle=\scriptstyle]
+\mathcal{F}(U) & \rTo & \prod_{i \in I} \mathcal{F}(U_i) &  & \pile{\rTo^f\\ \rTo_g} & \prod_{i,j \in I} \mathcal{F}(U_i \times_U U_j) \\
+\end{diagram}\\
+\bigskip
+{\small Интуиция: стрелки в категории можно рассматривать не как ``функции'', а как ``аппроксимацию''; все сечения составлены из одного ``материала''.}
+\end{frame}
+
+\begin{frame}{Про pullback, уравнитель и аксиому пучка (6)}
+В категории топологических пространств $\textbf{Top}$:\\
+\medskip
+\begin{small}
+\begin{itemize}
+	\item $U_i \times_U U_j$ -- это $U_i \cap U_j$, 
+	\item $\prod_{i \in I} \mathcal{F}(U_i) = \mathcal{F}(U_1) \times_U \mathcal{F}(U_2) \times_U \ldots \times_U \mathcal{F}(U_n)$, т.е. $\bigcap_{i \in I} \mathcal{F}(U_i)$.
+\end{itemize}
+\end{small}
+\bigskip
+Поэтому для пучка $\mathcal{F} : \mathcal{O}(X)^{op} \to \textbf{Sets}$ можно записать так:\\
+\begin{diagram}[labelstyle=\scriptstyle]
+\mathcal{F}(U) & \rTo & \bigcap_{i \in I} \mathcal{F}(U_i) &  & \pile{\rTo^f\\ \rTo_g} & \bigcap_{i,j \in I} \mathcal{F}(U_i \cap U_j) \\
+\end{diagram}
+\end{frame}
+
+\begin{frame}{Про pullback, уравнитель и аксиому пучка (7)}
+\begin{small}
+Пучок множеств $\mathcal{F}$ над топологическим пространством $(X, \mathcal{O}(X))$ -- это функтор $\mathcal{F} : \mathcal{O}(X)^{op} \to \textbf{Sets}$, для любого покрытия $U = \bigcup_{i \in I} U_i$ порождающий уравнитель
+\begin{diagram}[labelstyle=\scriptstyle]
+\mathcal{F}(U) & \rTo^{e} & & \prod_{i \in I} \mathcal{F}(U_i) &  & \pile{\rTo^f\\ \rTo_g} & \prod_{i,j \in I} \mathcal{F}(U_i \times_U U_j) \\
+\end{diagram}\\
+\medskip
+т. е. для любого $t \in \mathcal{F}(U)$, $e(t) = \{ t \vert_{U_i} \; \vert \; i \in I \}$ и семейства $t_i \in \mathcal{F}(U_i)$\\ 
+\begin{center}
+$f(\{t_i\}) = \{t_i \vert_{U_i \cap U_j}\}$, $g(\{t_i\}) = \{t_j\vert_{U_i \cap U_j}\}$
+\end{center}
+\end{small}
+\end{frame}
+
+
+\begin{frame}{Про pullback, уравнитель и аксиому пучка (8)}
+\begin{small}
+\begin{diagram}[labelstyle=\scriptstyle]
+\mathcal{F}(U) & \rTo^{e} & & \mathcal{F}(U_i) \cap \mathcal{F}(U_j) &  & \pile{\rTo^f\\ \rTo_g} & \mathcal{F}(U_i \cap U_j) \\
+\end{diagram}\\
+\medskip
+\begin{itemize}
+	\item $Ker(\mathcal{F}(U_i) \cap \mathcal{F}(U_j) \mapsto \mathcal{F}(U_i \cap U_j))$ -- это множество точек в $U$, не содержащихся одновременно в $U_i$ и $U_j$
+% 	\item если $t \in \mathcal{F}(U)$, $t' \in \mathcal{F}(U_i) \cap \mathcal{F}(U_j)$ и $t'' \in \mathcal{F}(U_i \cap U_j)$, то это ``одна и та же точка'' (можно отождествить $t$, $t'$ и $t''$)
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{}
+\begin{center}
+	\texttt{Окончание следует}
+\end{center}
+\end{frame}
+
+
+
+\begin{frame}{}
+    \thispagestyle{empty}
+    \begin{center}
+        {\large Спасибо!}
+    \end{center}
+\end{frame}
+
+
+%%% слайд помещается сюда
+%% \begin{frame}{Заголовок}
+%% \end{frame}
+
+\end{document}
