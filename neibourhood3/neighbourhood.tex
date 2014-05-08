@@ -1,0 +1,232 @@
+\documentclass{beamer}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amssymb,amsfonts,amsmath,mathtext}
+\usepackage{cite,enumerate,float,indentfirst}
+
+\usepackage{diagrams}
+\usepackage{extpfeil} % double-arrows
+
+\usepackage{ragged2e} % text justifying
+
+\graphicspath{{images/}}
+
+\usetheme{Pittsburgh}
+\usecolortheme{whale}
+
+\setbeamertemplate{footline}{\scriptsize{\hspace*{0.4cm}\insertframenumber}\vspace*{0.3cm}}
+\beamertemplatenavigationsymbolsempty
+
+\errorcontextlines 10000
+
+\begin{document}
+\title{\Large{Окрестностная грамматика}}
+\subtitle{\textit{вторая часть}}
+\author{Константин Соколов}
+\institute[]
+{Mathlingvo, СПбГУ\\ \bigskip  \url{http://nlu-rg.ru}}
+\date{Санкт-Петербург, 2014} 
+% Создание заглавной страницы
+\begin{frame}
+    \thispagestyle{empty}
+    \titlepage
+\end{frame}
+
+\begin{frame}{План}
+\setcounter{framenumber}{1}
+    \begin{itemize}
+		\item теоретико-категорная трактовка композициональности
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Тексты}
+\begin{itemize}
+	\item В. А. Лапшин. Топологии синтаксических отношений формальных языков. 2008. arXiv:0802.4181
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Пучок (повторение)}
+\begin{small}
+Пучок множеств $\mathcal{F}$ над топологическим пространством $(X, \mathcal{O}(X))$ -- это функтор $\mathcal{F} : \mathcal{O}(X)^{op} \to \textbf{Sets}$, для любого покрытия $U = \bigcup_{i \in I} U_i$ порождающий уравнитель
+\begin{diagram}[labelstyle=\scriptstyle]
+\mathcal{F}(U) & \rTo^{e} & & \prod_{i \in I} \mathcal{F}(U_i) &  & \pile{\rTo^f\\ \rTo_g} & \prod_{i,j \in I} \mathcal{F}(U_i \times_U U_j) \\
+\end{diagram}\\
+\medskip
+т. е. для любого $t \in \mathcal{F}(U)$, $e(t) = \{ t \vert_{U_i} \; \vert \; i \in I \}$ и семейства $t_i \in \mathcal{F}(U_i)$\\ 
+\begin{center}
+$f(\{t_i\}) = \{t_i \vert_{U_i \cap U_j}\}$, $g(\{t_i\}) = \{t_j\vert_{U_i \cap U_j}\}$
+\end{center}
+\end{small}
+\end{frame}
+
+\begin{frame}{Пучок (повторение)}
+Обобщение:\\
+\medskip
+\begin{small}
+\begin{itemize}
+	\item базовое пространство заменяется категорией
+	\item понятие окрестности заменяется понятием \textit{решета}
+	\item топологическая структура заменяется \textit{топологией Гротендика}
+	\item топологическое пространство заменяется \textit{сайтом}
+\end{itemize}
+\end{small}
+\end{frame}
+
+
+\begin{frame}{Топология Гротендика (1)}
+\begin{small}
+\textit{Решето} на объекте $A$ -- это семейство стрелок $S = \{ f \; \vert \; Cod(f) = A \}$ таких, что если $f \in S$ и $h : B \to Dom(f)$, то $f \circ h \in S$\\
+\medskip
+Решето $S$, \textit{порожденное семейством стрелок} (с общим кодоменом) -- это наименьшее решето, содержащее все стрелки данного семейства.
+\end{small}
+\end{frame}
+
+\begin{frame}{Топология Гротендика (2)}
+\medskip
+\begin{small}
+Топология Гротендика $J$ сопоставляет каждому объекту $A \in Ob(\mathcal{C})$ множество решет $J(A)$ таких, что:\\
+\bigskip
+\begin{itemize}
+	\item \textit{(максимальность)} максимальное решето $h_A = \{ f \; \vert \; Cod(f) = A \}$ принадлежит $J(A)$
+	\item \textit{(стабильность)} если $S \in J(A)$ и $h : B \to A$ -- произвольный морфизм c концом в $A$, то решето $h^*(S) = \{ f \; \vert \; Cod(f) = B, h \circ f \in S \} \in J(B)$
+	\item \textit{(транзитивность)} если $S \in J(A)$ и $R$ -- решето на $A$ такое, что $h^*(R) \in J(B)$ для всех $h : B \to A$, то $R \in J(A)$
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Топология Гротендика (3)}
+\medskip
+\begin{small}
+Если $(X, \mathcal{O}(X))$ -- топологическое пространство, то
+\bigskip
+\begin{itemize}
+	\item частично упорядоченное множество $\mathcal{O}(X)$ -- категория
+	\item $S = \{ U_i \hookrightarrow U \; \vert \; i \in I \}$ -- решето над $U \in Ob(\mathcal{O}(X))$
+	\item $J_{\mathcal{O}(X)}$ -- топология Гротендика, индуцированная введением топологической структуры на $X$
+	\item $S \in J_{\mathcal{O}(X)}(U)$ тогда и только тогда, когда $\bigcup_{i \in I} U_i = U$
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Топология Гротендика (4)}
+\begin{small}
+\bigskip
+\begin{itemize}
+	\item Пара $(C, J)$, где $C$ -- категория, $J$ -- топология Гротендика, называется \textit{сайтом}
+	\item Функтор $\mathcal{F} : C^{op} \to \textbf{Sets}$ -- предпучок над $C$
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Топология Гротендика (5)}
+\begin{small}
+Cечения здесь -- это $\mathcal{F}(A)$, $A \in Ob(C)$, мы же хотим определить набор сечений, некоторым образом ``согласованных'' с решетом $S(A) \in J$. Для этого определим \textit{согласованное семейство} (сечений) решета $S(A)$:
+\bigskip
+\begin{itemize}
+	\item Каждой стрелке $f : B \to A$, $f \in S(A)$ сопоставляется \\элемент $x_f \in \mathcal{F}(B)$ такой, что для любой стрелки $g : C \to B$ выполнено	$\mathcal{F}(g)(x_f) = x_{f \circ g}$
+	\item Элемент $x \in \mathcal{F}(A)$ т.ч. $\mathcal{F}(f)(x) = x_f$ для всех $f \in S(A)$ называется \textit{amalgamation}
+	\item $\mathcal{F} : C^{op} \to \textbf{Sets}$ -- пучок, если для любого покрытия (решетами) любого объекта из $C$ все согласованные семейства сечений имеют единственную ``амальгаму''.
+\end{itemize}
+\end{small}
+\end{frame}
+
+
+% \begin{frame}{Топология Гротендика (6)}
+% \medskip
+% \begin{small}
+% Пусть дан \textit{сайт} $(C, J)$. Предпучок $\mathcal{F} : C^{op} \to Sets$ называется \textit{пучком}, если для каждого объекта $A \in Ob(C)$ и каждого решета $S \in J(A)$, диаграмма\\
+% \begin{diagram}[labelstyle=\scriptstyle,loose,height=.8em,width=2pt]
+% \mathcal{F}(A) & \rTo^{e} & \prod \limits_{f \in S} \mathcal{F}(Dom(f)) & \pile{\rTo^p\\ \rTo_q} & \prod \limits_{f,g \; f \in S} \mathcal{F}(Dom(g)) \\
+% \end{diagram}
+% является уравнителем,\\
+% \smallskip
+% \begin{itemize}
+% 	\item $Dom(f) = Cod(g)$
+%	\item $e(x) = \{ \mathcal{F}(f)(x) \}_f$
+%    \item произведение справа берется по всем $f$ и $g$, для которых определена композиция (откуда $f \circ g \in S$)
+%    \item отображение $p$ определяется через значения $\mathcal{F}$ на композициях стрелок в $C$ (т.е. $p_{f,g}(x) = \mathcal{F}(f \circ g)(x)$ в предыдущем примере)
+%    \item отображение $q$ определяется через действие $\mathcal{F}(g)$ на элементах $x_f$ (т.е. $q_{f,g}(x) = \mathcal{F}(g)(x_f)$ в предыдущем примере)
+% \end{itemize}
+%\end{small}
+% \end{frame}
+
+\begin{frame}{Принцип композициональности (1)}
+\begin{small}
+Объекты категории $Ext(D_G)$:\\
+\medskip
+\begin{itemize}
+	\item мы рассматриваем множества диаграмм:
+		\begin{itemize}
+			\item $D$ -- все диаграммы над фиксированым ``алфавитом''
+			\item $G \subseteq D$ -- фиксированный набор диаграмм (окрестностная грамматика)
+			\item $D_G \subseteq D$ -- диаграммы, корректные относительно $G$
+		\end{itemize}
+	\item мы хотим, чтобы объектами категории были не просто диаграммы, но диаграммы вместе с их ``грамматическим разбором'', т.е. пары вида $(D, P)$, где $P$ -- синтаксическое покрытие (аналог дерева синтаксического разбора)
+	\item т.е. $Ob(Ext(D_G)) = \{ (D_i, P_i) \; \vert \; D_i \in D_G \cup G \}$
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Принцип композициональности (2)}
+\begin{small}
+Морфизмы категории $Ext(D_G)$ должны реализовывать отображение включения диаграмм, уважающие их покрытия:\\
+\medskip
+\begin{itemize}
+	\item если $A, B \in D_G$, то $Hom((A, P^A), (B, P^B))$ состоит из отображений включения $s : A \to B$, согласованных на покрытиях
+	\item если $A \notin D_G$, $B \in D_G$, то $Hom((A, \varnothing), (B, P^B))$ состоит из отображений включения $A$ в диаграммы покрытия $P^B$
+	\item если $A \in D_G$, $B \notin D_G$, то $Hom((A, P^A), (B, \varnothing)) = \varnothing$
+	\item если $A \notin D_G$, $B \notin D_G$, то $Hom((A, \varnothing), (B, \varnothing)) = id$, если $A = B$ и $Hom((A, \varnothing), (B, \varnothing)) = \varnothing$, если $A \neq B$
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Принцип композициональности (3)}
+\begin{small}
+\textit{Синтаксическая топология} $J_G$ на основе окрестностной грамматики $G$ -- это топология Гротендика на $Ext(D_G)$, так что\\
+\medskip
+\begin{itemize}
+	\item если $A \in D_G$, то $J_G(D)$ содержит максимальное решето на объекте $A$
+	\item если $A = (D, P) \in D_G$, то семейство морфизмов элементов покрытия $P$ принадлежит $J_G(A)$
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Принцип композициональности (4)}
+\textit{Принцип композициональности:}\\
+\medskip
+\begin{block}{}
+\justifying
+\begin{small}
+Пусть $G = \{ G_a \; \vert \; a \in A \}$ -- окрестностная грамматика, $Ext(D_G)$ -- категория корректных диаграмм на множестве диаграмм $D$ и $J_G$ -- синтаксическая топология, определяемая грамматикой $G$. Предпучок значений $\mathcal{F} : Ext(D_G) \to \textbf{Sets}$ является пучком тогда и только тогда, когда каждое значение корректной диаграммы $D \in Ob(Ext(D_G))$ однозначно определяется соответствующим семейством значений на окрестностях его синтаксического покрытия.
+\end{small}
+\end{block}
+\end{frame}
+
+\begin{frame}{Замечания}
+\medskip
+\begin{small}
+\begin{itemize}
+	\item Окрестностная грамматика для КС-языков похожа на Tree Adjoining Grammar (Joshi, Levy, Takahashi. 1975).
+	\item Линейно-индексируемые грамматики, вершинные грамматики, CCG и TAG слабо эквивалентны (Vijay-Shanker, Weir. 1994).
+	\item Окрестностные грамматики и теоретико-модельный синтаксис.
+\end{itemize}
+\end{small}
+\end{frame}
+
+
+
+\begin{frame}{}
+    \thispagestyle{empty}
+    \begin{center}
+        {\large Спасибо!}
+    \end{center}
+\end{frame}
+
+
+%%% слайд помещается сюда
+%% \begin{frame}{Заголовок}
+%% \end{frame}
+
+\end{document}
