@@ -31,47 +31,57 @@
 \begin{frame}{План}
 \setcounter{framenumber}{1}
     \begin{itemize}
-		\item квантификация и композициональность
-		\item обзор следующего сезона
+		\item квантификация 
+		\item теоретико-игровая семантика
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Тексты}
 \begin{itemize}
 	\item J. Hintikka. \textit{Quantifiers in logic and quantifiers in natural languages.} 1979.
-	\item 
-	\item 
+    \item J. Hintikka. \textit{Game-theoretical semantics: insights and prospects.} 1982.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{}
 \begin{center}
-Предварительные замечания
+Квантификация
 \end{center}
 \end{frame}
 
-\begin{frame}{Т-схема}
+\begin{frame}{Квантификация (1)}
+Г. Фреге, ``Begriffsschrift'', ``Смысл и денотат''\\
+\bigskip
 \begin{itemize}
-	\item Тарский, определение истинности, Т-схема
+	\item попытка разработать формальный однозначный язык науки, смысл выражений которого будет точно определен
+	\item уточнение понятий ``смысл'' и ``значение''
+	    \begin{itemize}
+	        \item значение простого выражения -- объект 
+	        \item значение сложного выражения -- истинностное значение
+	    \end{itemize}
+	\item принцип композициональности
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Квантификация (2)}
+А. Тарский
+\begin{itemize}
+	\item смысл как условия истинности 
 	\item объектный язык и метаязык
-	\item '$P$' истинно, если только если $P$
-	\item 'снег бел' если и только если снег бел
+	\item Т-схема: '$P$' тогда и только тогда, когда $P$.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Обобщенные кванторы}
+\begin{frame}{Квантификация (3)}
+Вопрос: что такое денотат (значение) выражения с квантором?\\
+\bigskip
 \begin{itemize}
-	\item 
-	\item 
-	\item 
-\end{itemize}
-\end{frame}
-
-\begin{frame}{PTQ}
-\begin{itemize}
-	\item 
-	\item 
-	\item 
+	\item первоначальная мотивация введения кванторов в формальный язык -- формализация выражений естественного языка
+	\begin{itemize}
+    	\item ``для всех X верно, что...''
+	    \item ``существует X такой, что...''
+	    \item ``кто-то'', ``что-то''
+	\end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -153,118 +163,6 @@
 	\item 
 \end{itemize}
 \end{frame}
-
-
-
-\begin{frame}{}
-\begin{center}
-Обзор следующего сезона
-\end{center}
-\end{frame}
-
-\begin{frame}{Где мы находимся (1)}
-\begin{small}
-Что мы успели за этот год (ну, почти):\\
-\medskip
-\begin{itemize}
-    \item основные семантические концепции интенсиональной логики
-    \begin{itemize}
-        \item семантика смысла и денотата Г. Фреге
-        \item теория объектов и пропозиций Б. Рассела
-        \item концепция истины А. Тарского
-        \item семантика возможных миров С. Крипке
-        \item теоретико-типовая концепция К. Айдукевича    
-    \end{itemize}
-\end{itemize}
-\end{small}
-\end{frame}
-
-\begin{frame}{Где мы находимся (2)}
-\begin{small}
-\begin{itemize}
-    \item ликбез по лингвистической семантике
-    \begin{itemize}
-        \item грамматическая семантика
-        \item лексическая семантика
-        \item формальная семантика как семантика предложения
-    \end{itemize}
-    \item ликбез по математике и математической логике
-    \begin{itemize}
-        \item множества со структурой
-        \item начала теории категорий
-        \item начала теории моделей
-        \item $\lambda$-исчисление
-        \item начала теории типов и Agda
-        \item логические исчисления и табличный метод
-    \end{itemize}
-\end{itemize}
-\end{small}
-\end{frame}
-
-\begin{frame}{Где мы находимся (3)}
-\begin{small}
-\begin{itemize}
-    \item лингвистические формализмы
-    \begin{itemize}
-        \item универсальная грамматика Р. Монтегю
-        \item комбинаторные грамматики
-        \item Dynamic Predicate Logic 
-        \item Discourse Representation Theory
-        \item Hybrid Logic Dependency Semantics
-    \end{itemize}
-    \item моделирование семантической композиции
-    \begin{itemize}
-        \item с помощью $\lambda$-исчисления
-        \item с помощью унификации графовых структур
-        \item топологическая трактовка принципа композициональности
-    \end{itemize}
-\end{itemize}
-\end{small}
-\end{frame}
-
-
-\begin{frame}{Обзор следующего сезона (1)}
-\begin{small}
-Основные темы:\\
-\medskip
-\begin{itemize}
-    \item когнитивное направление в лингвистике и ИИ
-    \begin{itemize}
-        \item когнитивная семантика (Дж. Лакофф и др.)
-        \item концептуальные пространства (П. Гэрденфорс и др.)
-        \item моделирование когнитивных процессов (Б. Гёрцель и др.)
-    \end{itemize}
-	\item данные и их структура
-	\begin{itemize}
-    	\item Information Geometry (C.-И. Амари)
-    	\item дифференциальная геометрия в машинном обучении
-    	\item Computational Topology
-	\end{itemize}
-\end{itemize}
-\end{small}
-\end{frame}
-
-\begin{frame}{Обзор следующего сезона (2)}
-\begin{small}
-Основные темы:\\
-\medskip
-\begin{itemize}
-	\item обнаружение структуры данных
-	\begin{itemize}
-    	\item Pattern Theory (У. Гренандер, Д. Мамфорд)
-	    \item Representation Learning
-	    \item Deep Learning
-	\end{itemize}
-	\item гибридные (логико-статистические) подходы
-	\begin{itemize}
-    	\item нейросимвольная интеграция
-	    \item Gradient Symbol Processing (П. Смоленский)
-	    \item композициональные дистрибутивные семантические модели (Митчелл, Лапата, Садрзаде и пр.)
-	\end{itemize}
-\end{itemize}
-\end{small}
-\end{frame}
-
 
 
 \begin{frame}{}
