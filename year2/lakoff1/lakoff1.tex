@@ -1,0 +1,423 @@
+\documentclass{beamer}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amssymb,amsfonts,amsmath,mathtext}
+\usepackage{cite,enumerate,float,indentfirst}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+%% Gentzen style natural deduction proof trees
+\usepackage{bussproofs}
+\usepackage{latexsym}
+
+\graphicspath{{images/}}
+
+\usetheme{Rochester}
+\usecolortheme{seagull}
+
+\setbeamertemplate{footline}{\scriptsize{\hspace*{0.4cm}\insertframenumber}\vspace*{0.3cm}}
+\beamertemplatenavigationsymbolsempty
+
+\errorcontextlines 10000
+
+\begin{document}
+\title{\Large{Когнитивная лингвистика, pt. I}}
+\subtitle{\textit{критика формальной семантики}}
+\author{Константин Соколов}
+\institute[]
+{Mathlingvo, СПбГУ, Eventflow API\\ \bigskip  \url{http://nlu-rg.ru}}
+\date{Санкт-Петербург, 2014} 
+% Создание заглавной страницы
+\begin{frame}
+    \thispagestyle{empty}
+    \titlepage
+\end{frame}
+
+\begin{frame}{План}
+\setcounter{framenumber}{1}
+    \begin{itemize}
+        \item Краткая история формальной семантики
+        \medskip
+        \item Критика формалистского проекта когнитивистами
+        	\smallskip
+        	\begin{itemize}
+				\item невозможность объективистского подхода в семантике
+				\item бомба Патнэма
+        	\end{itemize}
+    \end{itemize}
+\end{frame}
+
+% 1. Конструкции и понятия
+% 	   - топологическое пространство (повторение)
+%      - предпучок и пучок (повторение)
+%	   - гомоморфизм пучков
+%      - накрытие, универсальное накрытие, сечение, поднятие
+%      - немного алгебраической топологии: 
+% 			- критерий существования поднятия через подгруппы фундаментальной группы
+% 			- частичный порядок на множестве накрытий соответствует частичному порядку на множестве подгрупп фундаментальной группы
+%      - пучок непрерывных сечений накрытия
+%      - расслоенное произведение пучков
+
+% 2. Семантика для логики первого порядка
+
+% 3. Семантика для ``FOS4''
+
+% 4. Теоретико-категорная формулировка понятия пучка, предпучок как функтор, категория предпучков $Sets^{\mathcal{C}^{op}}$
+
+
+\begin{frame}{}
+\begin{center}
+	\textbf{Предварительные замечания}
+\end{center}
+\end{frame}
+
+\begin{frame}{Предварительные замечания}
+\begin{itemize}
+	\item Задача -- расширить топологическую семантику Тарского-МакКинси на модальную логику первого порядка
+	\medskip
+	\item Нам понадобится обширный аппарат:
+		\smallskip
+		\begin{itemize}
+			\item общая топология
+			\item теория пучков
+			\item некоторые сведения из алгебраической топологии
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{}
+\begin{center}
+	\textbf{Конструкции и понятия}
+\end{center}
+\end{frame}
+
+\begin{frame}{Конструкции и понятия}
+\begin{itemize}
+	\item топологическое пространство {\small \textit{(повторение)}}
+	\item предпучок и пучок {\small \textit{(повторение)}}
+	\item немного алгебраической топологии:
+		\begin{itemize}
+			\item накрытие
+			\item сечение
+			\item поднятие
+		\end{itemize}
+	\item пучок непрерывных сечений накрытия
+	\item гомоморфизм пучков
+	\item расслоенное произведение пучков
+\end{itemize}
+\end{frame}
+
+%   топология
+\begin{frame}{Топологическое пространство}
+Дано множество $X$. Система подмножеств $\mathcal{O} \subseteq 2^X$ называется \textit{топологической структурой} (или \textit{топологией}) на $X$, если:\\
+\bigskip
+\begin{itemize}
+	\item $\varnothing, X \in \mathcal{O}$
+	\item объединение $\bigcup U_i$ \textit{произвольного} числа подмножеств $U_i \in \mathcal{O}$ принадлежит $\mathcal{O}$
+	\item пересечение $\bigcap U_i$ \textit{конечного} числа подмножеств $U_i \in \mathcal{O}$ принадлежит $\mathcal{O}$
+\end{itemize}
+\bigskip
+Пара $(X, \mathcal{O}(X))$ называется \textit{топологическим пространством}.
+\end{frame}
+
+%   предпучок
+\begin{frame}{Предпучок}
+\begin{itemize}
+	\item Топологическое пространство $(X, \mathcal{O}(X))$
+	\item Каждому открытому множеству $U \subset \mathcal{O}(X)$ сопоставляется множество со структурой $\mathcal{F}(U)$ (\textit{сечение})
+	\item Для любых двух открытых множеств $U, V \subset \mathcal{O}(X)$, т. ч. $U \supseteq V$, определим гомоморфизм $\rho^U_V : \mathcal{F}(U) \to \mathcal{F}(V)$ (\textit{ограничение})
+	\item Если $U = V$, то $\rho^U_V = \rho^V_U = 1_U$
+	\item Если $U \supset V \supset W$, то $\rho^V_W \circ \rho^U_V = \rho^U_W$
+\end{itemize}
+\bigskip
+$\mathcal{F}$ - \textit{предпучок} над топологическим пространством $(X, \mathcal{O}(X))$.
+\end{frame}
+
+%   пучок
+\begin{frame}{Пучок}
+\begin{itemize}
+	\item Аксиома локальности
+		\medskip
+		\begin{itemize}
+			\item Если $U = \bigcup U_i$, то для любых $U_i, U_j \subset U$ определены морфизмы $\rho^U_{U_i}$ и $\rho^U_{U_j}$
+			\medskip
+			\item Тогда, если $\rho^U_{U_i}(x) = \rho^U_{U_j}(y)$, то $x = y$
+		\end{itemize}
+	\bigskip
+	\item Аксиома склейки
+		\medskip
+		\begin{itemize}
+			\item Если $U = \bigcup U_i$, то для любых $U_i, U_j \subset U$, т.ч. $U_i \cap U_j \neq \varnothing$, определены морфизмы $\rho^U_{U_i}$, $\rho^U_{U_j}$ и $\rho^U_{U_i \cap U_j}$
+			\medskip
+			\item Тогда, если $x \in \mathcal{F}(U)$, то $(\rho^{U_j}_{U_i \cap U_j} \circ \rho^U_{U_j})(x) = (\rho^{U_i}_{U_i \cap U_j} \circ \rho^U_{U_i})(x)$
+		\end{itemize}
+\end{itemize}
+\bigskip
+Если эти условия выполнены, то $\mathcal{F}$ называется \textit{пучком}.
+\end{frame}
+
+%   сечение и слой
+\begin{frame}{Расслоенное пространство (1)}
+Расслоенное пространство $(\widetilde{X}, p)$ с базой $X$:\\
+\bigskip
+\begin{itemize}
+    \item $X$ и $\widetilde{X}$ -- топологические пространства
+    \item отображение $p : \widetilde{X} \to X$ непрерывно
+	\item сечение $s_U : U \to \widetilde{X}$, $U \in \mathcal{O}(X)$, $p \circ s_U = 1_U$
+    \item слой $p^{-1}(U) = \{ s_U : U \to \widetilde{X} \; \vert \; p \circ s_U = 1_U \}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Расслоенное пространство (2)}
+Пучок ростков сечений расслоенного пространства $(\widetilde{X}, p)$:\\
+\bigskip
+\begin{itemize}
+    \item $\mathcal{F}(U)$ -- множество сечений в $(\widetilde{X}, p)$ 
+    \item $s_U \vert_V$ -- ограничение сечения над $U$ на $V \subseteq U$
+    \item росток сечений -- класс эквивалентности сечений $s_{U_i}$
+    \item $\mathcal{F}(V) = p^{-1}(U) \vert_V = \{ s_U \vert_V : p \circ s_U \vert_V = 1_V \}$
+\end{itemize}
+\bigskip
+База $X$, сечения $\mathcal{F}(U)$, $U \subseteq \mathcal{O}(X)$ и отображения ограничения $\rho^U_V : \mathcal{F}(U) \to \mathcal{F}(V)$ образуют пучок.
+\end{frame}
+
+%   накрытие
+\begin{frame}{Накрытие (1)}
+Накрытие $p : \widetilde{X} \to X$:
+\bigskip
+\begin{itemize}
+	\item покрытие пространства $X$ открытыми множествами $\{ U_\alpha \}$
+	\item $p^{-1}(U_\alpha) = \bigcup \widetilde{U_i}$ -- объединение непересекающихся открытых множеств в $\widetilde{X}$
+	\item $p$ гомеоморфно отображает $\widetilde{U_i}$ на $U_\alpha$
+	\item возможно $p^{-1}(U_\alpha) = \varnothing$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Накрытие (2)}
+\begin{center}
+	\begin{figure}[H]
+		%\includegraphics[scale=0.3]{covering1.png} 
+	\end{figure}
+\end{center}
+\end{frame}
+
+\begin{frame}{Накрытие (3)}
+:\\
+\medskip
+\begin{itemize}
+	\item определим сечение над точкой $x \in X$ как индуктивный предел множеств $\mathcal{F}(U)$
+	\item определим $\widetilde{\mathcal{F}} = \bigcup \widetilde{\mathcal{F}}(x)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Накрытие (4)}
+Пучок непрерывных сечений накрытия:\\
+\medskip
+\begin{itemize}
+    \item Годеман, теорема 1.2.1 (стр. 132): ``Всякий пучок множеств с базой $X$ изоморфен пучку ростков сечений некоторого накрывающего пространства над $X$, определенного однозначно с точностью до изоморфизма''.
+    \smallskip
+	\item Годеман, замечание 1.2.1 (стр. 132): ``В дальнейшем мы не будем делать \textit{никакого различия} между пучком множеств $\mathcal{F}$ и накрывающим пространством $(\widetilde{\mathcal{F}}, p)$''.
+\end{itemize}
+\end{frame}
+
+%   подгруппы фундаментальной группы
+\begin{frame}{Накрытие (5)}
+Накрытия и фундаментальная группа:\\
+\medskip
+\begin{itemize}
+	\item поднятие $\widetilde{f} : Y \to \widetilde{X}$ отображения $f : Y \to X$, $p \circ \widetilde{f} = f$ 
+	\item критерий существования поднятия и подгруппы $\pi_1(X, x_0)$
+	\item множество накрытий $\{ p_i : \widetilde{X_i} \to X \}$ и подгруппы $\pi_1(X, x_0)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Понятия}
+\begin{itemize}
+	\item Гомоморфизм пучков 
+	\item Расслоенное произведение пучков
+\end{itemize}
+\end{frame}
+
+
+% 3. Семантика для FOL
+\begin{frame}{}
+\begin{center}
+	\textbf{Cемантика для FOL}
+\end{center}
+\end{frame}
+
+\begin{frame}{FOL (1)}
+\begin{itemize}
+	\item Язык $\mathcal{L}$ с сигнатурой $\sigma = \{ R_i, f_j, c_k \}_{i \in I, j \in J, k \in K}$
+		\medskip
+		\begin{itemize}
+			\item $R_i$ -- реляционные символы
+			\item $f_j$ -- функциональные символы
+			\item $c_k$ - константы
+		\end{itemize}
+	\bigskip
+	\item Структура $M = \langle D, R_i^M, f_j^M, c_k^M \rangle_{i \in I, j \in J, k \in K}$
+		\medskip
+		\begin{itemize}
+			\item домен $D$ 
+			\item $R_i^M \subseteq D^n$ -- интерпретация реляционного символа $R_i$
+			\item $f_j^M : D^n \to D$ -- интерпретация функционального символа $f_j$
+			\item $c_k^M \in D$ -- интерпретация константы $c_k$
+		\end{itemize}
+	\bigskip
+	\item Истинность формулы $\phi(x_1, \dots, x_n)$ в модели $M$
+		\medskip
+		\begin{itemize}
+			\item $M \models \phi(a_1, \dots, a_n)$
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{FOL (2)}
+$[ \! [ \, x \, \vert \, \phi \, ] \! ]$ -- интерпретация формулы $\phi$ со свободной переменной $x$\\
+\bigskip
+\begin{small}
+\begin{itemize}
+	\item $[ \! [ \, \sigma \, ] \! ] \subseteq D^0$ 
+	\item $[ \! [ \, x_1, \ldots, x_n, y \, \vert \, \phi \, ] \! ] = [ \! [ \, x_1, \ldots, x_n \, \vert \, \phi \, ] \! ] \times D \; \subseteq \; D^{n+1}$ 
+	\item $[ \! [ \, x, y \, \vert \, x = y \, ] \! ] = \{ \, (a, a) \in D \times D \, \vert \, a \in D \, \}$ 
+	\item $[ \! [ \, x_1, \ldots, x_n \, \vert \, R(x_1, \ldots, x_n) \, ] \! ] = R^M \subseteq D^n$ 
+	\item $[ \! [ \, x_1, \ldots, x_n \, \vert \, \phi \wedge \psi \, ] \! ] = [ \! [ \, x_1, \ldots, x_n \, \vert \, \phi \, ] \! ] \cap [ \! [ \, x_1, \ldots, x_n \, \vert \, \psi \, ] \! ]$ 
+	\item $[ \! [ \, x_1, \ldots, x_n \, \vert \, \neg \phi \, ] \! ] = D^n \setminus [ \! [ \, x_1, \ldots, x_n \, \vert \, \phi \, ] \! ]$
+	\item $[ \! [ \, x_1, \ldots, x_n \, \vert \, \exists y \phi \, ] \! ] = $\\ \smallskip $\{ \, (a_1, \ldots, a_n) \in D^n \, \vert \, (a_1, \ldots, a_n, b) \in [ \! [ \, x_1, \ldots, x_n, y \, \vert \, \phi \, ] \! ], b \in D \, \}$
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{FOL (3)}
+Геометрический смысл: \textit{проекция} $p_n : D^{n+1} \to D^n$\\
+\medskip
+\begin{itemize}
+	\item если $D^0 = \{ * \}$ -- синглетон
+		\begin{itemize}
+			\item $p_0(\top) = *$
+			\item $p_0(\bot) = \varnothing$
+		\end{itemize}
+	\item {\small $p_n(a_1, \ldots, a_n, b) = (a_1, \ldots, a_n)$}
+	\item {\small $[ \! [ \, x_1, \ldots, x_n \, \vert \, \exists y \phi \, ] \! ] = p_n([ \! [ \, x_1, \ldots, x_n \, \vert \, \phi \, ] \! ])$}
+	\item {\small $[ \! [ \, x_1, \ldots, x_n, y \, \vert \, \psi \, ] \! ] = p_n^{-1}([ \! [ \, x_1, \ldots, x_n \, \vert \, \psi \, ] \! ])$}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{FOL (4)}
+\begin{center}
+	\begin{figure}[H]
+		%\includegraphics[scale=0.45]{fol.png} 
+	\end{figure}
+\end{center}
+\end{frame}
+
+
+
+% 4. Топологическая семантика для FOS4
+\begin{frame}{}
+\begin{center}
+	\textbf{Cемантика для FOS4}
+\end{center}
+\end{frame}
+
+\begin{frame}{FOS4 (1)}
+Интерпретация:\\
+\medskip
+{\small
+\begin{itemize}
+	\item топологическое пространство $X$ и пучок $\pi : D \to X$ -- домен
+	\item $[ \! [ \, R_i \, ] \! ] \subseteq D^n$, где $D^n$ -- расслоенное произведение пучков -- интерпретация $n$-местного реляционного символа $R_i$
+	\item гомоморфизм пучков $[ \! [ \, f_j \, ] \! ] : D^n \to D$ -- интерпретация $n$-местного функционального символа $f_j$ 
+	\item гомоморфизм пучков $[ \! [ \, c_k \, ] \! ] : D^0 \to D$, $D^0 = X$ -- интерпретация константы $c_k$
+\end{itemize}
+}
+\end{frame}
+
+\begin{frame}{FOS4 (2)}
+Для каждого слоя $D_p$ над $p \in X$ функция интерпретации $[ \! [ \, \cdot \, ] \! ]_p$\\
+\medskip
+{\small
+\begin{itemize}
+	\item $[ \! [ \, R_i \, ] \! ]_p \subseteq D_p^{n_i}$
+	\item $[ \! [ \, f_j \, ] \! ]_p : D_p^{n_j} \to D_p$
+	\item $[ \! [ \, c_k \, ] \! ]_p \in D_p$
+\end{itemize}
+}
+\medskip
+{\small $\langle D_p, [ \! [ \, R_i \, ] \! ]_p, [ \! [ \, f_j \, ] \! ]_p, [ \! [ \, c_k \, ] \! ]_p \rangle_{i \in I, j \in J, k \in K}$ -- прежняя структура для FOL}
+\end{frame}
+
+\begin{frame}{FOS4 (3)}
+Переход к объединению по слоям:\\
+\bigskip
+{\small
+	\begin{itemize}
+		\item $[ \! [ \, x_1, \ldots, x_n \, \vert \, \phi \wedge \psi \, ] \! ] = \bigcup_{p \in X} [ \! [ \, x_1, \ldots, x_n \, \vert \, \phi \wedge \psi \, ] \! ]_p =$\\ \medskip
+		\item[] $= \bigcup_{p \in X}( [ \! [ \, x_1, \ldots, x_n \, \vert \, \phi \, ] \! ]_p \cap [ \! [ \, x_1, \ldots, x_n \, \vert \, \psi \, ] \! ]_p ) =$\\ \medskip
+		\item[] $= \left(\bigcup_{p \in X}[ \! [ \, x_1, \ldots, x_n \, \vert \, \phi \, ] \! ]_p \right) \cap \left(\bigcup_{p \in X}[ \! [ \, x_1, \ldots, x_n \, \vert \, \psi \, ] \! ]_p \right) =$\\ \medskip
+		\item[] $= [ \! [ \, x_1, \ldots, x_n \, \vert \, \phi \, ] \! ] \cap [ \! [ \, x_1, \ldots, x_n \, \vert \, \psi \, ] \! ]$\\ 
+		\bigskip
+		\item $[ \! [ \, \exists y \phi \, ] \! ] = \bigcup_{p \in X}[ \! [ \, \exists y \phi \, ] \! ]_p = \pi([ \! [ \, y \, \vert \, \phi ] \! ]) \subseteq X$
+	\end{itemize}
+}
+\end{frame}
+
+\begin{frame}{FOS4 (4)}
+\begin{center}
+	\begin{figure}[H]
+		%\includegraphics[scale=0.4]{fos4_1.png} 
+	\end{figure}
+\end{center}
+\end{frame}
+
+\begin{frame}{FOS4 (5)}
+Интерпретация $\Box$:\\
+\bigskip
+{\small
+	\begin{itemize}
+		\item $[ \! [ \, x_1, \ldots, x_n \, \vert \, \Box \phi \, ] \! ] = int_{D^n} [ \! [ \, x_1, \ldots, x_n \, \vert \, \phi \, ] \! ]_p \subseteq D^n$\\ \medskip
+		\item $[ \! [ \, \Box \sigma \, ] \! ] = int_{X} [ \! [ \, \sigma \, ] \! ]_p \subseteq X$
+	\end{itemize}
+}
+\end{frame}
+
+
+\begin{frame}{FOS4 (6)}
+\begin{center}
+	\begin{figure}[H]
+		%\includegraphics[scale=0.4]{fos4_2.png} 
+	\end{figure}
+\end{center}
+\end{frame}
+
+
+% Предпучок над предпорядком или $\mathcal{F} : \mathcal{C}^{op} \to \textbf{Sets}$
+% Нас, конечно, интересует не отдельный предпучок, а все возможные. Можно определить отображение предпучков и построить категорию предпучков
+%    $Set^{\mathcal{C}^{op}}$, объекты которых - функторы $\mathcal{F}$ (т.е. предпучки), а стрелки - естественные преобразования этих функторов,
+%    т.е. отображения предпучков.
+% Пример про росток функций
+% Индуктивный предел сечений
+% Конструкция топологического пространства $\mathcal{\bar{F}}$ на множестве $\mathcal{F}_x$
+% Отображение $\pi : \mathcal{\bar{F}}(X) \to X$ - накрытие
+
+
+\begin{frame}{}
+    \thispagestyle{empty}
+    \begin{center}
+        {\large Спасибо!}
+    \end{center}
+\end{frame}
+
+
+%%% слайд помещается сюда
+%% \begin{frame}{Заголовок}
+%% \end{frame}
+
+\end{document}
