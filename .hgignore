@@ -29,3 +29,5 @@ syntax: glob
 *.mtc
 *.mtc0
 *.bak
+
+site/.idea
