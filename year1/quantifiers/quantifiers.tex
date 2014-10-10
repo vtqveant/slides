@@ -28,19 +28,19 @@
     \titlepage
 \end{frame}
 
-\begin{frame}{План}
+\begin{frame}{Тексты}
 \setcounter{framenumber}{1}
-    \begin{itemize}
-		\item История вопроса
-		\item Определение по Мостовскому
-		\item Обобщённые кванторы в формальной семантике
-    \end{itemize}
+\begin{itemize}
+    \item R. Montague. The Proper Treatment of Quantification in Ordinary English. 1971
+	\item J. Barwise and R. Cooper. Generalized Quantifiers and Natural Language. 1981
+\end{itemize}
 \end{frame}
 
-\begin{frame}{Тексты}
+\begin{frame}{План}
 \begin{itemize}
-    \item R. Montague. The Proper Treatment of Quantification in Ordinary English. 1973.
-	\item J. Barwise and R. Cooper. Generalized Quantifiers and Natural Language. 1981
+    \item История вопроса
+	\item Обобщённые кванторы по Мостовскому
+	\item Обобщённые кванторы в формальной семантике
 \end{itemize}
 \end{frame}
 
@@ -51,10 +51,10 @@
 \end{frame}
 
 \begin{frame}{История вопроса (1)}
-Г. Фреге, ``Begriffsschrift''\\
+Г. Фреге, ``Begriffsschrift''
 \bigskip
 \begin{itemize}
-	\item Квантор всеобщности и квантор существования 
+	\item квантор всеобщности и квантор существования 
 	    \medskip
 	    \begin{itemize}
 	        \item формализуют выражения естественного языка, такие как \textit{для всех X}, \textit{существует X}, \textit{кто-то}, \textit{что-то}, \textit{все}, \textit{любой} и т.п.
@@ -62,7 +62,7 @@
         	\item cоответствуют общим и частным предложениям аристотелевской силлогистики
         \end{itemize}
     \bigskip
-    \item Многие естественно-языковые конструкции нельзя выразить с их помощью
+    \item многие естественно-языковые конструкции нельзя выразить с их помощью
         \medskip
         \begin{itemize}
             \item \textit{больше половины}, \textit{бесконечно много}, \textit{most}
@@ -71,12 +71,26 @@
 \end{frame}
 
 \begin{frame}{История вопроса (2)}
-Б. Рассел, А. Уайтхед, ``Principia Mathematica``\\
+Б. Рассел, А. Уайтхед, ``Principia Mathematica''
+\bigskip
+\begin{itemize}
+    \item \textit{оператор интенсиональной абстракции} $\hat{\cdot}$ с очевидной теоретико-множественной мотивацией
+    \medskip
+    \begin{itemize}
+        \item если $fx$ -- символ неопределенного значения функции\\(т.е. $f(x) \in Im(f)$), то ``$f\hat{x}$'' - это сама функция (т.е. $f$)
+        \medskip
+        \item выражение ``$(\hat{x}).fx$'' имеет денотатом то же, что ``$f$'', т.е. то же, что ``$f\hat{x}$''
+        \medskip
+        \item выражения ``$(\hat{x}\hat{y}).fxy$'' и ``$f\hat{x}\hat{y}$'' эквавалентны (ср. $\lambda x.\lambda y.fxy$)
+    \end{itemize}
+    \medskip
+    \item ср. с обозначением квантора всеобщности $(x).fx$ и с $\eta$-конверсией в $\lambda$-исчислении ($P = \lambda x . Px$)
+\end{itemize}
 \bigskip
 
 \end{frame}
 
-\begin{frame}{История вопроса (2)}
+\begin{frame}{История вопроса (3)}
 К. Айдукевич, ``О синтаксической связности'' (1935)
 \bigskip
 \begin{itemize}
@@ -91,12 +105,12 @@
 	    \begin{itemize}
 	        \item универсальный квантор заменяется \textit{универсальным оператором} $U$, параметризуемым выражением с оператором абстракции: $U((\hat{x}).fx) = \forall x \, . \, fx$
 	        \medskip
-	        \item отмечается существование многих универсальных функторов с различными категориями значения, зависящими от категории значений функтора, служащего для них аргументом.
+	        \item отмечается существование многих универсальных функторов с различными категориями значения, зависящими от категории значений функтора, служащего для них аргументом
 	    \end{itemize}
 \end{itemize}
 \end{frame}
 
-\begin{frame}{История вопроса (3)}
+\begin{frame}{История вопроса (4)}
 А. Чёрч, ``A formulation of the simple theory of types'' (1940)
 \bigskip
 \begin{itemize}
@@ -107,29 +121,63 @@
 \end{frame}
 
 
-\begin{frame}{Квантификация (3)}
-
-\end{frame}
-
 \begin{frame}{}
 \begin{center}
-Определение по Мостовскому
+Обобщённые кванторы по Мостовскому
 \end{center}
+\end{frame}
+
+\begin{frame}{Теория обобщённых кванторов}
+А. Мостовский, ``On a Generalization of Quantifiers'' (1957)
+\bigskip
+\begin{itemize}
+	\item построил исчисление предикатов с нестандартными кванторами и показал его неполноту
+	\item дал теоретико-модельное определение квантора
+\end{itemize}
+\bigskip
+\bigskip
+Tеория обобщённых кванторов -- более двухсот работ \\к началу 80-х годов
 \end{frame}
 
 \begin{frame}{Определение (1)}
 \begin{itemize}
-	\item 
-	\item 
-	\item 
+    \item квантор задаёт подмножество множества присваиваний значений переменных, отличающихся только значением связанной этим квантором переменной
+    \medskip
+    \begin{itemize}
+        \item напр., $M \models \forall x \psi(x, b_1, \dots, b_n) \Leftrightarrow M \models \psi(a, b_1, \dots, b_n)$ \\для каждого $a \in D$, где $D$ -- домен интерпретации
+    \end{itemize}
+    \medskip
+	\item можно определить такое множество явным образом как $\psi(x, b_1, \dots, b_n)^{M,x} = \{ a \in D \; | \; M \models \psi(a, b_1, \dots, b_n) \}$
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Определение (2)}
 \begin{itemize}
-	\item 
-	\item 
-	\item 
+	\item обобщённый квантор $Q$ -- это отображение, сопоставляющее произвольному непустому множеству (связанных переменных) множество $Q_D$ подмножеств домена интерпретации $D$ такое, что $M \models Q x \phi(x, b_1, \dots, b_n) \Leftrightarrow \phi(x, b_1, \dots, b_n)^{M,x} \in Q_D$
+    \bigskip
+    \item примеры кванторов:
+    \medskip
+    \begin{itemize}
+        \item $\forall$, для которого $\forall_D = \{ D \}$
+        \medskip
+        \item $\exists$, для которого $\exists_D = \{ A \subseteq D \; | \; A \neq \varnothing \}$
+        \medskip
+        \item $\exists_{\geq 5}$ со значением ``существует не менее пяти'',\\ для которого $(\exists_{\geq 5})_D = \{ A \subseteq D \; | \; |A| \geq 5 \}$
+    \end{itemize}	
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Определение (3)}
+\begin{itemize}
+	\item можно определить кванторы, связывающие более одной переменной в нескольких формулах \textit{(опр. опускаем)}
+	\medskip
+	\item важные частные случаи:
+	\medskip
+	\begin{itemize}
+        \item квантор типа $\langle 1 \rangle$ связывает переменную в одной формуле
+        \medskip
+        \item квантор типа $\langle 1, 1 \rangle$ связывает переменную в двух формулах
+    \end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -139,21 +187,107 @@
 \end{center}
 \end{frame}
 
-\begin{frame}{Квантификация (3)}
+\begin{frame}{PTQ (1)}
+Р. Монтегю, ``The Proper Treatment of Quantification in Oridnary English'' (1971)
+\bigskip
 \begin{itemize}
-	\item 
-	\item 
-	\item 
+    \item анализ употребления слов \textit{some} и \textit{every}, именных групп \\и имен собственных, в т.ч. в интенсиональных контекстах
+	\item строится формализм второго порядка, но обобщённые кванторы в смысле Мостовского не используются
+	\item именные группы, включая имена собственные, рассматриваются как кванторы
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Квантификация (4)}
+\begin{frame}{PTQ (2)}
 \begin{itemize}
-	\item 
-	\item 
-	\item 
+	\item как формализовать выражение \textit{Джон умен}
+	\medskip
+	\begin{itemize}
+    	\item обычный подход: денотат слова \textit{Джон} -- индивид, признаки задают множества индивидов, т.е. \textit{Джон из числа умных}
+    	\medskip
+    	\item подход PTQ: отдельные признаки -- индивиды, имя -- множество признаков или символ предиката,\\ т.е. \textit{быть умным -- один из признаков Джона}
+    \end{itemize}
+    \medskip
+    \item т.е. имя \textit{Джон} -- это интенсионал, соответствующий характеристической функции второго порядка
 \end{itemize}
 \end{frame}
+
+\begin{frame}{PTQ (3)}
+\begin{itemize}
+	\item универсальный квантор трактуется как пересечение эксенсионалов, квантор существования -- как объединение экстенсионалов (задаваемых характеристической функцией)
+	\medskip
+    \item \textit{every}: $\lambda P . \lambda Q . [ P\,x \to Q\,x ]$
+    \medskip
+    \item \textit{every man}: $\lambda P . \forall x . [ man(x) \to P(x) ]$ 
+        \medskip
+        \begin{itemize}
+            \item[] т.е. множество признаков, задаваемое характеристической функцией $\lambda x . man(x)$, есть подмножество множества признаков, задаваемого характеристической функцией $\lambda x . Px$
+        \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Обобщённые кванторы в семантике (1)}
+J. Barwise and R. Cooper. Generalized Quantifiers and Natural Language. 1981
+\bigskip
+\begin{itemize}
+	\item начало применения теории обобщённых кванторов к явлениям естественного языка
+	\item необходимость расширения формальных средств по причине невыразимости многих выражений в логике первого порядка
+	\item потребность в улучшении соответствия синтаксиса формального языка синтаксису естественного языка
+	\item анализ свойств обобщенных кванторов
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Обобщённые кванторы в семантике (2)}
+\begin{itemize}
+	\item \textit{some} или \textit{most} -- кванторы типа $\langle 1, 1 \rangle$
+	\medskip
+	\item именные группы вроде \textit{most students} -- кванторы типа $\langle 1 \rangle$
+	\medskip
+	\item образование именной группы посредством присоединения существительного к детерминативу соответствует каррированию квантора типа $\langle 1, 1 \rangle$
+	\medskip
+	\item такая трактовка именных групп отвечает принципу композициональности и синтаксической интуиции
+	\medskip
+	\begin{itemize}
+	    \item напр., \textit{Иван и трое студентов} -- квантор типа $\langle 1 \rangle$
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Свойства кванторов (1)}
+\begin{itemize}
+	\item \textit{консервативность}: для любого домена интерпретации $D$ и $A, B \subseteq D$ выполняется $Q_D(A, B) \Leftrightarrow Q_D(A, A \cap B)$
+	\medskip
+	\begin{itemize}
+	    \item \textit{большинство студентов курит} =\\ \textit{большинство студентов -- курящие студенты}
+    \end{itemize}
+    \bigskip
+	\item \textit{симметричность}: $Q_D(A, B) \Leftrightarrow Q_D(B, A)$
+	\medskip
+	\begin{itemize}
+	    \item квантор \textit{некоторые} симметричен, ср. \textit{некоторые автомобили -- грузовики} и \textit{некоторые грузовики -- автомобили}
+	    \medskip
+	    \item квантор \textit{большинство} -- нет, ср. \textit{большинство автомобилей -- грузовики} и \textit{большинство грузовиков -- автомобили}
+    \end{itemize}	
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Свойства кванторов (2)}
+\begin{itemize}
+	\item квантор $Q$ типа $\langle 1, 1 \rangle$ называется \textit{возрастающим (убывающим) по правому аргументу} (обозначается $mon \! \uparrow$ и $mon \! \downarrow$), если для любого домена интерпретации $D$ и $A, B, B' \subseteq D$, $B \subseteq B'$ ($B' \subseteq B$) выполняется $Q_D(A, B) \Rightarrow Q_D(A, B')$. 
+	\medskip
+	\item возрастающий или убывающий квантор называется \textit{монотонным}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Свойства кванторов (3)}
+\begin{itemize}
+   	\item большинство несоставных именных групп в английском языке монотонны
+   	\item почти все детерминативы, т.е. кванторы типа $\langle 1, 1 \rangle$, монотонны по правому аргументу
+   	\item имена собственные возрастают
+   	\item в выражениях с \textit{there is} обычно употребляются симметричные кванторы, ср. \textit{there are at least five men in the garden} vs. \textit{$^*$there are most men in the garden} 
+\end{itemize}
+\end{frame}
+
+
 
 
 
