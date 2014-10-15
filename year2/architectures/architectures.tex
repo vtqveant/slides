@@ -69,46 +69,190 @@
 \end{center}
 \end{frame}
 
+
+
 % определение
-\begin{frame}{Определение}
+\begin{frame}{Определение (I)}
 \begin{itemize}
-	\item Когнитивная архитектура -- это ...
-	\medskip
-	\item 
-	\medskip
-	\item  
+    \item[] \textit{Когнитивная архитектура} -- это общая вычислительная когнитивная модель, отражающая основные структуры и процессы когнитивного аппарата человека, применяемая для многоуровневого анализа поведения в разнообразных предметных областях.
+    \item[] \hfill (Newell, A. Unified Theories of Congition. 1990) и др.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Определение (II)}
+\begin{itemize}
+    \item[] \textit{Когнитивная архитектура} -- это спецификация тех аспектов когнитивного аппарата, которые остаются неизменными в течение жизни агента.
+    \item[] \hfill CLARION Documentation
+    \bigskip
+    \item[]
+        \begin{itemize}
+            \item организация памяти
+            \item представление знаний
+            \item механизмы процедурной обработки и принятия решений
+            \item механизмы обучения
+            \item и пр.
+        \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Определение (III)}
+\textit{Интеллектуальный агент} = фиксированная архитектура + динамические знания\\
+\bigskip
+Теория множественного интеллекта (Х. Гарднер, 1993), 
+\begin{itemize}
+    \item интеллект как ``способность к решению задач или созданию продуктов, обусловленную конкретными культурными особенностями или социальной средой''
+    \medskip
+    \item независимые друг от друга виды интеллекта
+        \begin{itemize}
+           \item логико-математический
+           \item языковой
+           \item пространственный
+           \item музыкальный
+           \item телесно-кинестетический
+           \item внутриличностный и межличностный
+           \item эмоциональный
+        \end{itemize}
 \end{itemize}
 \end{frame}
 
 % мотивация создания, назначение, задачи и функции: использование в задачах моделирования и объяснения когнитивных способностей человека (психология) -- экспериментальный аспект, использование для решения задач (искусственный интеллект, робототехника) -- практический аспект (промышленные применения)
-\begin{frame}{}
+\begin{frame}{Общие слова (I)}
+Области применения когнитивных архитектур:\\
+\medskip
 \begin{itemize}
-	\item 
+	\item психология (моделирование и объяснение когнитивных способностей человека)
 	\medskip
+	\item искусственный интеллект (робототехника, человеко-машинные интерфейсы)
+	\medskip
+	\item промышленность (создание тренажеров, в т.ч. военного назначения)
+	\medskip 
+	\item игровая индустрия (боты, правдоподобные агенты)
+	\medskip
+	\item прикладная лингвистика (диалоговые системы, когнитивная лингвистика)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Общие слова (II)}
+Исследовательские задачи разработки КА:\\
+\medskip
+\begin{itemize}
+	\item биологическая правдоподобность
+	\medskip
+	\item психологическая правдоподобность
+	\medskip
+	\item функциональность агентов
 \end{itemize}
 \end{frame}
 
 % виды архитектур: символьные, коннекционистские (эмерджентные), гибридные
-\begin{frame}{}
+\begin{frame}{Общие слова (III)}
+Основные виды архитектур:\\
+\medskip
 \begin{itemize}
-	\item 
+	\item символьные
 	\medskip
+	\item коннекционистские (эмерджентные)
+	\medskip
+	\item гибридные
 \end{itemize}
+\end{frame}
+
+% виды архитектур: символьные, коннекционистские (эмерджентные), гибридные
+\begin{frame}{Общие слова (IV)}
+Критерии оценки и сравнения архитектур (Newell 1990):\\
+\medskip
+\begin{itemize}
+	\item поведение
+	\item адаптивность
+	\item динамичность
+	\item гибкость
+	\item развитие
+	\item эволюция
+	\item обучение
+	\item интеграция знаний
+	\item обширная база знаний
+	\item естественный язык
+	\item работа в реальном времени
+	\item адекватность строению мозга
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Базовая схема когнитивной архитектуры}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.335]{prototypical_ca.png} 
+	\end{figure}
+\end{center}
 \end{frame}
 
 % основные компоненты архитектуры: долговременная и кратковременная память, восприятие, поиск решений, осуществление действий, обучение
-\begin{frame}{}
+\begin{frame}{Основные компоненты архитектуры (I)}
 \begin{itemize}
-	\item 
+	\item Восприятие
+	    \medskip
+	    \begin{itemize}
+	        \item сенсоры
+	        \item интроспекция
+	    \end{itemize}
 	\medskip
+	\item Память
+	    \medskip
+	    \begin{itemize}
+	        \item кратковременная (STM)
+	        \item долговременная (LTM)
+	        \item удержание внимания (attentional memory)
+	        \item удержание намерения (intentional memory)
+	        \item эпизодическая (припоминание и воображение)
+	        \item сенсорная
+	        \item моторная
+	        \item процедурная 
+	        \item декларативная 
+	    \end{itemize}
 \end{itemize}
 \end{frame}
 
-% понятие пространства задачи (problem space) и понятие оператора
-\begin{frame}{}
+\begin{frame}{Основные компоненты архитектуры (II)}
 \begin{itemize}
-	\item 
+	\item Принятие решений
+	    \medskip
+	    \begin{itemize}
+	        \item поиск в пространстве задачи
+	        \item логический и вероятностный вывод
+	        \item вывод по аналогии
+	        \item немонотонный вывод (пересмотр установок)
+	        \item разрешение конфликтов
+	        \item обход тупиков (impasse)
+	    \end{itemize}	
 	\medskip
+	\item Осуществление действий
+	    \medskip
+	    \begin{itemize}
+	        \item исполнительные устройства
+	        \item ``ментальные акты''
+	    \end{itemize}	
+	\medskip
+	\item Обучение
+		\medskip
+	    \begin{itemize}
+	        \item пополнение базы знаний и семантической памяти
+	        \item расширение процедурных навыков
+	        \item фиксация успешных стратегий поведения и обхода тупиков
+	    \end{itemize}	
+\end{itemize}
+\end{frame}
+
+
+% понятие пространства задачи (problem space) и понятие оператора
+\begin{frame}{Пространство задачи}
+Основа формализма (символьных) когнитивных архитектур -- \textit{принцип пространства задачи} (Newell 1990):\\
+\bigskip
+Разумная деятельность человека, направленная на решение задач, может быть описана с помощью:
+\begin{itemize}
+    \item[(1)] множества состояний знания (states of knowledge),
+	\item[(2)] операторов, преобразующих одни состояния в другие,
+	\item[(3)] ограничений на применение операторов, 
+	\item[(4)] знаний управляющего характера, на основе которых осуществляется выбор оператора для применения.
 \end{itemize}
 \end{frame}
 
@@ -129,13 +273,45 @@
 \end{frame}
 
 % обзор систем: Soar, ACT-R, etc.
+\begin{frame}{Символьные архитектуры}
+\begin{itemize}
+	\item Soar
+	\item EPIC
+	\item ICARUS
+	\item OSCAR
+	\item NARS (Non-Axiomatic Reasoning System)
+	\item SNePS (Semantic Network Processing System)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Эмерджентные архитектуры}
+\begin{itemize}
+	\item IBCA (Integrated Biologically-based Cognitive Architecture)
+	\item NOMAD (Naturally Irganized Mobile Adaptive Device)
+	\item Cortronics
+	\item Leabra
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Гибридные архитектуры}
+\begin{itemize}
+	\item ACT-R (Adaptive Component of Thought -- Rational)
+	\item CLARION
+	\item Polyscheme
+	\item 4CAPS
+	\item LIDA (Learning Intelligent Distribution Agent)
+	\item DUAL
+	\item Shruti
+	\item CogPrime
+\end{itemize}
+\end{frame}
+
 \begin{frame}{}
 \begin{itemize}
 	\item 
 	\medskip
 \end{itemize}
 \end{frame}
-
 
 %
 % 2. Пример когнитивной архитектуры. Soar 9.
@@ -236,7 +412,7 @@
 % Мир как своя наилучшая модель
 \begin{frame}{}
 \begin{itemize}
-	\item 
+	\item Лучшая модель мира -- это сам мир
 	\medskip
 \end{itemize}
 \end{frame}
@@ -244,7 +420,7 @@
 % Уровневая структура поведения (avoid, wander, explore, seek); преимущества (real-time, no representation, no reasoning, robustness, real world)
 \begin{frame}{}
 \begin{itemize}
-	\item 
+	\item Уровневая структура поведения (avoid $\to$ wander $\to$ explore $\to$ seek)
 	\medskip
 \end{itemize}
 \end{frame}
