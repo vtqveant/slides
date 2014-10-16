@@ -292,7 +292,7 @@
 \begin{frame}{Эмерджентные архитектуры}
 \begin{itemize}
 	\item IBCA (Integrated Biologically-based Cognitive Architecture)
-	\item NOMAD (Naturally Irganized Mobile Adaptive Device)
+	\item NOMAD (Naturally Organized Mobile Adaptive Device)
 	\item Cortronics
 	\item LEABRA (Local, Error-driven, Associative, Biologically Realistic Algorithm) -- 1996
 \end{itemize}
@@ -381,16 +381,26 @@ sp {apply*hello-world
 \end{frame}
 
 % Теория аналогии по Holyoak, решение задач с помощью воображения (imagination)
-\begin{frame}{Разное}
+\begin{frame}{Разное (I)}
 \begin{itemize}
 	\item решение задач с помощью воображения
 	\medskip
 	\item теория аналогии по (Holyoak et al., 1997)
-	\medskip
-	\item content planner в Tarot (CoSy)
 \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Разное (II)}
+Продукционные правила в Tarot (Content Planner):\\
+\bigskip
+{\footnotesize \begin{verbatim}
+:dvp ^ <Relation> accept ^ <Content> ( #c1:marker )
+->
+#c1 = (:ascription ^ <Actor>(#i1:person ^ I)
+                   ^ <Patient>(:entity ^ what)
+                   ^ <Subject>( #i1: )).
+\end{verbatim}}
+\end{frame}
 
 %
 % 3. Проблема репрезентации
@@ -450,7 +460,7 @@ sp {apply*hello-world
 	\medskip
 	\item гипотеза о том, что анализ ``от наблюдаемого интеллектуального поведения'' и анализ ``от когнитивного субстрата'' должны где-то совпасть -- это вообще-то очень сильная гипотеза
 	\medskip
-	\item когнитивная непроницаемость, напр., ``early vision'' (Pylyshyn, 1984)
+	\item когнитивная непроницаемость, e.g. \textit{early vision} \\{\small(Pylyshyn, 1984)}
 \end{itemize}
 \end{frame}
 
