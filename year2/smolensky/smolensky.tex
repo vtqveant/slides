@@ -25,7 +25,7 @@
 \errorcontextlines 10000
 
 \begin{document}
-\title{\Large{Harmony Theory, \\Gradient Symbol Processing}}
+\title{\Large{Harmony Theory and ICS}}
 \author{Константин Соколов}
 \institute[]
 {Mathlingvo, СПбГУ, Eventflow API\\ \bigskip  \url{http://nlu-rg.ru}}
@@ -41,7 +41,10 @@
 \begin{itemize}
 	\item P. Smolensky (1986) Information Processing in Dynamical Systems: Foundations of Harmony Theory.
     \medskip
+    \item P. Smolensky, G. Legendre and Y. Miyata (1990) Harmonic grammar: A formal multi-level connectionist theory of linguistic well-formedness: Theoretical foundations.
+    \medskip
     \item A. Prince and P. Smolensky (1993) Optimality Theory.
+    \medskip
     \item P. Smolensky et al. (2014) Gradient Symbol Processing.
 \end{itemize}
 \end{frame}
@@ -58,33 +61,225 @@
     \end{itemize}
 \end{frame}
 
-1. Хомский-Халле, SPE, дистинктивные признаки, правила переписывания, глубинная и поверхностная фонологическая форма, проблема порядка применения правил, затемненность, абстрактность (критика, Кипарский)
-2. Хомский-Миллер, анализ через синтез, психологическое обоснование -- время обработки неполного сигнала
-3. Селфридж (1958?), Pandemonium, роль признаков (демоны признаков), связь с биологией зрения
-4. Начало коннекционизма: перцептрон (1968?), нейронные сети
-5. Harmony Theory: subsymbolic paradigm; необходимость совместить высокоуровневые когнитивные функции и восприятие, параллельная обрабока; Harmonium; обучение
-6. Harmonic Grammar - P. Smolensy, G. Legendre, Y. Miyata (1990)  A Formal Multi-Level Connectionist Theory of Linguistic Well-Formedness: Theoretical Foundations.; HG Course at UMass (http://blogs.umass.edu/hgcourse/); переход от правил к системам ограничений (ср. с другими теориями в лингвистике, можно сослаться на Зубрицкую; constraint grammars в унификационных грамматиках, принципы и параметры, минимализм и пр.), well-formedness
-7. Optimality Theory: отличие от HG -- в OT ранжирование ограничений, в HG взвешенные ограничения; плюсы и минусы; tableaux; пример анализа слоговой структуры в OT; факториальная типология; нетривиальные эффекты как следствие архитектуры: TETU и conspiracy
-8. Gradient Symbol Processing: объединение символьных и статистических подходов, геометрия пространства (аттракторы)
+% 5. Harmony Theory: subsymbolic paradigm; необходимость совместить высокоуровневые когнитивные функции и восприятие, параллельная обрабока; Harmonium; обучение
+% 6. Harmonic Grammar - P. Smolensy, G. Legendre, Y. Miyata (1990)  A Formal Multi-Level Connectionist Theory of Linguistic Well-Formedness: Theoretical Foundations.; HG Course at UMass (http://blogs.umass.edu/hgcourse/); переход от правил к системам ограничений (ср. с другими теориями в лингвистике, можно сослаться на Зубрицкую; constraint grammars в унификационных грамматиках, принципы и параметры, минимализм и пр.), well-formedness
+% 7. Optimality Theory: отличие от HG -- в OT ранжирование ограничений, в HG взвешенные ограничения; плюсы и минусы; tableaux; пример анализа слоговой структуры в OT; факториальная типология; нетривиальные эффекты как следствие архитектуры: TETU и conspiracy
+% 8. Integrated Connectionist/Symbolic Cognitive Architecture (ICS)
+% 9. Gradient Symbol Processing: объединение символьных и статистических подходов, геометрия пространства (аттракторы)
 
 \begin{frame}{}
 \begin{center}
-	\textbf{Часть первая}
+	\textbf{Генеративная фонология и психолингвистика}
 \end{center}
 \end{frame}
 
-\begin{frame}{Часть первая}
+\begin{frame}{Пандемониум - I}
+\textit{Oliver Selfridge (1959)}, модель распознавания образов (букв)
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.5]{pandemonium_small.png} 
+	\end{figure}
+\end{center}
+\bigskip
+\tiny{П. Линдсей, Д. Норман, ``Переработка информации у человека'', М., 1974 -- стр. 129.}
+\end{frame}
+
+\begin{frame}{Пандемониум - II}
 \begin{itemize}
-	\item 
+	\item демоны узнавания изображения (регистрация сигнала)
 	\medskip
-	\item 
+	\item демоны выделения признаков (линии, углы, контуры и т.п.)
 	\medskip
-	\item  
+	\item демоны опознавания (отдельные буквы и пр.)
+	\medskip
+	\item демон принятия решения
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Пандемониум - III}
+Биологическая обоснованность модели:
+\bigskip
+\begin{itemize}
+	\item детекторы углов, линий и т.п. в нейронных структурах у животных
+	\medskip
+	\item обучение и влияние контекста
+\end{itemize}
+\end{frame}
 
+\begin{frame}{Пандемониум - IV}
+Сенсорная информация преобразуется в набор признаков (feature vector)
+\bigskip
+\begin{itemize}
+	\item  отдельную букву кодирует лишь подмножество признаков
+	\medskip
+	\item добавление новых распознаваемых объектов может потребовать изменения набора признаков
+	\medskip
+	\item  ошибки ``несимметричны'' -- некоторые объекты распознавать проще, чем другие (задействуется больше признаков, проще принять решение)
+\end{itemize}
+\end{frame}
 
+\begin{frame}{Пандемониум - V}
+Мы свободны в своём выборе признаков при условии, что
+\bigskip
+\begin{itemize}
+	\item совокупность признаков оказывается \\максимально простой
+    \medskip
+	\item выбор признаков гарантирует от ошибок
+	\medskip
+	\item признаки поддаются анализу
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Генеративная фонология - I}
+\textit{Stevens, Kenneth and Morris Halle (1962) Speech Recognition: A Model and a Program for Research.}
+\bigskip
+\begin{itemize}
+	\item модель распознавания речи на основе дистинктивных\\ признаков (экспертный подход ``от фонологии'')
+	\medskip
+	\item моторная концепция восприятии речи (подавление артикуляторной программы при восприятии)
+    \medskip
+	\item концепция ``анализа через синтез'' 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Генеративная фонология - II}
+\textit{Chomsky, Noam and Morris Halle (1968) Sound Pattern of English.}
+\bigskip
+\begin{itemize}
+	\item концепция фонемы как пучка дифференциальных признаков заимствуется из Пражской школы
+	\medskip
+	\item концепция универсальной грамматики, общая для генеративизма
+	\medskip 
+	\item фонологический компонент преобразует глубинное (абстрактное фонологическое) представление слова в поверхностное (фонетическое)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Генеративная фонология - III}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.32]{phonemes.png} 
+	\end{figure}
+\end{center}
+\bigskip
+\tiny{Э. Черри, М. Халле, Р. Якобсон ``К вопросу о логическом описании языков в их фонологическом аспекте'', в кн.: ``Новое в лингвистике'', вып. II, М., 1962, стр. 286. (по П. Линдсей, Д. Норман, ``Переработка информации у человека'', М., 1974, стр. 142.)}
+\end{frame}
+
+\begin{frame}{Генеративная фонология - IV}
+Устройство фонологического компонента: 
+\bigskip
+\begin{itemize}
+	\item контекстно-зависимые правила переписывания вида $X \to Y / A \_ B$ (заменить $X$ на $Y$ в позиции между $A$ и $B$)
+	\medskip
+	\item правила манипулируют дифференциальными признаками
+	\medskip
+	\item процесс порождения поверхностной формы как последовательное применение правил
+\end{itemize}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.5]{alveolar_flap.png} 
+	\end{figure}
+\end{center}
+\end{frame}
+
+\begin{frame}{Генеративная психолингвистика - I}
+\textit{George Miller (1920-2012)}
+\bigskip
+\begin{itemize}
+	\item ``Language and Communication'' (1951)
+	\medskip
+	\item ``The Magical Number Seven, Plus or Minus Two: Some Limits on our Capacity for Processing Information'' (1956)
+	\medskip
+	\item совместные работы с Н. Хомским
+	\medskip
+	\item руководил созданием WordNet (1986)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Генеративная психолингвистика - II}
+Эксперименты Миллера:
+\bigskip
+\begin{itemize}
+	\item распознавание зашумленных слов
+	\medskip
+	\item скорость реакции
+	\medskip
+	\item влияние избыточности языка на понимание
+	\medskip
+	\item роль внимания и краткосрочной памяти
+\end{itemize}
+\bigskip
+Экспериментальное подтверждение концепции анализа через синтез, поддержка генеративизма \textit{(``американская психолингвистика второго поколения'' -- A. A. Леонтьев)}
+\end{frame}
+
+\begin{frame}{Анализ через синтез - I}
+\begin{itemize}
+	\item в сенсорной системе:
+		\begin{itemize}
+			\item реакция на внешние события
+			\smallskip
+			\item преобразование сенсорной информации в набор признаков
+		\end{itemize}
+	\medskip
+	\item в памяти:
+		\begin{itemize}
+			\item запись прошлых событий
+			\smallskip
+			\item предположения, необходимые для интерпретации
+		\end{itemize}
+	\medskip
+	\item распознавние осуществляется путем сопоставления сенсорных данных с данными в памяти с учетом \textit{ожидания} предстоящих сенсорных событий
+	\item процесс активного синтеза: ожидания непрерывно пересматриваются по мере обработки сигнала
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Анализ через синтез - II}
+Aктивный cинтез позволяет:
+\bigskip
+\begin{itemize}
+	\item ограничить набор анализируемой информации в случаях, когда она хорошо согласуется с ожиданием, тем самым обработка ускоряется (но противоречие сенсорных данных ожиданиям увеличивает время обработки)
+	\medskip
+	\item восстанавливать недостающие части сигнала в соответствии с ожиданиями (внутренней моделью, основанной на опыте)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Анализ через синтез - III}
+\begin{itemize}
+	\item анализ не обязательно протекает последовательно по мере поступления сигнала (возможность параллельной обработки)
+	\medskip
+	\item анализ может привлекать данные из различных источников (разные сенсорные каналы и детекторы, память, логический вывод и пр.) и комбинировать их
+	\item потребности активного синтеза налагают требования на функции памяти и познания: необходимость кратковременной (оперативной) памяти
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Harmony Theory - I}
+Harmony Theory как когнитивная архитектура:
+\bigskip
+\begin{itemize}
+	\item представляет собой вычислительную модель когнитивного аппарата, опирающуюся на концепцию анализа через синтез
+	\medskip
+	\item согласуется с экспериментами
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Harmony Theory - II}
+\begin{itemize}
+	\item умеет работать по неполным и избыточным данным
+	\medskip
+	\item позволяет выполнять эксперименты с вычислительной моделью
+	\medskip
+	\item позволяет делать предсказания
+	\medskip
+	\item позволяет ставить обоснованные вопросы о природе когнитивного аппарата человека
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Harmonic Grammar and Optimality Theory}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.40]{harmonic.jpg} 
+	\end{figure}
+\end{center}
+\end{frame}
 
 \begin{frame}{}
     \thispagestyle{empty}
