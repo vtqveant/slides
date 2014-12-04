@@ -112,10 +112,10 @@ $\frac{da_1}{dt} = -a_1 + w_1 - \lambda a_2$, $\frac{da_2}{dt} = -a_2 + w_2 - \l
 	\end{figure}
 \end{center}
 \bigskip
-Оптимизация как максимизация гармоничности
+\textit{Оптимизация как максимизация гармоничности}
 \end{frame}
 
-\begin{frame}{Система ограничений - I}
+\begin{frame}{Система ограничений}
 Динамика системы определяется набором \textit{конфликтующих} взвешенных ограничений:\\
 \medskip
 \begin{itemize}
@@ -126,20 +126,34 @@ $\frac{da_1}{dt} = -a_1 + w_1 - \lambda a_2$, $\frac{da_2}{dt} = -a_2 + w_2 - \l
 	\item Узлы №1 и №2 не должны быть активны одновременно ($\lambda = -0,9$)
 \end{itemize}
 \bigskip
-Оптимизация как достижение компромисса
+\textit{Оптимизация как достижение компромисса}
 \end{frame}
 
-
-\begin{frame}{}
-\begin{center}
-	\textbf{Optimality Theory}
-\end{center}
-\end{frame}
-
-
-\begin{frame}{Optimality Theory - I}
+\begin{frame}{Harmonic Grammar - I}
+Грамматика задается как\\
+\bigskip
 \begin{itemize}
-	\item 
+	\item набор ограничений $C_k$, $k = 1 \dots K$
+	\medskip
+	\item веса $w_k \in \mathbb{R}$ для каждого ограничения
+	\medskip
+	\item функция гармоничности $H = \sum_{k=1}^{K} s_k w_k$, где $s_k$ -- оценка (штраф) для каждого из ограничений
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Harmonic Grammar - II}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.6]{hg_tableau1.png} 
+	\end{figure}
+\end{center}
+\medskip
+Оглушение в конце слова как эффект условия $w(^{*}\textsc{Coda-Voice}) > w(\textsc{Ident-Voice})$.
+\end{frame}
+
+\begin{frame}{Критика}
+\begin{itemize}
+	\item некорректные типологические предсказания
 	\medskip
 	\item 
 	\medskip
@@ -147,6 +161,70 @@ $\frac{da_1}{dt} = -a_1 + w_1 - \lambda a_2$, $\frac{da_2}{dt} = -a_2 + w_2 - \l
 \end{itemize}
 \end{frame}
 
+\begin{frame}{}
+\begin{center}
+	\textbf{Optimality Theory}
+\end{center}
+\end{frame}
+
+\begin{frame}{Несколько фактов}
+\begin{itemize}
+	\item A. Prince and P. Smolensky. Optimality Theory: Constraint Satisfaction in Generative Grammar.
+		\medskip
+		\begin{itemize}
+			\item опубликовано в электронной форме в 1993 г.,\\в печатном виде в 2004 г.
+		\end{itemize}
+	\medskip
+	\item Rutgers Optimality Archive (ROA) -- архив препринтов по теории оптимальности
+		\medskip
+		\begin{itemize}
+			\item сейчас более 1200 работ
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Архитектура - I}
+\begin{itemize}
+	\item компонент порождения форм \textit{(Gen)}
+	\medskip
+	\item набор ограничений \textit{(Con)}
+	\medskip
+	\item компонент оценки оптимальности \textit{(Eval)}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Архитектура - II}
+\begin{itemize}
+	\item ограничения в OT упорядочены по отношению \textit{строгого доминирования} (весов нет)
+	\medskip
+	\item ограничения разбиты на два класса
+		\medskip
+		\begin{itemize}
+			\item ограничения маркированности \textit{(markedness)} -- штрафуют определенные конфигурации в поверхностных формах
+			\medskip
+			\item ограничения ``верности'' \textit{(faithfulness)} -- штрафуют отклонения поверхностных форм от глубинных
+		\end{itemize}
+	\medskip
+	\item ограничения считаются универсальными для всех языков, различия в грамматике связаны только с порядком ограничений
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Факториальная типология}
+\begin{itemize}
+	\item ограничения в OT упорядочены по отношению \textit{строгого доминирования} (весов нет)
+	\medskip
+	\item ограничения разбиты на два класса
+		\medskip
+		\begin{itemize}
+			\item ограничения маркированности \textit{(markedness)} -- штрафуют определенные конфигурации в поверхностных формах
+			\medskip
+			\item ограничения ``верности'' \textit{(faithfulness)} -- штрафуют отклонения поверхностных форм от глубинных
+		\end{itemize}
+	\medskip
+	\item ограничения считаются универсальными для всех языков, различия в грамматике связаны только с порядком ограничений
+\end{itemize}
+\end{frame}
 
 \begin{frame}{}
 \begin{center}
