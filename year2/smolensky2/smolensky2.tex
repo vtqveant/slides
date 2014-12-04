@@ -1,0 +1,176 @@
+\documentclass{beamer}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amssymb,amsfonts,amsmath,mathtext}
+\usepackage{cite,enumerate,float,indentfirst}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+%% Gentzen style natural deduction proof trees
+\usepackage{bussproofs}
+\usepackage{latexsym}
+
+\graphicspath{{images/}}
+
+\usetheme{Rochester}
+\usecolortheme{seagull}
+
+\setbeamertemplate{footline}{\scriptsize{\hspace*{0.4cm}\insertframenumber}\vspace*{0.3cm}}
+\beamertemplatenavigationsymbolsempty
+
+\errorcontextlines 10000
+
+\begin{document}
+\title{\Large{Harmony Theory and ICS}}
+\subtitle{\small{часть вторая}}
+\author{Константин Соколов}
+\institute[]
+{Mathlingvo, СПбГУ, Eventflow API\\ \bigskip  \url{http://nlu-rg.ru}}
+\date{Санкт-Петербург, 2014} 
+% Создание заглавной страницы
+\begin{frame}
+    \thispagestyle{empty}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Тексты}
+\setcounter{framenumber}{1}
+\begin{itemize}
+    \item P. Smolensky, G. Legendre and Y. Miyata (1990) Harmonic grammar: A formal multi-level connectionist theory of linguistic well-formedness: Theoretical foundations.
+    \medskip
+    \item A. Prince and P. Smolensky (1993) Optimality Theory.
+    \medskip
+	\item P. Smolensky, G. Legendre (2006) Hamonic Mind.
+    \medskip
+    \item P. Smolensky et al. (2014) Gradient Symbol Processing.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{План}
+    \begin{itemize}
+        \item Harmonic Grammar vs. Теория оптимальности
+        \medskip
+        \item ICS, Gradient Symbol Processing
+    \end{itemize}
+\end{frame}
+
+% 5. Harmony Theory: subsymbolic paradigm; необходимость совместить высокоуровневые когнитивные функции и восприятие, параллельная обрабока; Harmonium; обучение
+% 6. Harmonic Grammar - P. Smolensy, G. Legendre, Y. Miyata (1990)  A Formal Multi-Level Connectionist Theory of Linguistic Well-Formedness: Theoretical Foundations.; HG Course at UMass (http://blogs.umass.edu/hgcourse/); переход от правил к системам ограничений (ср. с другими теориями в лингвистике, можно сослаться на Зубрицкую; constraint grammars в унификационных грамматиках, принципы и параметры, минимализм и пр.), well-formedness
+% 7. Optimality Theory: отличие от HG -- в OT ранжирование ограничений, в HG взвешенные ограничения; плюсы и минусы; tableaux; пример анализа слоговой структуры в OT; факториальная типология; нетривиальные эффекты как следствие архитектуры: TETU и conspiracy
+% 8. Integrated Connectionist/Symbolic Cognitive Architecture (ICS)
+% 9. Gradient Symbol Processing: объединение символьных и статистических подходов, геометрия пространства (аттракторы)
+
+\begin{frame}{}
+\begin{center}
+	\textbf{Harmonic Grammar}
+\end{center}
+\end{frame}
+
+\begin{frame}{Динамическая система - I}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.7]{harmonic1.png} 
+	\end{figure}
+\end{center}
+\bigskip
+Динамика определяется системой уравнений\\
+\medskip
+$\frac{da_1}{dt} = -a_1 + w_1 - \lambda a_2$, $\frac{da_2}{dt} = -a_2 + w_2 - \lambda a_1$,\\
+\medskip
+максимизирующих $H(\textbf{a}) = a_1 w_1 + a_2 w_2 - \lambda a_1 a_2 - \frac{1}{2}(a_1^2 + a_2^2)$
+\end{frame}
+
+\begin{frame}{Динамическая система - II}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.7]{harmonic2.png} 
+	\end{figure}
+\end{center}
+\bigskip
+Вектор активации $\textbf{a} = (a_1, a_2)$ стремится к $(0,79; -0,71)$
+\end{frame}
+
+\begin{frame}{Динамическая система - III}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.7]{harmonic3.png} 
+	\end{figure}
+\end{center}
+\bigskip
+Эволюция системы в фазовом пространстве\\
+\textit{(здесь двумерная проекция, т.к. входные значения постоянны)}
+\end{frame}
+
+\begin{frame}{Динамическая система - IV}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.8]{harmonic4.png} 
+	\end{figure}
+\end{center}
+\bigskip
+Оптимизация как максимизация гармоничности
+\end{frame}
+
+\begin{frame}{Система ограничений - I}
+Динамика системы определяется набором \textit{конфликтующих} взвешенных ограничений:\\
+\medskip
+\begin{itemize}
+	\item Узел №1 должен быть активен ($w_1 = 0,6$)
+	\medskip
+	\item Узел №2 должен быть активен ($w_2 = 0,5$)
+	\medskip
+	\item Узлы №1 и №2 не должны быть активны одновременно ($\lambda = -0,9$)
+\end{itemize}
+\bigskip
+Оптимизация как достижение компромисса
+\end{frame}
+
+
+\begin{frame}{}
+\begin{center}
+	\textbf{Optimality Theory}
+\end{center}
+\end{frame}
+
+
+\begin{frame}{Optimality Theory - I}
+\begin{itemize}
+	\item 
+	\medskip
+	\item 
+	\medskip
+	\item 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{}
+\begin{center}
+	\textbf{Integrated Connectionist-Symbolic (ICS) Architecture}
+\end{center}
+\end{frame}
+
+\begin{frame}{ICS Architecture - I}
+sdfsdf
+\bigskip
+\begin{itemize}
+	\item 
+	\medskip
+	\item 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{}
+    \thispagestyle{empty}
+    \begin{center}
+        {\large Спасибо!}
+    \end{center}
+\end{frame}
+
+
+\end{document}
