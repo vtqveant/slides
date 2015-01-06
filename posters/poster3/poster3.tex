@@ -1,0 +1,94 @@
+\documentclass[12pt]{article}
+\pagestyle{empty}
+
+%%% Кодировки и шрифты %%%
+\usepackage{cmap} % Улучшенный поиск русских слов в полученном pdf-файле
+\usepackage[T2A]{fontenc} % Поддержка русских букв
+\usepackage[utf8]{inputenc} % Кодировка utf8
+\usepackage[english, russian]{babel} % Языки: русский, английский
+
+%% графика
+\ifx\pdfoutput\undefined
+\usepackage{graphicx}
+\else
+\usepackage[pdftex]{graphicx}
+\fi
+\usepackage{wrapfig}
+\usepackage{float}
+
+\usepackage{booktabs}
+
+\textheight 26cm
+\textwidth 16.5cm
+
+\oddsidemargin 0.96cm   % margins on all sides of 3.5 cm,
+\evensidemargin 0.96cm  % correcting 1 inch default on left-hand
+\topmargin -1.61cm      % side, and 1.5 inch default on top.
+
+\begin{document}
+
+\baselineskip 24pt
+
+\parindent 0cm
+
+
+\begin{center}
+{\rm \Huge{Понимание естественного языка}}\\
+\medskip
+{\rm \Large \textit{Исследовательский семинар}}\\
+\medskip
+{\rm \Large \texttt{http://nlu-rg.ru}}
+\end{center}
+
+\bigskip
+\bigskip
+
+\baselineskip 15pt
+
+Весенний семестр 2014-2015 гг. посвящен композициональным дистрибутивным семантическим моделям (CDSM).\\
+
+Встречи проходят раз в две недели по четвергам в 20:00 по адресу:\\ м. ``Площадь Мужества'', Политехническая ул., д. 21, 9-й учебный корпус СПбГПУ, ауд. 106.\\
+
+Первая встреча состоится 19 февраля 2015 г.\\
+
+\bigskip
+\bigskip
+\bigskip
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textit{Дата}  & \textit{Тема}                                                        \\ \midrule
+19.02 & Дистрибутивная семантика (обзор)                            \\
+05.03 & Латентный семантический анализ                               \\
+19.03 & Аддитивные и мультипликативные методы в CDSM                \\
+02.04 & Функциональная композиция в CDSM                            \\
+16.04 & CDSM с помощью нейронных сетей                              \\
+30.04 & Полилинейная алгебра и тензорные представления              \\
+14.05 & Pregroup Grammar и языки диаграмм для тензорного исчисления \\
+28.05 & Теоретико-категорная модель CDSM (Oxford Quantum Group)     \\ \bottomrule 
+\end{tabular}
+\end{table}
+
+\bigskip
+\bigskip
+
+\begin{minipage}{0.5\textwidth}
+\begin{figure}[H]
+\includegraphics[width=7.5cm]{map.png} 
+%\caption{\label{fig:blue_rectangle} Rectangle}
+\end{figure}
+\end{minipage} \hfill
+\begin{minipage}{0.45\textwidth}
+Политехническая улица, д. 21\\
+9-й учебный корпус СПбГПУ, ауд. 106\\
+м. <<Площадь Мужества>>\\
+\end{minipage}
+
+
+
+
+
+
+\end{document}
