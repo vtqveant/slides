@@ -16,18 +16,19 @@
 \usepackage{wrapfig}
 \usepackage{float}
 
-\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{bigstrut}  % row spacing in tables
 
 \textheight 26cm
 \textwidth 16.5cm
 
 \oddsidemargin 0.96cm   % margins on all sides of 3.5 cm,
 \evensidemargin 0.96cm  % correcting 1 inch default on left-hand
-\topmargin -1.61cm      % side, and 1.5 inch default on top.
+\topmargin -2.2cm      % side, and 1.5 inch default on top.
 
 \begin{document}
 
-\baselineskip 24pt
+\baselineskip 15pt
 
 \parindent 0cm
 
@@ -35,55 +36,58 @@
 \begin{center}
 {\rm \Huge{Понимание естественного языка}}\\
 \medskip
-{\rm \Large \textit{Исследовательский семинар}}\\
+{\rm \Large \textit{Natural Language Understanding Reading Group}}\\
 \medskip
 {\rm \Large \texttt{http://nlu-rg.ru}}
 \end{center}
 
 \bigskip
-\bigskip
 
-\baselineskip 15pt
+\baselineskip 12pt
 
-Весенний семестр 2014-2015 гг. посвящен композициональным дистрибутивным семантическим моделям (CDSM).\\
+Весенний семестр 2014-2015 гг. посвящен композициональным дистрибутивным \\семантическим моделям (Compositional Distributional Semantic Models). Встречи \\проходят \textit{раз в две недели по четвергам в 20:00} по адресу: м. <<Площадь Мужества>>, Политехническая ул., д. 21, 9-й учебный корпус СПбГПУ, ауд. 106.\\
 
-Встречи проходят раз в две недели по четвергам в 20:00 по адресу:\\ м. ``Площадь Мужества'', Политехническая ул., д. 21, 9-й учебный корпус СПбГПУ, ауд. 106.\\
+% \bigskip
 
-Первая встреча состоится 19 февраля 2015 г.\\
-
-\bigskip
-\bigskip
-\bigskip
-
-\begin{table}[h]
-\centering
-\begin{tabular}{@{}ll@{}}
-\toprule
-\textit{Дата}  & \textit{Тема}                                                        \\ \midrule
-19.02 & Дистрибутивная семантика (обзор)                            \\
-05.03 & Латентный семантический анализ                               \\
-19.03 & Аддитивные и мультипликативные методы в CDSM                \\
-02.04 & Функциональная композиция в CDSM                            \\
-16.04 & CDSM с помощью нейронных сетей                              \\
-30.04 & Полилинейная алгебра и тензорные представления              \\
-14.05 & Pregroup Grammar и языки диаграмм для тензорного исчисления \\
-28.05 & Теоретико-категорная модель CDSM (Oxford Quantum Group)     \\ \bottomrule 
-\end{tabular}
+\begin{table}[h!]
+%\caption{Расписание}
+\begin{tabularx}{\textwidth}{cX}
+\textit{Дата}  & \textit{Тема} \bigstrut \\ \hline
+19.02 & Дистрибутивная семантика (обзор) \bigstrut[t] \\
+      & {\scriptsize \textsc{Lenci, 2008. Distributional Semantics in Linguistic and Cognitive Research.}}  \bigstrut[b] \\
+05.03 & Латентный семантический анализ  \bigstrut[t] \\
+      & {\scriptsize \textsc{Landauer, Dumais, 1997. A Solution to Plato's problem: the latent semantic analysis theory of acquisition, induction and representation of knowledge.}}  \bigstrut[b] \\
+19.03 & Аддитивные и мультипликативные методы в CDSM \bigstrut[t] \\
+      & {\scriptsize \textsc{Mitchell, Lapata, 2010. Composition in Distributional Models of Semantics.}} \bigstrut[b] \\
+02.04 & Функциональная композиция в CDSM \bigstrut[t] \\
+      & {\scriptsize \textsc{Baroni et al., 2014. Frege in Space: A Program for Compositional Distributional Semantics.}}                \bigstrut[b] \\
+16.04 & CDSM с помощью нейронных сетей \bigstrut[t] \\
+      & {\scriptsize \textsc{Socher et al., 2013. Recursive Deep Models for Semantic Compositionality Over a Sentiment Treebank.}} \bigstrut[b] \\
+30.04 & Полилинейная алгебра и тензорные представления \bigstrut[t] \\
+      & {\scriptsize \textsc{Van de Cruys et al., 2013. A Tensor-based Factorization Model of Semantic Compositionality.}}\\
+      & {\scriptsize \textsc{Maillard et al., 2014. A Type-Driven Tensor-Based Semantics for CCG.}} \bigstrut[b] \\
+14.05 & Pregroup Grammar и языки диаграмм для тензорного исчисления \bigstrut[t] \\
+      & {\scriptsize \textsc{Lambek, 2001. Type Grammars as Pregroups.}}  \\
+      & {\scriptsize \textsc{Joyal, Street, 1991. The Geometry of Tensor Calculus - I.}} \bigstrut[b] \\
+28.05 & Теоретико-категорная модель CDSM \bigstrut[t] \\ 
+      & {\scriptsize \textsc{Coecke et al. 2010. Mathematical Foundations for a Compositional Distributional Model of Meaning.}} \bigstrut[b] \\ 
+\hline
+\end{tabularx}
 \end{table}
-
-\bigskip
-\bigskip
 
 \begin{minipage}{0.5\textwidth}
 \begin{figure}[H]
-\includegraphics[width=7.5cm]{map.png} 
+\includegraphics[width=6.5cm]{map.png} 
 %\caption{\label{fig:blue_rectangle} Rectangle}
 \end{figure}
 \end{minipage} \hfill
 \begin{minipage}{0.45\textwidth}
-Политехническая улица, д. 21\\
-9-й учебный корпус СПбГПУ, ауд. 106\\
-м. <<Площадь Мужества>>\\
+\textbf{Время и место:}\\
+\\
+м. <<Площадь Мужества>>,\\
+Политехническая ул., д. 21,\\
+9-й учебный корпус СПбГПУ,\\
+ауд. 106, начало в 20:00\\
 \end{minipage}
 
 
