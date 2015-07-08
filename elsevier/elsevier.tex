@@ -1,0 +1,239 @@
+\documentclass{beamer}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amssymb,amsfonts,amsmath,mathtext}
+\usepackage{cite,enumerate,float,indentfirst}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+% Attribute-Value Matrices
+\usepackage{avm}
+\avmfont{\sc}
+\avmoptions{sorted,active}
+\avmvalfont{\rm}
+\avmsortfont{\scriptsize\it}
+
+%% Gentzen style natural deduction proof trees
+\usepackage{bussproofs}
+\usepackage{latexsym}
+
+\graphicspath{{images/}}
+
+\usetheme{Pittsburgh}
+\usecolortheme{whale}
+
+\setbeamertemplate{footline}{\scriptsize{\hspace*{0.4cm}\insertframenumber}\vspace*{0.3cm}}
+\beamertemplatenavigationsymbolsempty
+
+\errorcontextlines 10000
+
+\begin{document}
+\title{\Large{Process Mining From Textual Data}}
+\author{}
+\institute{}
+\date{} 
+
+\begin{frame}
+    \thispagestyle{empty}
+    \titlepage
+\end{frame}
+
+\begin{frame}{}
+    \setcounter{framenumber}{1}
+    \begin{itemize}
+        \item About the group
+        \item Process Mining
+        \item Syntactic Annotation
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{About the group (1)}
+\begin{itemize}
+    \item Natural Language Understanding Reading Group (\textit{since 2013})
+    \item A number of courses on text processing
+        \begin{itemize}
+            \item Formal Approaches to Text Analysis (\textit{spring 2015})
+            \item Statistical NLP and Machine Learning for NLP (\textit{planned})
+        \end{itemize}
+    \item Projects
+        \begin{itemize}
+            \item Process Mining From Textual Data
+            \item Syntactic Annotation as Interactive Proof Search
+        \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{}
+\begin{center}
+	\textbf{Process Mining From Textual Data}
+\end{center}
+\end{frame}
+
+\begin{frame}{PM (I)}
+Goals of process mining\\
+\bigskip
+\begin{itemize}
+    \item create a formal description of a process (BPMN, Petri Nets)
+    \item detect variations of a process
+    \item find bottlenecks and optimize
+\end{itemize}
+\end{frame}
+
+\begin{frame}{PM (II)}
+\begin{itemize}
+    \item usual approach -- analysis of logs
+    \item many processes lack automation, therefore no logs
+        \begin{itemize}
+            \item travel recommendations
+            \item customer service
+            \item legal consulting
+        \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{PM (III)}
+Two types of textual descriptions\\
+\bigskip
+\begin{itemize}
+    \item instructions
+        \begin{itemize}
+            \item semi-structured or informal
+            \item information structure and macro-proposition
+            \item natural language clues to obtain document structure
+            \item formalize directly
+        \end{itemize}
+    \item reports
+        \begin{itemize}
+            \item natural language analogues of logs
+            \item requires temporal and spatial reasoning to analyze
+            \item formalize by means of log analysis
+        \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{PM (IV)}
+Our focus -- entity resolution\\
+\bigskip
+\begin{itemize}
+    \item things can be described differently
+    \item only partial descriptions are available
+    \item mistakes and logical inconsistencies
+    \item natural language is ambiguous
+    \item anaphoric expressions
+\end{itemize}
+\bigskip
+Proposal: feature structures unification and co-occurence statistics
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{PM (V)}
+(Typed) Feature Structures\\
+\bigskip
+\begin{center}
+  \begin{avm}
+    [{} predicate & fill \cr
+     object & mug ]
+  \end{avm}
+
+\bigskip
+
+  \begin{avm}
+    [{} predicate & fill \cr
+     object & it ]
+  \end{avm}  
+
+\bigskip
+  
+  $mug \neq it$?
+\end{center}
+\end{frame}
+
+\begin{frame}{PM (VI)}
+Co-occurence statistics:\\
+\bigskip
+\begin{itemize}
+    \item similar words tend to appear in similar contexts
+    \item words are represented as vectors, cosine as a similarity metric
+    \item preprocess textual corpora to obtain word similarity metrics
+    \item two approaches to creating words representations
+        \begin{itemize}
+            \item ``count'' -- big vectors (tens of thousands of dimensions), direct computation
+            \item ``predict'' -- small vectors (hundreds of dimensions), machine learning to approximate
+        \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{PM (VII)}
+Hybrid system should allow\\
+\bigskip
+\begin{itemize}
+    \item statistical unification of partial descriptions of events
+    \item make it computationally tractable on large scale tasks
+\end{itemize}
+\end{frame}
+
+\begin{frame}{}
+\begin{center}
+	\textbf{Syntactic Annotation as Interactive Proof Search}
+\end{center}
+\end{frame}
+
+\begin{frame}{Annotation (I)}
+OpenCorpora (\texttt{http://opencorpora.org})\\
+\bigskip
+\begin{itemize}
+    \item community effort to create an annotated corpus of Russian
+    \item since 2010
+    \item approx. 20 contributors, more than 4000 annotators
+    \item 1.3M words, approx. 40k sentences
+    \item currently only morphological annotation (~50\% done)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Annotation (II)}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.285]{annotation1.png} 
+	\end{figure}
+\end{center}
+\end{frame}
+
+\begin{frame}{Annotation (III)}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.285]{annotation2.png} 
+	\end{figure}
+\end{center}
+\end{frame}
+
+\begin{frame}{Annotation (IV)}
+Prove that \textit{John loves Mary} is a sentence given the lexicon\\
+\medskip
+$John \vdash np$, $Mary \vdash np$, $loves \vdash (np \textbackslash s)/np$
+
+\begin{prooftree}
+  \AxiomC{$s \vdash s$}
+  \AxiomC{$np \vdash np$}
+  \RightLabel{{\small $\textbackslash_h$}}
+      \BinaryInfC{$np, \, np \textbackslash s \vdash s$}
+      \AxiomC{$np \vdash np$}
+      \RightLabel{{\small $/_h$}}      
+      \BinaryInfC{$np, \, (np \textbackslash s)/np, \, np \vdash s$}
+\end{prooftree}
+\end{frame}
+
+\begin{frame}{Annotation (IV)}
+Goals of the project:\\
+\bigskip
+\begin{itemize}
+    \item create a proof assistant for a variant of Lambek calculus
+    \item should allow rapid syntactic annotation of existing corpora
+    \item build a statistical parser
+\end{itemize}
+\end{frame}
+
+\end{document}
