@@ -1,0 +1,680 @@
+\documentclass{beamer}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amssymb,amsfonts,amsmath,mathtext}
+\usepackage{cite,enumerate,float,indentfirst}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+% CCG parse trees
+\newcommand{\deriv}[2]
+{  \renewcommand{\arraystretch}{.5}
+$\begin{array}[t]{*{#1}{c}}
+     #2
+   \end{array}$ }
+\newcommand{\gf}[1]{\textsf{\textsl{#1}}}
+\newcommand{\cf}[1]{\mbox{\ensuremath{\cfont{#1}}}}
+\newcommand{\uline}[1]
+{\mc{#1}{\hrulefill} }
+\newcommand{\mc}[2]
+  {\multicolumn{#1}{c}{#2}}
+\newcommand{\cfont}{\mathsf}
+\newcommand{\bs}{\backslash}
+\newcommand{\subsa}[1]{\hspace{-0.75mm}_{_{#1}}}
+\newcommand{\subsb}[1]{\hspace{-0.10mm}_{_{#1}}}
+\newcommand{\subs}[1]{\hspace{-0.40mm}_{#1}}
+\newcommand{\subsf}[1]{\hspace{-0.75mm}_{_{#1}}}
+\newcommand{\supsa}[1]{\hspace{-1.75mm}^{^{#1}} }
+\newcommand{\supsb}[1]{\hspace{-0.80mm}^{^{#1}}  }
+\newcommand{\sups}[1]{\hspace{-0.40mm}^{#1}}
+
+
+% Attribute-Value Matrices
+\usepackage{avm}
+\avmfont{\sc}
+\avmoptions{sorted,active}
+\avmvalfont{\rm}
+\avmsortfont{\scriptsize\it}
+
+%% Gentzen style natural deduction proof trees
+\usepackage{bussproofs}
+\usepackage{latexsym}
+
+\graphicspath{{images/}}
+
+\usetheme{Pittsburgh}
+\usecolortheme{whale}
+
+\setbeamertemplate{footline}{\scriptsize{\hspace*{0.4cm}\insertframenumber}\vspace*{0.3cm}}
+\beamertemplatenavigationsymbolsempty
+
+\errorcontextlines 10000
+
+\begin{document}
+\title{\Large{Компьютерная лингвистика на кафедре РВКС}}
+\author{Константин Соколов}
+\institute[]
+{СПбГУ, ИИТУ СПбПУ\\ \bigskip  \url{http://nlu-rg.ru}}
+\date{} 
+
+\begin{frame}
+    \thispagestyle{empty}
+    \titlepage
+\end{frame}
+
+% 10 min - представление -- о себе, о семинаре
+%          вводная часть - компьютерная лингвистика, моделирование
+% 10 мин - формальная семантика
+%          Фреге -- смысл и значение, принцип композициональности
+%          Карнап -- интенсионал/экстенсионал, возможные миры
+%          Чёрч -- просто типизированное лямбда-исчисление, логика смысла и денотата
+%          Монтегю -- синтактико-семантический интерфейс, интенсиональная логика
+% 5 мин  - CCG/HLDS, model checking
+% 5 мин  - теоретико-типовая семантика
+%          анонс семинара
+% 10 мин - разметка корпуса, исчисление Ламбека, coq
+
+\begin{frame}{РВКС}
+\setcounter{framenumber}{1}
+\begin{small}
+\begin{itemize}
+    \item Семинар ``Понимание естественного языка'' (\textit{2013 -- н.~в.})
+    \item Курсы 
+        \begin{itemize}
+            \item Анализ текстов на естественных языках (\textit{весна 2015})
+            \item Машинное обучение в NLP (\textit{планируется})
+        \end{itemize}
+    \item Проекты
+        \begin{itemize}
+        	    \item Голосовое управление оборудованием
+            \item Извлечение процессов из текстовых данных
+            \item Синтаксическая разметка средствами интерактивного поиска доказательств
+        \end{itemize}
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{}
+\begin{center}
+	\textbf{``Понимание естественного языка''}
+\end{center}
+\end{frame}
+
+\begin{frame}{``Понимание естественного языка'' (I)}
+\begin{small}
+\begin{itemize}
+    \item формат ``Reading Group''
+    \item каждый второй четверг в 20:00
+    \item \texttt{http://www.nlu-rg.ru}
+    \item материалы семинара вошли в пособие\\ \textit{Андреев и др., ``Введение в формальную семантику'', СПб, 2015}
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{``Понимание естественного языка'' (II)}
+\begin{small}
+\begin{itemize}
+    \item основные семантические концепции интенсиональной логики
+    \item формальная, когнитивная, дистрибутивная семантика
+    \item лингвистические формализмы
+    \item моделирование семантической композиции
+    \begin{itemize}
+        \item с помощью $\lambda$-исчисления
+        \item с помощью унификации графовых структур
+        \item топологическая трактовка принципа композициональности
+    \end{itemize}
+    \item когнитивные архитектуры
+    \item композициональные дистрибутивные семантические модели
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{NLP, NLU (I)}
+\begin{small}
+\begin{itemize}
+        \item математическая лингвистика
+        \item компьютерная лингвистика (Computational Linguistics)
+        \item прикладная лингвистика
+        \item обработка естественного языка (Natural Language Processing)
+        \item Text Processing, Text Mining
+        \item Cognitive Computing
+        \item (автоматическое) понимание естественного языка
+        \item вычислительная семантика
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{NLP, NLU (II)}
+\begin{small}
+\begin{itemize}
+    \item задача -- моделирование аспектов естественного языка
+    \begin{itemize}
+        \item логические, алгебраические, геометрические методы
+        \item теория формальных языков
+        \item теория вычислений, теория типов
+        \item когнитивное моделирование (символьные, коннекционистские, гибридные подходы)
+        \item статистика, машинное обучение
+        \item нейросети
+    \end{itemize}    
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{}
+\thispagestyle{empty}
+\begin{center}
+	\textbf{Формальная семантика}
+\end{center}
+\end{frame}
+
+\begin{frame}{Формальная семантика}
+\begin{small}
+\begin{itemize}
+	\item основы лингвистической формальной семантики были заложены в поздних работах Р. Монтегю в начале 70-х гг.
+	\item Монтегю опирается на предшествующие разработки\\ Р. Карнапа, А. Чёрча и др.
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Интенсиональная логика (I)}
+\begin{itemize}
+	\item \textit{Интенсиональная логика} -- это логика, содержащая в объектном языке имена интенсиональных сущностей
+	\medskip
+	\item выражаясь нестрого, \textit{интенсионал} можно описать как название или наименование некоторого мыслимого содержания
+	\medskip
+	\item интенсиональная логика позволяет формулировать утверждения об \textit{интенсиональных сущностях (интенсионалиях)}, выступающих денотатами интенсиональных понятий
+	    \medskip
+	    {\small
+	    \begin{itemize}
+	        \item Примеры: \textit{индивидный концепт, пропозиция}
+	    \end{itemize}
+	    }
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Интенсиональная логика -- II}
+\begin{itemize}
+    \item косвенный контекст
+    	\medskip
+	    \begin{itemize}
+	        \item \texttt{Иван думает, что снег бел}
+	        \smallskip
+	        \item \texttt{Иван думает, что фраза ``снег бел'' соответствует положению дел}
+	    \end{itemize}    
+	\medskip
+    \item ``навешивание'' квантора существования
+    	\medskip
+	    \begin{itemize}
+	        \item \texttt{Иван сомневается, что снежный человек существует}
+	        \smallskip
+	        \item $^?$\texttt{Существует некто, в чьём существовании Иван сомневается}
+	    \end{itemize}   	
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Интенсиональная логика -- II}
+\begin{itemize}
+    \item референтная непрозрачность
+    	\medskip
+	    \begin{itemize}
+	        \item \texttt{Мери полагает, что самый популярный ветеринар в Восточном Иллинойсе — мой друг}
+	        \smallskip
+	        \item \texttt{Самый популярный ветеринар в Восточном Иллинойсе -- Денвилл старший, страдающий от болезней ног}
+	        \smallskip
+	        \item \texttt{Мери полагает, что Денвилл старший, страдающий от болезней ног,— мой друг}
+	    \end{itemize}   	
+    \medskip
+	\item необходимо иметь возможность
+    	\medskip
+	    \begin{itemize}
+	        \item различать мыслимое содержание и его выражение
+	        \item анализировать употребление в различных контекстах
+	    \end{itemize}   	
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Г. Фреге}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.5]{frege.jpg} 
+	\end{figure}
+\end{center}
+\end{frame}
+
+\begin{frame}{Бикомпонентная семантика Г. Фреге}
+\begin{itemize}
+    \item смысл и денотат
+	\item косвенный контекст
+	\item треугольник Фреге
+	\item принцип композициональности
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Р. Карнап}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.44]{carnap.jpg} 
+	\end{figure}
+\end{center}
+\end{frame}
+
+\begin{frame}{Интенсиональная иерархия Р. Карнапа}
+\begin{itemize}
+    \item метод интенсионала и экстенсионала
+    \begin{itemize}
+        \item описание состояния и \textit{действительное} описание состояние
+        \item $L$-истинность -- логическая истинность
+        \item $F$-истинность -- соответствие положению вещей
+    \end{itemize}
+	\item интенсиональная иерархия
+	\item интенсиональный (косвенный) контекст и возможные миры
+\end{itemize}
+\end{frame}
+
+\begin{frame}{А. Чёрч}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.6]{church.jpg} 
+	\end{figure}
+\end{center}
+\end{frame}
+
+\begin{frame}{$\lambda_\to$ (I)}
+\textit{исчисление} задается как\\
+\begin{itemize}
+  \item набор базовых символов и способ их комбинации
+  \item множество аксиом
+  \item правила вывода
+  \item определение понятия выводимости
+\end{itemize}
+\bigskip
+систему простой типизации для лямбда-исчисления построил Алонзо Чёрч в 1940 г.
+\end{frame}
+
+\begin{frame}{$\lambda_\to$ (II)}
+\textit{нотация}\\
+\medskip
+\begin{itemize}
+  \item базовые типы $\alpha, \beta$, функциональные типы $(\alpha\beta) = \beta \to \alpha$
+  \item $\lambda x_\alpha \; . \; A_{\beta\alpha}$
+  \item константы $true$ и $false$ имеют тип $o$
+  \item функции с типом $(o\alpha) = \alpha \to o$
+  \item каррирование: $(o\alpha o\beta) = \beta \to (o \to (\alpha \to o))$
+  \item универсальный квантор: $\Pi_{o(o\alpha)}[\lambda x_\alpha A_o] \equiv \forall x_\alpha A_o$
+  \item $[MN]$ - применение функции $M$ к аргументу $N$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{$\lambda_\to$ (III)}
+\textit{язык}\\
+\medskip
+\begin{itemize}
+  \item переменная или константа типа $\alpha$ -- п.п.ф. типа $\alpha$ 
+  \item если $A_{\alpha\beta}$ и $B_{\beta}$ -- п.п.ф. соответствующих типов, то $[A_{\alpha\beta}B_\beta]$ -- п.п.ф. типа $\alpha$
+  \item если $x_\beta$ -- переменная типа $\beta$ и $A_\alpha$ -- п.п.ф., то $[\lambda x_\beta A_\alpha]$ -- п.п.ф. типа $(\alpha \beta)$
+\end{itemize}
+\bigskip
+\textit{замечания}\\
+\begin{itemize}
+  \item $\sim_{(oo)}$ - п.п.ф. типа $(oo)$, $[\sim_{(oo)}A_o]$ - п.п.ф. типа $o$
+  \item $Q_{o \alpha \alpha} = [\lambda x_\alpha \lambda y_\alpha \forall f_{o \alpha}[f_{o \alpha} x_\alpha \supset f_{o \alpha} y_\alpha]]$ - если $y$ обладает всеми свойствами $x$, то $y = x$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{$\lambda_\to$ (IV)}
+\textit{правила вывода}\\
+\bigskip
+\begin{itemize}
+  \item $\alpha$-конверсия: переименование связанных переменных
+  \item $\beta$-редукция: замена $[[\lambda x_\beta M_\alpha] N_\beta]$ на $M_\alpha[x_\beta/N_\beta]$
+  \item $\beta$-экспансия: $D \vdash C$, если $D$ получается из $C$ однократным применением $\beta$-редукции
+  \item подстановка: $F_{(o \alpha)} x_\alpha \vdash F_{(o \alpha)} A_\alpha$
+  \item modus ponens: $[A_o \supset B_o], A_o \vdash B_o$ 
+  \item обобщение: $F_{(o \alpha)} x_\alpha \vdash \Pi_{o (o \alpha)} F_{(o \alpha)}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{$\lambda_\to$ (V)}
+\textit{аксиомы исчисления выказываний}\\
+\begin{itemize}
+  \item $p \vee p \supset p$
+  \item $p \supset p \vee p$
+  \item $p \vee q \supset q \vee p$
+  \item $(p \supset q) \supset (r \vee p \supset r \vee q)$
+\end{itemize}
+\bigskip
+\textit{аксиомы логического функционального исчисления}\\
+\begin{itemize}
+  \item $\Pi_{o (o \alpha)} f_{o \alpha} \supset f_{o \alpha} x_\alpha$
+  \item $\forall x_\alpha [p_o \vee f_{o \alpha}] \supset [p_o \vee \Pi_{o(o \alpha)} f_{o \alpha}]$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{$\lambda_\to$ (VI)}
+\textit{аксиома экстенсиональности}\\
+\bigskip
+\begin{itemize}
+  \item $\forall x_\beta [f_{\alpha \beta} x_\beta = g_{\alpha \beta} x_\beta] \supset f_{\alpha \beta} = g_{\alpha \beta}$
+\end{itemize}
+\bigskip
+\textit{аксиома дескрипции}\\
+\begin{itemize}
+  \item $\exists ! x_\alpha [p_{o \alpha} x_\alpha] \supset p_{o \alpha} [\iota_{\alpha(o \alpha)}p_{o \alpha}]$, где $\exists ! x_\alpha A_o =_{def} [\lambda p_{o \alpha} \exists y_\alpha[p_{o \alpha} y_\alpha \wedge \forall z_\alpha[p_{o \alpha} z_\alpha \supset z_\alpha = y_\alpha]]][\lambda x_\alpha A_o]$
+\end{itemize}
+\bigskip
+неформально, $A_o$ описывает $x_\alpha$; \textit{оператор дескрипции} $\iota_{\alpha (o \alpha)}$ сопоставляет одноэлементному множеству его (единственный) элемент
+\end{frame}
+
+\begin{frame}{$\lambda_\to$ (VII)}
+\textit{аксиома выбора}\\
+\bigskip
+\begin{itemize}
+  \item $f_{o \alpha} x_\alpha \supset f_{o \alpha} [\iota_{\alpha (o \alpha)} f_{o \alpha}].$
+\end{itemize}
+\bigskip
+неформально, \textit{оператор выбора} $\iota_{\alpha (o \alpha)}$ сопоставляет непустому множеству какой-то его элемент\\
+\bigskip
+аксиома выбора влечет аксиому дескрипции
+\end{frame}
+
+\begin{frame}{$\lambda_\to$ (VIII)}
+\textit{формальный вывод}\\
+\bigskip
+\begin{itemize}
+  \item \textit{доказательство} формулы $B_o$ в предположении формул $A_o^1, A_o^2, ..., A_o^n$ - это конечная последовательность формул, последняя из которых - $B_o$, а остальные - либо одна из формул $A_o^1, A_o^2, ..., A_o^n$, вариант схемы аксиом, либо формула, полученная из предыдущих формул последовательности применением правил вывода.
+  \item если такое доказательство существует, будем писать $A_o^1, A_o^2, ..., A_o^n \vdash B_o$
+  \item \textit{теорема дедукции:} если $A_o^1, A_o^2, ..., A_o^n \vdash B_o$, то $A_o^1, A_o^2, ..., A_o^{n-1} \vdash A_o^n \supset B_o$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Логика смысла и денотата}
+\begin{itemize}
+    \item моделирование интенсиональной иерархии средствами теоретико-типового формализма
+   	\medskip
+         \begin{itemize} 
+	        \item базовые типы: $o$ -- истинностные значения, $\iota$ -- индивиды
+	        \item функциональные типы: $\alpha_n \beta_m$, напр. $o \iota$ -- одноместные предикаты, $o(o \iota)$ -- дескрипции
+	        \item интенсиональные типы: $o_1$ -- пропозиции, $\iota_1$ -- индивидные концепты, $o_2$ -- пропозициональные концепты, $\iota_2$ -- имена индивидных концептов, $oo_1$ -- тип модального оператора
+	        \item трансфинитный интенсиональный тип $o_\omega$
+	    \end{itemize}
+	\medskip
+	\item процедура интенсионального восхождения
+	\medskip
+	\item двухместный предикат $\Delta$ (``быть концептом'')
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Р. Монтегю}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.5]{montague.jpg} 
+	\end{figure}
+\end{center}
+\begin{flushleft}
+I reject the contention that an important theoretical difference exists between formal and natural languages.
+\end{flushleft}
+\begin{flushright}
+\textit{English as a Formal Language (1970)}
+\end{flushright}
+\end{frame}
+
+\begin{frame}{Интенсиональная логика Р. Монтегю -- I}
+прагматика и интенсиональная логика (60-е гг.)\\
+\bigskip
+\begin{itemize}
+    \item совместил подход Карнапа (интенсиональный контекст как класс возможных миров) и подход Чёрча (моделирование интенсиональной иерархии средствами теории типов)
+    \item функциональная абстракция $\lambda$ и интенсиональная абстракция $\hat{}$
+    \item проблема ``псевдотипа'' $s$
+    \item окрестностная семантика (семантика Монтегю-Скотта)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Интенсиональная логика Р. Монтегю -- II}
+грамматика Монтегю (1970--1971 гг.)\\
+\bigskip
+\begin{itemize}
+    \item три лингвистические работы
+    \begin{itemize}
+        \item English as a Formal Language
+        \item Universal Grammar
+        \item Proper Treatment of Quantification in Ordinary English
+    \end{itemize}
+    \item метод трансляции -- интенсиональная логика как ``семантический метаязык''
+    \item синтактико-семантический интерфейс
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Синтактико-семантический интерфейс -- I}
+\begin{itemize}
+    \item исчисление Ламбека и $\lambda_\to$ \textit{(van Benthem, 1983; \\Moortgart, 1988)}
+    \item исчисление Ламбека и интенсиональная логика Монтегю \textit{(van Benthem, 1986)}
+    \item Definite Clause Grammar (DCG) и язык ограничений для лямбда-структур (Constraint Language for Lambda Structures, CLLS) \textit{(Blackburn and Bos, 2005)}
+    \item исчисление Ламбека и теория репрезентации дискурса (DRT) \textit{(Muskens, 1994)}
+    \item вершинная грамматика составляющих (HPSG) и  недоопределенная теория репрезентации дискурса (UDRT) \textit{(Frank and Reyle, 1995)}
+\end{itemize}
+\end{frame}    	
+
+\begin{frame}{Синтактико-семантический интерфейс -- II}
+\begin{itemize}
+    \item лексико-функциональная грамматика (LFG) и Glue Semantics \textit{(Dalrymple, 1999)}
+    \item LFG и UDRT \textit{(van Genabith and Crouch, 1999)}
+    \item LTAG и  минимально-рекурсивная семантика (MRS) \textit{(Kallmeyer, Joshi, 1999)}
+    \item LTAG и Glue Semantics \textit{(Frank and van Genabith, 2001)} 
+    \item HPSG и Glue Semantics \textit{(Asudeh and Crouch, 2001)}
+    \item HPSG и Hole Semantics \textit{(Chaves, 2002)}
+\end{itemize}
+\end{frame}    	
+
+\begin{frame}{Синтактико-семантический интерфейс -- III}
+\begin{itemize}
+    \item MMCCG и семантика зависимостей на основе гибридной логики (HLDS) \textit{(Baldridge, Kruijff. 2002)}
+    \item LTAG и Hole Semantics \textit{(Kallmeyer, Joshi, 2003)}
+    \item LFG и MRS \textit{(Oepen et al., 2004)}
+    \item HPSG и MRS \textit{(Copestake et al., 2005)}
+    \item LTAG и UDRT \textit{(Cimiano and Reyle, 2005)}
+    \item CCG и UDRT \textit{(Bos, 2008)}
+\end{itemize}
+\end{frame}    	
+
+\begin{frame}{CCG/FOL -- I}
+  \begin{itemize}
+    \item каждому слову вместе с категорией можно приписать $\lambda$-терм
+      \begin{eqnarray*}
+        ``John'' &\vdash& np : john \\
+        ``Mary'' &\vdash& np : mary \\
+        ``loves'' &\vdash& (s \backslash np) / np : \lambda x.\lambda y.love(y,x)
+      \end{eqnarray*}
+    \item композиция термов задается правилами
+      \begin{eqnarray*}
+        (X / Y) : f~~~Y : x &\rightarrow_{>}& X : fx \\
+        Y : x~~~(X \backslash Y) : f &\rightarrow_{<}& X : fx
+      \end{eqnarray*}
+  \end{itemize}
+\end{frame} 
+
+\begin{frame}[fragile]{CCG/FOL -- II}
+\begin{verbatim}
+ John        loves                         Mary
+ np : john   (s\np)/np : \x.\y.love(y,x)   np : mary
+            ----------------------------------------->
+             s\np : \y.love(y,mary)
+---------------------------------------<
+ s : love(john,mary)
+\end{verbatim}
+\end{frame} 
+
+\begin{frame}[fragile]{CCG/FOL -- III}
+\begin{footnotesize}
+\begin{verbatim}
+ library             of                                    New York
+ n : \x.library(x)   (n\n)/np : \y.\f.\x.f(x) & loc(x,y)   np : nyc
+                    ------------------------------------------------>
+                     n\n : \f.\x.f(x) & loc(x,nyc)
+--------------------------------------------------<
+ n : \x.library(x) & loc(x,nyc)                     
+\end{verbatim}
+\end{footnotesize}
+\end{frame} 
+
+\begin{frame}[fragile]{MMCCG/HLDS -- I}
+Пример словарной записи:\\
+\smallskip
+\begin{center}
+$flower \vdash n_{sg,X:thing} : @_{X:thing}(\textbf{flower} \wedge \langle NUM \rangle sg)$
+\end{center}
+\bigskip
+\begin{small}
+\begin{verbatim}
+family tv(V) {
+    entry : s \! np / np : 	E:event(* <Actor>(S:entity) 
+                                      <Patient>(X:entity));
+}
+\end{verbatim}
+\end{small}
+\end{frame}
+
+\begin{frame}[fragile]{MMCCG/HLDS -- II}
+\begin{center}
+\deriv{6}{
+\gf{включи} & \gf{лампу} & \gf{и} & \gf{подсветку} & \gf{на} & \gf{кухне} \\
+\uline{1} & \uline{1} & \uline{1} & \uline{1} & \uline{1} & \uline{1} \\
+\cf{s\bs \supsa{-} np/ np} & \cf{np} & \cf{n/ np\bs \subsb{*} np} & \cf{np} & \cf{pp/ \subsa{\diamond} np} & \cf{np} \\
+& \mc{2} {\hrulefill_{<}} \\
+& \mc{2}{\cf{n/ np}} \\
+&&&& \mc{2} {\hrulefill_{>}} \\
+&&&& \mc{2}{\cf{pp}} \\
+& \mc{3} {\hrulefill_{>}} \\
+& \mc{3}{\cf{n}} \\
+&&&& \mc{2} {\hrulefill_{t\mathbf{ypechange-6}}}\\
+&&&& \mc{2}{\cf{n\bs \subsb{*} n}} \\
+& \mc{5} {\hrulefill_{<}} \\
+& \mc{5}{\cf{n}} \\
+& \mc{5} {\hrulefill_{t\mathbf{ypechange-4}}}\\
+& \mc{5}{\cf{np}} \\
+ \mc{6} {\hrulefill_{>}} \\
+ \mc{6}{\cf{s\bs \supsa{-} np}} \\
+}
+\end{center}
+\end{frame} 
+
+\begin{frame}[fragile]{MMCCG/HLDS -- III}
+\begin{center}
+\begin{footnotesize}
+\begin{verbatim}
+@w0:action(ON ^ 
+              <Mood>imp ^ 
+              <Actor>x1:entity ^ 
+              <Patient>(w2:entity ^ и ^ 
+                        <Num>pl ^ 
+                        <First>(w1:thing ^ лампа ^ 
+                                <Num>sg) ^ 
+                        <Modifier>(w4:m-location ^ на ^ 
+                                   <Anchor>(w5:e-place ^ кухня ^ 
+                                            <Num>sg)) ^ 
+                        <Next>(w3:thing ^ подсветка ^ 
+                               <Num>sg) ^ 
+                        <Num>pl))
+\end{verbatim}
+\end{footnotesize}
+\end{center}
+\end{frame} 
+
+\begin{frame}{Теоретико-типовая семантика}
+\begin{small}
+\begin{itemize}
+	\item проблемы с подходом Монтегю
+	\begin{itemize}
+    		\item проблема псевдотипа $s$
+	    \item отсутствие подтипов (напр. у $\langle e \rangle$)
+	    	\item контринтуитивность (что такое ``мужчина''?)
+	\end{itemize}
+	\item \textit{Ranta, Type-Theoretical Grammar. 1994}
+	\begin{itemize}
+    		\item использует теорию зависимых типов Мартин-Лёфа для моделирования семантики естественного языка
+	    \item Types as Propositions, семантика на основе теории доказательств
+	\end{itemize}
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Интерактивные доказательства}
+\begin{small}
+\begin{itemize}
+	\item Grail III -- прувер для неассоциативного исчисления Ламбека (сети доказательств)
+	\item Icharate -- библиотека для Coq (категориальные грамматики)
+	\item Chatzikyriakidis and Luo -- серия работ по Natural Language Inference (NLI) в Coq
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{}
+\begin{center}
+	\textbf{Синтаксическая разметка\\средствами интерактивного поиска доказательств}
+\end{center}
+\end{frame}
+
+\begin{frame}{Разметка (I)}
+OpenCorpora (\texttt{http://opencorpora.org})\\
+\bigskip
+\begin{itemize}
+    \item создание общедоступного корпуса средствами сообщества
+    \item с 2010 г.
+    \item около 20 участников, более 4000 разметчиков
+    \item 1,3 млн. слов, ок. 95 тыс. предложений
+    \item сейчас только морфологическая разметка (готово ~50\%)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Разметка (II)}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.285]{annotation1.png} 
+	\end{figure}
+\end{center}
+\end{frame}
+
+\begin{frame}{Разметка (III)}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.285]{annotation2.png} 
+	\end{figure}
+\end{center}
+\end{frame}
+
+\begin{frame}{Разметка (IV)}
+Словарь: {\small $John \vdash np$, $Mary \vdash np$, $loves \vdash (np \textbackslash s)/np$}\\
+Доказать, что строка \textit{John loves Mary} -- предложение\\
+\medskip
+
+\begin{prooftree}
+  \AxiomC{$s \vdash s$}
+  \AxiomC{$np \vdash np$}
+  \RightLabel{{\small $\textbackslash_h$}}
+      \BinaryInfC{$np, \, np \textbackslash s \vdash s$}
+      \AxiomC{$np \vdash np$}
+      \RightLabel{{\small $/_h$}}      
+      \BinaryInfC{$np, \, (np \textbackslash s)/np, \, np \vdash s$}
+\end{prooftree}
+\end{frame}
+
+\begin{frame}{Разметка (V)}
+Цели проекта:\\
+\bigskip
+\begin{itemize}
+    \item создание proof assistant для варианта исчисления Ламбека
+    \item быстрая синтаксическая разметка существующих корпусов
+    \item реализовать статистический парсер для русского языка
+\end{itemize}
+\end{frame}
+
+\begin{frame}{}
+\begin{center}
+Спасибо!
+\end{center}
+\end{frame}
+
+\end{document}
