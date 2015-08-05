@@ -422,7 +422,7 @@ I reject the contention that an important theoretical difference exists between 
 \end{flushright}
 \end{frame}
 
-\begin{frame}{Интенсиональная логика Р. Монтегю -- I}
+\begin{frame}{Интенсиональная логика Р. Монтегю (I)}
 прагматика и интенсиональная логика (60-е гг.)\\
 \bigskip
 \begin{itemize}
@@ -433,7 +433,7 @@ I reject the contention that an important theoretical difference exists between 
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Интенсиональная логика Р. Монтегю -- II}
+\begin{frame}{Интенсиональная логика Р. Монтегю (II)}
 грамматика Монтегю (1970--1971 гг.)\\
 \bigskip
 \begin{itemize}
@@ -448,39 +448,43 @@ I reject the contention that an important theoretical difference exists between 
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Синтактико-семантический интерфейс -- I}
+\begin{frame}{Синтактико-семантический интерфейс (I)}
+\begin{small}
+Анализ предложения \textit{some woman admires every man}\\
 \begin{itemize}
-    \item исчисление Ламбека и $\lambda_\to$ \textit{(van Benthem, 1983; \\Moortgart, 1988)}
-    \item исчисление Ламбека и интенсиональная логика Монтегю \textit{(van Benthem, 1986)}
-    \item Definite Clause Grammar (DCG) и язык ограничений для лямбда-структур (Constraint Language for Lambda Structures, CLLS) \textit{(Blackburn and Bos, 2005)}
-    \item исчисление Ламбека и теория репрезентации дискурса (DRT) \textit{(Muskens, 1994)}
-    \item вершинная грамматика составляющих (HPSG) и  недоопределенная теория репрезентации дискурса (UDRT) \textit{(Frank and Reyle, 1995)}
+	\item в процессе порождения получены синтаксические формы
+	\begin{itemize}
+		\item $\alpha_1$ : some woman admires him$_n$
+		\item $\alpha_2$ : every man
+	\end{itemize}
+	\item и соответствующие им термы 
+	\begin{itemize}
+		\item $\beta_1 : \exists x . [woman(x) \wedge admire(x,y)]$
+		\item $\beta_2 : \lambda B . \forall y . [man(y) \to B(y)]$
+	\end{itemize}
 \end{itemize}
-\end{frame}    	
+\end{small}
+\end{frame}
 
-\begin{frame}{Синтактико-семантический интерфейс -- II}
+\begin{frame}{Синтактико-семантический интерфейс (II)}
+\begin{small}
 \begin{itemize}
-    \item лексико-функциональная грамматика (LFG) и Glue Semantics \textit{(Dalrymple, 1999)}
-    \item LFG и UDRT \textit{(van Genabith and Crouch, 1999)}
-    \item LTAG и  минимально-рекурсивная семантика (MRS) \textit{(Kallmeyer, Joshi, 1999)}
-    \item LTAG и Glue Semantics \textit{(Frank and van Genabith, 2001)} 
-    \item HPSG и Glue Semantics \textit{(Asudeh and Crouch, 2001)}
-    \item HPSG и Hole Semantics \textit{(Chaves, 2002)}
+	\item синтаксическое и трансляционное правила применяются одновременно
+	\begin{itemize}
+		\item синтаксическое правило $S_{14}$: подстановка другого выражения вместо him$_n$
+		\item трансляционное правило $T_{14}$: $\beta = \beta_2(\lambda x_n . \beta_1)$
+	\end{itemize}
+	\item результат порождения 
+	\begin{itemize}
+		\item $\alpha$ : some woman admires every man
+		\item $\beta : \forall y [man(y) \to \exists x [woman(x) \wedge admire(x,y)]]$
+	\end{itemize}
 \end{itemize}
-\end{frame}    	
-
-\begin{frame}{Синтактико-семантический интерфейс -- III}
-\begin{itemize}
-    \item MMCCG и семантика зависимостей на основе гибридной логики (HLDS) \textit{(Baldridge, Kruijff. 2002)}
-    \item LTAG и Hole Semantics \textit{(Kallmeyer, Joshi, 2003)}
-    \item LFG и MRS \textit{(Oepen et al., 2004)}
-    \item HPSG и MRS \textit{(Copestake et al., 2005)}
-    \item LTAG и UDRT \textit{(Cimiano and Reyle, 2005)}
-    \item CCG и UDRT \textit{(Bos, 2008)}
-\end{itemize}
-\end{frame}    	
+\end{small}
+\end{frame}
 
 \begin{frame}{CCG/FOL -- I}
+\begin{small}
   \begin{itemize}
     \item каждому слову вместе с категорией можно приписать $\lambda$-терм
       \begin{eqnarray*}
@@ -494,6 +498,7 @@ I reject the contention that an important theoretical difference exists between 
         Y : x~~~(X \backslash Y) : f &\rightarrow_{<}& X : fx
       \end{eqnarray*}
   \end{itemize}
+\end{small}  
 \end{frame} 
 
 \begin{frame}[fragile]{CCG/FOL -- II}
@@ -592,10 +597,10 @@ family tv(V) {
 	    \item отсутствие подтипов (напр. у $\langle e \rangle$)
 	    	\item контринтуитивность (что такое ``мужчина''?)
 	\end{itemize}
-	\item \textit{Ranta, Type-Theoretical Grammar. 1994}
+	\item \textit{A. Ranta, Type-Theoretical Grammar (1994)}
 	\begin{itemize}
     		\item использует теорию зависимых типов Мартин-Лёфа для моделирования семантики естественного языка
-	    \item Types as Propositions, семантика на основе теории доказательств
+	    \item Types as Propositions
 	\end{itemize}
 \end{itemize}
 \end{small}
@@ -645,7 +650,135 @@ OpenCorpora (\texttt{http://opencorpora.org})\\
 \end{center}
 \end{frame}
 
-\begin{frame}{Разметка (IV)}
+\begin{frame}{Parsing as Deduction (I)}
+\begin{small}
+Предложен в работе \textit{Pereira, Warren, Parsing as Deduction. (1983)}\\
+\medskip
+Алгоритм Кока-Янгера-Касами для КС-грамматики в виде системы гильбертовского типа\\
+\begin{itemize}
+	\item продукционные правила двух видов: $A \to BC$ и $A \to a$, где $A, B, C$ -- нетерминалы, $a$ -- терминал.
+	\item формальный язык включает выражения вида $[A, \; i, \; j]$, где $A$ -- нетерминал, $i$ и $j$ -- индексы начала и конца
+	\item два правила вывода: \textit{scan} и \textit{complete}
+\end{itemize}
+
+\begin{columns}[c,onlytextwidth]
+\column{0.5\textwidth}
+  \begin{prooftree}
+    \AxiomC{ }
+    \RightLabel{{\small $A \to w_i \in P$}}
+    \UnaryInfC{$[A, i-1, i]$}
+  \end{prooftree}
+\column{0.5\textwidth}
+  \begin{prooftree}
+      \AxiomC{$[B, i, j]$}
+      \AxiomC{$[C, j, k]$}
+      \RightLabel{{\small $A \to BC \in P$}}
+      \BinaryInfC{$[A, i, k]$}
+  \end{prooftree}
+\end{columns}
+
+\end{small}
+\end{frame}
+
+\begin{frame}{Parsing as Deduction (II)}
+\begin{small}
+Грамматика:\\
+\bigskip
+\begin{columns}[c,onlytextwidth]
+\column{0.25\textwidth}
+    $S \to NP \; VP$\\
+    $NP \to D \; N$
+\column{0.25\textwidth}
+    $VP \to V \; NP$\\
+    $N \to man$
+\column{0.25\textwidth}
+    $NP \to Mary$\\
+    $V \to saw$
+\column{0.25\textwidth}
+    $D \to the$
+\end{columns}
+
+\bigskip
+Разбор предложения \textit{Mary saw the man}:\\
+\medskip
+\begin{itemize}
+	\item[] $\lbrack NP, \; 0, \; 1 \rbrack$~~\textit{scan (Mary)}
+	\item[] $\lbrack V, \; 1, \; 2 \rbrack$~~\textit{scan (saw)}
+	\item[] $\lbrack D, \; 2, \; 3 \rbrack$~~\textit{scan (the)}
+	\item[] $\lbrack N, \; 3, \; 4 \rbrack$~~\textit{scan (man)}
+	\item[] $\lbrack NP, \; 2, \; 4 \rbrack$~~\textit{complete 3,4}
+	\item[] $\lbrack VP, \; 1, \; 4 \rbrack$~~\textit{complete 2,5}
+	\item[] $\lbrack S, \; 0, \; 4 \rbrack$~~\textit{complete 1,6}
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{Исчисление Ламбека (I)}
+\begin{footnotesize}
+Ассоциативное исчисление Ламбека с умножением
+
+\begin{columns}[c,onlytextwidth]
+\column{0.5\textwidth}
+
+\begin{prooftree}
+  \AxiomC{$\Gamma, B, \Gamma' \vdash C$}
+  \AxiomC{$\Delta \vdash A$}
+  \RightLabel{{\small $\textbackslash_h$}}
+  \BinaryInfC{$\Gamma, A, A \textbackslash B, \Gamma' \vdash C$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$A, \Gamma \vdash C$}
+  \RightLabel{{\small $\textbackslash_i, \Gamma \neq \epsilon$}}
+  \UnaryInfC{$\Gamma \vdash A \textbackslash C$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$\Gamma, B, \Gamma' \vdash C$}
+  \AxiomC{$\Delta \vdash A$}
+  \RightLabel{{\small $/_h$}}
+  \BinaryInfC{$\Gamma, B/A, \Delta, \Gamma' \vdash C$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$\Gamma, A \vdash C$}
+  \RightLabel{{\small $/_i, \Gamma \neq \epsilon$}}
+  \UnaryInfC{$\Gamma \vdash C/A$}
+\end{prooftree}
+
+\column{0.5\textwidth}
+
+\begin{prooftree}
+  \AxiomC{$\Gamma, A, B, \Gamma' \vdash C$}
+  \RightLabel{{\small $\bullet_h$}}
+  \UnaryInfC{$\Gamma, A \bullet B, \Gamma' \vdash C$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$\Delta \vdash A$}
+  \AxiomC{$\Gamma \vdash B$}
+  \RightLabel{{\small $\bullet_i$}}
+  \BinaryInfC{$\Delta, \Gamma \vdash A \bullet B$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$\Gamma \vdash A$}
+  \AxiomC{$\Delta_1, A, \Delta_2 \vdash B$}
+  \RightLabel{{\small \textit{сечение}}}
+  \BinaryInfC{$\Delta_1, \Gamma, \Delta_2 \vdash B$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{{\small \textit{аксиома}}}
+  \UnaryInfC{$A \vdash A$}
+\end{prooftree}
+
+\end{columns}
+\end{footnotesize}
+\end{frame}
+
+\begin{frame}{Исчисление Ламбека (II)}
 Словарь: {\small $John \vdash np$, $Mary \vdash np$, $loves \vdash (np \textbackslash s)/np$}\\
 Доказать, что строка \textit{John loves Mary} -- предложение\\
 \medskip
