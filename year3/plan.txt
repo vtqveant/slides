@@ -1,0 +1,38 @@
+Теоретико-типовая лексическая семантика
+
+1. Обзор. Просто типизированное лямбда-исчисление, System F, лямбда-куб, теория зависимых типов Мартин-Лёфа, Calculus of Constructions
+(CC) (Coquand & Huet 1988), Unifying Theory of dependent Types (UTT) (Luo 1994). Four frameworks -- Type Composition Logic (TCL, Asher), 
+MTTc+ DTS (dependent types, coercive subtyping), Type Theory with Records (TTR, Cooper), Montagovian Generative Lexicon (MGL, Retore, Mery et al.)
+
+2. Генеративный лексикон и лексическая декомпозиция [Pustejovsky 1995](), [Pustejovsky, ? Type Theory and Lexical Decomposition]()
+
+3. Dot types (Pustejovsky)
+
+4. [Ranta 1994. Type-theoretical grammar.]
+
+5. Record types [Cooper 2005. Records and record types in semantic theory.]
+
+6. Type Composition Logic (TCL) -- [Asher 2009. Lexical Meaning in Context: A Web of Words.]
+
+7. Coersive subtyping [Luo 2010. Type-theoretical semantics with coercive subtyping](http://www.cs.rhul.ac.uk/home/zhaohui/SALT20.pdf)
+
+8. System F [Retore 2013. A type theoretical framework for natural language semantics: the Montagovian generative lexicon.](https://hal.archives-ouvertes.fr/hal-00779214v2/document)
+
+9. Линейные типы [Mery 2015, Lexical Semantics with Linear Types](http://www.easychair.org/publications/?page=2138414611)
+
+
+1.  10 сентября
+2.  24 сентября
+3.  8 октября
+4.  22 октября
+5.  5 ноября
+6.  19 ноября
+7.  3 декабря
+8.  17 декабря
+9.  24 декабря (?)
+
+
+
+Links:
+
+ http://www.lirmm.fr/tytles/ -- Workshop on Type Theory and Lexical Semantics (ESSLLI-2015)

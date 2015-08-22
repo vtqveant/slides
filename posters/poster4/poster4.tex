@@ -1,0 +1,109 @@
+\documentclass[12pt]{article}
+\pagestyle{empty}
+
+%%% Кодировки и шрифты %%%
+\usepackage{cmap} % Улучшенный поиск русских слов в полученном pdf-файле
+\usepackage[T2A]{fontenc} % Поддержка русских букв
+\usepackage[utf8]{inputenc} % Кодировка utf8
+\usepackage[english, russian]{babel} % Языки: русский, английский
+
+%% графика
+\ifx\pdfoutput\undefined
+\usepackage{graphicx}
+\else
+\usepackage[pdftex]{graphicx}
+\fi
+\usepackage{wrapfig}
+\usepackage{float}
+
+\usepackage{setspace}
+
+\usepackage{tabularx}
+\usepackage{bigstrut}  % row spacing in tables
+
+\textheight 26cm
+\textwidth 16.5cm
+
+\usepackage[margin=2.1cm]{geometry}  % exact margins
+
+% fancy separator, http://altermundus.com/pages/tkz/ornament/index.html
+\usepackage[object=vectorian]{pgfornament} 
+
+\newcommand{\sectionline}[1]{%
+  \nointerlineskip \vspace{.45\baselineskip}\hspace{\fill}
+  {\resizebox{0.5\linewidth}{1.0ex}
+    {\pgfornament{#1}
+    }}%
+    \hspace{\fill}
+    \par\nointerlineskip \vspace{.45\baselineskip}
+  }
+
+
+\begin{document}
+
+%\baselineskip 15pt
+
+\parindent 0mm
+
+
+\begin{center}
+{\rm \Huge \textsc{понимание естественного языка}}\\
+\bigskip
+{\rm \Large Natural Language Understanding Reading Group}\\
+\bigskip
+{\rm \Large \texttt{http://nlu-rg.ru}}
+\end{center}
+
+\bigskip
+\medskip
+
+\begin{spacing}{1.2}
+\hfill
+\parbox{0.986\textwidth}{
+Осенний семестр 2015--2016 гг. посвящен теоретико-типовой лексической семантике.
+}
+\end{spacing}
+
+\medskip
+
+\begin{table}[h!]
+\begin{tabularx}{\textwidth}{cX}
+10.09 & Теория типов и лексическая семантика (обзор) \bigstrut[t] \\
+      & {\scriptsize \textsc{?}}  \bigstrut[b] \\
+24.09 & Генеративный лексикон -- I \bigstrut[t] \\
+      & {\scriptsize \textsc{Pustejovsky, 1995. Generative Lexicon.}} \bigstrut[b] \\
+08.10 & Генеративный лексикон -- II \bigstrut[t] \\
+      & {\scriptsize \textsc{Pustejovsky, 2013. Type Theory and Lexical Decomposition.}} \bigstrut[b] \\
+22.10 & Теоретико-типовая грамматика \bigstrut[t] \\
+      & {\scriptsize \textsc{Ranta, 1994. Type-theoretical Grammar.}}     \bigstrut[b] \\
+05.11 & Type Theory with Records (TTR) \bigstrut[t] \\
+      & {\scriptsize \textsc{Cooper, 2005. Records and Record Types in Semantic Theory.}} \bigstrut[b] \\
+19.11 & Type Composition Logic (TCL)  \bigstrut[t] \\
+      & {\scriptsize \textsc{Asher 2011. Lexical Meaning in Context: A Web of Words.}} \bigstrut[b] \\
+03.12 & Dependent Types Semantics (DTS)  \bigstrut[t] \\
+      & {\scriptsize \textsc{Luo, 2011. Type-theoretical Semantics with Coercive Subtyping.}} \bigstrut[b] \\
+17.12 & Montagovian Generative Lexicon (MGL) \bigstrut[t] \\ 
+      & {\scriptsize \textsc{Retor\'{e}, 2013. A Type Theoretical Framework for Natural Language Semantics: the Montagovian Generative Lexicon.}} \bigstrut[b] \\ 
+24.12 & Линейные типы \bigstrut[t] \\
+      & {\scriptsize \textsc{Mery, 2015. Lexical Semantics with Linear Types.}} \bigstrut[b] \\      
+\end{tabularx}
+\end{table}
+
+\sectionline{88}
+
+\bigskip
+\hfill
+\begin{minipage}{0.41\textwidth}
+\textsc{Время и место:}\\
+\\
+м. <<Площадь Мужества>>, \\ул. Политехническая, д. 21, \\9-й учебный корпус СПбГПУ,\\ ауд. 106, начало в 20:00
+\end{minipage} 
+\hfill
+\begin{minipage}{0.4\textwidth}
+\begin{figure}[H]
+\includegraphics[width=6.3cm]{map.png} 
+\end{figure}
+\end{minipage}
+
+
+\end{document}
