@@ -1,0 +1,527 @@
+\documentclass{beamer}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amssymb,amsfonts,amsmath,mathtext}
+\usepackage{cite,enumerate,float,indentfirst}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+% Attribute-Value Matrices
+\usepackage{avm}
+\avmfont{\sc}
+\avmoptions{sorted,active}
+\avmvalfont{\rm}
+\avmsortfont{\scriptsize\it}
+
+% CCG parse trees
+\newcommand{\deriv}[2]
+{  \renewcommand{\arraystretch}{.5}
+$\begin{array}[t]{*{#1}{c}}
+     #2
+   \end{array}$ }
+\newcommand{\gf}[1]{\textsf{\textsl{#1}}}
+\newcommand{\cf}[1]{\mbox{\ensuremath{\cfont{#1}}}}
+\newcommand{\uline}[1]
+{\mc{#1}{\hrulefill} }
+\newcommand{\mc}[2]
+  {\multicolumn{#1}{c}{#2}}
+\newcommand{\cfont}{\mathsf}
+\newcommand{\bs}{\backslash}
+\newcommand{\subsa}[1]{\hspace{-0.75mm}_{_{#1}}}
+\newcommand{\subsb}[1]{\hspace{-0.10mm}_{_{#1}}}
+\newcommand{\subs}[1]{\hspace{-0.40mm}_{#1}}
+\newcommand{\subsf}[1]{\hspace{-0.75mm}_{_{#1}}}
+\newcommand{\supsa}[1]{\hspace{-1.75mm}^{^{#1}} }
+\newcommand{\supsb}[1]{\hspace{-0.80mm}^{^{#1}}  }
+\newcommand{\sups}[1]{\hspace{-0.40mm}^{#1}}
+
+
+\graphicspath{{images/}}
+
+\usetheme{Pittsburgh}
+\usecolortheme{whale}
+
+\setbeamertemplate{footline}{\scriptsize{\hspace*{0.4cm}\insertframenumber}\vspace*{0.3cm}}
+\beamertemplatenavigationsymbolsempty
+
+\errorcontextlines 10000
+
+\begin{document}
+\title{\Large{Генеративный лексикон Дж. Пустейовского}}
+\author{Константин Соколов}
+\institute[]
+{СПбГУ, ИИТУ СПбПУ\\ \bigskip  \url{http://nlu-rg.ru}}
+\date{Санкт-Петербург, 2015} 
+% Создание заглавной страницы
+\begin{frame}
+    \thispagestyle{empty}
+    \titlepage
+\end{frame}
+
+% 1. Бэкграунд 
+% унификационные грамматики, HPSG, LFG
+% основы формализма -- типизированные структуры признаков
+% Логическое описание структур признаков (Каспер-Раундс, Джонсон, гибридная логика)
+% Графовое представление структур признаков, reentrancy
+% subsumption relation и решетка типов; связь с системами типов с подтипами (subtyping coersion)
+% 
+% 2. Ещё раз о требованиях к семантическому представлению
+% а) возможность сочетания семантики предложения и 
+% 
+%
+% 3. Решение Пустейовского
+% семантическое представление как типизированный объект (структура признаков) особой структуры
+% четыре компонента семантического представления -- argument structure, qualia structure etc.
+% 
+%
+\begin{frame}{План}
+    \setcounter{framenumber}{1}
+    \begin{itemize}
+        \item Типизированные структуры признаков (TFS)
+        \item 
+    \end{itemize}
+\end{frame}
+
+% 1. Структуры типизированных признаков (TFS)
+\begin{frame}{}
+\begin{center}
+	\textbf{Структуры типизированных признаков}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Структуры типизированных признаков}
+Матрица ``атрибут-значение'' (AVM):\\
+\begin{center}
+	\begin{avm}
+	[{action} predicate & on \cr
+    	      Mood & imp \cr 
+        	  Actor & @{1} \cr 
+	          Patient & [{thing} predicate & @{2} лампа \cr
+    	                         Num & sg \cr 
+        	                     Modifier & [{q-color} predicate & красный\_adj ]]]
+	\end{avm}
+\end{center}	
+\end{frame}
+
+\begin{frame}{Формальное определение (Copestake, 2001)}
+Зададим конечное множество признаков $\textbf{Feat}$ и иерархию типов $\langle \textbf{Type}, \sqsubseteq \rangle$ (частично упорядоченное множество)\\
+\bigskip
+TFS - это четверка $\langle Q, r, \delta, \theta \rangle$, где
+\begin{itemize}
+	\item $Q$ - конечное множество вершин
+	\item $r \in Q$ - выделенная вершина
+	\item $\theta : Q \to \textbf{Type}$ - частичная функция типизации
+	\item $\delta : Q \times \textbf{Feat} \to Q$ - частичная функция, сопоставляющая признаку при вершине другую вершину
+\end{itemize}
+\bigskip
+{\footnotesize \textit{...и некоторые ограничения}}
+\end{frame}
+
+% 3. Графовое представление TFS как шкала Крипке
+\begin{frame}{}
+\begin{center}
+	\textbf{Графовое представление TFS как шкала Крипке}
+\end{center}
+\end{frame}
+
+\begin{frame}{Графовое представление}
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[scale=0.5]{tfs_avm.png} 
+		\includegraphics[scale=0.5]{tfs_graph.png} 
+	\end{figure}
+\end{center}
+\end{frame}
+
+
+\begin{frame}{Реляционная семантика (1)}
+\textit{Шкала Крипке} (Kripke frame):\\
+\bigskip
+$\mathcal{F} = (W, R)$, где $W$ - непустое множество, $R \subseteq W \times W$.\\
+\bigskip
+\begin{itemize}
+  \item $w_i \in W$ - миры, состояния, точки отнесенности
+  \item $R$ - отношение достижимости
+  \item если $wRv$, то говорят, что $v$ \textit{возможен относительно} $w$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Реляционная семантика (2)}
+\textit{Модель Крипке} $\mathcal{M} = (\mathcal{F}, V)$, где  
+\bigskip
+\begin{itemize}
+  \item $\mathcal{F}$ - шкала Крипке
+  \item $V : P \to 2^W$ - функция оценивания, т.е. отображение из атомарных выражений в подмножества множества миров
+\end{itemize}
+\bigskip
+\end{frame}
+
+\begin{frame}{Реляционная семантика (3)}
+Пусть $\mathcal{M} = (\mathcal{F}, V)$, $w \in W$, $\phi$ - формула, $p \in P$\\
+\bigskip
+Истинность $\phi$ в модели $\mathcal{M}$ в точке $w$ определяется рекурсивно\\
+\bigskip
+\begin{itemize}
+  \item $\mathcal{M}, w \models p \; \Longleftrightarrow \; w \in V(p)$
+  \item $\mathcal{M}, w \models \neg \phi \; \Longleftrightarrow \; \mathcal{M}, w \not\models \phi$
+  \item $\mathcal{M}, w \models \phi \vee \psi \; \Longleftrightarrow \; \mathcal{M}, w \models \phi$ или $\mathcal{M}, w \models \psi$
+  \item $\mathcal{M}, w \models \Box \phi \; \Longleftrightarrow \; \forall v \in W \; . \; (w R v \to \mathcal{M}, v \models \phi)$
+  \item $\mathcal{M}, w \not\models \perp$
+\end{itemize}
+\end{frame}
+
+
+
+% 2. Логическое описание TFS (языки $L^{KR}$, $HL(@)$)
+\begin{frame}{}
+\begin{center}
+	\textbf{Логическое описание TFS}
+\end{center}
+\end{frame}
+
+\begin{frame}{Логическое описание TFS}
+\begin{itemize}
+	\item логика Каспера-Раундса $L^{KR}$
+	\item гибридная логика $HL(@)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{$L^{KR}$ (1)}
+Язык $L^{KR}$ с сигнатурой $\langle L, A \rangle$, где $L$ - множество признаков, \\$A$ - множество пропозициональных переменных:\\
+\bigskip
+\begin{itemize}
+	\item $a$ для каждого $a \in A$
+	\item пропозициональные связки и $\top$
+	\item знак равенства путей $\approx$
+\end{itemize}
+\bigskip	
+Eсли $\phi$ и $\psi$ - формулы, то также формулы и 
+\begin{itemize}
+	\item $\phi \wedge \psi$,
+	\item $\phi \vee \psi$,
+	\item $l : \phi$ или $\langle l \rangle \phi$ для $l \in L$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{$L^{KR}$ (2)}
+Уравнения по путям (цепочкам модальных операторов):\\
+\bigskip
+\begin{itemize}
+	\item $\langle VP \; VERB \; HEAD \; NUM \rangle \; sing$
+	\item $\langle VP \; HEAD \rangle \approx \langle VP \; VERB \; HEAD \rangle$
+	\item $0$ - путь нулевой длины
+\end{itemize}
+\bigskip
+Пример: $\neg(0 \approx \langle F_1 \rangle ... \langle F_n \rangle)$ - условие ацикличности
+\end{frame}
+
+\begin{frame}{$HL(@)$ (1)}
+Гибридная логика:\\
+\bigskip
+\begin{itemize}
+	\item Будем писать $\langle \pi \rangle$ и $[\pi]$ вместо $\Diamond_\pi$ и $\Box_\pi$
+	\item $\langle \pi \rangle \alpha \; \equiv \; \neg [\pi] \neg \alpha$
+	\item Введем дополнительно класс \textit{номиналов} (обозн. $i, j, k$)
+	\item Введем оператор $@_i$ со значением ``истинно в точке $i$''
+\end{itemize}
+\bigskip
+Язык гибридной логики $HL(@)$:\\
+\begin{center}
+$WFF_{HL(@)} := \top \; \vert \; i \; \vert \; p \; \vert \; \neg \alpha \; | \; \alpha \wedge \beta \; \vert \; \langle \pi \rangle \alpha \; \vert \; @_i \alpha$
+\end{center}
+\end{frame}
+
+\begin{frame}{$HL(@)$ (2)}
+Гибридная модель Крипке:\\
+\bigskip
+\begin{center}
+$\mathcal{M} = (W, \{R_\pi \vert \pi \in MOD\}, V)$, где\\
+\bigskip
+\begin{itemize}
+	\item $\mathcal{F} = (W, \{R_\pi \vert \pi \in MOD\})$ - шкала Крипке
+	\item $V : PROP \cup NOM \to 2^W$
+	\item $V(i)$ - синглетон
+\end{itemize}
+\end{center}
+\end{frame}
+
+\begin{frame}{$HL(@)$ (3)}
+Денотационная семантика для $HL(@)$:\\
+\bigskip
+\begin{itemize}
+	\item $\mathcal{M}, w \models i \; \Leftrightarrow \; w = V(i)$
+	\item $\mathcal{M}, w \models @_i \alpha \; \Leftrightarrow \; \mathcal{M}, w' \models \alpha$ и $w' = V(i)$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Гибридная логика и проверка моделей}
+Дана гибридная модель $\mathcal{M}$ и формула $\alpha$, найти все узлы в $\mathcal{M}$, в которых $\alpha$ истинна:
+\bigskip
+\begin{center}
+    $T(\mathcal{M}, \alpha) = \{ w \in W \; | \; \mathcal{M}, w \models \alpha \}$
+\end{center}
+\end{frame}
+
+
+% 4. Конструкция накрытия графа
+\begin{frame}{}
+\begin{center}
+	\textbf{Конструкция накрытия графа}
+\end{center}
+\end{frame}
+
+% Let G = (V, E) and C = (V2, E2) be two graphs, and let f: V2 → V be a surjection. Then f is a covering map from C to G if for each v ∈ V2, the restriction of f to the neighbourhood of v is a bijection onto the neighbourhood of f(v) ∈ V in G. Put otherwise, f maps edges incident to v one-to-one onto edges incident to f(v).
+\begin{frame}{Накрытие графа (3)}
+$G_1 = (V_1, E_1)$, $G_2 = (V_2, E_2)$ - два графа, $\pi: V_2 \to V_1$ - сюръекция. Если ограничение $\pi \vert_U$ на окрестность вершины $v \in U \subset V_2$ биективно, то $\pi$ - накрытие.\\
+\bigskip
+Иначе, накрытие - локально биективный гомоморфизм.
+\end{frame}
+
+
+% 5. Логическая характеристика свойства локальности
+\begin{frame}{}
+\begin{center}
+	\textbf{Логическая характеристика свойства локальности}
+\end{center}
+\end{frame}
+
+\begin{frame}{Локальность (1)}
+\begin{center}
+\textbf{Задача}\\
+\bigskip
+Выразить локальные свойства модели \\в описывающем её формализме
+\end{center}
+\end{frame}
+
+\begin{frame}{Локальность (2)}
+Основное соотношение конструкции:\\
+\bigskip
+\begin{center}
+$[ \! [ \pi^{-1}(\phi) ] \! ]^{M_1, g} = [ \! [ \psi ] \! ]^{M_2, g}$, где
+\end{center}
+\bigskip
+\begin{itemize}
+	\item $\pi : M_2 \to M_1$ - накрытие,
+	\item $\phi$ и $\psi$ - формулы языка гибридной логики $HL(@)$,
+	\item $g$ - функция означивания,
+	\item домены моделей $M_1$ и $M_2$ совпадают.
+\end{itemize}
+\bigskip
+Тогда выражение $\pi^{-1}(\phi)$ назовем \textit{локализацией} формулы $\phi$ при накрытии $\pi$.
+\end{frame}
+
+
+% 6. Лингвистические приложения конструкции  % (HLDS, underspecification и др.)
+\begin{frame}{}
+\begin{center}
+	\textbf{Лингвистические приложения конструкции}
+\end{center}
+\end{frame}
+
+\begin{frame}{HLDS (1)}
+Hybrid Logic Dependency Semantics:\\
+\bigskip
+\begin{itemize}
+	\item Композициональный семантический формализм 
+	\item Описание семантических структур зависимостей с помощью выражений гибридной логики
+	\item Cемантическая композиция реализуется как унификация логических форм (ср. с формализмами на основе $\lambda$-исчисления: конкатенация с последующей редукцией)
+	\item Реализован в системе OpenCCG (Baldridge et al., 2007)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{HLDS (2)}
+\begin{center}
+$@_X\phi$
+\end{center}
+\bigskip
+\begin{itemize}
+	\item $X$ интерпретируется как референциальная переменная
+	\item $\phi$ - высказывание
+	\item $\langle \cdot \rangle$ - модальный оператор, выражающий отношение семантической зависимости
+\end{itemize}	
+\end{frame}
+
+\begin{frame}{HLDS (3)}
+Пример словарной записи:\\
+\bigskip
+\begin{center}
+$flower \vdash n_{sg,X:thing} : @_{X:thing}(\textbf{flower} \wedge \langle NUM \rangle sg)$
+\end{center}
+\bigskip
+\begin{itemize}
+	\item $n_{sg,X:thing}$ - синтаксическая категория в MMCCG
+	\item $@_{X:thing}(\textbf{flower} \wedge \langle NUM \rangle sg)$ - логическая форма в HLDS
+\end{itemize}	
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{HLDS (4)}
+Компактная форма:
+{\footnotesize \begin{verbatim}
+@w0:action(ON ^
+           <Mood>imp ^
+           <Actor>x1:entity ^
+           <Patient>(w2:thing ^ лампа ^
+                     <Num>sg ^
+                     <Modifier>(w1:q-color ^ красный-adj) ^
+                     <Modifier>(w3:m-location ^ на ^
+                                <Anchor>(w4:e-place ^ кухня ^
+                                         <Num>sg))))
+\end{verbatim}}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{HLDS (5)}
+Линеаризованная форма:
+{\footnotesize \begin{verbatim}
+@E_0:action(CLOSE) ^ 
+@E_0:action(<Mood>imp) ^
+@E_0:action(<Actor>S_0:entity) ^ 
+@E_0:action(<Patient>T_1:thing) ^ 
+@M_3:m-location(в) ^ 
+@M_3:m-location(<Anchor>T_4:e-place) ^ 
+@T_1:thing(шторы) ^ 
+@T_1:thing(<Num>pl) ^ 
+@T_1:thing(<Modifier>M_3:m-location) ^ 
+@T_4:e-place(прихожая) ^ 
+@T_4:e-place(<Num>sg))
+\end{verbatim}}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{DotCCG (1)}
+Определение семейства слов:
+{\footnotesize \begin{verbatim}
+family tv(V) {
+    entry : s[E] \! np[S] / np[X] : E:event(* <Actor>  (S:entity) 
+                                              <Patient>(X:entity));
+}
+\end{verbatim}}
+\bigskip
+\bigskip
+Запись в словарной части:
+{\footnotesize \begin{verbatim}
+word включать:tv(action, pred=ON) {
+    включи: imp vf-to-imp;
+}
+\end{verbatim}}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{DotCCG (2)}
+Правила изменения типа:
+{\footnotesize \begin{verbatim}
+rule {
+    typechange: s<10> [E NUM PERS MOOD POL FIN VFORM vf-to-imp] \! 
+                np<9> [S nom NUM PERS nf-real] / 
+                np<2> [X acc]
+             => s<~10>[E fin-full s-imp] / 
+                np<2> [X acc] : E:event(<Mood>(imp) 
+                                        <Subject>(S:entity 
+                                                  addressee));
+}
+\end{verbatim}}
+\end{frame}
+
+\begin{frame}{Локализация в HLDS (1)}
+\begin{itemize}
+	\item Необходимость контроля области видимости референциальных переменных в процессе семантической композиции
+	\item Необходимость реализации порождения нескольких семантических представлений в результате одного синтаксического разбора (ср. \textit{scope ambiguity})
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Локализация в HLDS (2)}
+Неоднозначность:\\
+\bigskip
+\begin{itemize}
+	\item \texttt{включи лампу на столе и свет в комнате}
+		\begin{itemize}
+			\item {\footnotesize лампа на столе, стол не в комнате}
+			\item {\footnotesize лампа на столе в комнате}
+		\end{itemize}
+	\bigskip
+	\item \texttt{включи лампу на кухне и свет в комнате}
+		\begin{itemize}
+			\item {\footnotesize лампа на кухне}
+			\item {\footnotesize $^?$лампа на кухне в комнате}
+		\end{itemize}
+	\bigskip
+	\item \texttt{включи свет в комнате и лампу на столе}
+		\begin{itemize}
+			\item {\footnotesize свет в комнате}
+			\item {\footnotesize $^{??}$свет в комнате на столе}
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Локализация в HLDS (3)}
+\texttt{включи [[[лампу на кухне] и подсветку] в прихожей]}\\
+\begin{center}
+{\scriptsize \begin{verbatim}
+@w0:action(ON ^ 
+              <Mood>imp ^ 
+              <Actor>x1:entity ^ 
+              <Patient>(w4:entity ^ и ^ 
+                        <Num>pl ^ 
+                        <First>(w1:thing ^ лампа ^ 
+                                <Num>sg ^ 
+                                <Modifier>(w2:m-location ^ на ^ 
+                                           <Anchor>(w3:e-place ^ stol ^ 
+                                                    <Num>sg))) ^ 
+                        <Modifier>(w6:m-location ^ в ^ 
+                                   <Anchor>(w7:e-place ^ прихожая ^ 
+                                            <Num>sg)) ^ 
+                        <Next>(w5:thing ^ подсветка ^ 
+                               <Num>sg) ^ 
+                        <Num>pl))
+\end{verbatim}
+}                        
+\end{center}
+\end{frame}
+
+
+\begin{frame}{Локализация в HLDS (4)}
+Синтаксическое управление процедурой семантической композиции приводит к появлению некорректной логической формы.\\
+\bigskip
+Варианты решения:\\
+\bigskip
+\begin{itemize}
+	\item пометки в грамматике (внутри синтаксических категорий)
+	\item проверка модели (model checking) и внешняя онтология
+	\item препятствия на уровне согласования логических форм
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Локализация в HLDS (5)}
+Реализация ограничений на унификацию логических форм в виде накрытия как вариант неполной специфицикации (\textit{underspecification}) для HLDS.\\
+\bigskip
+\begin{itemize}
+	\item устранение вычислительно трудных решений по схеме ``порождение гипотез и фильтрация''
+	\item устранение необходимости добавления ad hoc правил в синтаксический компонент
+	\item дополнительный механизм наряду с типизацией (типизация касается вершин, локализация - ребер)
+	\item возможность адаптации к дискурсу
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{}
+    \thispagestyle{empty}
+    \begin{center}
+        {\large Спасибо!}
+    \end{center}
+\end{frame}
+
+
+%%% слайд помещается сюда
+%% \begin{frame}{Заголовок}
+%% \end{frame}
+
+\end{document}
