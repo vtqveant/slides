@@ -3,15 +3,25 @@
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english,russian]{babel}
-\usepackage{amssymb,amsfonts,amsmath,mathtext}
+\usepackage{amssymb,amsfonts,amsmath,amsthm,amscd,mathtext}
 
-\usepackage[a4paper]{geometry} % задание полей для документа
+\usepackage[a4paper]{geometry} 
 \geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
 
 \sloppy
 \clubpenalty=10000
 \widowpenalty=10000
 
+%%% оформление заголовков глав, секций и подсекций
+
+\usepackage{titlesec}
+
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{5.5ex}{-3.5ex plus -1ex minus -.2ex}{2.3ex plus.2ex}{\raggedright\hyphenpenalty=10000\normalfont\bfseries}}
+\makeatother
+
+\usepackage{indentfirst}      % красная строка
+\setlength{\parindent}{5.5ex} % 5 символов
 
 %%% biblatex
 
@@ -41,11 +51,24 @@
     colorlinks = true
 }
 
+%%% math env
 
+\newtheoremstyle{example-style}% name
+{5pt}  % space above 
+{5pt}  % space below 
+{}     % body font
+{\parindent}  % indent 
+{\bfseries}  % theorem head font
+{.}  % punctuation after theorem head
+{.5em}  % space after theorem head 
+{}  % theorem head spec (can be left empty, meaning 'normal')
+
+\theoremstyle{example-style}
+\newtheorem{example}{Пример}
 
 %%% linguistic stuff
 
-%% Gentzen style natural deduction proof trees
+% Gentzen style natural deduction proof trees
 \usepackage{bussproofs}
 \usepackage{latexsym}
 
@@ -66,15 +89,76 @@
 \begin{document} 
 
 \title{Генеративный лексикон Дж.~Пустейовского}
-\author{}
+\author{\textit{Константин Соколов {\small (СПбГУ, СПбПУ)}} \smallskip \\ {\small \texttt{http://nlu-rg.ru}}}
 \date{}
 
 \maketitle
 
-\section{Введение}
+
+\section*{Основы формализма}
+
+Унификационные грамматики и типизированные структуры признаков. Логическое описание структур признаков (Каспер-Раундс, Джонсон, гибридная логика). Графовое представление структур признаков, reentrancy. Subsumption relation и решетка типов; связь с системами типов с подтипами (subtyping coerсion); связь с системами множественного наследования
+
 Безусловно, это введение, чему есть и подтверждение \parencite{moot2012logic}.
 
-\section{Some problems}
+\section*{Проблемы лексической семантики}
+
+Проблемы лексической семантики: creative use of words, etc.;
+
+лексикализм в лингвистике вообще и в генеративной лингвистике в частности
+
+Ещё раз о требованиях к семантическому представлению
+\begin{itemize}
+	\item возможность сочетания (композициональной) семантики предложения и лексической семантики
+	\item возможность учета семантических отношений (гипо-гиперонимических и др.) -- грузовик $\sqsubseteq$ автомобиль (подтипы)
+	\item возможность реализации фреймовой семантики (т.к. реализация семантических ролей отражается в значении слова, 
+ ср. ``вода течет в лодку'', ``лодка течет'')
+	\item решение проблемы сопредикации (copredication) -- необходимости приписывать слову два типа для
+ отражения различных аспектов значения, притом что два эти типа не могут быть одновременно
+ (lunch was delicious but took forever -- both food and event?)
+	\item логическая полисемия (термин Пустейовского?) -- разные, но взаимосвязанные значения, раскрывающиеся в контексте
+ (a heavy book (физический объект) vs. a boring book (носитель информации)
+	\item компонентная семантика (холостяк = [+ мужчина] [+ взрослый] [- женатый]
+	\item co-composition и функциональное применение (стандартный подход в композиционной семантике -- одно слово ``применяется'' к другому; нужно учесть явления ``взаимообусловленности значений''
+	\item новообразования (термин Падучевой) -- метафорическое, метонимическое употребление и пр., языковое творчество 
+\end{itemize} 
+
+
+\section*{Конструкция записи в ГЛ}
+Общая конструкция записи в GL. Концепт (слово) как тип.\\
+
+Пояснения к конструкции и (лингвистический) бэкграунд
+\begin{enumerate}
+    \item argument structure в GL -- аргументно-предикатная структура, фреймы, PropBank, тематические роли, тета-критерий, диатеза и актантная деривация
+    \item event structure в GL -- грамматическая семантика и основные граммемы глагола (основное деление -- аспект vs. модальность); аспектология; event semantics Дэвидсона как развитие формальной семантики;
+    \item qualia structure -- учение о причинах у Аристотеля; компонентный анализ значения; 
+    \item inheritance structure -- гиперо-гипонимичские и пр. отношения в структуре словаря; тезаурус и семантические поля; WordNet
+\end{enumerate}
+
+\section*{Лексическая декомпозиция}
+
+Лексическая декомпозиция ("агрументно-предикатный уровень"): можно ли определить значение предиката через типы аргументов? Четыре способа построить отображение между аргументно-предикатной структурой и синтаксисом. Эти способы с примерами. GL -- один из эти способов.
+
+\section*{Система типов в GL}
+
+Таксономия типов: естественные, искусственные и сложные типы. Их определение через qualia. Естественные содержат только формальные и материальные качества; искусстенные содержат материальные качества; сложные содержат информацию об отношениях между типами. Qualia unification.\\
+
+Система типов в GL. Структура наследования типов и qualia как система ограничений на типы структур признаков. Три конструктора типов (стрелка, точка, тензор). 
+
+\section*{Механизм композиции в ГЛ}
+
+Операции, учитывающие типы, для реализации ``выбора'' (selection) значений требуют особых типов и особых механизмов композиции. Композициональность по Монтегю -- функциональное применение (реализуется как конкатенация лямбда-термов с последующей редукцией). Расширение композициональных механизмов у Пустейовского (так что получаются ``механизмы выбора''): а) pure selection (type matching), б) accomodation в) type coercion (два варианта -- exploitation и introduction). Примеры действия этих механизмов.
+
+\section*{Структура события}
+
+Event structure. Внутренняя структура событий; события используются для задания ограничений на qualia; аспектуальность и лексическая семантика каузации (глава 9)
+
+\section*{Заключение}
+
+Заключение. Отличительные особенности GL. Семантика синтаксическими средствами (внутри формального языка, конечно) в GL vs. теоретико-модельная семантика (Монтегю и пр.). Динамический характер лексикона в GL vs. статический лексикон как в дистрибутивной семантике, так и в CCG и других лексикализованных концепциях. GL и DPL (GL как динамическая семантика)\\
+
+\hrulefill
+
 Ossetic has a construction where the coordinating conjunction \textit{3m3} `and' is used to introduce a complement clause:
 
 \begin{exe} % глоссированный пример
@@ -84,23 +168,36 @@ Ossetic has a construction where the coordinating conjunction \textit{3m3} `and'
  \trans `I think that you've cheated me'
 \end{exe}
 
-\section{Analysis}
 The construction in (\ref{ex:compl}) is c-coordinate but f-subordinate, and thus has the following c- and f-structures:
 
 \Tree [.S [.S \edge[roof]; 3 z 3nq3l d3n ] [.Cnj \textbf{3m3} ] [.S \edge[roof]; d@ =m3 A ] ] 
 
 \begin{avm} 
-\[\asort{}
+\[\asort{some-type}
   conj & \textsc{and0} \\
   pred & `\textsc{think}<($\uparrow$ \textsc{subj})($\uparrow$ \textsc{comp})>' \\
-  subj & \[\asort{} pred & `\textsc{pro}'\] \\
-  comp & \[\asort{}
+  subj & \[\asort{some-other-type} pred & `\textsc{pro}'\] \\
+  comp & \[{}
           pred & `\textsc{cheat}<($\uparrow$ \textsc{subj})($\uparrow$ \textsc{obj})>' \\
           subj & \[{} pred & `\textsc{pro}'\] \\
           obj & \[{} pred & `\textsc{pro}'\] \\
          \] \\
 \]
 \end{avm}
+
+
+\begin{prooftree}
+  \AxiomC{$\Gamma, B, \Gamma' \vdash C$}
+  \AxiomC{$\Delta \vdash A$}
+  \RightLabel{{\small $\textbackslash_h$}}
+  \BinaryInfC{$\Gamma, A, A \textbackslash B, \Gamma' \vdash C$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$A, \Gamma \vdash C$}
+  \RightLabel{{\small $\textbackslash_i, \Gamma \neq \epsilon$}}
+  \UnaryInfC{$\Gamma \vdash A \textbackslash C$}
+\end{prooftree}
 
 
 
