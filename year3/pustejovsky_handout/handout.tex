@@ -17,7 +17,7 @@
 \usepackage{titlesec}
 
 \makeatletter
-\renewcommand{\section}{\@startsection{section}{1}{5.5ex}{-3.5ex plus -1ex minus -.2ex}{2.3ex plus.2ex}{\raggedright\hyphenpenalty=10000\normalfont\bfseries}}
+  \renewcommand{\section}{\@startsection{section}{1}{5.5ex}{-3.5ex plus -1ex minus -.2ex}{2.3ex plus.2ex}{\raggedright\hyphenpenalty=10000\normalfont\bfseries}}
 \makeatother
 
 \usepackage{indentfirst}      % красная строка
@@ -167,11 +167,33 @@ $\lambda x_i . \Phi$
 
 Тривиальный подход -- атомарная предикация. Параметры отображаются в глагольные аргументы непосредственно
 \begin{exe}
-\ex\label{pred:atomic:ex1}
-$\lambda x_n \dots \lambda x_1 . \Phi \Rightarrow Verb(Arg_1, \dots, Arg_n)$
+\ex\label{pred:atomic:ex1}{$\lambda x_n \dots \lambda x_1 . \Phi \Rightarrow Verb(Arg_1, \dots, Arg_n)$}
 \end{exe}
 
+$\theta$-теория в GB
 
+hit : $\lambda y . \lambda x . hit(x,y)$
+
+[the car]$_i$ hit [the wall]$_j$
+
+тета-решетка (theta-grid):
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+агенс & пациенс \\ \hline
+i     & j       \\ \hline
+\end{tabular}
+\end{table}
+
+Тета-решетка -- это способ задать соответствие между аргументами и элементами синтаксической структуры. В GB формулируется условие, что это соответствие должно быть одно-однозначным (т.н. тета-критерий). 
+
+\begin{exe}
+  \ex[*]{Мальчик читает книгу газету} \label{pred:atomic:ex2}
+\end{exe}
+
+Пример (\ref{pred:atomic:ex2}) нарушает $\theta$-критерий и потому неграмматичен.
 
 \section{Система типов в GL}
 
