@@ -8,16 +8,42 @@
 \usepackage[a4paper]{geometry} % задание полей для документа
 \geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
 
-\usepackage{authblk}
-\renewcommand\Affilfont{\itshape\small}
-
 \sloppy
 \clubpenalty=10000
 \widowpenalty=10000
 
-%%% linguistic stuff
 
-\usepackage{tipa} % пакет для ввода символов МФА
+%%% biblatex
+
+\usepackage{csquotes} % recommended by pdflatex
+\usepackage[%
+    style = gost-authoryear-min,
+    singletitle = false,
+    autolang = other,
+    language = auto,
+    backend = biber,
+    defernumbers = true,
+    sortlocale = ru
+]{biblatex}
+\addbibresource{bibliography.bib}
+
+\defbibenvironment{bibliography}
+{\enumerate{}
+{\setlength{\leftmargin}{\bibhang}%
+\setlength{\itemindent}{-\leftmargin}%
+\setlength{\itemsep}{\bibitemsep}%
+\setlength{\parsep}{\bibparsep}}}
+{\endenumerate}
+{\item}
+
+\usepackage{hyperref}
+\hypersetup{%
+    colorlinks = true
+}
+
+
+
+%%% linguistic stuff
 
 %% Gentzen style natural deduction proof trees
 \usepackage{bussproofs}
@@ -34,24 +60,22 @@
 \avmfont{\sc}
 
 \usepackage{gb4e} % пакет для лингвистических примеров
-\let\eachwordone=\tipaencoding % строка примеров - в МФА
 \let\eachwordtwo=\small
 \let\eachwordthree=\small
 
 \begin{document} 
 
-\title{Syntactic Annotation by Interactive Proof Search}
-\author[]{Konstantin Sokolov}
-\affil[]{Department of Mathematical Linguistics, St.~Petersburg State University, St.~Petersburg, Russia}
+\title{Генеративный лексикон Дж.~Пустейовского}
+\author{}
 \date{}
 
 \maketitle
 
-\section{Introduction}
-The properties that are considered to characterize a given construction as ``subordinate'' or ``coordinate'' do not always align as neatly as one would expect it from familiar cases.
+\section{Введение}
+Безусловно, это введение, чему есть и подтверждение \parencite{moot2012logic}.
 
 \section{Some problems}
-Ossetic has a construction where the coordinating conjunction \textit{\textipa{3m3}} `and' is used to introduce a complement clause:
+Ossetic has a construction where the coordinating conjunction \textit{3m3} `and' is used to introduce a complement clause:
 
 \begin{exe} % глоссированный пример
  \ex\label{ex:compl}
@@ -63,7 +87,7 @@ Ossetic has a construction where the coordinating conjunction \textit{\textipa{3
 \section{Analysis}
 The construction in (\ref{ex:compl}) is c-coordinate but f-subordinate, and thus has the following c- and f-structures:
 
-\Tree [.S [.S \edge[roof]; \textipa{3\v z 3nq3l d3n} ] [.Cnj \textbf{\textipa{3m3}} ] [.S \edge[roof]; \textipa{d@ =m3 A-\v sAjd-t-Aj} ] ] 
+\Tree [.S [.S \edge[roof]; 3 z 3nq3l d3n ] [.Cnj \textbf{3m3} ] [.S \edge[roof]; d@ =m3 A ] ] 
 
 \begin{avm} 
 \[\asort{}
@@ -77,5 +101,10 @@ The construction in (\ref{ex:compl}) is c-coordinate but f-subordinate, and thus
          \] \\
 \]
 \end{avm}
+
+
+
+\nocite{*}
+\printbibliography[resetnumbers=true]
 
 \end{document}
