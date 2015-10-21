@@ -1,0 +1,81 @@
+\documentclass[10pt]{article} 
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amssymb,amsfonts,amsmath,mathtext}
+
+\usepackage[a4paper]{geometry} % задание полей для документа
+\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+
+\usepackage{authblk}
+\renewcommand\Affilfont{\itshape\small}
+
+\sloppy
+\clubpenalty=10000
+\widowpenalty=10000
+
+%%% linguistic stuff
+
+\usepackage{tipa} % пакет для ввода символов МФА
+
+%% Gentzen style natural deduction proof trees
+\usepackage{bussproofs}
+\usepackage{latexsym}
+
+\usepackage{tikz}
+\usepackage{tikz-qtree,tikz-qtree-compat}   % regular trees (e.g. GB style)
+\usepackage{tikz-dependency}                % dependency trees (bracket style)
+\usetikzlibrary{matrix,arrows}              % for commutative diagrams
+
+\usepackage{avm}
+\avmsortfont{\footnotesize\it}
+\avmvalfont{\rm}
+\avmfont{\sc}
+
+\usepackage{gb4e} % пакет для лингвистических примеров
+\let\eachwordone=\tipaencoding % строка примеров - в МФА
+\let\eachwordtwo=\small
+\let\eachwordthree=\small
+
+\begin{document} 
+
+\title{Syntactic Annotation by Interactive Proof Search}
+\author[]{Konstantin Sokolov}
+\affil[]{Department of Mathematical Linguistics, St.~Petersburg State University, St.~Petersburg, Russia}
+\date{}
+
+\maketitle
+
+\section{Introduction}
+The properties that are considered to characterize a given construction as ``subordinate'' or ``coordinate'' do not always align as neatly as one would expect it from familiar cases.
+
+\section{Some problems}
+Ossetic has a construction where the coordinating conjunction \textit{\textipa{3m3}} `and' is used to introduce a complement clause:
+
+\begin{exe} % глоссированный пример
+ \ex\label{ex:compl}
+ \gll 3\v{z} 3nq3l d3n \textbf{3m3} [ d@ =m3 A-\v sAjd-t-Aj ]\\
+ 1Sg.\textsc{nom} (think) be.\textsc{prs.1sg} and {} 2Sg.\textsc{nom} 1SgEncl.\textsc{acc} \textsc{pv}-cheat-\textsc{tr-pst.2sg} {}\\
+ \trans `I think that you've cheated me'
+\end{exe}
+
+\section{Analysis}
+The construction in (\ref{ex:compl}) is c-coordinate but f-subordinate, and thus has the following c- and f-structures:
+
+\Tree [.S [.S \edge[roof]; \textipa{3\v z 3nq3l d3n} ] [.Cnj \textbf{\textipa{3m3}} ] [.S \edge[roof]; \textipa{d@ =m3 A-\v sAjd-t-Aj} ] ] 
+
+\begin{avm} 
+\[\asort{}
+  conj & \textsc{and0} \\
+  pred & `\textsc{think}<($\uparrow$ \textsc{subj})($\uparrow$ \textsc{comp})>' \\
+  subj & \[\asort{} pred & `\textsc{pro}'\] \\
+  comp & \[\asort{}
+          pred & `\textsc{cheat}<($\uparrow$ \textsc{subj})($\uparrow$ \textsc{obj})>' \\
+          subj & \[{} pred & `\textsc{pro}'\] \\
+          obj & \[{} pred & `\textsc{pro}'\] \\
+         \] \\
+\]
+\end{avm}
+
+\end{document}
