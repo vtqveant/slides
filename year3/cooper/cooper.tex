@@ -1,0 +1,367 @@
+\documentclass{beamer}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amssymb,amsfonts,amsmath,mathtext}
+\usepackage{cite,enumerate,float,indentfirst}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+% Attribute-Value Matrices
+\usepackage{avm}
+\avmsortfont{\footnotesize\it}
+\avmvalfont{\rm}
+\avmfont{\sc}
+
+%% Gentzen style natural deduction proof trees
+\usepackage{bussproofs}
+\usepackage{latexsym}
+
+\graphicspath{{images/}}
+
+\usetheme{Pittsburgh}
+\usecolortheme{whale}
+
+\setbeamertemplate{footline}{\scriptsize{\hspace*{0.4cm}\insertframenumber}\vspace*{0.3cm}}
+\beamertemplatenavigationsymbolsempty
+
+\errorcontextlines 10000
+
+\begin{document}
+\title{\Large{Генеративный лексикон}}
+\author{}
+\institute{}
+\date{} 
+
+\begin{frame}
+    \thispagestyle{empty}
+    \titlepage
+\end{frame}
+
+% A. Основы формализма. Унификационные грамматики и типизированные структуры признаков. Логическое описание структур признаков (Каспер-Раундс, Джонсон, гибридная логика). Графовое представление структур признаков, reentrancy. Subsumption relation и решетка типов; связь с системами типов с подтипами (subtyping coerсion); связь с системами множественного наследования
+
+% Б. Проблемы лексической семантики: creative use of words, etc.; 
+%    1. лексикализм в лингвистике вообще и в генеративной лингвистике в частности
+%    2. Ещё раз о требованиях к семантическому представлению
+%         1) возможность сочетания (композициональной) семантики предложения и лексической семантики
+%         2) возможность учета семантических отношений (гипо-гиперонимических и др.) -- грузовик < автомобиль (подтипы)
+%         3) возможность реализации фреймовой семантики (т.к. реализация семантических ролей отражается в значении слова, 
+% ср. "вода течет в лодку", "лодка течет")
+%         4) решение проблемы сопредикации (copredication) -- необходимости приписывать слову два типа для
+% отражения различных аспектов значения, притом что два эти типа не могут быть одновременно
+% (lunch was delicious but took forever -- both food and event?)
+%         5) логическая полисемия (термин Пустейовского?) -- разные, но взаимосвязанные значения, раскрывающиеся в контексте
+% (a heavy book (физический объект) vs. a boring book (носитель информации)
+%         6) компонентная семантика (холостяк = [+ мужчина] [+ взрослый] [- женатый]
+%         7) co-composition и функциональное применение (стандартный подход в композиционной семантике -- одно слово "применяется" к другому; 
+% нужно учесть явления "взаимообусловленности значений"
+%         8) новообразования (термин Падучевой) -- метафорическое, метонимическое употребление и пр., языковое творчество 
+%
+% В. Общая конструкция записи в GL. Концепт (слово) как тип.
+%
+% Г. Пояснения к конструкции и (лингвистический) бэкграунд
+%   1. argument structure в GL -- аргументно-предикатная структура, фреймы, PropBank, тематические роли, тета-критерий, 
+%             диатеза и актантная деривация
+%   2. event structure в GL -- грамматическая семантика и основные граммемы глагола (основное деление -- аспект vs. модальность); аспектология, линейный и вторичный (акциональный) аспект (по Плунгяну), обзор Аркадьева о структуре события и семантико-синтаксическом интерфейсе, критика гипотезы неаккузативности у Плунгяна; event semantics Дэвидсона (1967) и неодэвидсоновская семантика Парсонса (1990) как развитие формальной семантики (см. тж. E. Bach (1986) The algebra of events); subeventual analysis (i.e. simple events vs. complex events)
+%   3. qualia structure -- учение о причинах у Аристотеля; компонентный анализ значения; 
+%   4. inheritance structure -- гиперо-гипонимичские и пр. отношения в структуре словаря; тезаурус и семантические поля; WordNet
+%
+% Д. Лексическая декомпозиция ("агрументно-предикатный уровень"): можно ли определить значение предиката через типы аргументов? Четыре способа построить отображение между аргументно-предикатной структурой и синтаксисом. Эти способы с примерами. GL -- один из эти способов.
+%
+% Е. Таксономия типов: естественные, искусственные и сложные типы. Их определение через qualia. Естественные содержат только формальные и материальные качества; искусстенные содержат материальные качества; сложные содержат информацию об отношениях между типами. Qualia unification.
+%
+% Ж. Система типов в GL. Структура наследования типов и qualia как система ограничений на типы структур признаков. Три конструктора типов (стрелка, точка, тензор). 
+%
+% З. Операции, учитывающие типы, для реализации ``выбора'' (selection) значений требуют особых типов и особых механизмов композиции. Композициональность по Монтегю -- функциональное применение (реализуется как конкатенация лямбда-термов с последующей редукцией). Расширение композициональных механизмов у Пустейовского (так что получаются ``механизмы выбора''): а) pure selection (type matching), б) accomodation в) type coercion (два варианта -- exploitation и introduction). Примеры действия этих механизмов.
+%
+% И. Event structure. Внутренняя структура событий; события используются для задания ограничений на qualia; аспектуальность и лексическая семантика каузации (глава 9)
+%
+% К. Заключение. Отличительные особенности GL. Семантика синтаксическими средствами (внутри формального языка, конечно) в GL vs. теоретико-модельная семантика (Монтегю и пр.). Динамический характер лексикона в GL vs. статический лексикон как в дистрибутивной семантике, так и в CCG и других лексикализованных концепциях. GL и DPL (GL как динамическая семантика)
+
+\begin{frame}{}
+    \setcounter{framenumber}{1}
+    \begin{itemize}
+        \item About the group
+        \item Process Mining
+        \item Syntactic Annotation as Interactive Proof Search
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Формальное определение (Copestake, 2001)}
+Зададим конечное множество признаков $\textbf{Feat}$ и иерархию типов $\langle \textbf{Type}, \sqsubseteq \rangle$ (частично упорядоченное множество)\\
+\bigskip
+TFS - это четверка $\langle Q, r, \delta, \theta \rangle$, где
+\begin{itemize}
+	\item $Q$ - конечное множество вершин
+	\item $r \in Q$ - выделенная вершина
+	\item $\theta : Q \to \textbf{Type}$ - частичная функция типизации
+	\item $\delta : Q \times \textbf{Feat} \to Q$ - частичная функция, сопоставляющая признаку при вершине другую вершину
+\end{itemize}
+\bigskip
+{\footnotesize \textit{...и некоторые ограничения}}
+\end{frame}
+
+% 2. Логическое описание TFS (языки $L^{KR}$, $HL(@)$)
+\begin{frame}{}
+\begin{center}
+	\textbf{Логическое описание TFS}
+\end{center}
+\end{frame}
+
+\begin{frame}{Логическое описание TFS}
+\begin{itemize}
+	\item логика Каспера-Раундса $L^{KR}$
+	\item подход М. Джонсона -- разрешимый фрагмент FOL (класс Шёнфинкеля-Бернайса) 
+	\item гибридная логика $HL(@)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{$L^{KR}$ (1)}
+Язык $L^{KR}$ с сигнатурой $\langle L, A \rangle$, где $L$ - множество признаков, \\$A$ - множество пропозициональных переменных:\\
+\bigskip
+\begin{itemize}
+	\item $a$ для каждого $a \in A$
+	\item пропозициональные связки и $\top$
+	\item знак равенства путей $\approx$
+\end{itemize}
+\bigskip	
+Eсли $\phi$ и $\psi$ - формулы, то также формулы и 
+\begin{itemize}
+	\item $\phi \wedge \psi$,
+	\item $\phi \vee \psi$,
+	\item $l : \phi$ или $\langle l \rangle \phi$ для $l \in L$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{$L^{KR}$ (2)}
+Уравнения по путям (цепочкам модальных операторов):\\
+\bigskip
+\begin{itemize}
+	\item $\langle VP \; VERB \; HEAD \; NUM \rangle \; sing$
+	\item $\langle VP \; HEAD \rangle \approx \langle VP \; VERB \; HEAD \rangle$
+	\item $0$ - путь нулевой длины
+\end{itemize}
+\bigskip
+Пример: $\neg(0 \approx \langle F_1 \rangle ... \langle F_n \rangle)$ - условие ацикличности
+\end{frame}
+
+\begin{frame}{$HL(@)$ (1)}
+Гибридная логика:\\
+\bigskip
+\begin{itemize}
+	\item Будем писать $\langle \pi \rangle$ и $[\pi]$ вместо $\Diamond_\pi$ и $\Box_\pi$
+	\item $\langle \pi \rangle \alpha \; \equiv \; \neg [\pi] \neg \alpha$
+	\item Введем дополнительно класс \textit{номиналов} (обозн. $i, j, k$)
+	\item Введем оператор $@_i$ со значением ``истинно в точке $i$''
+\end{itemize}
+\bigskip
+Язык гибридной логики $HL(@)$:\\
+\begin{center}
+$WFF_{HL(@)} := \top \; \vert \; i \; \vert \; p \; \vert \; \neg \alpha \; | \; \alpha \wedge \beta \; \vert \; \langle \pi \rangle \alpha \; \vert \; @_i \alpha$
+\end{center}
+\end{frame}
+
+\begin{frame}{$HL(@)$ (2)}
+Гибридная модель Крипке:\\
+\bigskip
+\begin{center}
+$\mathcal{M} = (W, \{R_\pi \vert \pi \in MOD\}, V)$, где\\
+\bigskip
+\begin{itemize}
+	\item $\mathcal{F} = (W, \{R_\pi \vert \pi \in MOD\})$ - шкала Крипке
+	\item $V : PROP \cup NOM \to 2^W$
+	\item $V(i)$ - синглетон
+\end{itemize}
+\end{center}
+\end{frame}
+
+\begin{frame}{$HL(@)$ (3)}
+Денотационная семантика для $HL(@)$:\\
+\bigskip
+\begin{itemize}
+	\item $\mathcal{M}, w \models i \; \Leftrightarrow \; w = V(i)$
+	\item $\mathcal{M}, w \models @_i \alpha \; \Leftrightarrow \; \mathcal{M}, w' \models \alpha$ и $w' = V(i)$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Гибридная логика и проверка моделей}
+Дана гибридная модель $\mathcal{M}$ и формула $\alpha$, найти все узлы в $\mathcal{M}$, в которых $\alpha$ истинна:
+\bigskip
+\begin{center}
+    $T(\mathcal{M}, \alpha) = \{ w \in W \; | \; \mathcal{M}, w \models \alpha \}$
+\end{center}
+\end{frame}
+
+
+\begin{frame}{The group (1)}
+\begin{itemize}
+    \item Natural Language Understanding Reading Group (\textit{since 2013})
+    \item A number of courses on text processing
+        \begin{itemize}
+            \item Formal Approaches to Text Analysis (\textit{spring 2015})
+            \item Statistical NLP and Machine Learning for NLP (\textit{planned})
+        \end{itemize}
+    \item Projects
+        \begin{itemize}
+            \item Process Mining From Textual Data
+            \item Syntactic Annotation as Interactive Proof Search
+        \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{}
+\begin{center}
+	\textbf{Process Mining From Textual Data}
+\end{center}
+\end{frame}
+
+\begin{frame}{PM (I)}
+Goals of process mining\\
+\bigskip
+\begin{itemize}
+    \item create a formal description of a process (BPMN, Petri Nets)
+    \item detect variations of a process
+    \item find bottlenecks and optimize
+\end{itemize}
+\end{frame}
+
+\begin{frame}{PM (II)}
+\begin{itemize}
+    \item usual approach -- analysis of logs
+    \item many processes lack automation, therefore no logs
+        \begin{itemize}
+            \item travel recommendations
+            \item customer service
+            \item legal consulting
+        \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{PM (III)}
+Two types of textual descriptions\\
+\bigskip
+\begin{itemize}
+    \item instructions
+        \begin{itemize}
+            \item semi-structured or informal
+            \item information structure and macro-proposition
+            \item natural language clues to obtain document structure
+            \item formalize directly
+        \end{itemize}
+    \item reports
+        \begin{itemize}
+            \item natural language analogues of logs
+            \item requires temporal and spatial reasoning to analyze
+            \item formalize by means of log analysis
+        \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{PM (IV)}
+Our focus -- entity resolution\\
+\bigskip
+\begin{itemize}
+    \item things can be described differently
+    \item only partial descriptions are available
+    \item mistakes and logical inconsistencies
+    \item natural language is ambiguous
+    \item anaphoric expressions
+\end{itemize}
+\bigskip
+Proposal: feature structures unification and co-occurence statistics
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{PM (V)}
+(Typed) Feature Structures\\
+\bigskip
+\begin{center}
+\begin{avm}
+\[ \asort{noun}
+   number & sg \\
+   orthography & foot \]
+\end{avm}
+\end{center}
+\end{frame}
+
+\begin{frame}{PM (VI)}
+Co-occurence statistics:\\
+\bigskip
+\begin{itemize}
+    \item similar words tend to appear in similar contexts
+    \item words are represented as vectors, cosine as a similarity metric
+    \item preprocess textual corpora to obtain word similarity metrics
+    \item two approaches to creating words representations
+        \begin{itemize}
+            \item ``count'' -- big vectors (tens of thousands of dimensions), direct computation
+            \item ``predict'' -- small vectors (hundreds of dimensions), machine learning to approximate
+        \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{PM (VII)}
+Hybrid system should allow\\
+\bigskip
+\begin{itemize}
+    \item statistical unification of partial descriptions of events
+    \item make it computationally tractable on large scale tasks
+\end{itemize}
+\end{frame}
+
+\begin{frame}{}
+\begin{center}
+	\textbf{Syntactic Annotation as Interactive Proof Search}
+\end{center}
+\end{frame}
+
+\begin{frame}{Annotation (I)}
+OpenCorpora (\texttt{http://opencorpora.org})\\
+\bigskip
+\begin{itemize}
+    \item community effort to create an annotated corpus of Russian
+    \item since 2010
+    \item approx. 20 contributors, more than 4000 annotators
+    \item 1.3M words, approx. 95k sentences
+    \item currently only morphological annotation (~50\% done)
+\end{itemize}
+\end{frame}
+
+%\begin{frame}{Annotation (II)}
+%\begin{center}
+%	\begin{figure}[H]
+%		\includegraphics[scale=0.285]{annotation1.png} 
+%	\end{figure}
+%\end{center}
+%\end{frame}
+
+\begin{frame}{Annotation (IV)}
+Prove that \textit{John loves Mary} is a sentence given the lexicon\\
+\medskip
+$John \vdash np$, $Mary \vdash np$, $loves \vdash (np \textbackslash s)/np$
+
+\begin{prooftree}
+  \AxiomC{$s \vdash s$}
+  \AxiomC{$np \vdash np$}
+  \RightLabel{{\small $\textbackslash_h$}}
+      \BinaryInfC{$np, \, np \textbackslash s \vdash s$}
+      \AxiomC{$np \vdash np$}
+      \RightLabel{{\small $/_h$}}      
+      \BinaryInfC{$np, \, (np \textbackslash s)/np, \, np \vdash s$}
+\end{prooftree}
+\end{frame}
+
+\begin{frame}{Annotation (IV)}
+Goals of the project:\\
+\bigskip
+\begin{itemize}
+    \item create a proof assistant for a variant of Lambek calculus
+    \item should allow rapid syntactic annotation of existing corpora
+    \item build a statistical parser
+\end{itemize}
+\end{frame}
+
+\end{document}
