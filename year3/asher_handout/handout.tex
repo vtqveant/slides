@@ -93,18 +93,14 @@
 
 \maketitle
 
-\section{Текст}
-
-Основной текст -- \parencite{asher2011lexical}, глава 4 (Type Composition Logic).
-
-\section{Type Composition Logic (TCL)}
+\section{Предварительные замечания}
 
 \begin{itemize}
-  \item Во многом продолжает Пустейовского (полурешетка типов, subtyping, dot types, идея соотнесения предикатно-аргументной структуры с лексическим значением предиката)
-  \item Идея контекста, <<влияющего>> на значение слова
-  \item Теоретико-типовой анализ предикатно-аргументной структуры: ограничения на сочетаемость (т.е. дистрибуцию), тип предиката должен учитывать типы аргументов
+  \item Основной текст -- \parencite{asher2011lexical}, глава 4 (Type Composition Logic).
+  \item Во многом продолжает Пустейовского (полурешетка типов, subtyping, dot types, идея соотнесения предикатно-аргументной структуры с лексическим значением предиката).
+  \item Идея контекста, <<влияющего>> на значение слова.
+  \item Теоретико-типовой анализ предикатно-аргументной структуры: ограничения на сочетаемость (т.е. дистрибуцию), тип предиката должен учитывать типы аргументов.
 \end{itemize}
-
 
 \section{Система типов TCL}
 
@@ -229,7 +225,7 @@
 
 Нулевой модификатор \ref{inf:null} <<удовлетворяет>> пресуппозиции, не модифицируя значения выражения. Редуцируя форму <<$\varnothing$ tree>> по правилам применения и подстановки получаем форму \ref{inf:sattree}.
 
-\ex.\label{inf:sattree} ${\mathsf{tree}}^\prime \vdash \lambda w \lambda \pi tree(w, \pi \ast {\textsf{ARG}}^{\textsf{tree}}_1 : P)$
+\ex.\label{inf:sattree} ${\mathsf{tree}}^\prime \vdash \lambda w \; . \; \lambda \pi \; . \; tree(w, \pi \ast {\textsf{ARG}}^{\textsf{tree}}_1 : P)$
 
 \nocite{*}
 \printbibliography[resetnumbers=true]
