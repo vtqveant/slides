@@ -102,7 +102,7 @@
   \item Теоретико-типовой анализ предикатно-аргументной структуры: ограничения на сочетаемость (т.е. дистрибуцию), тип предиката должен учитывать типы аргументов.
 \end{itemize}
 
-\section{Система типов TCL}
+\section{Система типов}
 
 \begin{itemize}
   \item базовые типы \textit{(primitive types)}: {\sc e, t, physical\_object}, etc.
@@ -165,9 +165,9 @@
 
 \ex.\label{presup:basic} tree $\vdash \lambda x \; . \; $tree(x)
 
-\ex.\label{presup:param} tree $\vdash \lambda x : {\textsc{p}} \; . \; \lambda \pi : \Pi \; . \;$tree(x, $\Pi$)
+\ex.\label{presup:param} tree $\vdash \lambda x : {\textsc{p}} \; . \; \lambda \pi : \Pi \; . \;$tree(x, $\pi$)
 
-Помимо этого, нужно добиться особого поведения пресуппозиций при композиции: <<большое дерево>> -- это всё равно <<дерево>>, поэтому пресуппозиции из терма <<дерево>>, должны <<протаскиваться>> наружу и согласовываться с модификатором. В форме  \ref{presup:percloation} переменная $\mathcal{P}$ имеет тип модификатора ${\textsf{MOD}} = \exists x \sqsubseteq {\textsc{e}} \, (x \Rightarrow (\Pi \Rightarrow {\textsc{t}})) \Rightarrow \exists x \sqsubseteq {\textsc{e}} \, (x \Rightarrow (\Pi \Rightarrow {\textsc{t}}))$, отображающее одно свойство первого порядка (тип $\exists x \sqsubseteq {\textsc{e}} \, (x \Rightarrow (\Pi \Rightarrow {\textsc{t}}))$) в другое. Здесь ${\textsf{ARG}}^{\textsf{tree}}_1$ -- первый аргумент tree, выражение $\pi \ast {\textsf{ARG}}^{\textsf{tree}}_1 : P$ означает контекст $\pi$, содержащий условие, что первый аргумент tree должен иметь тип $P$.
+Помимо этого, нужно добиться особого поведения пресуппозиций при композиции: <<большое дерево>> -- это всё равно <<дерево>>, поэтому пресуппозиции из терма <<дерево>> должны <<протаскиваться>> наружу и согласовываться с модификатором. В форме  \ref{presup:percloation} переменная $\mathcal{P}$ имеет тип модификатора ${\textsf{MOD}} = \exists x \sqsubseteq {\textsc{e}} \, (x \Rightarrow (\Pi \Rightarrow {\textsc{t}})) \Rightarrow \exists x \sqsubseteq {\textsc{e}} \, (x \Rightarrow (\Pi \Rightarrow {\textsc{t}}))$, отображающее одно свойство первого порядка (тип $\exists x \sqsubseteq {\textsc{e}} \, (x \Rightarrow (\Pi \Rightarrow {\textsc{t}}))$) в другое. Здесь ${\textsf{ARG}}^{\textsf{tree}}_1$ -- первый аргумент tree, выражение $\pi \ast {\textsf{ARG}}^{\textsf{tree}}_1 : P$ означает, что в контекст $\pi$ добавляется ограничение на тип первого аргумента tree (он должен иметь тип $P$).\footnote{Ср.: форма записи $\Gamma, A$ в логике.}
 
 \ex.\label{presup:percloation} tree $\vdash \lambda \mathcal{P} : {\textsf{MOD}} \; . \; \lambda x : {\textsc{e}} \; . \; \lambda \pi : \Pi \; . \; \mathcal{P} ( \pi \ast {\textsf{ARG}}^{\textsf{tree}}_1 : P)(x)( \lambda v \; . \; \lambda \pi^\prime \; . \; {\textsf{tree}}(v, \pi^\prime))$
 
@@ -180,7 +180,7 @@
 \ex.\label{rule:application} Применение \textit{(application)}\\
  \begin{prooftree}
     \AxiomC{$\lambda x : \alpha \; . \; \phi [t : \gamma]$}
-    \AxiomC{$\lambda x : \alpha \; . \; \phi : \alpha \Rightarrow \beta$}
+    \AxiomC{$\lambda x \; . \; \phi : \alpha \Rightarrow \beta$}
     \AxiomC{$\gamma \sqsubseteq \alpha$}
     \TrinaryInfC{$\phi [t / x] : \beta$}
   \end{prooftree}
@@ -213,7 +213,7 @@
     \BinaryInfC{${\textsf{ARG}}^P_i : \alpha \sqcap \beta$}
   \end{prooftree}
   
-Замечания. Правило подстановки выводимо из \ref{rule:abstraction} и \ref{rule:application}, но вводится для удобства. Связывание -- частный случай простого согласования типов, т.к. если $\alpha \sqsubseteq \beta$, то $\alpha \sqcap \beta = \alpha$.
+\textbf{Замечания.} Правило подстановки выводимо из \ref{rule:abstraction} и \ref{rule:application}, но вводится для удобства. Связывание -- частный случай простого согласования типов, т.к. если $\alpha \sqsubseteq \beta$, то $\alpha \sqcap \beta = \alpha$.
 
 \section{Пример вывода}
 
@@ -223,7 +223,7 @@
 
 \ex.\label{inf:null} $\varnothing \vdash \lambda P : \exists x \sqsubseteq {\textsc{e}} \, (x \Rightarrow (\Pi \Rightarrow {\textsc{t}})) \; . \; \lambda x_1 : {\textsc{e}} \; . \; \lambda \pi_1 \; . \; P(\pi_1)(x_1)$
 
-Нулевой модификатор \ref{inf:null} <<удовлетворяет>> пресуппозиции, не модифицируя значения выражения. Редуцируя форму <<$\varnothing$ tree>> по правилам применения и подстановки получаем форму \ref{inf:sattree}.
+Нулевой модификатор \ref{inf:null} <<удовлетворяет>> требованиям пресуппозиции, не модифицируя значения выражения. Редуцировав форму <<$\varnothing$ tree>> по правилам применения и подстановки, получаем форму \ref{inf:sattree}, которую далее модифицировать нельзя (но можно присоединить к ней артикль, например).
 
 \ex.\label{inf:sattree} ${\mathsf{tree}}^\prime \vdash \lambda w \; . \; \lambda \pi \; . \; tree(w, \pi \ast {\textsf{ARG}}^{\textsf{tree}}_1 : P)$
 
