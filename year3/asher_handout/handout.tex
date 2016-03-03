@@ -109,8 +109,8 @@
 
 Для фрагмента связного текста (дискурса) строится т.н. \textit{структура репрезентации дискурса} (DRS), в которой для каждого референта заводится переменная. При последовательной обработке каждый новый фрагмент анализируется с учетом набора референтов, сформированного на предыдущем этапе. В примере \ref{drt:smile} местоимение в анафорическом употреблении трактуется как референциальная переменная.
 
-\ex.\label{drt:smile} Всякий мужчина, встретив женщину$_i$, улыбается ей$_i$
-	\a. $\langle [\,], [\langle [x, y] , [man(x), woman(y), meet(x,y)] \rangle \Rightarrow \langle [\,], [smiles\_at(x,y)] \rangle ] \rangle$
+\ex.\label{drt:smile} Всякий мужчина, встретив женщину$_i$, улыбается ей$_i$\\
+	$\langle [\,], [\langle [x, y] , [man(x), woman(y), meet(x,y)] \rangle \Rightarrow \langle [\,], [smiles\_at(x,y)] \rangle ] \rangle$
 
 Множество референциальных переменных называется \textit{контекстом}. В процессе включения новых фрагментов дискурса в общую структуру переменные согласуются друг с другом по особым правилам.
 
@@ -161,6 +161,47 @@
   \end{prooftree}
 
 Пример: тип ${\textsc{black}} = ({\textsc{p}} \Rightarrow {\textsc{t}})$, тип (абстрактного) физического свойства ${\textsc{physical\_property}} = \exists x \sqsubseteq {\textsc{p}} \; (x \Rightarrow {\textsc{T}})$, поэтому {\sc black} $\sqsubseteq$ {\sc physical\_property}.
+
+\section{Пресуппозиции типов}
+
+Нужно реализовать проверку типов при применении предиката к аргументам, но т.к. здесь типы нетривиальные, может потребоваться их модификация или изменение в процессе композиции под влиянием контекста.\footnote{Ср.: \texttt{float + int = float, int + int = int}.} 
+
+
+Чтобы этого добиться, Ашер вводит в каждый тип <<параметр пресуппозиции>> \textit{(presuppositional parameter)}, чтобы отразить <<динамическую>> адаптацию к контексту. Для этого в базовую логическу форму \ref{presup:basic} вводится дополнительная переменная $\pi$ специального типа, получается расширенная форма \ref{presup:param}.
+
+\ex.\label{presup:basic} tree $\vdash \lambda x \; . \; $tree(x)
+
+\ex.\label{presup:param} tree $\vdash \lambda x : {\textsc{p}} \; . \; \lambda \pi : \Pi \; . \;$tree(x, $\Pi$)
+
+Помимо этого, нужно добиться особого поведения пресуппозиций при композиции: <<большое дерево>> -- это всё равно <<дерево>>, поэтому пресуппозиции из терма <<дерево>>, должны <<протаскиваться>> наружу и согласовываться с модификатором. В форме  \ref{presup:percloation} переменная $\mathcal{P}$ имеет тип модификатора ${\textsf{MOD}} = \exists x \sqsubseteq {\textsc{e}} \, (x \Rightarrow (\Pi \Rightarrow {\textsc{t}})) \Rightarrow \exists x \sqsubseteq {\textsc{e}} \, (x \Rightarrow (\Pi \Rightarrow {\textsc{t}}))$, отображающее одно свойство первого порядка (тип $\exists x \sqsubseteq {\textsc{e}} \, (x \Rightarrow (\Pi \Rightarrow {\textsc{t}}))$) в другое. Здесь ${\textsf{ARG}}^{\textsf{tree}}_1$ -- первый аргумент tree.
+
+\ex.\label{presup:percloation} tree $\vdash \lambda \mathcal{P} : {\textsf{MOD}} \; . \; \lambda x : P \; . \; \lambda \pi : \Pi \; . \; \mathcal{P} ( \pi \ast {\textsf{ARG}}^{\textsf{tree}}_1 : P)(x)( \lambda v \; . \; \lambda \pi^\prime \; . \; {\textsf{tree}}(v, \pi^\prime))$
+
+
+
+\section{Формальная система TCL}
+
+Две группы правил: простые правила и правила для работы с пресуппозицией.\\
+
+\textbf{Простые правила}
+
+\ex.\label{rule:application} Application\\
+ \begin{prooftree}
+    \AxiomC{$\lambda x : \alpha \; . \; \phi [t : \gamma]$}
+    \AxiomC{$\lambda x : \alpha \; . \; \phi : \alpha \Rightarrow \beta$}
+    \AxiomC{$\gamma \sqsubseteq \alpha$}
+%    \RightLabel{$$}
+    \TrinaryInfC{$\phi [t / x] : \beta$}
+  \end{prooftree}
+
+\ex.\label{rule:application} Application\\
+ \begin{prooftree}
+    \AxiomC{$$}
+    \AxiomC{$$}
+    \RightLabel{$$}
+    \BinaryInfC{$$}
+  \end{prooftree}
+
 
 
 \iffalse
