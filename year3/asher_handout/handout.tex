@@ -87,34 +87,24 @@
 
 \begin{document} 
 
-\title{Dot types}
+\title{Type Composition Logic}
 \author{\textit{Константин Соколов {\small (СПбГУ, СПбПУ)}} \smallskip \\ {\small \texttt{vtqveant@gmail.com}}}
 \date{}
 
 \maketitle
 
-\section{Тексты}
+\section{Текст}
 
-\parencite{asher2011lexical}, \parencite{pustejovsky2013type}, \parencite{pustejovsky1995generative}. Дополнительные лингвистические примеры по большей части заимствуются из \parencite{plungjan2011introduction} и \parencite{paducheva2014dynamic}.
+Основной текст -- \parencite{asher2011lexical}, глава 4 (Type Composition Logic).
 
 \section{Type Composition Logic (TCL)}
 
 \begin{itemize}
-  \item Продолжает Пустейовского (полурешетка типов, subtyping, dot types, идея соотнесения предикатно-аргументной структуры с лексическим значением предиката)
+  \item Во многом продолжает Пустейовского (полурешетка типов, subtyping, dot types, идея соотнесения предикатно-аргументной структуры с лексическим значением предиката)
   \item Идея контекста, <<влияющего>> на значение слова
   \item Теоретико-типовой анализ предикатно-аргументной структуры: ограничения на сочетаемость (т.е. дистрибуцию), тип предиката должен учитывать типы аргументов
 \end{itemize}
 
-\section{Напоминание о теории репрезентации дискурса (DRT)}
-
-Для фрагмента связного текста (дискурса) строится т.н. \textit{структура репрезентации дискурса} (DRS), в которой для каждого референта заводится переменная. При последовательной обработке каждый новый фрагмент анализируется с учетом набора референтов, сформированного на предыдущем этапе. В примере \ref{drt:smile} местоимение в анафорическом употреблении трактуется как референциальная переменная.
-
-\ex.\label{drt:smile} Всякий мужчина, встретив женщину$_i$, улыбается ей$_i$\\
-	$\langle [\,], [\langle [x, y] , [man(x), woman(y), meet(x,y)] \rangle \Rightarrow \langle [\,], [smiles\_at(x,y)] \rangle ] \rangle$
-
-Множество референциальных переменных называется \textit{контекстом}. В процессе включения новых фрагментов дискурса в общую структуру переменные согласуются друг с другом по особым правилам.
-
-Пресуппозиция -- совокупность условий, необходимых для того, чтобы высказывание было правильно понято в своём прямом смысле. В динамической семантике. Например, в DRT пресуппозиция может пониматься как требования, предъявляемые к контексту -- наличие специальной переменной и т.п.
 
 \section{Система типов TCL}
 
@@ -124,14 +114,12 @@
   \item дизъюнктивные типы \textit{(disjunctive types)}: если $\sigma, \tau$ и $\rho$ -- типы и $\sigma \sqsubseteq \rho, \tau \sqsubseteq \rho$, то $(\sigma \vee \tau)$ -- тип
   \item функциональные типы \textit{(functional types)}: если $\sigma$ и $\tau$ -- типы, то $(\sigma \Rightarrow \tau)$ -- тип
   \item кванторные типы \textit{(quantificational types)}: если $\sigma$ -- базовый тип, $\tau$ -- произвольный тип, $x$ -- переменная по типам, то $\exists x \sqsubseteq \sigma \, \tau$ -- тип  (т.е. $x$ -- подтип $\sigma$)
-  \item имеется $\bot$ \textit{(absurd type)}, но $\top$ нет, т.е. здесь не полная решетка типов, а semi-lattice; всегда определен \textit{infimum}, но \textit{supremum} -- не всегда
+  \item имеется $\bot$ \textit{(absurd type)}, но $\top$ нет, т.е. здесь не полная решетка типов, а полурешетка; всегда определен \textit{infimum}, но \textit{supremum} -- не всегда
 \end{itemize}
 
-\section{Subtyping}
+\section{Подтипы}
 
-\textbf{Важное замечание.} Теоретико-множественная интерпретация подтипов функциональных типов неадекватна. E.g., экстенсионал типа {\sc (p $\Rightarrow$ t)} (физические свойства объектов) и экстенсионал типа {\sc (e $\Rightarrow$ t)} (подмножества объектов) не пересекаются, хотя {\sc p $\sqsubseteq$ e} (и потому можно было бы ожидать {\sc (p $\Rightarrow$ t) = (e $\Rightarrow$ t)$|_{\textsc{p}}$}). Корректную интерпретацию TCL можно построить в рамках теории топосов.
-
-Подтипы для функциональных типов
+Теоретико-множественная интерпретация подтипов функциональных типов неадекватна. E.g., экстенсионал типа {\sc (p $\Rightarrow$ t)} (физические свойства объектов) и экстенсионал типа {\sc (e $\Rightarrow$ t)} (подмножества объектов) не пересекаются, хотя {\sc p $\sqsubseteq$ e} (и потому можно было бы ожидать {\sc (p $\Rightarrow$ t) = (e $\Rightarrow$ t)$|_{\textsc{p}}$}).\footnote{Интерпретацию TCL можно построить с помощью теории топосов, что Ашер делает дальше.} Подтипы для функциональных типов представляют собой проблему.
 
 \ex.\label{tcl:subtyping}
   \begin{prooftree}
@@ -162,10 +150,20 @@
 
 Пример: тип ${\textsc{black}} = ({\textsc{p}} \Rightarrow {\textsc{t}})$, тип (абстрактного) физического свойства ${\textsc{physical\_property}} = \exists x \sqsubseteq {\textsc{p}} \; (x \Rightarrow {\textsc{T}})$, поэтому {\sc black} $\sqsubseteq$ {\sc physical\_property}.
 
+\section{Напоминание: пресуппозиция в теории репрезентации дискурса}
+
+Для фрагмента связного текста (дискурса) строится т.н. \textit{структура репрезентации дискурса} (DRS), в которой для каждого референта заводится переменная. При последовательной обработке каждый новый фрагмент анализируется с учетом набора референтов, сформированного на предыдущем этапе. В примере \ref{drt:smile} местоимение в анафорическом употреблении трактуется как референциальная переменная.
+
+\ex.\label{drt:smile} Всякий мужчина, встретив женщину$_i$, улыбается ей$_i$\\
+	$\langle [\,], [\langle [x, y] , [man(x), woman(y), meet(x,y)] \rangle \Rightarrow \langle [\,], [smiles\_at(x,y)] \rangle ] \rangle$
+
+Множество референциальных переменных называется \textit{контекстом}. В процессе включения новых фрагментов дискурса в общую структуру переменные согласуются друг с другом по особым правилам.
+
+Пресуппозиция -- совокупность условий, необходимых для того, чтобы высказывание было правильно понято в своём прямом смысле. Концепция проекции пресуппозиции -- идея, что условия могут эксплицироваться таким же образом, как и референциальные переменные, т.е. что пресуппозиция может анализироваться с помощью того же аппарата, что и анафора. В динамической семантике пресуппозиция может пониматься как требования, предъявляемые к контексту -- наличие в контексте особой переменной и т.п.
+
 \section{Пресуппозиции типов}
 
 Нужно реализовать проверку типов при применении предиката к аргументам, но т.к. здесь типы нетривиальные, может потребоваться их модификация или изменение в процессе композиции под влиянием контекста.\footnote{Ср.: \texttt{float + int = float, int + int = int}.} 
-
 
 Чтобы этого добиться, Ашер вводит в каждый тип <<параметр пресуппозиции>> \textit{(presuppositional parameter)}, чтобы отразить <<динамическую>> адаптацию к контексту. Для этого в базовую логическу форму \ref{presup:basic} вводится дополнительная переменная $\pi$ специального типа, получается расширенная форма \ref{presup:param}.
 
@@ -173,252 +171,65 @@
 
 \ex.\label{presup:param} tree $\vdash \lambda x : {\textsc{p}} \; . \; \lambda \pi : \Pi \; . \;$tree(x, $\Pi$)
 
-Помимо этого, нужно добиться особого поведения пресуппозиций при композиции: <<большое дерево>> -- это всё равно <<дерево>>, поэтому пресуппозиции из терма <<дерево>>, должны <<протаскиваться>> наружу и согласовываться с модификатором. В форме  \ref{presup:percloation} переменная $\mathcal{P}$ имеет тип модификатора ${\textsf{MOD}} = \exists x \sqsubseteq {\textsc{e}} \, (x \Rightarrow (\Pi \Rightarrow {\textsc{t}})) \Rightarrow \exists x \sqsubseteq {\textsc{e}} \, (x \Rightarrow (\Pi \Rightarrow {\textsc{t}}))$, отображающее одно свойство первого порядка (тип $\exists x \sqsubseteq {\textsc{e}} \, (x \Rightarrow (\Pi \Rightarrow {\textsc{t}}))$) в другое. Здесь ${\textsf{ARG}}^{\textsf{tree}}_1$ -- первый аргумент tree.
+Помимо этого, нужно добиться особого поведения пресуппозиций при композиции: <<большое дерево>> -- это всё равно <<дерево>>, поэтому пресуппозиции из терма <<дерево>>, должны <<протаскиваться>> наружу и согласовываться с модификатором. В форме  \ref{presup:percloation} переменная $\mathcal{P}$ имеет тип модификатора ${\textsf{MOD}} = \exists x \sqsubseteq {\textsc{e}} \, (x \Rightarrow (\Pi \Rightarrow {\textsc{t}})) \Rightarrow \exists x \sqsubseteq {\textsc{e}} \, (x \Rightarrow (\Pi \Rightarrow {\textsc{t}}))$, отображающее одно свойство первого порядка (тип $\exists x \sqsubseteq {\textsc{e}} \, (x \Rightarrow (\Pi \Rightarrow {\textsc{t}}))$) в другое. Здесь ${\textsf{ARG}}^{\textsf{tree}}_1$ -- первый аргумент tree, выражение $\pi \ast {\textsf{ARG}}^{\textsf{tree}}_1 : P$ означает контекст $\pi$, содержащий условие, что первый аргумент tree должен иметь тип $P$.
 
-\ex.\label{presup:percloation} tree $\vdash \lambda \mathcal{P} : {\textsf{MOD}} \; . \; \lambda x : P \; . \; \lambda \pi : \Pi \; . \; \mathcal{P} ( \pi \ast {\textsf{ARG}}^{\textsf{tree}}_1 : P)(x)( \lambda v \; . \; \lambda \pi^\prime \; . \; {\textsf{tree}}(v, \pi^\prime))$
+\ex.\label{presup:percloation} tree $\vdash \lambda \mathcal{P} : {\textsf{MOD}} \; . \; \lambda x : {\textsc{e}} \; . \; \lambda \pi : \Pi \; . \; \mathcal{P} ( \pi \ast {\textsf{ARG}}^{\textsf{tree}}_1 : P)(x)( \lambda v \; . \; \lambda \pi^\prime \; . \; {\textsf{tree}}(v, \pi^\prime))$
 
 
 
 \section{Формальная система TCL}
 
-Две группы правил: простые правила и правила для работы с пресуппозицией.\\
+Две группы правил: простые правила (применение, абстракция, подстановка) и правила для работы с пресуппозицией.\\
 
-\textbf{Простые правила}
-
-\ex.\label{rule:application} Application\\
+\ex.\label{rule:application} Применение \textit{(application)}\\
  \begin{prooftree}
     \AxiomC{$\lambda x : \alpha \; . \; \phi [t : \gamma]$}
     \AxiomC{$\lambda x : \alpha \; . \; \phi : \alpha \Rightarrow \beta$}
     \AxiomC{$\gamma \sqsubseteq \alpha$}
-%    \RightLabel{$$}
     \TrinaryInfC{$\phi [t / x] : \beta$}
   \end{prooftree}
 
-\ex.\label{rule:application} Application\\
+\ex.\label{rule:abstraction} Абстракция \textit{(abstraction)}\\
  \begin{prooftree}
-    \AxiomC{$$}
-    \AxiomC{$$}
-    \RightLabel{$$}
-    \BinaryInfC{$$}
+    \AxiomC{$x : \alpha$}
+    \AxiomC{$t : \beta$}
+    \BinaryInfC{$\lambda x \; . \; t : \alpha \Rightarrow \beta$}
   \end{prooftree}
 
-
-
-\iffalse
-
-\section{Проблемы лексической семантики}
-
-Проблемы лексической семантики: creative use of words, etc.;
-
-лексикализм в лингвистике вообще и в генеративной лингвистике в частности
-
-Ещё раз о требованиях к семантическому представлению
-\begin{itemize}
-	\item возможность сочетания (композициональной) семантики предложения и лексической семантики
-	\item возможность учета семантических отношений (гипо-гиперонимических и др.) -- грузовик $\sqsubseteq$ автомобиль (подтипы)
-	\item возможность реализации фреймовой семантики (т.к. реализация семантических ролей отражается в значении слова, 
- ср. ``вода течет в лодку'', ``лодка течет'')
-	\item решение проблемы сопредикации (copredication) -- необходимости приписывать слову два типа для
- отражения различных аспектов значения, притом что два эти типа не могут быть одновременно
- (lunch was delicious but took forever -- both food and event?)
-	\item логическая полисемия (термин Пустейовского) -- разные, но взаимосвязанные значения, раскрывающиеся в контексте
- (a heavy book (физический объект) vs. a boring book (носитель информации)
-	\item компонентная семантика (холостяк = [+ мужчина] [+ взрослый] [- женатый]
-	\item co-composition и функциональное применение (стандартный подход в композиционной семантике -- одно слово ``применяется'' к другому; нужно учесть явления ``взаимообусловленности значений''
-	\item новообразования (термин Падучевой) -- метафорическое, метонимическое употребление и пр., языковое творчество 
-\end{itemize} 
-
-
-\section{Основы формализма}
-
-Унификационные грамматики и типизированные структуры признаков. Логическое описание структур признаков (Каспер-Раундс, Джонсон, гибридная логика). Графовое представление структур признаков, reentrancy. Subsumption relation и решетка типов; связь с системами типов с подтипами (subtyping coerсion); связь с системами множественного наследования
-
-\begin{avm} 
-\[\asort{$\alpha$}
-  argstr & \[arg1 & $x$ \\
-             \dots \] \\
-  eventstr & \[E1 & $e_1$ \\
-             \dots   
-             \] \\
-  qualia & \[const & \textit{what x is made of} \\
-             formal & \textit{what x is} \\
-             telic & \textit{function of x} \\
-             agentive & \textit{how x came into being}
-    \]
-\]               
-\end{avm}
-
-
-\section{Конструкция записи в ГЛ}
-Общая конструкция записи в GL. Концепт (слово) как тип.\\
-
-Пояснения к конструкции и (лингвистический) бэкграунд
-\begin{enumerate}
-    \item argument structure в GL -- аргументно-предикатная структура, фреймы, PropBank, тематические роли, тета-критерий, диатеза и актантная деривация
-    \item event structure в GL -- грамматическая семантика и основные граммемы глагола (основное деление -- аспект vs. модальность); аспектология; event semantics Дэвидсона как развитие формальной семантики;
-    \item qualia structure -- учение о причинах у Аристотеля; компонентный анализ значения; 
-    \item inheritance structure -- гиперо-гипонимичские и пр. отношения в структуре словаря; тезаурус и семантические поля; WordNet
-\end{enumerate}
-
-\section{Лексическая декомпозиция}
-
-Основная идея: аргументно-предикатная структура и декомпозиция лексического значения -- по сути, два взгляда на одно и то же явление. 
-
-Лексическая декомпозиция (``агрументно-предикатный уровень''): можно ли определить значение предиката через типы аргументов? Четыре способа построить отображение между аргументно-предикатной структурой и синтаксисом. Эти способы с примерами. GL -- один из эти способов.
-
-Модель, с помощью которой иллюстрируются различные способы соотнесения аргументно-предикатной структуры и синтаксиса
-
-\begin{exe}
-\ex{$\lambda x_i . \Phi$} \label{pred:atomic}
-\end{exe}
-
-Известные способы декомпозиции можно разбить на классы (один тривиальный + четыре):
-
-Тривиальный подход -- \textbf{атомарная предикация}. Параметры отображаются в глагольные аргументы непосредственно
-\begin{exe}
-\ex{$\lambda x_n \dots \lambda x_1 . \Phi \Rightarrow Verb(Arg_1, \dots, Arg_n)$} \label{pred:atomic:ex1}
-\end{exe}
-
-$\theta$-теория в GB
-
-hit : $\lambda y . \lambda x . hit(x,y)$
-
-[the car]$_i$ hit [the wall]$_j$
-
-тета-решетка (theta-grid):
-
-\begin{table}[ht]
-\centering
-\begin{tabular}{|c|c|}
-\hline
-агенс & пациенс \\ \hline
-i     & j       \\ \hline
-\end{tabular}
-\end{table}
-
-Тета-решетка -- это способ задать соответствие между аргументами и элементами синтаксической структуры. В GB формулируется условие, что это соответствие должно быть одно-однозначным (т.н. тета-критерий). 
-
-\begin{exe}
-  \ex[*]{Мальчик читает книгу газету} \label{pred:atomic:ex2}
-\end{exe}
-
-Пример (\ref{pred:atomic:ex2}) нарушает $\theta$-критерий и потому неграмматичен.
-
-\textbf{Параметрическая декомпозиция.} Атомарное тело выражения, в список аргументов вводятся новые
-
-\begin{exe}
-\ex{$\lambda x_m \dots \lambda x_{n+1} \lambda x_n \dots \lambda x_1 . \Phi$}
-\end{exe}
-
-Пример: дэвидсоновская event semantics.
-
-\begin{exe}
-\ex 
-  \begin{xlist}
-    \ex Mary ate the soup.
-    \ex Mary ate the soup with a spoon.
-    \ex Mary ate the soup with a spoon in the kitchen.
-    \ex Mary ate the soup with a spoon in the kitchen at 3:00 pm.
-  \end{xlist}
-\ex 
-  \begin{xlist}
-    \ex{$\exists e$[\textit{eat}($e$, $m$, the\_soup)]} 
-    \ex{$\exists e$[\textit{eat}($e$, $m$, the\_soup) $\wedge$ \textit{with}($e$, a\_spoon)]} 
-    \ex{$\exists e$[\textit{eat}($e$, $m$, the\_soup) $\wedge$ \textit{with}($e$, a\_spoon) $\wedge$ \textit{in}($e$, the\_kitchen)]} 
-    \ex{$\exists e$[\textit{eat}($e$, $m$, the\_soup) $\wedge$ \textit{with}($e$, a\_spoon) $\wedge$ \textit{in}($e$, the\_kitchen) $\wedge$ \textit{at}($e$, 3:00pm)]} 
-  \end{xlist}
-\end{exe}
-
-В данном случае содержание предиката не меняется, но одно-однозначное соответствие между агрументами и синтаксисом не сохраняется (теория должна сформулировать способ указать, сохраняется или удаляется ли конкретный аргумент).
-
-\textbf{Простая предикативная декомпозиция.} Тело предиката представляется как сложное выражение.
-
-\begin{exe}
-\ex{$\lambda x . [\Phi_1, \dots , \Phi_k]$}
-\end{exe}
-
-Пример: компонентный анализ значения.
-
-\begin{exe}
-  \ex $\forall x$[\textit{bachelor}(x) $\Rightarrow$ [\textit{male}(x) $\wedge$ \textit{adult}(x) $\wedge \neg$ \textit{married}(x)]]  
-  \ex $\forall x$[\textit{die}(x) $\Rightarrow$ [\textit{become}($\neg$ \textit{alive}(x)]]
-\end{exe}
-
-В данном случае помимо идентификации аргумента, требуется соотнести субпредикаты с одним синтаксическим материалом.
-
-\textbf{Полная предикативная декомпозиция.} Расширение списка аргументов и сложная структура тела предиката.
-
-\begin{exe}
-\ex{$\lambda x_m \dots \lambda x_{n+1} \lambda x_n \dots \lambda x_1 . [\Phi_1, \dots, \Phi_k]$}
-\end{exe}
-
-\begin{exe}
-  \ex kill : $\lambda y \lambda x \lambda e_1 \lambda e_2$ [\textit{act}(e_1, x, y) $\wedge \neg$ \textit{dead}(e_1, y) $\wedge$ \textit{dead}(e_2, x) $\wedge$ e_1 < e_2]  
-\end{exe}
-
-Пример: ГЛ
-
-\textbf{Супралексическая декомпозиция.} Выражение не меняется, но множество параметров снабжается некоторой структурой путем введения дополнительных операторов.
-
-\begin{exe}
-\ex{$\lambda f_\sigma \lambda x_1 [R(f)(x_1)](\lambda x . [\Phi_1, \dots, \Phi_k])_\sigma$}
-\end{exe}
-
-Пример: залог и актантная деривация
-
-Залог -- глагольная категория, граммемы которой указывают на определенное изменение коммуникативного ранга участников ситуации (при сохранении их числа!)\\
-\medskip
-\begin{itemize}
-    \item \textit{активный залог} отражает базовую ранговую структуру
-    \item \textit{косвенные залоги} отражают передачу статуса от одного глагольного аргумента к другому
-\end{itemize}
-
-\begin{itemize}
-    \item \textit{пассив} -- лишение исходного подлежащего наивысшего коммуникативного ранга
-        \begin{itemize}
-            \item пассивная конструкция с нулевым агенсом (\textit{разговор был прерван})
-            \item пассивная конструкция без повышения статуса агенса (\textit{в газете сообщалось о параде})
-        \end{itemize}
-    \item \textit{пермутатив} -- не затрагивает статус подлежащего, но перераспределяет статус дополнений (\textit{царь одарил его шубой} из \textit{царь подарил ему шубу})
-    \item \textit{транзитиватив} -- повышение косвенного дополнения до прямого (\textit{мухи обсели абажур}) или понижение прямого дополнения до косвенного (\textit{ветер швырялся песком})
-\end{itemize}
-
-Для реализации залога нужно добавить процедуру изменения коммуникативного ранга актантов как набор отношений между актантоами, \textit{внешний} по отношению к значению глагола.
-
-
-
-\section{Система типов в GL}
-
-Мотивация: \textit{испечь картошку}, \textit{испечь хлеб}; но (??)\textit{выпекать картошку}, \textit{выпекать хлеб}. Искусственные vs. естественные вещи.
-
-типизация для учета лексических классов:
-sleep : anim $\to$ t (ср. с $<e,t>$
-
-Различные стратегии декомпозиции:
-\begin{itemize}
-  \item (атомарная) $\lambda x$[sleep(x)] : e $\to$ t
-  \item (предикативная) $\lambda x$[sleep(x) $\wedge$ animate(x)] : e $\to$ t
-  \item (расширенная типизация) $\lambda x$:\textit{anim}[sleep(x)] : anim $\to$ t
-\end{itemize}
-
-Таксономия типов: естественные (ср. natural kind и Рош), искусственные и сложные типы. Их определение через qualia. Естественные содержат только формальные и материальные качества; искусстенные содержат материальные качества; сложные содержат информацию об отношениях между типами. Qualia unification.\\
-
-Система типов в GL. Структура наследования типов и qualia как система ограничений на типы структур признаков. Три конструктора типов (стрелка, точка, тензор). 
-
-\section{Механизм композиции в ГЛ}
-
-Операции, учитывающие типы, для реализации ``выбора'' (selection) значений требуют особых типов и особых механизмов композиции. Композициональность по Монтегю -- функциональное применение (реализуется как конкатенация лямбда-термов с последующей редукцией). Расширение композициональных механизмов у Пустейовского (так что получаются ``механизмы выбора''): а) pure selection (type matching), б) accomodation в) type coercion (два варианта -- exploitation и introduction). Примеры действия этих механизмов.
-
-\section{Структура события}
-
-Event structure. Внутренняя структура событий; события используются для задания ограничений на qualia; аспектуальность и лексическая семантика каузации (глава 9)
-
-\section{Заключение}
-
-Заключение. Отличительные особенности GL. Семантика синтаксическими средствами (внутри формального языка, конечно) в GL vs. теоретико-модельная семантика (Монтегю и пр.). Динамический характер лексикона в GL vs. статический лексикон как в дистрибутивной семантике, так и в CCG и других лексикализованных концепциях. GL и DPL (GL как динамическая семантика)\\
-
-
-\fi
+\ex.\label{rule:substitution} Подстановка \textit{(substitution)}\\
+ \begin{prooftree}
+    \AxiomC{$t \to_\beta t^\prime$}
+    \UnaryInfC{$\phi \to_\beta \phi [t^\prime / t]$}
+  \end{prooftree}
+
+\ex.\label{rule:binding} Связывание пресуппозиций \textit{(binding presuppositions)}\\
+ \begin{prooftree}
+    \AxiomC{$\alpha \sqsubseteq \beta$}
+    \AxiomC{${\textsf{ARG}}^P_i : \alpha$}
+    \AxiomC{${\textsf{ARG}}^P_i : \beta$}
+    \TrinaryInfC{${\textsf{ARG}}^P_i : \alpha$}
+  \end{prooftree}
+
+\ex.\label{rule:accomodation} Простое согласование типов \textit{(simple type accomodation)}\\
+ \begin{prooftree}
+    \AxiomC{$\alpha \sqcap \beta \neq \bot$}
+    \AxiomC{${\textsf{ARG}}^P_i : \alpha \ast {\textsf{ARG}}^P_i : \beta$}
+    \BinaryInfC{${\textsf{ARG}}^P_i : \alpha \sqcap \beta$}
+  \end{prooftree}
+  
+Замечания. Правило подстановки выводимо из \ref{rule:abstraction} и \ref{rule:application}, но вводится для удобства. Связывание -- частный случай простого согласования типов, т.к. если $\alpha \sqsubseteq \beta$, то $\alpha \sqcap \beta = \alpha$.
+
+\section{Пример вывода}
+
+Присоединение тривиального (нулевого) модификатора. Форма \ref{inf:tree} имеет нереализованную пресуппозицию типа, поэтому может присоединять модификаторы (напр., образовать форму big tree). 
+
+\ex.\label{inf:tree} tree $\vdash \lambda \mathcal{P} : {\textsf{MOD}} \; . \; \lambda x : {\textsc{e}} \; . \; \lambda \pi : \Pi \; . \; \mathcal{P} ( \pi \ast {\textsf{ARG}}^{\textsf{tree}}_1 : P)(x)( \lambda v \; . \; \lambda \pi^\prime \; . \; {\textsf{tree}}(v, \pi^\prime))$
+
+\ex.\label{inf:null} $\varnothing \vdash \lambda P : \exists x \sqsubseteq {\textsc{e}} \, (x \Rightarrow (\Pi \Rightarrow {\textsc{t}})) \; . \; \lambda x_1 : {\textsc{e}} \; . \; \lambda \pi_1 \; . \; P(\pi_1)(x_1)$
+
+Нулевой модификатор \ref{inf:null} <<удовлетворяет>> пресуппозиции, не модифицируя значения выражения. Редуцируя форму <<$\varnothing$ tree>> по правилам применения и подстановки получаем форму \ref{inf:sattree}.
+
+\ex.\label{inf:sattree} ${\mathsf{tree}}^\prime \vdash \lambda w \lambda \pi tree(w, \pi \ast {\textsf{ARG}}^{\textsf{tree}}_1 : P)$
 
 \nocite{*}
 \printbibliography[resetnumbers=true]
